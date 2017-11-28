@@ -1,0 +1,4321 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+><head
+  ><title
+    >bitcoinLedgerModel</title
+    ><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
+     /><meta http-equiv="Content-Style-Type" content="text/css"
+     /><link href="Agda.css" rel="stylesheet" type="text/css"
+     /></head
+  ><body
+  ><pre
+    ><a name="1"
+      >
+
+</a
+      ><a name="3" class="Keyword"
+      >module</a
+      ><a name="9"
+      > </a
+      ><a name="10" href="bitcoinLedgerModel.html#1" class="Module"
+      >bitcoinLedgerModel</a
+      ><a name="28"
+      > </a
+      ><a name="29" class="Keyword"
+      >where</a
+      ><a name="34"
+      >
+
+</a
+      ><a name="36" class="Comment"
+      >-- open import bool</a
+      ><a name="55"
+      >
+</a
+      ><a name="56" class="Keyword"
+      >open</a
+      ><a name="60"
+      > </a
+      ><a name="61" class="Keyword"
+      >import</a
+      ><a name="67"
+      > </a
+      ><a name="68" href="libraries.listLib.html#1" class="Module"
+      >libraries.listLib</a
+      ><a name="85"
+      >
+</a
+      ><a name="86" class="Keyword"
+      >open</a
+      ><a name="90"
+      > </a
+      ><a name="91" class="Keyword"
+      >import</a
+      ><a name="97"
+      > </a
+      ><a name="98" href="libraries.natLib.html#1" class="Module"
+      >libraries.natLib</a
+      ><a name="114"
+      >
+</a
+      ><a name="115" class="Keyword"
+      >open</a
+      ><a name="119"
+      > </a
+      ><a name="120" class="Keyword"
+      >import</a
+      ><a name="126"
+      > </a
+      ><a name="127" href="Data.Nat.html#1" class="Module"
+      >Data.Nat</a
+      ><a name="135"
+      >
+</a
+      ><a name="136" class="Keyword"
+      >open</a
+      ><a name="140"
+      > </a
+      ><a name="141" class="Keyword"
+      >import</a
+      ><a name="147"
+      > </a
+      ><a name="148" href="Data.List.html#1" class="Module"
+      >Data.List</a
+      ><a name="157"
+      >
+</a
+      ><a name="158" class="Keyword"
+      >open</a
+      ><a name="162"
+      > </a
+      ><a name="163" class="Keyword"
+      >import</a
+      ><a name="169"
+      > </a
+      ><a name="170" href="Data.Unit.html#1" class="Module"
+      >Data.Unit</a
+      ><a name="179"
+      >
+</a
+      ><a name="180" class="Keyword"
+      >open</a
+      ><a name="184"
+      > </a
+      ><a name="185" class="Keyword"
+      >import</a
+      ><a name="191"
+      > </a
+      ><a name="192" href="Data.Bool.html#1" class="Module"
+      >Data.Bool</a
+      ><a name="201"
+      >
+</a
+      ><a name="202" class="Keyword"
+      >open</a
+      ><a name="206"
+      > </a
+      ><a name="207" class="Keyword"
+      >import</a
+      ><a name="213"
+      > </a
+      ><a name="214" href="Data.Product.html#1" class="Module"
+      >Data.Product</a
+      ><a name="226"
+      >
+</a
+      ><a name="227" class="Keyword"
+      >open</a
+      ><a name="231"
+      > </a
+      ><a name="232" class="Keyword"
+      >import</a
+      ><a name="238"
+      > </a
+      ><a name="239" href="Data.Nat.Base.html#1" class="Module"
+      >Data.Nat.Base</a
+      ><a name="252"
+      >
+
+</a
+      ><a name="254" class="Keyword"
+      >infixr</a
+      ><a name="260"
+      > </a
+      ><a name="261" class="Number"
+      >3</a
+      ><a name="262"
+      > </a
+      ><a name="263" href="bitcoinLedgerModel.html#552" class="InductiveConstructor Operator"
+      >_+msg_</a
+      ><a name="269"
+      >
+
+</a
+      ><a name="271" href="bitcoinLedgerModel.html#271" class="Function"
+      >Time</a
+      ><a name="275"
+      > </a
+      ><a name="276" class="Symbol"
+      >:</a
+      ><a name="277"
+      > </a
+      ><a name="278" class="PrimitiveType"
+      >Set</a
+      ><a name="281"
+      >
+</a
+      ><a name="282" href="bitcoinLedgerModel.html#282" class="Function"
+      >Amount</a
+      ><a name="288"
+      > </a
+      ><a name="289" class="Symbol"
+      >:</a
+      ><a name="290"
+      > </a
+      ><a name="291" class="PrimitiveType"
+      >Set</a
+      ><a name="294"
+      >
+</a
+      ><a name="295" href="bitcoinLedgerModel.html#295" class="Function"
+      >Address</a
+      ><a name="302"
+      > </a
+      ><a name="303" class="Symbol"
+      >:</a
+      ><a name="304"
+      > </a
+      ><a name="305" class="PrimitiveType"
+      >Set</a
+      ><a name="308"
+      >
+</a
+      ><a name="309" href="bitcoinLedgerModel.html#309" class="Function"
+      >TXID</a
+      ><a name="313"
+      > </a
+      ><a name="314" class="Symbol"
+      >:</a
+      ><a name="315"
+      > </a
+      ><a name="316" class="PrimitiveType"
+      >Set</a
+      ><a name="319"
+      >
+</a
+      ><a name="320" href="bitcoinLedgerModel.html#320" class="Function"
+      >Signature</a
+      ><a name="329"
+      > </a
+      ><a name="330" class="Symbol"
+      >:</a
+      ><a name="331"
+      > </a
+      ><a name="332" class="PrimitiveType"
+      >Set</a
+      ><a name="335"
+      >
+</a
+      ><a name="336" href="bitcoinLedgerModel.html#336" class="Function"
+      >PublicKey</a
+      ><a name="345"
+      > </a
+      ><a name="346" class="Symbol"
+      >:</a
+      ><a name="347"
+      > </a
+      ><a name="348" class="PrimitiveType"
+      >Set</a
+      ><a name="351"
+      >
+
+</a
+      ><a name="353" class="Comment"
+      >-- \bitcoinVersFive</a
+      ><a name="372"
+      >
+</a
+      ><a name="373" href="bitcoinLedgerModel.html#271" class="Function"
+      >Time</a
+      ><a name="377"
+      >       </a
+      ><a name="384" class="Symbol"
+      >=</a
+      ><a name="385"
+      >  </a
+      ><a name="387" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="388"
+      >
+</a
+      ><a name="389" href="bitcoinLedgerModel.html#282" class="Function"
+      >Amount</a
+      ><a name="395"
+      >     </a
+      ><a name="400" class="Symbol"
+      >=</a
+      ><a name="401"
+      >  </a
+      ><a name="403" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="404"
+      >
+
+</a
+      ><a name="406" href="bitcoinLedgerModel.html#295" class="Function"
+      >Address</a
+      ><a name="413"
+      >    </a
+      ><a name="417" class="Symbol"
+      >=</a
+      ><a name="418"
+      >  </a
+      ><a name="420" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="421"
+      >
+</a
+      ><a name="422" href="bitcoinLedgerModel.html#309" class="Function"
+      >TXID</a
+      ><a name="426"
+      >       </a
+      ><a name="433" class="Symbol"
+      >=</a
+      ><a name="434"
+      >  </a
+      ><a name="436" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="437"
+      >
+</a
+      ><a name="438" href="bitcoinLedgerModel.html#320" class="Function"
+      >Signature</a
+      ><a name="447"
+      >  </a
+      ><a name="449" class="Symbol"
+      >=</a
+      ><a name="450"
+      >  </a
+      ><a name="452" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="453"
+      >
+</a
+      ><a name="454" href="bitcoinLedgerModel.html#336" class="Function"
+      >PublicKey</a
+      ><a name="463"
+      >  </a
+      ><a name="465" class="Symbol"
+      >=</a
+      ><a name="466"
+      >  </a
+      ><a name="468" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="469"
+      >
+
+
+</a
+      ><a name="472" class="Comment"
+      >-- \bitcoinVersFive</a
+      ><a name="491"
+      >
+</a
+      ><a name="492" class="Keyword"
+      >data</a
+      ><a name="496"
+      > </a
+      ><a name="497" href="bitcoinLedgerModel.html#497" class="Datatype"
+      >Msg</a
+      ><a name="500"
+      > </a
+      ><a name="501" class="Symbol"
+      >:</a
+      ><a name="502"
+      > </a
+      ><a name="503" class="PrimitiveType"
+      >Set</a
+      ><a name="506"
+      > </a
+      ><a name="507" class="Keyword"
+      >where</a
+      ><a name="512"
+      >
+   </a
+      ><a name="516" href="bitcoinLedgerModel.html#516" class="InductiveConstructor"
+      >nat</a
+      ><a name="519"
+      >     </a
+      ><a name="524" class="Symbol"
+      >:</a
+      ><a name="525"
+      >  </a
+      ><a name="527" class="Symbol"
+      >(</a
+      ><a name="528" href="bitcoinLedgerModel.html#528" class="Bound"
+      >n</a
+      ><a name="529"
+      > </a
+      ><a name="530" class="Symbol"
+      >:</a
+      ><a name="531"
+      > </a
+      ><a name="532" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="533" class="Symbol"
+      >)</a
+      ><a name="534"
+      >         </a
+      ><a name="543" class="Symbol"
+      >&#8594;</a
+      ><a name="544"
+      > </a
+      ><a name="545" href="bitcoinLedgerModel.html#497" class="Datatype"
+      >Msg</a
+      ><a name="548"
+      >
+   </a
+      ><a name="552" href="bitcoinLedgerModel.html#552" class="InductiveConstructor Operator"
+      >_+msg_</a
+      ><a name="558"
+      >  </a
+      ><a name="560" class="Symbol"
+      >:</a
+      ><a name="561"
+      >  </a
+      ><a name="563" class="Symbol"
+      >(</a
+      ><a name="564" href="bitcoinLedgerModel.html#564" class="Bound"
+      >m</a
+      ><a name="565"
+      > </a
+      ><a name="566" href="bitcoinLedgerModel.html#566" class="Bound"
+      >m'</a
+      ><a name="568"
+      > </a
+      ><a name="569" class="Symbol"
+      >:</a
+      ><a name="570"
+      > </a
+      ><a name="571" href="bitcoinLedgerModel.html#497" class="Datatype"
+      >Msg</a
+      ><a name="574" class="Symbol"
+      >)</a
+      ><a name="575"
+      >     </a
+      ><a name="580" class="Symbol"
+      >&#8594;</a
+      ><a name="581"
+      > </a
+      ><a name="582" href="bitcoinLedgerModel.html#497" class="Datatype"
+      >Msg</a
+      ><a name="585"
+      >
+   </a
+      ><a name="589" href="bitcoinLedgerModel.html#589" class="InductiveConstructor"
+      >list</a
+      ><a name="593"
+      >    </a
+      ><a name="597" class="Symbol"
+      >:</a
+      ><a name="598"
+      >  </a
+      ><a name="600" class="Symbol"
+      >(</a
+      ><a name="601" href="bitcoinLedgerModel.html#601" class="Bound"
+      >l</a
+      ><a name="602"
+      >  </a
+      ><a name="604" class="Symbol"
+      >:</a
+      ><a name="605"
+      > </a
+      ><a name="606" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="610"
+      > </a
+      ><a name="611" href="bitcoinLedgerModel.html#497" class="Datatype"
+      >Msg</a
+      ><a name="614" class="Symbol"
+      >)</a
+      ><a name="615"
+      >  </a
+      ><a name="617" class="Symbol"
+      >&#8594;</a
+      ><a name="618"
+      > </a
+      ><a name="619" href="bitcoinLedgerModel.html#497" class="Datatype"
+      >Msg</a
+      ><a name="622"
+      >
+
+</a
+      ><a name="624" class="Keyword"
+      >postulate</a
+      ><a name="633"
+      > </a
+      ><a name="634" href="bitcoinLedgerModel.html#634" class="Postulate"
+      >hashMsg</a
+      ><a name="641"
+      > </a
+      ><a name="642" class="Symbol"
+      >:</a
+      ><a name="643"
+      > </a
+      ><a name="644" href="bitcoinLedgerModel.html#497" class="Datatype"
+      >Msg</a
+      ><a name="647"
+      > </a
+      ><a name="648" class="Symbol"
+      >&#8594;</a
+      ><a name="649"
+      > </a
+      ><a name="650" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="651"
+      >
+
+
+
+</a
+      ><a name="655" class="Comment"
+      >-- \bitcoinVersFive</a
+      ><a name="674"
+      >
+</a
+      ><a name="675" class="Keyword"
+      >postulate</a
+      ><a name="684"
+      > </a
+      ><a name="685" href="bitcoinLedgerModel.html#685" class="Postulate"
+      >publicKey2Address</a
+      ><a name="702"
+      > </a
+      ><a name="703" class="Symbol"
+      >:</a
+      ><a name="704"
+      > </a
+      ><a name="705" class="Symbol"
+      >(</a
+      ><a name="706" href="bitcoinLedgerModel.html#706" class="Bound"
+      >pubk</a
+      ><a name="710"
+      > </a
+      ><a name="711" class="Symbol"
+      >:</a
+      ><a name="712"
+      > </a
+      ><a name="713" href="bitcoinLedgerModel.html#336" class="Function"
+      >PublicKey</a
+      ><a name="722" class="Symbol"
+      >)</a
+      ><a name="723"
+      > </a
+      ><a name="724" class="Symbol"
+      >&#8594;</a
+      ><a name="725"
+      > </a
+      ><a name="726" href="bitcoinLedgerModel.html#295" class="Function"
+      >Address</a
+      ><a name="733"
+      >
+
+</a
+      ><a name="735" class="Comment"
+      >-- Signed means that Msg msg has been signed</a
+      ><a name="779"
+      >
+</a
+      ><a name="780" class="Comment"
+      >-- by private key corresponding to pubk</a
+      ><a name="819"
+      >
+
+</a
+      ><a name="821" class="Comment"
+      >-- \bitcoinVersFive</a
+      ><a name="840"
+      >
+</a
+      ><a name="841" class="Keyword"
+      >postulate</a
+      ><a name="850"
+      > </a
+      ><a name="851" href="bitcoinLedgerModel.html#851" class="Postulate"
+      >Signed</a
+      ><a name="857"
+      > </a
+      ><a name="858" class="Symbol"
+      >:</a
+      ><a name="859"
+      > </a
+      ><a name="860" class="Symbol"
+      >(</a
+      ><a name="861" href="bitcoinLedgerModel.html#861" class="Bound"
+      >msg</a
+      ><a name="864"
+      > </a
+      ><a name="865" class="Symbol"
+      >:</a
+      ><a name="866"
+      > </a
+      ><a name="867" href="bitcoinLedgerModel.html#497" class="Datatype"
+      >Msg</a
+      ><a name="870" class="Symbol"
+      >)(</a
+      ><a name="872" href="bitcoinLedgerModel.html#872" class="Bound"
+      >publicKey</a
+      ><a name="881"
+      > </a
+      ><a name="882" class="Symbol"
+      >:</a
+      ><a name="883"
+      > </a
+      ><a name="884" href="bitcoinLedgerModel.html#336" class="Function"
+      >PublicKey</a
+      ><a name="893" class="Symbol"
+      >)(</a
+      ><a name="895" href="bitcoinLedgerModel.html#895" class="Bound"
+      >s</a
+      ><a name="896"
+      > </a
+      ><a name="897" class="Symbol"
+      >:</a
+      ><a name="898"
+      > </a
+      ><a name="899" href="bitcoinLedgerModel.html#320" class="Function"
+      >Signature</a
+      ><a name="908" class="Symbol"
+      >)</a
+      ><a name="909"
+      > </a
+      ><a name="910" class="Symbol"
+      >&#8594;</a
+      ><a name="911"
+      > </a
+      ><a name="912" class="PrimitiveType"
+      >Set</a
+      ><a name="915"
+      >
+
+</a
+      ><a name="917" class="Keyword"
+      >record</a
+      ><a name="923"
+      > </a
+      ><a name="924" href="bitcoinLedgerModel.html#924" class="Record"
+      >SignedWithSigPbk</a
+      ><a name="940"
+      > </a
+      ><a name="941" class="Symbol"
+      >(</a
+      ><a name="942" href="bitcoinLedgerModel.html#942" class="Bound"
+      >msg</a
+      ><a name="945"
+      > </a
+      ><a name="946" class="Symbol"
+      >:</a
+      ><a name="947"
+      > </a
+      ><a name="948" href="bitcoinLedgerModel.html#497" class="Datatype"
+      >Msg</a
+      ><a name="951" class="Symbol"
+      >)(</a
+      ><a name="953" href="bitcoinLedgerModel.html#953" class="Bound"
+      >address</a
+      ><a name="960"
+      > </a
+      ><a name="961" class="Symbol"
+      >:</a
+      ><a name="962"
+      > </a
+      ><a name="963" href="bitcoinLedgerModel.html#295" class="Function"
+      >Address</a
+      ><a name="970" class="Symbol"
+      >)</a
+      ><a name="971"
+      > </a
+      ><a name="972" class="Symbol"
+      >:</a
+      ><a name="973"
+      > </a
+      ><a name="974" class="PrimitiveType"
+      >Set</a
+      ><a name="977"
+      > </a
+      ><a name="978" class="Keyword"
+      >where</a
+      ><a name="983"
+      >
+  </a
+      ><a name="986" class="Keyword"
+      >field</a
+      ><a name="991"
+      >  </a
+      ><a name="993" href="bitcoinLedgerModel.html#993" class="Field"
+      >publicKey</a
+      ><a name="1002"
+      >  </a
+      ><a name="1004" class="Symbol"
+      >:</a
+      ><a name="1005"
+      >  </a
+      ><a name="1007" href="bitcoinLedgerModel.html#336" class="Function"
+      >PublicKey</a
+      ><a name="1016"
+      >
+         </a
+      ><a name="1026" href="bitcoinLedgerModel.html#1026" class="Field"
+      >pbkCorrect</a
+      ><a name="1036"
+      > </a
+      ><a name="1037" class="Symbol"
+      >:</a
+      ><a name="1038"
+      >  </a
+      ><a name="1040" href="bitcoinLedgerModel.html#685" class="Postulate"
+      >publicKey2Address</a
+      ><a name="1057"
+      > </a
+      ><a name="1058" href="bitcoinLedgerModel.html#993" class="Field"
+      >publicKey</a
+      ><a name="1067"
+      > </a
+      ><a name="1068" href="libraries.natLib.html#213" class="Function Operator"
+      >&#8801;&#8469;</a
+      ><a name="1070"
+      >  </a
+      ><a name="1072" href="bitcoinLedgerModel.html#953" class="Bound"
+      >address</a
+      ><a name="1079"
+      >
+         </a
+      ><a name="1089" href="bitcoinLedgerModel.html#1089" class="Field"
+      >signature</a
+      ><a name="1098"
+      >  </a
+      ><a name="1100" class="Symbol"
+      >:</a
+      ><a name="1101"
+      >  </a
+      ><a name="1103" href="bitcoinLedgerModel.html#320" class="Function"
+      >Signature</a
+      ><a name="1112"
+      >
+         </a
+      ><a name="1122" href="bitcoinLedgerModel.html#1122" class="Field"
+      >signed</a
+      ><a name="1128"
+      >     </a
+      ><a name="1133" class="Symbol"
+      >:</a
+      ><a name="1134"
+      >  </a
+      ><a name="1136" href="bitcoinLedgerModel.html#851" class="Postulate"
+      >Signed</a
+      ><a name="1142"
+      > </a
+      ><a name="1143" href="bitcoinLedgerModel.html#942" class="Bound"
+      >msg</a
+      ><a name="1146"
+      > </a
+      ><a name="1147" href="bitcoinLedgerModel.html#993" class="Field"
+      >publicKey</a
+      ><a name="1156"
+      > </a
+      ><a name="1157" href="bitcoinLedgerModel.html#1089" class="Field"
+      >signature</a
+      ><a name="1166"
+      >
+
+</a
+      ><a name="1168" class="Comment"
+      >{-
+_&#8801;PbkBool_ : (pubk pubk' : PublicKey) &#8594; Bool
+pubk &#8801;PbkBool pubk' = publicKey2Address pubk  &#8801;&#8469;b publicKey2Address pubk'
+-}</a
+      ><a name="1292"
+      >
+
+</a
+      ><a name="1294" class="Comment"
+      >{- -- Unused but correct code
+
+_&#8801;Pbk_ : PublicKey &#8594; PublicKey &#8594; Set
+key1 &#8801;Pbk key2 = T (key1 &#8801;PbkBool key2)
+-}</a
+      ><a name="1404"
+      >
+
+</a
+      ><a name="1406" class="Comment"
+      >-- \bitcoinVersFive</a
+      ><a name="1425"
+      >
+</a
+      ><a name="1426" class="Keyword"
+      >record</a
+      ><a name="1432"
+      > </a
+      ><a name="1433" href="bitcoinLedgerModel.html#1433" class="Record"
+      >TXField</a
+      ><a name="1440"
+      > </a
+      ><a name="1441" class="Symbol"
+      >:</a
+      ><a name="1442"
+      > </a
+      ><a name="1443" class="PrimitiveType"
+      >Set</a
+      ><a name="1446"
+      > </a
+      ><a name="1447" class="Keyword"
+      >where</a
+      ><a name="1452"
+      >
+  </a
+      ><a name="1455" class="Keyword"
+      >constructor</a
+      ><a name="1466"
+      > </a
+      ><a name="1467" href="bitcoinLedgerModel.html#1467" class="InductiveConstructor"
+      >txField</a
+      ><a name="1474"
+      >
+  </a
+      ><a name="1477" class="Keyword"
+      >field</a
+      ><a name="1482"
+      >  </a
+      ><a name="1484" href="bitcoinLedgerModel.html#1484" class="Field"
+      >amount</a
+      ><a name="1490"
+      >     </a
+      ><a name="1495" class="Symbol"
+      >:</a
+      ><a name="1496"
+      >  </a
+      ><a name="1498" href="bitcoinLedgerModel.html#282" class="Function"
+      >Amount</a
+      ><a name="1504"
+      >
+         </a
+      ><a name="1514" href="bitcoinLedgerModel.html#1514" class="Field"
+      >address</a
+      ><a name="1521"
+      >    </a
+      ><a name="1525" class="Symbol"
+      >:</a
+      ><a name="1526"
+      >  </a
+      ><a name="1528" href="bitcoinLedgerModel.html#295" class="Function"
+      >Address</a
+      ><a name="1535"
+      >
+
+</a
+      ><a name="1537" class="Keyword"
+      >open</a
+      ><a name="1541"
+      > </a
+      ><a name="1542" href="bitcoinLedgerModel.html#1433" class="Module"
+      >TXField</a
+      ><a name="1549"
+      > </a
+      ><a name="1550" class="Keyword"
+      >public</a
+      ><a name="1556"
+      >
+
+</a
+      ><a name="1558" class="Comment"
+      >--\bitcoinVersFive</a
+      ><a name="1576"
+      >
+</a
+      ><a name="1577" href="bitcoinLedgerModel.html#1577" class="Function"
+      >txField2Msg</a
+      ><a name="1588"
+      > </a
+      ><a name="1589" class="Symbol"
+      >:</a
+      ><a name="1590"
+      > </a
+      ><a name="1591" class="Symbol"
+      >(</a
+      ><a name="1592" href="bitcoinLedgerModel.html#1592" class="Bound"
+      >inp</a
+      ><a name="1595"
+      > </a
+      ><a name="1596" class="Symbol"
+      >:</a
+      ><a name="1597"
+      > </a
+      ><a name="1598" href="bitcoinLedgerModel.html#1433" class="Record"
+      >TXField</a
+      ><a name="1605" class="Symbol"
+      >)</a
+      ><a name="1606"
+      > </a
+      ><a name="1607" class="Symbol"
+      >&#8594;</a
+      ><a name="1608"
+      > </a
+      ><a name="1609" href="bitcoinLedgerModel.html#497" class="Datatype"
+      >Msg</a
+      ><a name="1612"
+      >
+</a
+      ><a name="1613" href="bitcoinLedgerModel.html#1577" class="Function"
+      >txField2Msg</a
+      ><a name="1624"
+      > </a
+      ><a name="1625" href="bitcoinLedgerModel.html#1625" class="Bound"
+      >inp</a
+      ><a name="1628"
+      >  </a
+      ><a name="1630" class="Symbol"
+      >=</a
+      ><a name="1631"
+      >   </a
+      ><a name="1634" href="bitcoinLedgerModel.html#516" class="InductiveConstructor"
+      >nat</a
+      ><a name="1637"
+      > </a
+      ><a name="1638" class="Symbol"
+      >(</a
+      ><a name="1639" href="bitcoinLedgerModel.html#1484" class="Field"
+      >amount</a
+      ><a name="1645"
+      > </a
+      ><a name="1646" href="bitcoinLedgerModel.html#1625" class="Bound"
+      >inp</a
+      ><a name="1649" class="Symbol"
+      >)</a
+      ><a name="1650"
+      > </a
+      ><a name="1651" href="bitcoinLedgerModel.html#552" class="InductiveConstructor Operator"
+      >+msg</a
+      ><a name="1655"
+      > </a
+      ><a name="1656" href="bitcoinLedgerModel.html#516" class="InductiveConstructor"
+      >nat</a
+      ><a name="1659"
+      > </a
+      ><a name="1660" class="Symbol"
+      >(</a
+      ><a name="1661" href="bitcoinLedgerModel.html#1514" class="Field"
+      >address</a
+      ><a name="1668"
+      > </a
+      ><a name="1669" href="bitcoinLedgerModel.html#1625" class="Bound"
+      >inp</a
+      ><a name="1672" class="Symbol"
+      >)</a
+      ><a name="1673"
+      >
+
+</a
+      ><a name="1675" href="bitcoinLedgerModel.html#1675" class="Function"
+      >txFieldList2Msg</a
+      ><a name="1690"
+      > </a
+      ><a name="1691" class="Symbol"
+      >:</a
+      ><a name="1692"
+      > </a
+      ><a name="1693" class="Symbol"
+      >(</a
+      ><a name="1694" href="bitcoinLedgerModel.html#1694" class="Bound"
+      >inp</a
+      ><a name="1697"
+      > </a
+      ><a name="1698" class="Symbol"
+      >:</a
+      ><a name="1699"
+      > </a
+      ><a name="1700" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="1704"
+      > </a
+      ><a name="1705" href="bitcoinLedgerModel.html#1433" class="Record"
+      >TXField</a
+      ><a name="1712" class="Symbol"
+      >)</a
+      ><a name="1713"
+      > </a
+      ><a name="1714" class="Symbol"
+      >&#8594;</a
+      ><a name="1715"
+      > </a
+      ><a name="1716" href="bitcoinLedgerModel.html#497" class="Datatype"
+      >Msg</a
+      ><a name="1719"
+      >
+</a
+      ><a name="1720" href="bitcoinLedgerModel.html#1675" class="Function"
+      >txFieldList2Msg</a
+      ><a name="1735"
+      > </a
+      ><a name="1736" href="bitcoinLedgerModel.html#1736" class="Bound"
+      >inp</a
+      ><a name="1739"
+      >  </a
+      ><a name="1741" class="Symbol"
+      >=</a
+      ><a name="1742"
+      > </a
+      ><a name="1743" href="bitcoinLedgerModel.html#589" class="InductiveConstructor"
+      >list</a
+      ><a name="1747"
+      > </a
+      ><a name="1748" class="Symbol"
+      >(</a
+      ><a name="1749" href="libraries.listLib.html#257" class="Function"
+      >mapL</a
+      ><a name="1753"
+      > </a
+      ><a name="1754" href="bitcoinLedgerModel.html#1577" class="Function"
+      >txField2Msg</a
+      ><a name="1765"
+      > </a
+      ><a name="1766" href="bitcoinLedgerModel.html#1736" class="Bound"
+      >inp</a
+      ><a name="1769" class="Symbol"
+      >)</a
+      ><a name="1770"
+      >
+
+
+</a
+      ><a name="1773" class="Comment"
+      >-- \bitcoinVersFive</a
+      ><a name="1792"
+      >
+</a
+      ><a name="1793" href="bitcoinLedgerModel.html#1793" class="Function"
+      >txFieldList2TotalAmount</a
+      ><a name="1816"
+      > </a
+      ><a name="1817" class="Symbol"
+      >:</a
+      ><a name="1818"
+      > </a
+      ><a name="1819" class="Symbol"
+      >(</a
+      ><a name="1820" href="bitcoinLedgerModel.html#1820" class="Bound"
+      >inp</a
+      ><a name="1823"
+      > </a
+      ><a name="1824" class="Symbol"
+      >:</a
+      ><a name="1825"
+      > </a
+      ><a name="1826" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="1830"
+      > </a
+      ><a name="1831" href="bitcoinLedgerModel.html#1433" class="Record"
+      >TXField</a
+      ><a name="1838" class="Symbol"
+      >)</a
+      ><a name="1839"
+      > </a
+      ><a name="1840" class="Symbol"
+      >&#8594;</a
+      ><a name="1841"
+      > </a
+      ><a name="1842" href="bitcoinLedgerModel.html#282" class="Function"
+      >Amount</a
+      ><a name="1848"
+      >
+</a
+      ><a name="1849" href="bitcoinLedgerModel.html#1793" class="Function"
+      >txFieldList2TotalAmount</a
+      ><a name="1872"
+      > </a
+      ><a name="1873" href="bitcoinLedgerModel.html#1873" class="Bound"
+      >inp</a
+      ><a name="1876"
+      > </a
+      ><a name="1877" class="Symbol"
+      >=</a
+      ><a name="1878"
+      > </a
+      ><a name="1879" href="libraries.listLib.html#7409" class="Function"
+      >sumListViaf</a
+      ><a name="1890"
+      > </a
+      ><a name="1891" href="bitcoinLedgerModel.html#1484" class="Field"
+      >amount</a
+      ><a name="1897"
+      > </a
+      ><a name="1898" href="bitcoinLedgerModel.html#1873" class="Bound"
+      >inp</a
+      ><a name="1901"
+      >
+
+</a
+      ><a name="1903" class="Comment"
+      >-- \bitcoinVersFive</a
+      ><a name="1922"
+      >
+</a
+      ><a name="1923" class="Keyword"
+      >record</a
+      ><a name="1929"
+      > </a
+      ><a name="1930" href="bitcoinLedgerModel.html#1930" class="Record"
+      >TXUnsigned</a
+      ><a name="1940"
+      > </a
+      ><a name="1941" class="Symbol"
+      >:</a
+      ><a name="1942"
+      > </a
+      ><a name="1943" class="PrimitiveType"
+      >Set</a
+      ><a name="1946"
+      > </a
+      ><a name="1947" class="Keyword"
+      >where</a
+      ><a name="1952"
+      >
+  </a
+      ><a name="1955" class="Keyword"
+      >field</a
+      ><a name="1960"
+      >  </a
+      ><a name="1962" href="bitcoinLedgerModel.html#1962" class="Field"
+      >inputs</a
+      ><a name="1968"
+      >   </a
+      ><a name="1971" class="Symbol"
+      >:</a
+      ><a name="1972"
+      > </a
+      ><a name="1973" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="1977"
+      > </a
+      ><a name="1978" href="bitcoinLedgerModel.html#1433" class="Record"
+      >TXField</a
+      ><a name="1985"
+      >
+         </a
+      ><a name="1995" href="bitcoinLedgerModel.html#1995" class="Field"
+      >outputs</a
+      ><a name="2002"
+      >  </a
+      ><a name="2004" class="Symbol"
+      >:</a
+      ><a name="2005"
+      > </a
+      ><a name="2006" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="2010"
+      > </a
+      ><a name="2011" href="bitcoinLedgerModel.html#1433" class="Record"
+      >TXField</a
+      ><a name="2018"
+      >
+
+</a
+      ><a name="2020" class="Keyword"
+      >open</a
+      ><a name="2024"
+      > </a
+      ><a name="2025" href="bitcoinLedgerModel.html#1930" class="Module"
+      >TXUnsigned</a
+      ><a name="2035"
+      > </a
+      ><a name="2036" class="Keyword"
+      >public</a
+      ><a name="2042"
+      >
+
+</a
+      ><a name="2044" class="Comment"
+      >-- \bitcoinVersFive</a
+      ><a name="2063"
+      >
+</a
+      ><a name="2064" href="bitcoinLedgerModel.html#2064" class="Function"
+      >txUnsigned2Msg</a
+      ><a name="2078"
+      > </a
+      ><a name="2079" class="Symbol"
+      >:</a
+      ><a name="2080"
+      >  </a
+      ><a name="2082" class="Symbol"
+      >(</a
+      ><a name="2083" href="bitcoinLedgerModel.html#2083" class="Bound"
+      >transac</a
+      ><a name="2090"
+      > </a
+      ><a name="2091" class="Symbol"
+      >:</a
+      ><a name="2092"
+      > </a
+      ><a name="2093" href="bitcoinLedgerModel.html#1930" class="Record"
+      >TXUnsigned</a
+      ><a name="2103" class="Symbol"
+      >)</a
+      ><a name="2104"
+      > </a
+      ><a name="2105" class="Symbol"
+      >&#8594;</a
+      ><a name="2106"
+      > </a
+      ><a name="2107" href="bitcoinLedgerModel.html#497" class="Datatype"
+      >Msg</a
+      ><a name="2110"
+      >
+</a
+      ><a name="2111" href="bitcoinLedgerModel.html#2064" class="Function"
+      >txUnsigned2Msg</a
+      ><a name="2125"
+      > </a
+      ><a name="2126" href="bitcoinLedgerModel.html#2126" class="Bound"
+      >transac</a
+      ><a name="2133"
+      > </a
+      ><a name="2134" class="Symbol"
+      >=</a
+      ><a name="2135"
+      > </a
+      ><a name="2136" href="bitcoinLedgerModel.html#1675" class="Function"
+      >txFieldList2Msg</a
+      ><a name="2151"
+      > </a
+      ><a name="2152" class="Symbol"
+      >(</a
+      ><a name="2153" href="bitcoinLedgerModel.html#1962" class="Field"
+      >inputs</a
+      ><a name="2159"
+      > </a
+      ><a name="2160" href="bitcoinLedgerModel.html#2126" class="Bound"
+      >transac</a
+      ><a name="2167" class="Symbol"
+      >)</a
+      ><a name="2168"
+      >  </a
+      ><a name="2170" href="bitcoinLedgerModel.html#552" class="InductiveConstructor Operator"
+      >+msg</a
+      ><a name="2174"
+      > </a
+      ><a name="2175" href="bitcoinLedgerModel.html#1675" class="Function"
+      >txFieldList2Msg</a
+      ><a name="2190"
+      > </a
+      ><a name="2191" class="Symbol"
+      >(</a
+      ><a name="2192" href="bitcoinLedgerModel.html#1995" class="Field"
+      >outputs</a
+      ><a name="2199"
+      > </a
+      ><a name="2200" href="bitcoinLedgerModel.html#2126" class="Bound"
+      >transac</a
+      ><a name="2207" class="Symbol"
+      >)</a
+      ><a name="2208"
+      >
+
+</a
+      ><a name="2210" class="Comment"
+      >-- \bitcoinVersFive</a
+      ><a name="2229"
+      >
+</a
+      ><a name="2230" href="bitcoinLedgerModel.html#2230" class="Function"
+      >txInput2Msg</a
+      ><a name="2241"
+      > </a
+      ><a name="2242" class="Symbol"
+      >:</a
+      ><a name="2243"
+      > </a
+      ><a name="2244" class="Symbol"
+      >(</a
+      ><a name="2245" href="bitcoinLedgerModel.html#2245" class="Bound"
+      >inp</a
+      ><a name="2248"
+      > </a
+      ><a name="2249" class="Symbol"
+      >:</a
+      ><a name="2250"
+      > </a
+      ><a name="2251" href="bitcoinLedgerModel.html#1433" class="Record"
+      >TXField</a
+      ><a name="2258" class="Symbol"
+      >)(</a
+      ><a name="2260" href="bitcoinLedgerModel.html#2260" class="Bound"
+      >outp</a
+      ><a name="2264"
+      > </a
+      ><a name="2265" class="Symbol"
+      >:</a
+      ><a name="2266"
+      > </a
+      ><a name="2267" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="2271"
+      > </a
+      ><a name="2272" href="bitcoinLedgerModel.html#1433" class="Record"
+      >TXField</a
+      ><a name="2279" class="Symbol"
+      >)</a
+      ><a name="2280"
+      > </a
+      ><a name="2281" class="Symbol"
+      >&#8594;</a
+      ><a name="2282"
+      > </a
+      ><a name="2283" href="bitcoinLedgerModel.html#497" class="Datatype"
+      >Msg</a
+      ><a name="2286"
+      >
+</a
+      ><a name="2287" href="bitcoinLedgerModel.html#2230" class="Function"
+      >txInput2Msg</a
+      ><a name="2298"
+      > </a
+      ><a name="2299" href="bitcoinLedgerModel.html#2299" class="Bound"
+      >inp</a
+      ><a name="2302"
+      > </a
+      ><a name="2303" href="bitcoinLedgerModel.html#2303" class="Bound"
+      >outp</a
+      ><a name="2307"
+      > </a
+      ><a name="2308" class="Symbol"
+      >=</a
+      ><a name="2309"
+      > </a
+      ><a name="2310" href="bitcoinLedgerModel.html#1577" class="Function"
+      >txField2Msg</a
+      ><a name="2321"
+      > </a
+      ><a name="2322" href="bitcoinLedgerModel.html#2299" class="Bound"
+      >inp</a
+      ><a name="2325"
+      > </a
+      ><a name="2326" href="bitcoinLedgerModel.html#552" class="InductiveConstructor Operator"
+      >+msg</a
+      ><a name="2330"
+      > </a
+      ><a name="2331" href="bitcoinLedgerModel.html#1675" class="Function"
+      >txFieldList2Msg</a
+      ><a name="2346"
+      > </a
+      ><a name="2347" href="bitcoinLedgerModel.html#2303" class="Bound"
+      >outp</a
+      ><a name="2351"
+      >
+
+</a
+      ><a name="2353" class="Comment"
+      >-- \bitcoinVersFive</a
+      ><a name="2372"
+      >
+</a
+      ><a name="2373" href="bitcoinLedgerModel.html#2373" class="Function"
+      >tx2Signaux</a
+      ><a name="2383"
+      > </a
+      ><a name="2384" class="Symbol"
+      >:</a
+      ><a name="2385"
+      > </a
+      ><a name="2386" class="Symbol"
+      >(</a
+      ><a name="2387" href="bitcoinLedgerModel.html#2387" class="Bound"
+      >inp</a
+      ><a name="2390"
+      > </a
+      ><a name="2391" class="Symbol"
+      >:</a
+      ><a name="2392"
+      > </a
+      ><a name="2393" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="2397"
+      > </a
+      ><a name="2398" href="bitcoinLedgerModel.html#1433" class="Record"
+      >TXField</a
+      ><a name="2405" class="Symbol"
+      >)</a
+      ><a name="2406"
+      > </a
+      ><a name="2407" class="Symbol"
+      >(</a
+      ><a name="2408" href="bitcoinLedgerModel.html#2408" class="Bound"
+      >outp</a
+      ><a name="2412"
+      > </a
+      ><a name="2413" class="Symbol"
+      >:</a
+      ><a name="2414"
+      > </a
+      ><a name="2415" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="2419"
+      > </a
+      ><a name="2420" href="bitcoinLedgerModel.html#1433" class="Record"
+      >TXField</a
+      ><a name="2427" class="Symbol"
+      >)</a
+      ><a name="2428"
+      >  </a
+      ><a name="2430" class="Symbol"
+      >&#8594;</a
+      ><a name="2431"
+      > </a
+      ><a name="2432" class="PrimitiveType"
+      >Set</a
+      ><a name="2435"
+      >
+</a
+      ><a name="2436" href="bitcoinLedgerModel.html#2373" class="Function"
+      >tx2Signaux</a
+      ><a name="2446"
+      > </a
+      ><a name="2447" href="Agda.Builtin.List.html#117" class="InductiveConstructor"
+      >[]</a
+      ><a name="2449"
+      > </a
+      ><a name="2450" href="bitcoinLedgerModel.html#2450" class="Bound"
+      >outp</a
+      ><a name="2454"
+      > </a
+      ><a name="2455" class="Symbol"
+      >=</a
+      ><a name="2456"
+      > </a
+      ><a name="2457" href="Agda.Builtin.Unit.html#69" class="Record"
+      >&#8868;</a
+      ><a name="2458"
+      >
+</a
+      ><a name="2459" href="bitcoinLedgerModel.html#2373" class="Function"
+      >tx2Signaux</a
+      ><a name="2469"
+      > </a
+      ><a name="2470" class="Symbol"
+      >(</a
+      ><a name="2471" href="bitcoinLedgerModel.html#2471" class="Bound"
+      >inp</a
+      ><a name="2474"
+      > </a
+      ><a name="2475" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="2476"
+      > </a
+      ><a name="2477" href="bitcoinLedgerModel.html#2477" class="Bound"
+      >restinp</a
+      ><a name="2484" class="Symbol"
+      >)</a
+      ><a name="2485"
+      > </a
+      ><a name="2486" href="bitcoinLedgerModel.html#2486" class="Bound"
+      >outp</a
+      ><a name="2490"
+      > </a
+      ><a name="2491" class="Symbol"
+      >=</a
+      ><a name="2492"
+      >
+    </a
+      ><a name="2497" href="bitcoinLedgerModel.html#924" class="Record"
+      >SignedWithSigPbk</a
+      ><a name="2513"
+      > </a
+      ><a name="2514" class="Symbol"
+      >(</a
+      ><a name="2515" href="bitcoinLedgerModel.html#2230" class="Function"
+      >txInput2Msg</a
+      ><a name="2526"
+      > </a
+      ><a name="2527" href="bitcoinLedgerModel.html#2471" class="Bound"
+      >inp</a
+      ><a name="2530"
+      > </a
+      ><a name="2531" href="bitcoinLedgerModel.html#2486" class="Bound"
+      >outp</a
+      ><a name="2535" class="Symbol"
+      >)</a
+      ><a name="2536"
+      > </a
+      ><a name="2537" class="Symbol"
+      >(</a
+      ><a name="2538" href="bitcoinLedgerModel.html#1514" class="Field"
+      >address</a
+      ><a name="2545"
+      > </a
+      ><a name="2546" href="bitcoinLedgerModel.html#2471" class="Bound"
+      >inp</a
+      ><a name="2549" class="Symbol"
+      >)</a
+      ><a name="2550"
+      > </a
+      ><a name="2551" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="2552"
+      >  </a
+      ><a name="2554" href="bitcoinLedgerModel.html#2373" class="Function"
+      >tx2Signaux</a
+      ><a name="2564"
+      > </a
+      ><a name="2565" href="bitcoinLedgerModel.html#2477" class="Bound"
+      >restinp</a
+      ><a name="2572"
+      > </a
+      ><a name="2573" href="bitcoinLedgerModel.html#2486" class="Bound"
+      >outp</a
+      ><a name="2577"
+      >
+
+</a
+      ><a name="2579" href="bitcoinLedgerModel.html#2579" class="Function"
+      >tx2Sign</a
+      ><a name="2586"
+      > </a
+      ><a name="2587" class="Symbol"
+      >:</a
+      ><a name="2588"
+      > </a
+      ><a name="2589" href="bitcoinLedgerModel.html#1930" class="Record"
+      >TXUnsigned</a
+      ><a name="2599"
+      > </a
+      ><a name="2600" class="Symbol"
+      >&#8594;</a
+      ><a name="2601"
+      > </a
+      ><a name="2602" class="PrimitiveType"
+      >Set</a
+      ><a name="2605"
+      >
+</a
+      ><a name="2606" href="bitcoinLedgerModel.html#2579" class="Function"
+      >tx2Sign</a
+      ><a name="2613"
+      > </a
+      ><a name="2614" href="bitcoinLedgerModel.html#2614" class="Bound"
+      >tr</a
+      ><a name="2616"
+      > </a
+      ><a name="2617" class="Symbol"
+      >=</a
+      ><a name="2618"
+      > </a
+      ><a name="2619" href="bitcoinLedgerModel.html#2373" class="Function"
+      >tx2Signaux</a
+      ><a name="2629"
+      > </a
+      ><a name="2630" class="Symbol"
+      >(</a
+      ><a name="2631" href="bitcoinLedgerModel.html#1962" class="Field"
+      >inputs</a
+      ><a name="2637"
+      > </a
+      ><a name="2638" href="bitcoinLedgerModel.html#2614" class="Bound"
+      >tr</a
+      ><a name="2640" class="Symbol"
+      >)</a
+      ><a name="2641"
+      > </a
+      ><a name="2642" class="Symbol"
+      >(</a
+      ><a name="2643" href="bitcoinLedgerModel.html#1995" class="Field"
+      >outputs</a
+      ><a name="2650"
+      > </a
+      ><a name="2651" href="bitcoinLedgerModel.html#2614" class="Bound"
+      >tr</a
+      ><a name="2653" class="Symbol"
+      >)</a
+      ><a name="2654"
+      >
+
+
+</a
+      ><a name="2657" class="Comment"
+      >-- \bitcoinVersFive</a
+      ><a name="2676"
+      >
+</a
+      ><a name="2677" class="Keyword"
+      >record</a
+      ><a name="2683"
+      > </a
+      ><a name="2684" href="bitcoinLedgerModel.html#2684" class="Record"
+      >TX</a
+      ><a name="2686"
+      > </a
+      ><a name="2687" class="Symbol"
+      >:</a
+      ><a name="2688"
+      > </a
+      ><a name="2689" class="PrimitiveType"
+      >Set</a
+      ><a name="2692"
+      > </a
+      ><a name="2693" class="Keyword"
+      >where</a
+      ><a name="2698"
+      >
+  </a
+      ><a name="2701" class="Keyword"
+      >field</a
+      ><a name="2706"
+      >  </a
+      ><a name="2708" href="bitcoinLedgerModel.html#2708" class="Field"
+      >tx</a
+      ><a name="2710"
+      >       </a
+      ><a name="2717" class="Symbol"
+      >:</a
+      ><a name="2718"
+      >  </a
+      ><a name="2720" href="bitcoinLedgerModel.html#1930" class="Record"
+      >TXUnsigned</a
+      ><a name="2730"
+      >
+         </a
+      ><a name="2740" href="bitcoinLedgerModel.html#2740" class="Field"
+      >cor</a
+      ><a name="2743"
+      >      </a
+      ><a name="2749" class="Symbol"
+      >:</a
+      ><a name="2750"
+      > </a
+      ><a name="2751" href="bitcoinLedgerModel.html#1793" class="Function"
+      >txFieldList2TotalAmount</a
+      ><a name="2774"
+      > </a
+      ><a name="2775" class="Symbol"
+      >(</a
+      ><a name="2776" href="bitcoinLedgerModel.html#1962" class="Field"
+      >inputs</a
+      ><a name="2782"
+      > </a
+      ><a name="2783" href="bitcoinLedgerModel.html#2708" class="Field"
+      >tx</a
+      ><a name="2785" class="Symbol"
+      >)</a
+      ><a name="2786"
+      > </a
+      ><a name="2787" href="Data.Nat.Base.html#962" class="Function Operator"
+      >&#8805;</a
+      ><a name="2788"
+      > </a
+      ><a name="2789" href="bitcoinLedgerModel.html#1793" class="Function"
+      >txFieldList2TotalAmount</a
+      ><a name="2812"
+      > </a
+      ><a name="2813" class="Symbol"
+      >(</a
+      ><a name="2814" href="bitcoinLedgerModel.html#1995" class="Field"
+      >outputs</a
+      ><a name="2821"
+      > </a
+      ><a name="2822" href="bitcoinLedgerModel.html#2708" class="Field"
+      >tx</a
+      ><a name="2824" class="Symbol"
+      >)</a
+      ><a name="2825"
+      >
+         </a
+      ><a name="2835" href="bitcoinLedgerModel.html#2835" class="Field"
+      >nonEmpt</a
+      ><a name="2842"
+      >  </a
+      ><a name="2844" class="Symbol"
+      >:</a
+      ><a name="2845"
+      > </a
+      ><a name="2846" href="libraries.listLib.html#7748" class="Function"
+      >NonNil</a
+      ><a name="2852"
+      > </a
+      ><a name="2853" class="Symbol"
+      >(</a
+      ><a name="2854" href="bitcoinLedgerModel.html#1962" class="Field"
+      >inputs</a
+      ><a name="2860"
+      > </a
+      ><a name="2861" href="bitcoinLedgerModel.html#2708" class="Field"
+      >tx</a
+      ><a name="2863" class="Symbol"
+      >)</a
+      ><a name="2864"
+      > </a
+      ><a name="2865" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="2866"
+      > </a
+      ><a name="2867" href="libraries.listLib.html#7748" class="Function"
+      >NonNil</a
+      ><a name="2873"
+      > </a
+      ><a name="2874" class="Symbol"
+      >(</a
+      ><a name="2875" href="bitcoinLedgerModel.html#1995" class="Field"
+      >outputs</a
+      ><a name="2882"
+      > </a
+      ><a name="2883" href="bitcoinLedgerModel.html#2708" class="Field"
+      >tx</a
+      ><a name="2885" class="Symbol"
+      >)</a
+      ><a name="2886"
+      >
+         </a
+      ><a name="2896" href="bitcoinLedgerModel.html#2896" class="Field"
+      >sig</a
+      ><a name="2899"
+      >      </a
+      ><a name="2905" class="Symbol"
+      >:</a
+      ><a name="2906"
+      > </a
+      ><a name="2907" href="bitcoinLedgerModel.html#2579" class="Function"
+      >tx2Sign</a
+      ><a name="2914"
+      > </a
+      ><a name="2915" href="bitcoinLedgerModel.html#2708" class="Field"
+      >tx</a
+      ><a name="2917"
+      >
+
+</a
+      ><a name="2919" class="Keyword"
+      >open</a
+      ><a name="2923"
+      > </a
+      ><a name="2924" href="bitcoinLedgerModel.html#2684" class="Module"
+      >TX</a
+      ><a name="2926"
+      > </a
+      ><a name="2927" class="Keyword"
+      >public</a
+      ><a name="2933"
+      >
+
+</a
+      ><a name="2935" href="bitcoinLedgerModel.html#2935" class="Function"
+      >LedgerR</a
+      ><a name="2942"
+      > </a
+      ><a name="2943" class="Symbol"
+      >:</a
+      ><a name="2944"
+      > </a
+      ><a name="2945" class="PrimitiveType"
+      >Set</a
+      ><a name="2948"
+      >
+
+</a
+      ><a name="2950" class="Comment"
+      >-- \bitcoinVersFive</a
+      ><a name="2969"
+      >
+</a
+      ><a name="2970" href="bitcoinLedgerModel.html#2935" class="Function"
+      >LedgerR</a
+      ><a name="2977"
+      > </a
+      ><a name="2978" class="Symbol"
+      >=</a
+      ><a name="2979"
+      > </a
+      ><a name="2980" class="Symbol"
+      >(</a
+      ><a name="2981" href="bitcoinLedgerModel.html#2981" class="Bound"
+      >addr</a
+      ><a name="2985"
+      > </a
+      ><a name="2986" class="Symbol"
+      >:</a
+      ><a name="2987"
+      > </a
+      ><a name="2988" href="bitcoinLedgerModel.html#295" class="Function"
+      >Address</a
+      ><a name="2995" class="Symbol"
+      >)</a
+      ><a name="2996"
+      > </a
+      ><a name="2997" class="Symbol"
+      >&#8594;</a
+      ><a name="2998"
+      > </a
+      ><a name="2999" href="bitcoinLedgerModel.html#282" class="Function"
+      >Amount</a
+      ><a name="3005"
+      >
+
+</a
+      ><a name="3007" href="bitcoinLedgerModel.html#3007" class="Function"
+      >initialLedger</a
+      ><a name="3020"
+      > </a
+      ><a name="3021" class="Symbol"
+      >:</a
+      ><a name="3022"
+      > </a
+      ><a name="3023" href="bitcoinLedgerModel.html#2935" class="Function"
+      >LedgerR</a
+      ><a name="3030"
+      >
+</a
+      ><a name="3031" href="bitcoinLedgerModel.html#3007" class="Function"
+      >initialLedger</a
+      ><a name="3044"
+      > </a
+      ><a name="3045" href="bitcoinLedgerModel.html#3045" class="Bound"
+      >addr</a
+      ><a name="3049"
+      > </a
+      ><a name="3050" class="Symbol"
+      >=</a
+      ><a name="3051"
+      > </a
+      ><a name="3052" class="Number"
+      >0</a
+      ><a name="3053"
+      >
+
+</a
+      ><a name="3055" class="Comment"
+      >-- \bitcoinVersFive</a
+      ><a name="3074"
+      >
+</a
+      ><a name="3075" href="bitcoinLedgerModel.html#3075" class="Function"
+      >addTXFieldToLedgerR</a
+      ><a name="3094"
+      > </a
+      ><a name="3095" class="Symbol"
+      >:</a
+      ><a name="3096"
+      >  </a
+      ><a name="3098" class="Symbol"
+      >(</a
+      ><a name="3099" href="bitcoinLedgerModel.html#3099" class="Bound"
+      >tr</a
+      ><a name="3101"
+      > </a
+      ><a name="3102" class="Symbol"
+      >:</a
+      ><a name="3103"
+      > </a
+      ><a name="3104" href="bitcoinLedgerModel.html#1433" class="Record"
+      >TXField</a
+      ><a name="3111" class="Symbol"
+      >)(</a
+      ><a name="3113" href="bitcoinLedgerModel.html#3113" class="Bound"
+      >oldLedgerR</a
+      ><a name="3123"
+      > </a
+      ><a name="3124" class="Symbol"
+      >:</a
+      ><a name="3125"
+      > </a
+      ><a name="3126" href="bitcoinLedgerModel.html#2935" class="Function"
+      >LedgerR</a
+      ><a name="3133" class="Symbol"
+      >)</a
+      ><a name="3134"
+      > </a
+      ><a name="3135" class="Symbol"
+      >&#8594;</a
+      ><a name="3136"
+      > </a
+      ><a name="3137" href="bitcoinLedgerModel.html#2935" class="Function"
+      >LedgerR</a
+      ><a name="3144"
+      >
+</a
+      ><a name="3145" href="bitcoinLedgerModel.html#3075" class="Function"
+      >addTXFieldToLedgerR</a
+      ><a name="3164"
+      >  </a
+      ><a name="3166" href="bitcoinLedgerModel.html#3166" class="Bound"
+      >tr</a
+      ><a name="3168"
+      > </a
+      ><a name="3169" href="bitcoinLedgerModel.html#3169" class="Bound"
+      >oldLedgerR</a
+      ><a name="3179"
+      > </a
+      ><a name="3180" href="bitcoinLedgerModel.html#3180" class="Bound"
+      >pubk</a
+      ><a name="3184"
+      > </a
+      ><a name="3185" class="Symbol"
+      >=</a
+      ><a name="3186"
+      >
+         </a
+      ><a name="3196" href="Data.Bool.Base.html#831" class="Function Operator"
+      >if</a
+      ><a name="3198"
+      >   </a
+      ><a name="3201" href="bitcoinLedgerModel.html#3180" class="Bound"
+      >pubk</a
+      ><a name="3205"
+      > </a
+      ><a name="3206" href="libraries.natLib.html#98" class="Function Operator"
+      >&#8801;&#8469;b</a
+      ><a name="3209"
+      > </a
+      ><a name="3210" href="bitcoinLedgerModel.html#1514" class="Field"
+      >address</a
+      ><a name="3217"
+      > </a
+      ><a name="3218" href="bitcoinLedgerModel.html#3166" class="Bound"
+      >tr</a
+      ><a name="3220"
+      > </a
+      ><a name="3221" href="Data.Bool.Base.html#831" class="Function Operator"
+      >then</a
+      ><a name="3225"
+      > </a
+      ><a name="3226" href="bitcoinLedgerModel.html#3169" class="Bound"
+      >oldLedgerR</a
+      ><a name="3236"
+      > </a
+      ><a name="3237" href="bitcoinLedgerModel.html#3180" class="Bound"
+      >pubk</a
+      ><a name="3241"
+      > </a
+      ><a name="3242" href="Agda.Builtin.Nat.html#230" class="Primitive Operator"
+      >+</a
+      ><a name="3243"
+      >  </a
+      ><a name="3245" href="bitcoinLedgerModel.html#1484" class="Field"
+      >amount</a
+      ><a name="3251"
+      > </a
+      ><a name="3252" href="bitcoinLedgerModel.html#3166" class="Bound"
+      >tr</a
+      ><a name="3254"
+      > </a
+      ><a name="3255" href="Data.Bool.Base.html#831" class="Function Operator"
+      >else</a
+      ><a name="3259"
+      > </a
+      ><a name="3260" href="bitcoinLedgerModel.html#3169" class="Bound"
+      >oldLedgerR</a
+      ><a name="3270"
+      > </a
+      ><a name="3271" href="bitcoinLedgerModel.html#3180" class="Bound"
+      >pubk</a
+      ><a name="3275"
+      >
+
+</a
+      ><a name="3277" href="bitcoinLedgerModel.html#3277" class="Function"
+      >addTXFieldListToLedgerR</a
+      ><a name="3300"
+      >  </a
+      ><a name="3302" class="Symbol"
+      >:</a
+      ><a name="3303"
+      >  </a
+      ><a name="3305" class="Symbol"
+      >(</a
+      ><a name="3306" href="bitcoinLedgerModel.html#3306" class="Bound"
+      >tr</a
+      ><a name="3308"
+      > </a
+      ><a name="3309" class="Symbol"
+      >:</a
+      ><a name="3310"
+      > </a
+      ><a name="3311" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="3315"
+      > </a
+      ><a name="3316" href="bitcoinLedgerModel.html#1433" class="Record"
+      >TXField</a
+      ><a name="3323" class="Symbol"
+      >)(</a
+      ><a name="3325" href="bitcoinLedgerModel.html#3325" class="Bound"
+      >oldLedgerR</a
+      ><a name="3335"
+      > </a
+      ><a name="3336" class="Symbol"
+      >:</a
+      ><a name="3337"
+      > </a
+      ><a name="3338" href="bitcoinLedgerModel.html#2935" class="Function"
+      >LedgerR</a
+      ><a name="3345" class="Symbol"
+      >)</a
+      ><a name="3346"
+      > </a
+      ><a name="3347" class="Symbol"
+      >&#8594;</a
+      ><a name="3348"
+      > </a
+      ><a name="3349" href="bitcoinLedgerModel.html#2935" class="Function"
+      >LedgerR</a
+      ><a name="3356"
+      >
+</a
+      ><a name="3357" href="bitcoinLedgerModel.html#3277" class="Function"
+      >addTXFieldListToLedgerR</a
+      ><a name="3380"
+      > </a
+      ><a name="3381" href="Agda.Builtin.List.html#117" class="InductiveConstructor"
+      >[]</a
+      ><a name="3383"
+      >        </a
+      ><a name="3391" href="bitcoinLedgerModel.html#3391" class="Bound"
+      >oldLedgerR</a
+      ><a name="3401"
+      >  </a
+      ><a name="3403" class="Symbol"
+      >=</a
+      ><a name="3404"
+      >  </a
+      ><a name="3406" href="bitcoinLedgerModel.html#3391" class="Bound"
+      >oldLedgerR</a
+      ><a name="3416"
+      >
+</a
+      ><a name="3417" href="bitcoinLedgerModel.html#3277" class="Function"
+      >addTXFieldListToLedgerR</a
+      ><a name="3440"
+      > </a
+      ><a name="3441" class="Symbol"
+      >(</a
+      ><a name="3442" href="bitcoinLedgerModel.html#3442" class="Bound"
+      >x</a
+      ><a name="3443"
+      > </a
+      ><a name="3444" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="3445"
+      > </a
+      ><a name="3446" href="bitcoinLedgerModel.html#3446" class="Bound"
+      >tr</a
+      ><a name="3448" class="Symbol"
+      >)</a
+      ><a name="3449"
+      >  </a
+      ><a name="3451" href="bitcoinLedgerModel.html#3451" class="Bound"
+      >oldLedgerR</a
+      ><a name="3461"
+      >  </a
+      ><a name="3463" class="Symbol"
+      >=</a
+      ><a name="3464"
+      >
+      </a
+      ><a name="3471" href="bitcoinLedgerModel.html#3277" class="Function"
+      >addTXFieldListToLedgerR</a
+      ><a name="3494"
+      > </a
+      ><a name="3495" href="bitcoinLedgerModel.html#3446" class="Bound"
+      >tr</a
+      ><a name="3497"
+      > </a
+      ><a name="3498" class="Symbol"
+      >(</a
+      ><a name="3499" href="bitcoinLedgerModel.html#3075" class="Function"
+      >addTXFieldToLedgerR</a
+      ><a name="3518"
+      > </a
+      ><a name="3519" href="bitcoinLedgerModel.html#3442" class="Bound"
+      >x</a
+      ><a name="3520"
+      > </a
+      ><a name="3521" href="bitcoinLedgerModel.html#3451" class="Bound"
+      >oldLedgerR</a
+      ><a name="3531" class="Symbol"
+      >)</a
+      ><a name="3532"
+      >
+
+
+</a
+      ><a name="3535" class="Comment"
+      >-- \bitcoinVersFive</a
+      ><a name="3554"
+      >
+</a
+      ><a name="3555" href="bitcoinLedgerModel.html#3555" class="Function"
+      >subtrTXFieldFromLedgerR</a
+      ><a name="3578"
+      >      </a
+      ><a name="3584" class="Symbol"
+      >:</a
+      ><a name="3585"
+      >  </a
+      ><a name="3587" class="Symbol"
+      >(</a
+      ><a name="3588" href="bitcoinLedgerModel.html#3588" class="Bound"
+      >tr</a
+      ><a name="3590"
+      > </a
+      ><a name="3591" class="Symbol"
+      >:</a
+      ><a name="3592"
+      > </a
+      ><a name="3593" href="bitcoinLedgerModel.html#1433" class="Record"
+      >TXField</a
+      ><a name="3600" class="Symbol"
+      >)</a
+      ><a name="3601"
+      > </a
+      ><a name="3602" class="Symbol"
+      >(</a
+      ><a name="3603" href="bitcoinLedgerModel.html#3603" class="Bound"
+      >oldLedgerR</a
+      ><a name="3613"
+      > </a
+      ><a name="3614" class="Symbol"
+      >:</a
+      ><a name="3615"
+      > </a
+      ><a name="3616" href="bitcoinLedgerModel.html#2935" class="Function"
+      >LedgerR</a
+      ><a name="3623" class="Symbol"
+      >)</a
+      ><a name="3624"
+      > </a
+      ><a name="3625" class="Symbol"
+      >&#8594;</a
+      ><a name="3626"
+      > </a
+      ><a name="3627" href="bitcoinLedgerModel.html#2935" class="Function"
+      >LedgerR</a
+      ><a name="3634"
+      >
+</a
+      ><a name="3635" href="bitcoinLedgerModel.html#3635" class="Function"
+      >subtrTXFieldListFromLedgerR</a
+      ><a name="3662"
+      >  </a
+      ><a name="3664" class="Symbol"
+      >:</a
+      ><a name="3665"
+      >  </a
+      ><a name="3667" class="Symbol"
+      >(</a
+      ><a name="3668" href="bitcoinLedgerModel.html#3668" class="Bound"
+      >tr</a
+      ><a name="3670"
+      > </a
+      ><a name="3671" class="Symbol"
+      >:</a
+      ><a name="3672"
+      > </a
+      ><a name="3673" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="3677"
+      > </a
+      ><a name="3678" href="bitcoinLedgerModel.html#1433" class="Record"
+      >TXField</a
+      ><a name="3685" class="Symbol"
+      >)(</a
+      ><a name="3687" href="bitcoinLedgerModel.html#3687" class="Bound"
+      >oldLedgerR</a
+      ><a name="3697"
+      > </a
+      ><a name="3698" class="Symbol"
+      >:</a
+      ><a name="3699"
+      > </a
+      ><a name="3700" href="bitcoinLedgerModel.html#2935" class="Function"
+      >LedgerR</a
+      ><a name="3707" class="Symbol"
+      >)&#8594;</a
+      ><a name="3709"
+      > </a
+      ><a name="3710" href="bitcoinLedgerModel.html#2935" class="Function"
+      >LedgerR</a
+      ><a name="3717"
+      >
+</a
+      ><a name="3718" href="bitcoinLedgerModel.html#3555" class="Function"
+      >subtrTXFieldFromLedgerR</a
+      ><a name="3741"
+      >  </a
+      ><a name="3743" href="bitcoinLedgerModel.html#3743" class="Bound"
+      >tr</a
+      ><a name="3745"
+      > </a
+      ><a name="3746" href="bitcoinLedgerModel.html#3746" class="Bound"
+      >oldLedgerR</a
+      ><a name="3756"
+      > </a
+      ><a name="3757" href="bitcoinLedgerModel.html#3757" class="Bound"
+      >pubk</a
+      ><a name="3761"
+      > </a
+      ><a name="3762" class="Symbol"
+      >=</a
+      ><a name="3763"
+      >
+         </a
+      ><a name="3773" href="Data.Bool.Base.html#831" class="Function Operator"
+      >if</a
+      ><a name="3775"
+      >   </a
+      ><a name="3778" href="bitcoinLedgerModel.html#3757" class="Bound"
+      >pubk</a
+      ><a name="3782"
+      > </a
+      ><a name="3783" href="libraries.natLib.html#98" class="Function Operator"
+      >&#8801;&#8469;b</a
+      ><a name="3786"
+      > </a
+      ><a name="3787" href="bitcoinLedgerModel.html#1514" class="Field"
+      >address</a
+      ><a name="3794"
+      > </a
+      ><a name="3795" href="bitcoinLedgerModel.html#3743" class="Bound"
+      >tr</a
+      ><a name="3797"
+      >
+         </a
+      ><a name="3807" href="Data.Bool.Base.html#831" class="Function Operator"
+      >then</a
+      ><a name="3811"
+      > </a
+      ><a name="3812" href="bitcoinLedgerModel.html#3746" class="Bound"
+      >oldLedgerR</a
+      ><a name="3822"
+      > </a
+      ><a name="3823" href="bitcoinLedgerModel.html#3757" class="Bound"
+      >pubk</a
+      ><a name="3827"
+      > </a
+      ><a name="3828" href="Agda.Builtin.Nat.html#320" class="Primitive Operator"
+      >&#8760;</a
+      ><a name="3829"
+      >  </a
+      ><a name="3831" href="bitcoinLedgerModel.html#1484" class="Field"
+      >amount</a
+      ><a name="3837"
+      > </a
+      ><a name="3838" href="bitcoinLedgerModel.html#3743" class="Bound"
+      >tr</a
+      ><a name="3840"
+      >
+         </a
+      ><a name="3850" href="Data.Bool.Base.html#831" class="Function Operator"
+      >else</a
+      ><a name="3854"
+      > </a
+      ><a name="3855" href="bitcoinLedgerModel.html#3746" class="Bound"
+      >oldLedgerR</a
+      ><a name="3865"
+      > </a
+      ><a name="3866" href="bitcoinLedgerModel.html#3757" class="Bound"
+      >pubk</a
+      ><a name="3870"
+      >
+
+</a
+      ><a name="3872" href="bitcoinLedgerModel.html#3635" class="Function"
+      >subtrTXFieldListFromLedgerR</a
+      ><a name="3899"
+      > </a
+      ><a name="3900" href="Agda.Builtin.List.html#117" class="InductiveConstructor"
+      >[]</a
+      ><a name="3902"
+      > </a
+      ><a name="3903" href="bitcoinLedgerModel.html#3903" class="Bound"
+      >oldLedgerR</a
+      ><a name="3913"
+      > </a
+      ><a name="3914" class="Symbol"
+      >=</a
+      ><a name="3915"
+      > </a
+      ><a name="3916" href="bitcoinLedgerModel.html#3903" class="Bound"
+      >oldLedgerR</a
+      ><a name="3926"
+      >
+</a
+      ><a name="3927" href="bitcoinLedgerModel.html#3635" class="Function"
+      >subtrTXFieldListFromLedgerR</a
+      ><a name="3954"
+      > </a
+      ><a name="3955" class="Symbol"
+      >(</a
+      ><a name="3956" href="bitcoinLedgerModel.html#3956" class="Bound"
+      >x</a
+      ><a name="3957"
+      > </a
+      ><a name="3958" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="3959"
+      > </a
+      ><a name="3960" href="bitcoinLedgerModel.html#3960" class="Bound"
+      >tr</a
+      ><a name="3962" class="Symbol"
+      >)</a
+      ><a name="3963"
+      > </a
+      ><a name="3964" href="bitcoinLedgerModel.html#3964" class="Bound"
+      >oldLedgerR</a
+      ><a name="3974"
+      > </a
+      ><a name="3975" class="Symbol"
+      >=</a
+      ><a name="3976"
+      >
+           </a
+      ><a name="3988" href="bitcoinLedgerModel.html#3635" class="Function"
+      >subtrTXFieldListFromLedgerR</a
+      ><a name="4015"
+      > </a
+      ><a name="4016" href="bitcoinLedgerModel.html#3960" class="Bound"
+      >tr</a
+      ><a name="4018"
+      > </a
+      ><a name="4019" class="Symbol"
+      >(</a
+      ><a name="4020" href="bitcoinLedgerModel.html#3555" class="Function"
+      >subtrTXFieldFromLedgerR</a
+      ><a name="4043"
+      > </a
+      ><a name="4044" href="bitcoinLedgerModel.html#3956" class="Bound"
+      >x</a
+      ><a name="4045"
+      > </a
+      ><a name="4046" href="bitcoinLedgerModel.html#3964" class="Bound"
+      >oldLedgerR</a
+      ><a name="4056" class="Symbol"
+      >)</a
+      ><a name="4057"
+      >
+
+</a
+      ><a name="4059" class="Comment"
+      >-- \bitcoinVersFive</a
+      ><a name="4078"
+      >
+</a
+      ><a name="4079" href="bitcoinLedgerModel.html#4079" class="Function"
+      >updateLedgerRByTX</a
+      ><a name="4096"
+      > </a
+      ><a name="4097" class="Symbol"
+      >:</a
+      ><a name="4098"
+      >  </a
+      ><a name="4100" class="Symbol"
+      >(</a
+      ><a name="4101" href="bitcoinLedgerModel.html#4101" class="Bound"
+      >tr</a
+      ><a name="4103"
+      > </a
+      ><a name="4104" class="Symbol"
+      >:</a
+      ><a name="4105"
+      > </a
+      ><a name="4106" href="bitcoinLedgerModel.html#2684" class="Record"
+      >TX</a
+      ><a name="4108" class="Symbol"
+      >)(</a
+      ><a name="4110" href="bitcoinLedgerModel.html#4110" class="Bound"
+      >oldLedgerR</a
+      ><a name="4120"
+      > </a
+      ><a name="4121" class="Symbol"
+      >:</a
+      ><a name="4122"
+      > </a
+      ><a name="4123" href="bitcoinLedgerModel.html#2935" class="Function"
+      >LedgerR</a
+      ><a name="4130" class="Symbol"
+      >)</a
+      ><a name="4131"
+      > </a
+      ><a name="4132" class="Symbol"
+      >&#8594;</a
+      ><a name="4133"
+      > </a
+      ><a name="4134" href="bitcoinLedgerModel.html#2935" class="Function"
+      >LedgerR</a
+      ><a name="4141"
+      >
+</a
+      ><a name="4142" href="bitcoinLedgerModel.html#4079" class="Function"
+      >updateLedgerRByTX</a
+      ><a name="4159"
+      > </a
+      ><a name="4160" href="bitcoinLedgerModel.html#4160" class="Bound"
+      >tr</a
+      ><a name="4162"
+      > </a
+      ><a name="4163" href="bitcoinLedgerModel.html#4163" class="Bound"
+      >oldLedgerR</a
+      ><a name="4173"
+      > </a
+      ><a name="4174" class="Symbol"
+      >=</a
+      ><a name="4175"
+      >  </a
+      ><a name="4177" href="bitcoinLedgerModel.html#3277" class="Function"
+      >addTXFieldListToLedgerR</a
+      ><a name="4200"
+      > </a
+      ><a name="4201" class="Symbol"
+      >(</a
+      ><a name="4202" href="bitcoinLedgerModel.html#1995" class="Field"
+      >outputs</a
+      ><a name="4209"
+      > </a
+      ><a name="4210" class="Symbol"
+      >(</a
+      ><a name="4211" href="bitcoinLedgerModel.html#2708" class="Field"
+      >tx</a
+      ><a name="4213"
+      > </a
+      ><a name="4214" href="bitcoinLedgerModel.html#4160" class="Bound"
+      >tr</a
+      ><a name="4216" class="Symbol"
+      >))</a
+      ><a name="4218"
+      >
+                                   </a
+      ><a name="4254" class="Symbol"
+      >(</a
+      ><a name="4255" href="bitcoinLedgerModel.html#3635" class="Function"
+      >subtrTXFieldListFromLedgerR</a
+      ><a name="4282"
+      > </a
+      ><a name="4283" class="Symbol"
+      >(</a
+      ><a name="4284" href="bitcoinLedgerModel.html#1962" class="Field"
+      >inputs</a
+      ><a name="4290"
+      > </a
+      ><a name="4291" class="Symbol"
+      >(</a
+      ><a name="4292" href="bitcoinLedgerModel.html#2708" class="Field"
+      >tx</a
+      ><a name="4294"
+      > </a
+      ><a name="4295" href="bitcoinLedgerModel.html#4160" class="Bound"
+      >tr</a
+      ><a name="4297" class="Symbol"
+      >))</a
+      ><a name="4299"
+      > </a
+      ><a name="4300" href="bitcoinLedgerModel.html#4163" class="Bound"
+      >oldLedgerR</a
+      ><a name="4310"
+      > </a
+      ><a name="4311" class="Symbol"
+      >)</a
+      ><a name="4312"
+      >
+
+
+</a
+      ><a name="4315" class="Comment"
+      >-- \bitcoinVersFive</a
+      ><a name="4334"
+      >
+</a
+      ><a name="4335" href="bitcoinLedgerModel.html#4335" class="Function"
+      >correctInput</a
+      ><a name="4347"
+      > </a
+      ><a name="4348" class="Symbol"
+      >:</a
+      ><a name="4349"
+      > </a
+      ><a name="4350" class="Symbol"
+      >(</a
+      ><a name="4351" href="bitcoinLedgerModel.html#4351" class="Bound"
+      >tr</a
+      ><a name="4353"
+      > </a
+      ><a name="4354" class="Symbol"
+      >:</a
+      ><a name="4355"
+      > </a
+      ><a name="4356" href="bitcoinLedgerModel.html#1433" class="Record"
+      >TXField</a
+      ><a name="4363" class="Symbol"
+      >)</a
+      ><a name="4364"
+      > </a
+      ><a name="4365" class="Symbol"
+      >(</a
+      ><a name="4366" href="bitcoinLedgerModel.html#4366" class="Bound"
+      >ledgerR</a
+      ><a name="4373"
+      > </a
+      ><a name="4374" class="Symbol"
+      >:</a
+      ><a name="4375"
+      > </a
+      ><a name="4376" href="bitcoinLedgerModel.html#2935" class="Function"
+      >LedgerR</a
+      ><a name="4383" class="Symbol"
+      >)</a
+      ><a name="4384"
+      > </a
+      ><a name="4385" class="Symbol"
+      >&#8594;</a
+      ><a name="4386"
+      > </a
+      ><a name="4387" class="PrimitiveType"
+      >Set</a
+      ><a name="4390"
+      >
+</a
+      ><a name="4391" href="bitcoinLedgerModel.html#4335" class="Function"
+      >correctInput</a
+      ><a name="4403"
+      > </a
+      ><a name="4404" href="bitcoinLedgerModel.html#4404" class="Bound"
+      >tr</a
+      ><a name="4406"
+      > </a
+      ><a name="4407" href="bitcoinLedgerModel.html#4407" class="Bound"
+      >ledgerR</a
+      ><a name="4414"
+      > </a
+      ><a name="4415" class="Symbol"
+      >=</a
+      ><a name="4416"
+      > </a
+      ><a name="4417" href="bitcoinLedgerModel.html#4407" class="Bound"
+      >ledgerR</a
+      ><a name="4424"
+      > </a
+      ><a name="4425" class="Symbol"
+      >(</a
+      ><a name="4426" href="bitcoinLedgerModel.html#1514" class="Field"
+      >address</a
+      ><a name="4433"
+      > </a
+      ><a name="4434" href="bitcoinLedgerModel.html#4404" class="Bound"
+      >tr</a
+      ><a name="4436" class="Symbol"
+      >)</a
+      ><a name="4437"
+      > </a
+      ><a name="4438" href="Data.Nat.Base.html#962" class="Function Operator"
+      >&#8805;</a
+      ><a name="4439"
+      > </a
+      ><a name="4440" href="bitcoinLedgerModel.html#1484" class="Field"
+      >amount</a
+      ><a name="4446"
+      > </a
+      ><a name="4447" href="bitcoinLedgerModel.html#4404" class="Bound"
+      >tr</a
+      ><a name="4449"
+      >
+
+</a
+      ><a name="4451" class="Comment"
+      >-- \bitcoinVersFive</a
+      ><a name="4470"
+      >
+</a
+      ><a name="4471" href="bitcoinLedgerModel.html#4471" class="Function"
+      >correctInputs</a
+      ><a name="4484"
+      > </a
+      ><a name="4485" class="Symbol"
+      >:</a
+      ><a name="4486"
+      > </a
+      ><a name="4487" class="Symbol"
+      >(</a
+      ><a name="4488" href="bitcoinLedgerModel.html#4488" class="Bound"
+      >tr</a
+      ><a name="4490"
+      > </a
+      ><a name="4491" class="Symbol"
+      >:</a
+      ><a name="4492"
+      > </a
+      ><a name="4493" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="4497"
+      > </a
+      ><a name="4498" href="bitcoinLedgerModel.html#1433" class="Record"
+      >TXField</a
+      ><a name="4505" class="Symbol"
+      >)</a
+      ><a name="4506"
+      > </a
+      ><a name="4507" class="Symbol"
+      >(</a
+      ><a name="4508" href="bitcoinLedgerModel.html#4508" class="Bound"
+      >ledgerR</a
+      ><a name="4515"
+      > </a
+      ><a name="4516" class="Symbol"
+      >:</a
+      ><a name="4517"
+      > </a
+      ><a name="4518" href="bitcoinLedgerModel.html#2935" class="Function"
+      >LedgerR</a
+      ><a name="4525" class="Symbol"
+      >)</a
+      ><a name="4526"
+      > </a
+      ><a name="4527" class="Symbol"
+      >&#8594;</a
+      ><a name="4528"
+      > </a
+      ><a name="4529" class="PrimitiveType"
+      >Set</a
+      ><a name="4532"
+      >
+</a
+      ><a name="4533" href="bitcoinLedgerModel.html#4471" class="Function"
+      >correctInputs</a
+      ><a name="4546"
+      > </a
+      ><a name="4547" href="Agda.Builtin.List.html#117" class="InductiveConstructor"
+      >[]</a
+      ><a name="4549"
+      > </a
+      ><a name="4550" href="bitcoinLedgerModel.html#4550" class="Bound"
+      >ledgerR</a
+      ><a name="4557"
+      > </a
+      ><a name="4558" class="Symbol"
+      >=</a
+      ><a name="4559"
+      > </a
+      ><a name="4560" href="Agda.Builtin.Unit.html#69" class="Record"
+      >&#8868;</a
+      ><a name="4561"
+      >
+</a
+      ><a name="4562" href="bitcoinLedgerModel.html#4471" class="Function"
+      >correctInputs</a
+      ><a name="4575"
+      > </a
+      ><a name="4576" class="Symbol"
+      >(</a
+      ><a name="4577" href="bitcoinLedgerModel.html#4577" class="Bound"
+      >x</a
+      ><a name="4578"
+      > </a
+      ><a name="4579" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="4580"
+      > </a
+      ><a name="4581" href="bitcoinLedgerModel.html#4581" class="Bound"
+      >tr</a
+      ><a name="4583" class="Symbol"
+      >)</a
+      ><a name="4584"
+      > </a
+      ><a name="4585" href="bitcoinLedgerModel.html#4585" class="Bound"
+      >ledgerR</a
+      ><a name="4592"
+      > </a
+      ><a name="4593" class="Symbol"
+      >=</a
+      ><a name="4594"
+      > </a
+      ><a name="4595" href="bitcoinLedgerModel.html#4335" class="Function"
+      >correctInput</a
+      ><a name="4607"
+      > </a
+      ><a name="4608" href="bitcoinLedgerModel.html#4577" class="Bound"
+      >x</a
+      ><a name="4609"
+      > </a
+      ><a name="4610" href="bitcoinLedgerModel.html#4585" class="Bound"
+      >ledgerR</a
+      ><a name="4617"
+      >
+                                </a
+      ><a name="4650" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="4651"
+      > </a
+      ><a name="4652" href="bitcoinLedgerModel.html#4471" class="Function"
+      >correctInputs</a
+      ><a name="4665"
+      > </a
+      ><a name="4666" href="bitcoinLedgerModel.html#4581" class="Bound"
+      >tr</a
+      ><a name="4668"
+      > </a
+      ><a name="4669" class="Symbol"
+      >(</a
+      ><a name="4670" href="bitcoinLedgerModel.html#3555" class="Function"
+      >subtrTXFieldFromLedgerR</a
+      ><a name="4693"
+      > </a
+      ><a name="4694" href="bitcoinLedgerModel.html#4577" class="Bound"
+      >x</a
+      ><a name="4695"
+      > </a
+      ><a name="4696" href="bitcoinLedgerModel.html#4585" class="Bound"
+      >ledgerR</a
+      ><a name="4703" class="Symbol"
+      >)</a
+      ><a name="4704"
+      >
+
+</a
+      ><a name="4706" href="bitcoinLedgerModel.html#4706" class="Function"
+      >correctTX</a
+      ><a name="4715"
+      > </a
+      ><a name="4716" class="Symbol"
+      >:</a
+      ><a name="4717"
+      > </a
+      ><a name="4718" class="Symbol"
+      >(</a
+      ><a name="4719" href="bitcoinLedgerModel.html#4719" class="Bound"
+      >tr</a
+      ><a name="4721"
+      > </a
+      ><a name="4722" class="Symbol"
+      >:</a
+      ><a name="4723"
+      > </a
+      ><a name="4724" href="bitcoinLedgerModel.html#2684" class="Record"
+      >TX</a
+      ><a name="4726" class="Symbol"
+      >)</a
+      ><a name="4727"
+      > </a
+      ><a name="4728" class="Symbol"
+      >(</a
+      ><a name="4729" href="bitcoinLedgerModel.html#4729" class="Bound"
+      >ledgerR</a
+      ><a name="4736"
+      > </a
+      ><a name="4737" class="Symbol"
+      >:</a
+      ><a name="4738"
+      > </a
+      ><a name="4739" href="bitcoinLedgerModel.html#2935" class="Function"
+      >LedgerR</a
+      ><a name="4746" class="Symbol"
+      >)</a
+      ><a name="4747"
+      > </a
+      ><a name="4748" class="Symbol"
+      >&#8594;</a
+      ><a name="4749"
+      > </a
+      ><a name="4750" class="PrimitiveType"
+      >Set</a
+      ><a name="4753"
+      >
+</a
+      ><a name="4754" href="bitcoinLedgerModel.html#4706" class="Function"
+      >correctTX</a
+      ><a name="4763"
+      > </a
+      ><a name="4764" href="bitcoinLedgerModel.html#4764" class="Bound"
+      >tr</a
+      ><a name="4766"
+      > </a
+      ><a name="4767" href="bitcoinLedgerModel.html#4767" class="Bound"
+      >ledgerR</a
+      ><a name="4774"
+      > </a
+      ><a name="4775" class="Symbol"
+      >=</a
+      ><a name="4776"
+      > </a
+      ><a name="4777" href="bitcoinLedgerModel.html#4471" class="Function"
+      >correctInputs</a
+      ><a name="4790"
+      > </a
+      ><a name="4791" class="Symbol"
+      >(</a
+      ><a name="4792" href="bitcoinLedgerModel.html#1995" class="Field"
+      >outputs</a
+      ><a name="4799"
+      > </a
+      ><a name="4800" class="Symbol"
+      >(</a
+      ><a name="4801" href="bitcoinLedgerModel.html#2708" class="Field"
+      >tx</a
+      ><a name="4803"
+      > </a
+      ><a name="4804" href="bitcoinLedgerModel.html#4764" class="Bound"
+      >tr</a
+      ><a name="4806" class="Symbol"
+      >))</a
+      ><a name="4808"
+      > </a
+      ><a name="4809" href="bitcoinLedgerModel.html#4767" class="Bound"
+      >ledgerR</a
+      ><a name="4816"
+      >
+
+
+
+</a
+      ><a name="4820" href="bitcoinLedgerModel.html#4820" class="Function"
+      >UnMinedBlock</a
+      ><a name="4832"
+      > </a
+      ><a name="4833" class="Symbol"
+      >:</a
+      ><a name="4834"
+      > </a
+      ><a name="4835" class="PrimitiveType"
+      >Set</a
+      ><a name="4838"
+      >
+
+</a
+      ><a name="4840" class="Comment"
+      >-- \bitcoinVersFive</a
+      ><a name="4859"
+      >
+</a
+      ><a name="4860" href="bitcoinLedgerModel.html#4820" class="Function"
+      >UnMinedBlock</a
+      ><a name="4872"
+      > </a
+      ><a name="4873" class="Symbol"
+      >=</a
+      ><a name="4874"
+      > </a
+      ><a name="4875" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="4879"
+      > </a
+      ><a name="4880" href="bitcoinLedgerModel.html#2684" class="Record"
+      >TX</a
+      ><a name="4882"
+      >
+
+
+</a
+      ><a name="4885" class="Comment"
+      >-- \bitcoinVersFive</a
+      ><a name="4904"
+      >
+</a
+      ><a name="4905" href="bitcoinLedgerModel.html#4905" class="Function"
+      >tx2TXFee</a
+      ><a name="4913"
+      > </a
+      ><a name="4914" class="Symbol"
+      >:</a
+      ><a name="4915"
+      > </a
+      ><a name="4916" href="bitcoinLedgerModel.html#2684" class="Record"
+      >TX</a
+      ><a name="4918"
+      > </a
+      ><a name="4919" class="Symbol"
+      >&#8594;</a
+      ><a name="4920"
+      > </a
+      ><a name="4921" href="bitcoinLedgerModel.html#282" class="Function"
+      >Amount</a
+      ><a name="4927"
+      >
+</a
+      ><a name="4928" href="bitcoinLedgerModel.html#4905" class="Function"
+      >tx2TXFee</a
+      ><a name="4936"
+      > </a
+      ><a name="4937" href="bitcoinLedgerModel.html#4937" class="Bound"
+      >tr</a
+      ><a name="4939"
+      > </a
+      ><a name="4940" class="Symbol"
+      >=</a
+      ><a name="4941"
+      >
+    </a
+      ><a name="4946" href="bitcoinLedgerModel.html#1793" class="Function"
+      >txFieldList2TotalAmount</a
+      ><a name="4969"
+      > </a
+      ><a name="4970" class="Symbol"
+      >(</a
+      ><a name="4971" href="bitcoinLedgerModel.html#1995" class="Field"
+      >outputs</a
+      ><a name="4978"
+      > </a
+      ><a name="4979" class="Symbol"
+      >(</a
+      ><a name="4980" href="bitcoinLedgerModel.html#2708" class="Field"
+      >tx</a
+      ><a name="4982"
+      > </a
+      ><a name="4983" href="bitcoinLedgerModel.html#4937" class="Bound"
+      >tr</a
+      ><a name="4985" class="Symbol"
+      >))</a
+      ><a name="4987"
+      > </a
+      ><a name="4988" href="Agda.Builtin.Nat.html#320" class="Primitive Operator"
+      >&#8760;</a
+      ><a name="4989"
+      > </a
+      ><a name="4990" href="bitcoinLedgerModel.html#1793" class="Function"
+      >txFieldList2TotalAmount</a
+      ><a name="5013"
+      > </a
+      ><a name="5014" class="Symbol"
+      >(</a
+      ><a name="5015" href="bitcoinLedgerModel.html#1962" class="Field"
+      >inputs</a
+      ><a name="5021"
+      > </a
+      ><a name="5022" class="Symbol"
+      >(</a
+      ><a name="5023" href="bitcoinLedgerModel.html#2708" class="Field"
+      >tx</a
+      ><a name="5025"
+      > </a
+      ><a name="5026" href="bitcoinLedgerModel.html#4937" class="Bound"
+      >tr</a
+      ><a name="5028" class="Symbol"
+      >))</a
+      ><a name="5030"
+      >
+
+</a
+      ><a name="5032" href="bitcoinLedgerModel.html#5032" class="Function"
+      >unMinedBlock2TXFee</a
+      ><a name="5050"
+      > </a
+      ><a name="5051" class="Symbol"
+      >:</a
+      ><a name="5052"
+      > </a
+      ><a name="5053" href="bitcoinLedgerModel.html#4820" class="Function"
+      >UnMinedBlock</a
+      ><a name="5065"
+      > </a
+      ><a name="5066" class="Symbol"
+      >&#8594;</a
+      ><a name="5067"
+      > </a
+      ><a name="5068" href="bitcoinLedgerModel.html#282" class="Function"
+      >Amount</a
+      ><a name="5074"
+      >
+</a
+      ><a name="5075" href="bitcoinLedgerModel.html#5032" class="Function"
+      >unMinedBlock2TXFee</a
+      ><a name="5093"
+      > </a
+      ><a name="5094" href="bitcoinLedgerModel.html#5094" class="Bound"
+      >bl</a
+      ><a name="5096"
+      > </a
+      ><a name="5097" class="Symbol"
+      >=</a
+      ><a name="5098"
+      > </a
+      ><a name="5099" href="libraries.listLib.html#7409" class="Function"
+      >sumListViaf</a
+      ><a name="5110"
+      > </a
+      ><a name="5111" href="bitcoinLedgerModel.html#4905" class="Function"
+      >tx2TXFee</a
+      ><a name="5119"
+      >  </a
+      ><a name="5121" href="bitcoinLedgerModel.html#5094" class="Bound"
+      >bl</a
+      ><a name="5123"
+      >
+
+
+
+</a
+      ><a name="5127" class="Comment"
+      >-- \bitcoinVersFive</a
+      ><a name="5146"
+      >
+</a
+      ><a name="5147" href="bitcoinLedgerModel.html#5147" class="Function"
+      >correctUnminedBlock</a
+      ><a name="5166"
+      > </a
+      ><a name="5167" class="Symbol"
+      >:</a
+      ><a name="5168"
+      > </a
+      ><a name="5169" class="Symbol"
+      >(</a
+      ><a name="5170" href="bitcoinLedgerModel.html#5170" class="Bound"
+      >block</a
+      ><a name="5175"
+      > </a
+      ><a name="5176" class="Symbol"
+      >:</a
+      ><a name="5177"
+      > </a
+      ><a name="5178" href="bitcoinLedgerModel.html#4820" class="Function"
+      >UnMinedBlock</a
+      ><a name="5190" class="Symbol"
+      >)(</a
+      ><a name="5192" href="bitcoinLedgerModel.html#5192" class="Bound"
+      >oldLedgerR</a
+      ><a name="5202"
+      > </a
+      ><a name="5203" class="Symbol"
+      >:</a
+      ><a name="5204"
+      > </a
+      ><a name="5205" href="bitcoinLedgerModel.html#2935" class="Function"
+      >LedgerR</a
+      ><a name="5212" class="Symbol"
+      >)&#8594;</a
+      ><a name="5214"
+      > </a
+      ><a name="5215" class="PrimitiveType"
+      >Set</a
+      ><a name="5218"
+      >
+</a
+      ><a name="5219" href="bitcoinLedgerModel.html#5147" class="Function"
+      >correctUnminedBlock</a
+      ><a name="5238"
+      > </a
+      ><a name="5239" href="Agda.Builtin.List.html#117" class="InductiveConstructor"
+      >[]</a
+      ><a name="5241"
+      > </a
+      ><a name="5242" href="bitcoinLedgerModel.html#5242" class="Bound"
+      >oldLedgerR</a
+      ><a name="5252"
+      > </a
+      ><a name="5253" class="Symbol"
+      >=</a
+      ><a name="5254"
+      > </a
+      ><a name="5255" href="Agda.Builtin.Unit.html#69" class="Record"
+      >&#8868;</a
+      ><a name="5256"
+      >
+</a
+      ><a name="5257" href="bitcoinLedgerModel.html#5147" class="Function"
+      >correctUnminedBlock</a
+      ><a name="5276"
+      > </a
+      ><a name="5277" class="Symbol"
+      >(</a
+      ><a name="5278" href="bitcoinLedgerModel.html#5278" class="Bound"
+      >tr</a
+      ><a name="5280"
+      > </a
+      ><a name="5281" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="5282"
+      > </a
+      ><a name="5283" href="bitcoinLedgerModel.html#5283" class="Bound"
+      >block</a
+      ><a name="5288" class="Symbol"
+      >)</a
+      ><a name="5289"
+      > </a
+      ><a name="5290" href="bitcoinLedgerModel.html#5290" class="Bound"
+      >oldLedgerR</a
+      ><a name="5300"
+      > </a
+      ><a name="5301" class="Symbol"
+      >=</a
+      ><a name="5302"
+      >
+    </a
+      ><a name="5307" href="bitcoinLedgerModel.html#4706" class="Function"
+      >correctTX</a
+      ><a name="5316"
+      > </a
+      ><a name="5317" href="bitcoinLedgerModel.html#5278" class="Bound"
+      >tr</a
+      ><a name="5319"
+      > </a
+      ><a name="5320" href="bitcoinLedgerModel.html#5290" class="Bound"
+      >oldLedgerR</a
+      ><a name="5330"
+      > </a
+      ><a name="5331" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="5332"
+      >  </a
+      ><a name="5334" href="bitcoinLedgerModel.html#5147" class="Function"
+      >correctUnminedBlock</a
+      ><a name="5353"
+      >  </a
+      ><a name="5355" href="bitcoinLedgerModel.html#5283" class="Bound"
+      >block</a
+      ><a name="5360"
+      > </a
+      ><a name="5361" class="Symbol"
+      >(</a
+      ><a name="5362" href="bitcoinLedgerModel.html#4079" class="Function"
+      >updateLedgerRByTX</a
+      ><a name="5379"
+      > </a
+      ><a name="5380" href="bitcoinLedgerModel.html#5278" class="Bound"
+      >tr</a
+      ><a name="5382"
+      > </a
+      ><a name="5383" href="bitcoinLedgerModel.html#5290" class="Bound"
+      >oldLedgerR</a
+      ><a name="5393" class="Symbol"
+      >)</a
+      ><a name="5394"
+      >
+
+</a
+      ><a name="5396" href="bitcoinLedgerModel.html#5396" class="Function"
+      >updateLedgerRUnminedBlock</a
+      ><a name="5421"
+      > </a
+      ><a name="5422" class="Symbol"
+      >:</a
+      ><a name="5423"
+      > </a
+      ><a name="5424" class="Symbol"
+      >(</a
+      ><a name="5425" href="bitcoinLedgerModel.html#5425" class="Bound"
+      >block</a
+      ><a name="5430"
+      > </a
+      ><a name="5431" class="Symbol"
+      >:</a
+      ><a name="5432"
+      > </a
+      ><a name="5433" href="bitcoinLedgerModel.html#4820" class="Function"
+      >UnMinedBlock</a
+      ><a name="5445" class="Symbol"
+      >)(</a
+      ><a name="5447" href="bitcoinLedgerModel.html#5447" class="Bound"
+      >oldLedgerR</a
+      ><a name="5457"
+      > </a
+      ><a name="5458" class="Symbol"
+      >:</a
+      ><a name="5459"
+      > </a
+      ><a name="5460" href="bitcoinLedgerModel.html#2935" class="Function"
+      >LedgerR</a
+      ><a name="5467" class="Symbol"
+      >)</a
+      ><a name="5468"
+      > </a
+      ><a name="5469" class="Symbol"
+      >&#8594;</a
+      ><a name="5470"
+      > </a
+      ><a name="5471" href="bitcoinLedgerModel.html#2935" class="Function"
+      >LedgerR</a
+      ><a name="5478"
+      >
+</a
+      ><a name="5479" href="bitcoinLedgerModel.html#5396" class="Function"
+      >updateLedgerRUnminedBlock</a
+      ><a name="5504"
+      > </a
+      ><a name="5505" href="Agda.Builtin.List.html#117" class="InductiveConstructor"
+      >[]</a
+      ><a name="5507"
+      > </a
+      ><a name="5508" href="bitcoinLedgerModel.html#5508" class="Bound"
+      >oldLedgerR</a
+      ><a name="5518"
+      >            </a
+      ><a name="5530" class="Symbol"
+      >=</a
+      ><a name="5531"
+      > </a
+      ><a name="5532" href="bitcoinLedgerModel.html#5508" class="Bound"
+      >oldLedgerR</a
+      ><a name="5542"
+      >
+</a
+      ><a name="5543" href="bitcoinLedgerModel.html#5396" class="Function"
+      >updateLedgerRUnminedBlock</a
+      ><a name="5568"
+      > </a
+      ><a name="5569" class="Symbol"
+      >(</a
+      ><a name="5570" href="bitcoinLedgerModel.html#5570" class="Bound"
+      >tr</a
+      ><a name="5572"
+      > </a
+      ><a name="5573" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="5574"
+      > </a
+      ><a name="5575" href="bitcoinLedgerModel.html#5575" class="Bound"
+      >block</a
+      ><a name="5580" class="Symbol"
+      >)</a
+      ><a name="5581"
+      > </a
+      ><a name="5582" href="bitcoinLedgerModel.html#5582" class="Bound"
+      >oldLedgerR</a
+      ><a name="5592"
+      >  </a
+      ><a name="5594" class="Symbol"
+      >=</a
+      ><a name="5595"
+      >
+        </a
+      ><a name="5604" href="bitcoinLedgerModel.html#5396" class="Function"
+      >updateLedgerRUnminedBlock</a
+      ><a name="5629"
+      > </a
+      ><a name="5630" href="bitcoinLedgerModel.html#5575" class="Bound"
+      >block</a
+      ><a name="5635"
+      > </a
+      ><a name="5636" class="Symbol"
+      >(</a
+      ><a name="5637" href="bitcoinLedgerModel.html#4079" class="Function"
+      >updateLedgerRByTX</a
+      ><a name="5654"
+      > </a
+      ><a name="5655" href="bitcoinLedgerModel.html#5570" class="Bound"
+      >tr</a
+      ><a name="5657"
+      > </a
+      ><a name="5658" href="bitcoinLedgerModel.html#5582" class="Bound"
+      >oldLedgerR</a
+      ><a name="5668" class="Symbol"
+      >)</a
+      ><a name="5669"
+      >
+
+</a
+      ><a name="5671" href="bitcoinLedgerModel.html#5671" class="Function"
+      >BlockUnchecked</a
+      ><a name="5685"
+      > </a
+      ><a name="5686" class="Symbol"
+      >:</a
+      ><a name="5687"
+      > </a
+      ><a name="5688" class="PrimitiveType"
+      >Set</a
+      ><a name="5691"
+      >
+
+</a
+      ><a name="5693" class="Comment"
+      >-- \bitcoinVersFive</a
+      ><a name="5712"
+      >
+</a
+      ><a name="5713" href="bitcoinLedgerModel.html#5671" class="Function"
+      >BlockUnchecked</a
+      ><a name="5727"
+      > </a
+      ><a name="5728" class="Symbol"
+      >=</a
+      ><a name="5729"
+      > </a
+      ><a name="5730" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="5734"
+      > </a
+      ><a name="5735" href="bitcoinLedgerModel.html#1433" class="Record"
+      >TXField</a
+      ><a name="5742"
+      > </a
+      ><a name="5743" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="5744"
+      > </a
+      ><a name="5745" href="bitcoinLedgerModel.html#4820" class="Function"
+      >UnMinedBlock</a
+      ><a name="5757"
+      >
+
+</a
+      ><a name="5759" href="bitcoinLedgerModel.html#5759" class="Function"
+      >block2TXFee</a
+      ><a name="5770"
+      > </a
+      ><a name="5771" class="Symbol"
+      >:</a
+      ><a name="5772"
+      > </a
+      ><a name="5773" href="bitcoinLedgerModel.html#5671" class="Function"
+      >BlockUnchecked</a
+      ><a name="5787"
+      > </a
+      ><a name="5788" class="Symbol"
+      >&#8594;</a
+      ><a name="5789"
+      > </a
+      ><a name="5790" href="bitcoinLedgerModel.html#282" class="Function"
+      >Amount</a
+      ><a name="5796"
+      >
+</a
+      ><a name="5797" href="bitcoinLedgerModel.html#5759" class="Function"
+      >block2TXFee</a
+      ><a name="5808"
+      > </a
+      ><a name="5809" class="Symbol"
+      >(</a
+      ><a name="5810" href="bitcoinLedgerModel.html#5810" class="Bound"
+      >outputMiner</a
+      ><a name="5821"
+      > </a
+      ><a name="5822" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="5823"
+      > </a
+      ><a name="5824" href="bitcoinLedgerModel.html#5824" class="Bound"
+      >block</a
+      ><a name="5829" class="Symbol"
+      >)</a
+      ><a name="5830"
+      > </a
+      ><a name="5831" class="Symbol"
+      >=</a
+      ><a name="5832"
+      > </a
+      ><a name="5833" href="bitcoinLedgerModel.html#5032" class="Function"
+      >unMinedBlock2TXFee</a
+      ><a name="5851"
+      > </a
+      ><a name="5852" href="bitcoinLedgerModel.html#5824" class="Bound"
+      >block</a
+      ><a name="5857"
+      >
+
+</a
+      ><a name="5859" class="Comment"
+      >{-
+upDateLedgerRMining : (minerOutput  : List TXField)
+                     (oldLedgerR : LedgerR)
+                     &#8594; LedgerR
+upDateLedgerRMining minerOutput oldLedgerR =
+           addTXFieldListToLedgerR minerOutput oldLedgerR
+--              (txField reward miner)
+-}</a
+      ><a name="6133"
+      >
+
+</a
+      ><a name="6135" class="Comment"
+      >-- \bitcoinVersFive</a
+      ><a name="6154"
+      >
+</a
+      ><a name="6155" href="bitcoinLedgerModel.html#6155" class="Function"
+      >correctMinedBlock</a
+      ><a name="6172"
+      > </a
+      ><a name="6173" class="Symbol"
+      >:</a
+      ><a name="6174"
+      > </a
+      ><a name="6175" class="Symbol"
+      >(</a
+      ><a name="6176" href="bitcoinLedgerModel.html#6176" class="Bound"
+      >reward</a
+      ><a name="6182"
+      > </a
+      ><a name="6183" class="Symbol"
+      >:</a
+      ><a name="6184"
+      > </a
+      ><a name="6185" href="bitcoinLedgerModel.html#282" class="Function"
+      >Amount</a
+      ><a name="6191" class="Symbol"
+      >)(</a
+      ><a name="6193" href="bitcoinLedgerModel.html#6193" class="Bound"
+      >block</a
+      ><a name="6198"
+      > </a
+      ><a name="6199" class="Symbol"
+      >:</a
+      ><a name="6200"
+      > </a
+      ><a name="6201" href="bitcoinLedgerModel.html#5671" class="Function"
+      >BlockUnchecked</a
+      ><a name="6215" class="Symbol"
+      >)(</a
+      ><a name="6217" href="bitcoinLedgerModel.html#6217" class="Bound"
+      >oldLedgerR</a
+      ><a name="6227"
+      > </a
+      ><a name="6228" class="Symbol"
+      >:</a
+      ><a name="6229"
+      > </a
+      ><a name="6230" href="bitcoinLedgerModel.html#2935" class="Function"
+      >LedgerR</a
+      ><a name="6237" class="Symbol"
+      >)</a
+      ><a name="6238"
+      >
+                    </a
+      ><a name="6259" class="Symbol"
+      >&#8594;</a
+      ><a name="6260"
+      > </a
+      ><a name="6261" class="PrimitiveType"
+      >Set</a
+      ><a name="6264"
+      >
+</a
+      ><a name="6265" href="bitcoinLedgerModel.html#6155" class="Function"
+      >correctMinedBlock</a
+      ><a name="6282"
+      > </a
+      ><a name="6283" href="bitcoinLedgerModel.html#6283" class="Bound"
+      >reward</a
+      ><a name="6289"
+      > </a
+      ><a name="6290" class="Symbol"
+      >(</a
+      ><a name="6291" href="bitcoinLedgerModel.html#6291" class="Bound"
+      >outputMiner</a
+      ><a name="6302"
+      > </a
+      ><a name="6303" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="6304"
+      > </a
+      ><a name="6305" href="bitcoinLedgerModel.html#6305" class="Bound"
+      >block</a
+      ><a name="6310" class="Symbol"
+      >)</a
+      ><a name="6311"
+      > </a
+      ><a name="6312" href="bitcoinLedgerModel.html#6312" class="Bound"
+      >oldLedgerR</a
+      ><a name="6322"
+      > </a
+      ><a name="6323" class="Symbol"
+      >=</a
+      ><a name="6324"
+      >
+      </a
+      ><a name="6331" href="bitcoinLedgerModel.html#5147" class="Function"
+      >correctUnminedBlock</a
+      ><a name="6350"
+      > </a
+      ><a name="6351" href="bitcoinLedgerModel.html#6305" class="Bound"
+      >block</a
+      ><a name="6356"
+      > </a
+      ><a name="6357" href="bitcoinLedgerModel.html#6312" class="Bound"
+      >oldLedgerR</a
+      ><a name="6367"
+      > </a
+      ><a name="6368" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="6369"
+      >
+      </a
+      ><a name="6376" href="bitcoinLedgerModel.html#1793" class="Function"
+      >txFieldList2TotalAmount</a
+      ><a name="6399"
+      > </a
+      ><a name="6400" href="bitcoinLedgerModel.html#6291" class="Bound"
+      >outputMiner</a
+      ><a name="6411"
+      > </a
+      ><a name="6412" href="libraries.natLib.html#213" class="Function Operator"
+      >&#8801;&#8469;</a
+      ><a name="6414"
+      > </a
+      ><a name="6415" class="Symbol"
+      >(</a
+      ><a name="6416" href="bitcoinLedgerModel.html#6283" class="Bound"
+      >reward</a
+      ><a name="6422"
+      > </a
+      ><a name="6423" href="Agda.Builtin.Nat.html#230" class="Primitive Operator"
+      >+</a
+      ><a name="6424"
+      > </a
+      ><a name="6425" href="bitcoinLedgerModel.html#5032" class="Function"
+      >unMinedBlock2TXFee</a
+      ><a name="6443"
+      > </a
+      ><a name="6444" href="bitcoinLedgerModel.html#6305" class="Bound"
+      >block</a
+      ><a name="6449" class="Symbol"
+      >)</a
+      ><a name="6450"
+      >
+</a
+      ><a name="6451" class="Comment"
+      >--          (upDateLedgerRMining reward miner )</a
+      ><a name="6498"
+      >
+
+</a
+      ><a name="6500" class="Comment"
+      >-- \bitcoinVersFive</a
+      ><a name="6519"
+      >
+</a
+      ><a name="6520" href="bitcoinLedgerModel.html#6520" class="Function"
+      >updateLedgerRBlock</a
+      ><a name="6538"
+      > </a
+      ><a name="6539" class="Symbol"
+      >:</a
+      ><a name="6540"
+      > </a
+      ><a name="6541" class="Symbol"
+      >(</a
+      ><a name="6542" href="bitcoinLedgerModel.html#6542" class="Bound"
+      >block</a
+      ><a name="6547"
+      > </a
+      ><a name="6548" class="Symbol"
+      >:</a
+      ><a name="6549"
+      > </a
+      ><a name="6550" href="bitcoinLedgerModel.html#5671" class="Function"
+      >BlockUnchecked</a
+      ><a name="6564" class="Symbol"
+      >)(</a
+      ><a name="6566" href="bitcoinLedgerModel.html#6566" class="Bound"
+      >oldLedgerR</a
+      ><a name="6576"
+      > </a
+      ><a name="6577" class="Symbol"
+      >:</a
+      ><a name="6578"
+      > </a
+      ><a name="6579" href="bitcoinLedgerModel.html#2935" class="Function"
+      >LedgerR</a
+      ><a name="6586" class="Symbol"
+      >)&#8594;</a
+      ><a name="6588"
+      > </a
+      ><a name="6589" href="bitcoinLedgerModel.html#2935" class="Function"
+      >LedgerR</a
+      ><a name="6596"
+      >
+</a
+      ><a name="6597" href="bitcoinLedgerModel.html#6520" class="Function"
+      >updateLedgerRBlock</a
+      ><a name="6615"
+      > </a
+      ><a name="6616" class="Symbol"
+      >(</a
+      ><a name="6617" href="bitcoinLedgerModel.html#6617" class="Bound"
+      >outputMiner</a
+      ><a name="6628"
+      > </a
+      ><a name="6629" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="6630"
+      > </a
+      ><a name="6631" href="bitcoinLedgerModel.html#6631" class="Bound"
+      >block</a
+      ><a name="6636" class="Symbol"
+      >)</a
+      ><a name="6637"
+      > </a
+      ><a name="6638" href="bitcoinLedgerModel.html#6638" class="Bound"
+      >oldLedgerR</a
+      ><a name="6648"
+      > </a
+      ><a name="6649" class="Symbol"
+      >=</a
+      ><a name="6650"
+      >
+   </a
+      ><a name="6654" href="bitcoinLedgerModel.html#3277" class="Function"
+      >addTXFieldListToLedgerR</a
+      ><a name="6677"
+      >  </a
+      ><a name="6679" href="bitcoinLedgerModel.html#6617" class="Bound"
+      >outputMiner</a
+      ><a name="6690"
+      > </a
+      ><a name="6691" class="Symbol"
+      >(</a
+      ><a name="6692" href="bitcoinLedgerModel.html#5396" class="Function"
+      >updateLedgerRUnminedBlock</a
+      ><a name="6717"
+      > </a
+      ><a name="6718" href="bitcoinLedgerModel.html#6631" class="Bound"
+      >block</a
+      ><a name="6723"
+      > </a
+      ><a name="6724" href="bitcoinLedgerModel.html#6638" class="Bound"
+      >oldLedgerR</a
+      ><a name="6734" class="Symbol"
+      >)</a
+      ><a name="6735"
+      >
+
+</a
+      ><a name="6737" class="Comment"
+      >-- next blockchain</a
+      ><a name="6755"
+      >
+</a
+      ><a name="6756" class="Comment"
+      >-- reward can be a function f : Time &#8594; Amount</a
+      ><a name="6801"
+      >
+
+</a
+      ><a name="6803" href="bitcoinLedgerModel.html#6803" class="Function"
+      >BlockChainUnchecked</a
+      ><a name="6822"
+      > </a
+      ><a name="6823" class="Symbol"
+      >:</a
+      ><a name="6824"
+      > </a
+      ><a name="6825" class="PrimitiveType"
+      >Set</a
+      ><a name="6828"
+      >
+
+</a
+      ><a name="6830" class="Comment"
+      >-- \bitcoinVersFive</a
+      ><a name="6849"
+      >
+</a
+      ><a name="6850" href="bitcoinLedgerModel.html#6803" class="Function"
+      >BlockChainUnchecked</a
+      ><a name="6869"
+      > </a
+      ><a name="6870" class="Symbol"
+      >=</a
+      ><a name="6871"
+      > </a
+      ><a name="6872" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="6876"
+      > </a
+      ><a name="6877" href="bitcoinLedgerModel.html#5671" class="Function"
+      >BlockUnchecked</a
+      ><a name="6891"
+      >
+
+</a
+      ><a name="6893" class="Comment"
+      >-- \bitcoinVersFive</a
+      ><a name="6912"
+      >
+</a
+      ><a name="6913" href="bitcoinLedgerModel.html#6913" class="Function"
+      >CorrectBlockChain</a
+      ><a name="6930"
+      > </a
+      ><a name="6931" class="Symbol"
+      >:</a
+      ><a name="6932"
+      > </a
+      ><a name="6933" class="Symbol"
+      >(</a
+      ><a name="6934" href="bitcoinLedgerModel.html#6934" class="Bound"
+      >minerReward</a
+      ><a name="6945"
+      > </a
+      ><a name="6946" class="Symbol"
+      >:</a
+      ><a name="6947"
+      > </a
+      ><a name="6948" href="bitcoinLedgerModel.html#271" class="Function"
+      >Time</a
+      ><a name="6952"
+      > </a
+      ><a name="6953" class="Symbol"
+      >&#8594;</a
+      ><a name="6954"
+      > </a
+      ><a name="6955" href="bitcoinLedgerModel.html#282" class="Function"
+      >Amount</a
+      ><a name="6961" class="Symbol"
+      >)</a
+      ><a name="6962"
+      >
+                    </a
+      ><a name="6983" class="Symbol"
+      >(</a
+      ><a name="6984" href="bitcoinLedgerModel.html#6984" class="Bound"
+      >startTime</a
+      ><a name="6993"
+      > </a
+      ><a name="6994" class="Symbol"
+      >:</a
+      ><a name="6995"
+      > </a
+      ><a name="6996" href="bitcoinLedgerModel.html#271" class="Function"
+      >Time</a
+      ><a name="7000" class="Symbol"
+      >)</a
+      ><a name="7001"
+      >
+                    </a
+      ><a name="7022" class="Symbol"
+      >(</a
+      ><a name="7023" href="bitcoinLedgerModel.html#7023" class="Bound"
+      >sartLedgerR</a
+      ><a name="7034"
+      > </a
+      ><a name="7035" class="Symbol"
+      >:</a
+      ><a name="7036"
+      > </a
+      ><a name="7037" href="bitcoinLedgerModel.html#2935" class="Function"
+      >LedgerR</a
+      ><a name="7044" class="Symbol"
+      >)</a
+      ><a name="7045"
+      >
+                    </a
+      ><a name="7066" class="Symbol"
+      >(</a
+      ><a name="7067" href="bitcoinLedgerModel.html#7067" class="Bound"
+      >bc</a
+      ><a name="7069"
+      >  </a
+      ><a name="7071" class="Symbol"
+      >:</a
+      ><a name="7072"
+      > </a
+      ><a name="7073" href="bitcoinLedgerModel.html#6803" class="Function"
+      >BlockChainUnchecked</a
+      ><a name="7092" class="Symbol"
+      >)</a
+      ><a name="7093"
+      >
+                    </a
+      ><a name="7114" class="Symbol"
+      >&#8594;</a
+      ><a name="7115"
+      > </a
+      ><a name="7116" class="PrimitiveType"
+      >Set</a
+      ><a name="7119"
+      >
+</a
+      ><a name="7120" href="bitcoinLedgerModel.html#6913" class="Function"
+      >CorrectBlockChain</a
+      ><a name="7137"
+      > </a
+      ><a name="7138" href="bitcoinLedgerModel.html#7138" class="Bound"
+      >rewardFun</a
+      ><a name="7147"
+      > </a
+      ><a name="7148" href="bitcoinLedgerModel.html#7148" class="Bound"
+      >startTime</a
+      ><a name="7157"
+      > </a
+      ><a name="7158" href="bitcoinLedgerModel.html#7158" class="Bound"
+      >startLedgerR</a
+      ><a name="7170"
+      > </a
+      ><a name="7171" href="Agda.Builtin.List.html#117" class="InductiveConstructor"
+      >[]</a
+      ><a name="7173"
+      > </a
+      ><a name="7174" class="Symbol"
+      >=</a
+      ><a name="7175"
+      > </a
+      ><a name="7176" href="Agda.Builtin.Unit.html#69" class="Record"
+      >&#8868;</a
+      ><a name="7177"
+      >
+</a
+      ><a name="7178" href="bitcoinLedgerModel.html#6913" class="Function"
+      >CorrectBlockChain</a
+      ><a name="7195"
+      > </a
+      ><a name="7196" href="bitcoinLedgerModel.html#7196" class="Bound"
+      >rewardFun</a
+      ><a name="7205"
+      > </a
+      ><a name="7206" href="bitcoinLedgerModel.html#7206" class="Bound"
+      >startTime</a
+      ><a name="7215"
+      > </a
+      ><a name="7216" href="bitcoinLedgerModel.html#7216" class="Bound"
+      >startLedgerR</a
+      ><a name="7228"
+      > </a
+      ><a name="7229" class="Symbol"
+      >(</a
+      ><a name="7230" href="bitcoinLedgerModel.html#7230" class="Bound"
+      >block</a
+      ><a name="7235"
+      > </a
+      ><a name="7236" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="7237"
+      > </a
+      ><a name="7238" href="bitcoinLedgerModel.html#7238" class="Bound"
+      >restbc</a
+      ><a name="7244" class="Symbol"
+      >)</a
+      ><a name="7245"
+      >
+   </a
+      ><a name="7249" class="Symbol"
+      >=</a
+      ><a name="7250"
+      > </a
+      ><a name="7251" href="bitcoinLedgerModel.html#6155" class="Function"
+      >correctMinedBlock</a
+      ><a name="7268"
+      > </a
+      ><a name="7269" class="Symbol"
+      >(</a
+      ><a name="7270" href="bitcoinLedgerModel.html#7196" class="Bound"
+      >rewardFun</a
+      ><a name="7279"
+      > </a
+      ><a name="7280" href="bitcoinLedgerModel.html#7206" class="Bound"
+      >startTime</a
+      ><a name="7289" class="Symbol"
+      >)</a
+      ><a name="7290"
+      > </a
+      ><a name="7291" href="bitcoinLedgerModel.html#7230" class="Bound"
+      >block</a
+      ><a name="7296"
+      > </a
+      ><a name="7297" href="bitcoinLedgerModel.html#7216" class="Bound"
+      >startLedgerR</a
+      ><a name="7309"
+      >
+     </a
+      ><a name="7315" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="7316"
+      >  </a
+      ><a name="7318" href="bitcoinLedgerModel.html#6913" class="Function"
+      >CorrectBlockChain</a
+      ><a name="7335"
+      > </a
+      ><a name="7336" href="bitcoinLedgerModel.html#7196" class="Bound"
+      >rewardFun</a
+      ><a name="7345"
+      > </a
+      ><a name="7346" class="Symbol"
+      >(</a
+      ><a name="7347" href="Agda.Builtin.Nat.html#128" class="InductiveConstructor"
+      >suc</a
+      ><a name="7350"
+      > </a
+      ><a name="7351" href="bitcoinLedgerModel.html#7206" class="Bound"
+      >startTime</a
+      ><a name="7360" class="Symbol"
+      >)</a
+      ><a name="7361"
+      >
+        </a
+      ><a name="7370" class="Symbol"
+      >(</a
+      ><a name="7371" href="bitcoinLedgerModel.html#6520" class="Function"
+      >updateLedgerRBlock</a
+      ><a name="7389"
+      > </a
+      ><a name="7390" href="bitcoinLedgerModel.html#7230" class="Bound"
+      >block</a
+      ><a name="7395"
+      > </a
+      ><a name="7396" href="bitcoinLedgerModel.html#7216" class="Bound"
+      >startLedgerR</a
+      ><a name="7408" class="Symbol"
+      >)</a
+      ><a name="7409"
+      >  </a
+      ><a name="7411" href="bitcoinLedgerModel.html#7238" class="Bound"
+      >restbc</a
+      ><a name="7417"
+      >
+
+</a
+      ><a name="7419" class="Comment"
+      >-- \bitcoinVersFive</a
+      ><a name="7438"
+      >
+</a
+      ><a name="7439" href="bitcoinLedgerModel.html#7439" class="Function"
+      >FinalLedgerR</a
+      ><a name="7451"
+      > </a
+      ><a name="7452" class="Symbol"
+      >:</a
+      ><a name="7453"
+      >  </a
+      ><a name="7455" class="Symbol"
+      >(</a
+      ><a name="7456" href="bitcoinLedgerModel.html#7456" class="Bound"
+      >txFeePrevious</a
+      ><a name="7469"
+      > </a
+      ><a name="7470" class="Symbol"
+      >:</a
+      ><a name="7471"
+      > </a
+      ><a name="7472" href="bitcoinLedgerModel.html#282" class="Function"
+      >Amount</a
+      ><a name="7478" class="Symbol"
+      >)</a
+      ><a name="7479"
+      >     </a
+      ><a name="7484" class="Symbol"
+      >(</a
+      ><a name="7485" href="bitcoinLedgerModel.html#7485" class="Bound"
+      >minerReward</a
+      ><a name="7496"
+      > </a
+      ><a name="7497" class="Symbol"
+      >:</a
+      ><a name="7498"
+      > </a
+      ><a name="7499" href="bitcoinLedgerModel.html#271" class="Function"
+      >Time</a
+      ><a name="7503"
+      > </a
+      ><a name="7504" class="Symbol"
+      >&#8594;</a
+      ><a name="7505"
+      > </a
+      ><a name="7506" href="bitcoinLedgerModel.html#282" class="Function"
+      >Amount</a
+      ><a name="7512" class="Symbol"
+      >)</a
+      ><a name="7513"
+      >
+                </a
+      ><a name="7530" class="Symbol"
+      >(</a
+      ><a name="7531" href="bitcoinLedgerModel.html#7531" class="Bound"
+      >startTime</a
+      ><a name="7540"
+      > </a
+      ><a name="7541" class="Symbol"
+      >:</a
+      ><a name="7542"
+      > </a
+      ><a name="7543" href="bitcoinLedgerModel.html#271" class="Function"
+      >Time</a
+      ><a name="7547" class="Symbol"
+      >)</a
+      ><a name="7548"
+      >           </a
+      ><a name="7559" class="Symbol"
+      >(</a
+      ><a name="7560" href="bitcoinLedgerModel.html#7560" class="Bound"
+      >startLedgerR</a
+      ><a name="7572"
+      > </a
+      ><a name="7573" class="Symbol"
+      >:</a
+      ><a name="7574"
+      > </a
+      ><a name="7575" href="bitcoinLedgerModel.html#2935" class="Function"
+      >LedgerR</a
+      ><a name="7582" class="Symbol"
+      >)</a
+      ><a name="7583"
+      >
+                </a
+      ><a name="7600" class="Symbol"
+      >(</a
+      ><a name="7601" href="bitcoinLedgerModel.html#7601" class="Bound"
+      >bc</a
+      ><a name="7603"
+      >  </a
+      ><a name="7605" class="Symbol"
+      >:</a
+      ><a name="7606"
+      > </a
+      ><a name="7607" href="bitcoinLedgerModel.html#6803" class="Function"
+      >BlockChainUnchecked</a
+      ><a name="7626" class="Symbol"
+      >)</a
+      ><a name="7627"
+      >  </a
+      ><a name="7629" class="Symbol"
+      >&#8594;</a
+      ><a name="7630"
+      > </a
+      ><a name="7631" href="bitcoinLedgerModel.html#2935" class="Function"
+      >LedgerR</a
+      ><a name="7638"
+      >
+</a
+      ><a name="7639" href="bitcoinLedgerModel.html#7439" class="Function"
+      >FinalLedgerR</a
+      ><a name="7651"
+      > </a
+      ><a name="7652" href="bitcoinLedgerModel.html#7652" class="Bound"
+      >trfee</a
+      ><a name="7657"
+      > </a
+      ><a name="7658" href="bitcoinLedgerModel.html#7658" class="Bound"
+      >rewardFun</a
+      ><a name="7667"
+      > </a
+      ><a name="7668" href="bitcoinLedgerModel.html#7668" class="Bound"
+      >startTime</a
+      ><a name="7677"
+      > </a
+      ><a name="7678" href="bitcoinLedgerModel.html#7678" class="Bound"
+      >startLedgerR</a
+      ><a name="7690"
+      > </a
+      ><a name="7691" href="Agda.Builtin.List.html#117" class="InductiveConstructor"
+      >[]</a
+      ><a name="7693"
+      > </a
+      ><a name="7694" class="Symbol"
+      >=</a
+      ><a name="7695"
+      > </a
+      ><a name="7696" href="bitcoinLedgerModel.html#7678" class="Bound"
+      >startLedgerR</a
+      ><a name="7708"
+      >
+</a
+      ><a name="7709" href="bitcoinLedgerModel.html#7439" class="Function"
+      >FinalLedgerR</a
+      ><a name="7721"
+      > </a
+      ><a name="7722" href="bitcoinLedgerModel.html#7722" class="Bound"
+      >trfee</a
+      ><a name="7727"
+      > </a
+      ><a name="7728" href="bitcoinLedgerModel.html#7728" class="Bound"
+      >rewardFun</a
+      ><a name="7737"
+      > </a
+      ><a name="7738" href="bitcoinLedgerModel.html#7738" class="Bound"
+      >startTime</a
+      ><a name="7747"
+      > </a
+      ><a name="7748" href="bitcoinLedgerModel.html#7748" class="Bound"
+      >startLedgerR</a
+      ><a name="7760"
+      > </a
+      ><a name="7761" class="Symbol"
+      >(</a
+      ><a name="7762" href="bitcoinLedgerModel.html#7762" class="Bound"
+      >block</a
+      ><a name="7767"
+      > </a
+      ><a name="7768" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="7769"
+      > </a
+      ><a name="7770" href="bitcoinLedgerModel.html#7770" class="Bound"
+      >restbc</a
+      ><a name="7776" class="Symbol"
+      >)</a
+      ><a name="7777"
+      >  </a
+      ><a name="7779" class="Symbol"
+      >=</a
+      ><a name="7780"
+      >
+  </a
+      ><a name="7783" href="bitcoinLedgerModel.html#7439" class="Function"
+      >FinalLedgerR</a
+      ><a name="7795"
+      > </a
+      ><a name="7796" class="Symbol"
+      >(</a
+      ><a name="7797" href="bitcoinLedgerModel.html#5759" class="Function"
+      >block2TXFee</a
+      ><a name="7808"
+      > </a
+      ><a name="7809" href="bitcoinLedgerModel.html#7762" class="Bound"
+      >block</a
+      ><a name="7814" class="Symbol"
+      >)</a
+      ><a name="7815"
+      > </a
+      ><a name="7816" href="bitcoinLedgerModel.html#7728" class="Bound"
+      >rewardFun</a
+      ><a name="7825"
+      > </a
+      ><a name="7826" class="Symbol"
+      >(</a
+      ><a name="7827" href="Agda.Builtin.Nat.html#128" class="InductiveConstructor"
+      >suc</a
+      ><a name="7830"
+      > </a
+      ><a name="7831" href="bitcoinLedgerModel.html#7738" class="Bound"
+      >startTime</a
+      ><a name="7840" class="Symbol"
+      >)</a
+      ><a name="7841"
+      >
+     </a
+      ><a name="7847" class="Symbol"
+      >(</a
+      ><a name="7848" href="bitcoinLedgerModel.html#6520" class="Function"
+      >updateLedgerRBlock</a
+      ><a name="7866"
+      > </a
+      ><a name="7867" href="bitcoinLedgerModel.html#7762" class="Bound"
+      >block</a
+      ><a name="7872"
+      > </a
+      ><a name="7873" href="bitcoinLedgerModel.html#7748" class="Bound"
+      >startLedgerR</a
+      ><a name="7885" class="Symbol"
+      >)</a
+      ><a name="7886"
+      > </a
+      ><a name="7887" href="bitcoinLedgerModel.html#7770" class="Bound"
+      >restbc</a
+      ><a name="7893"
+      >
+
+</a
+      ><a name="7895" class="Comment"
+      >-- \bitcoinVersFive</a
+      ><a name="7914"
+      >
+</a
+      ><a name="7915" class="Keyword"
+      >record</a
+      ><a name="7921"
+      > </a
+      ><a name="7922" href="bitcoinLedgerModel.html#7922" class="Record"
+      >BlockChain</a
+      ><a name="7932"
+      > </a
+      ><a name="7933" class="Symbol"
+      >(</a
+      ><a name="7934" href="bitcoinLedgerModel.html#7934" class="Bound"
+      >minerReward</a
+      ><a name="7945"
+      > </a
+      ><a name="7946" class="Symbol"
+      >:</a
+      ><a name="7947"
+      > </a
+      ><a name="7948" href="bitcoinLedgerModel.html#271" class="Function"
+      >Time</a
+      ><a name="7952"
+      > </a
+      ><a name="7953" class="Symbol"
+      >&#8594;</a
+      ><a name="7954"
+      > </a
+      ><a name="7955" href="bitcoinLedgerModel.html#282" class="Function"
+      >Amount</a
+      ><a name="7961" class="Symbol"
+      >)</a
+      ><a name="7962"
+      > </a
+      ><a name="7963" class="Symbol"
+      >:</a
+      ><a name="7964"
+      > </a
+      ><a name="7965" class="PrimitiveType"
+      >Set</a
+      ><a name="7968"
+      > </a
+      ><a name="7969" class="Keyword"
+      >where</a
+      ><a name="7974"
+      >
+  </a
+      ><a name="7977" class="Keyword"
+      >field</a
+      ><a name="7982"
+      >  </a
+      ><a name="7984" href="bitcoinLedgerModel.html#7984" class="Field"
+      >blockchain</a
+      ><a name="7994"
+      >  </a
+      ><a name="7996" class="Symbol"
+      >:</a
+      ><a name="7997"
+      > </a
+      ><a name="7998" href="bitcoinLedgerModel.html#6803" class="Function"
+      >BlockChainUnchecked</a
+      ><a name="8017"
+      >
+         </a
+      ><a name="8027" href="bitcoinLedgerModel.html#8027" class="Field"
+      >correct</a
+      ><a name="8034"
+      >     </a
+      ><a name="8039" class="Symbol"
+      >:</a
+      ><a name="8040"
+      > </a
+      ><a name="8041" href="bitcoinLedgerModel.html#6913" class="Function"
+      >CorrectBlockChain</a
+      ><a name="8058"
+      > </a
+      ><a name="8059" href="bitcoinLedgerModel.html#7934" class="Bound"
+      >minerReward</a
+      ><a name="8070"
+      > </a
+      ><a name="8071" class="Number"
+      >0</a
+      ><a name="8072"
+      > </a
+      ><a name="8073" href="bitcoinLedgerModel.html#3007" class="Function"
+      >initialLedger</a
+      ><a name="8086"
+      > </a
+      ><a name="8087" href="bitcoinLedgerModel.html#7984" class="Field"
+      >blockchain</a
+      ><a name="8097"
+      >
+
+</a
+      ><a name="8099" class="Keyword"
+      >open</a
+      ><a name="8103"
+      > </a
+      ><a name="8104" href="bitcoinLedgerModel.html#7922" class="Module"
+      >BlockChain</a
+      ><a name="8114"
+      > </a
+      ><a name="8115" class="Keyword"
+      >public</a
+      ><a name="8121"
+      >
+
+</a
+      ><a name="8123" href="bitcoinLedgerModel.html#8123" class="Function"
+      >blockChain2FinalLedgerR</a
+      ><a name="8146"
+      > </a
+      ><a name="8147" class="Symbol"
+      >:</a
+      ><a name="8148"
+      >  </a
+      ><a name="8150" class="Symbol"
+      >(</a
+      ><a name="8151" href="bitcoinLedgerModel.html#8151" class="Bound"
+      >minerReward</a
+      ><a name="8162"
+      > </a
+      ><a name="8163" class="Symbol"
+      >:</a
+      ><a name="8164"
+      > </a
+      ><a name="8165" href="bitcoinLedgerModel.html#271" class="Function"
+      >Time</a
+      ><a name="8169"
+      > </a
+      ><a name="8170" class="Symbol"
+      >&#8594;</a
+      ><a name="8171"
+      > </a
+      ><a name="8172" href="bitcoinLedgerModel.html#282" class="Function"
+      >Amount</a
+      ><a name="8178" class="Symbol"
+      >)(</a
+      ><a name="8180" href="bitcoinLedgerModel.html#8180" class="Bound"
+      >bc</a
+      ><a name="8182"
+      > </a
+      ><a name="8183" class="Symbol"
+      >:</a
+      ><a name="8184"
+      > </a
+      ><a name="8185" href="bitcoinLedgerModel.html#7922" class="Record"
+      >BlockChain</a
+      ><a name="8195"
+      > </a
+      ><a name="8196" href="bitcoinLedgerModel.html#8151" class="Bound"
+      >minerReward</a
+      ><a name="8207" class="Symbol"
+      >)</a
+      ><a name="8208"
+      >
+                           </a
+      ><a name="8236" class="Symbol"
+      >&#8594;</a
+      ><a name="8237"
+      > </a
+      ><a name="8238" href="bitcoinLedgerModel.html#2935" class="Function"
+      >LedgerR</a
+      ><a name="8245"
+      >
+</a
+      ><a name="8246" href="bitcoinLedgerModel.html#8123" class="Function"
+      >blockChain2FinalLedgerR</a
+      ><a name="8269"
+      > </a
+      ><a name="8270" href="bitcoinLedgerModel.html#8270" class="Bound"
+      >minerReward</a
+      ><a name="8281"
+      > </a
+      ><a name="8282" href="bitcoinLedgerModel.html#8282" class="Bound"
+      >bc</a
+      ><a name="8284"
+      > </a
+      ><a name="8285" class="Symbol"
+      >=</a
+      ><a name="8286"
+      >
+   </a
+      ><a name="8290" href="bitcoinLedgerModel.html#7439" class="Function"
+      >FinalLedgerR</a
+      ><a name="8302"
+      > </a
+      ><a name="8303" class="Number"
+      >0</a
+      ><a name="8304"
+      > </a
+      ><a name="8305" href="bitcoinLedgerModel.html#8270" class="Bound"
+      >minerReward</a
+      ><a name="8316"
+      > </a
+      ><a name="8317" class="Number"
+      >0</a
+      ><a name="8318"
+      > </a
+      ><a name="8319" href="bitcoinLedgerModel.html#3007" class="Function"
+      >initialLedger</a
+      ><a name="8332"
+      > </a
+      ><a name="8333" class="Symbol"
+      >(</a
+      ><a name="8334" href="bitcoinLedgerModel.html#7984" class="Field"
+      >blockchain</a
+      ><a name="8344"
+      > </a
+      ><a name="8345" href="bitcoinLedgerModel.html#8282" class="Bound"
+      >bc</a
+      ><a name="8347" class="Symbol"
+      >)</a
+      ><a name="8348"
+      >
+</a
+      ></pre
+    ></body
+  ></html
+>

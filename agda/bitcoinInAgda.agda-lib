@@ -1,0 +1,3 @@
+name: budapestslides
+depend: standard-library
+include: .

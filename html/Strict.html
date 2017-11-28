@@ -1,0 +1,546 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+><head
+  ><title
+    >Strict</title
+    ><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
+     /><meta http-equiv="Content-Style-Type" content="text/css"
+     /><link href="Agda.css" rel="stylesheet" type="text/css"
+     /></head
+  ><body
+  ><pre
+    ><a name="1" class="Comment"
+      >------------------------------------------------------------------------</a
+      ><a name="73"
+      >
+</a
+      ><a name="74" class="Comment"
+      >-- The Agda standard library</a
+      ><a name="102"
+      >
+</a
+      ><a name="103" class="Comment"
+      >--</a
+      ><a name="105"
+      >
+</a
+      ><a name="106" class="Comment"
+      >-- Strictness combinators</a
+      ><a name="131"
+      >
+</a
+      ><a name="132" class="Comment"
+      >------------------------------------------------------------------------</a
+      ><a name="204"
+      >
+
+</a
+      ><a name="206" class="Keyword"
+      >module</a
+      ><a name="212"
+      > </a
+      ><a name="213" href="Strict.html#1" class="Module"
+      >Strict</a
+      ><a name="219"
+      > </a
+      ><a name="220" class="Keyword"
+      >where</a
+      ><a name="225"
+      >
+
+</a
+      ><a name="227" class="Keyword"
+      >open</a
+      ><a name="231"
+      > </a
+      ><a name="232" class="Keyword"
+      >import</a
+      ><a name="238"
+      > </a
+      ><a name="239" href="Level.html#1" class="Module"
+      >Level</a
+      ><a name="244"
+      >
+</a
+      ><a name="245" class="Keyword"
+      >open</a
+      ><a name="249"
+      > </a
+      ><a name="250" class="Keyword"
+      >import</a
+      ><a name="256"
+      > </a
+      ><a name="257" href="Agda.Builtin.Equality.html#1" class="Module"
+      >Agda.Builtin.Equality</a
+      ><a name="278"
+      >
+
+</a
+      ><a name="280" class="Keyword"
+      >open</a
+      ><a name="284"
+      > </a
+      ><a name="285" class="Keyword"
+      >import</a
+      ><a name="291"
+      > </a
+      ><a name="292" href="Agda.Builtin.Strict.html#1" class="Module"
+      >Agda.Builtin.Strict</a
+      ><a name="311"
+      >
+     </a
+      ><a name="317" class="Keyword"
+      >renaming</a
+      ><a name="325"
+      > </a
+      ><a name="326" class="Symbol"
+      >(</a
+      ><a name="327"
+      > </a
+      ><a name="328" href="Agda.Builtin.Strict.html#111" class="Primitive"
+      >primForce</a
+      ><a name="337"
+      > </a
+      ><a name="338" class="Symbol"
+      >to</a
+      ><a name="340"
+      > </a
+      ><a name="341" href="Agda.Builtin.Strict.html#111" class="Primitive"
+      >force</a
+      ><a name="346"
+      >
+              </a
+      ><a name="361" class="Symbol"
+      >;</a
+      ><a name="362"
+      > </a
+      ><a name="363" href="Agda.Builtin.Strict.html#194" class="Primitive"
+      >primForceLemma</a
+      ><a name="377"
+      > </a
+      ><a name="378" class="Symbol"
+      >to</a
+      ><a name="380"
+      > </a
+      ><a name="381" href="Agda.Builtin.Strict.html#194" class="Primitive"
+      >force-&#8801;</a
+      ><a name="388" class="Symbol"
+      >)</a
+      ><a name="389"
+      > </a
+      ><a name="390" class="Keyword"
+      >public</a
+      ><a name="396"
+      >
+
+</a
+      ><a name="398" class="Comment"
+      >-- Derived combinators</a
+      ><a name="420"
+      >
+</a
+      ><a name="421" class="Keyword"
+      >module</a
+      ><a name="427"
+      > </a
+      ><a name="428" href="Strict.html#428" class="Module"
+      >_</a
+      ><a name="429"
+      > </a
+      ><a name="430" class="Symbol"
+      >{</a
+      ><a name="431" href="Strict.html#431" class="Bound"
+      >&#8467;</a
+      ><a name="432"
+      > </a
+      ><a name="433" href="Strict.html#433" class="Bound"
+      >&#8467;&#8242;</a
+      ><a name="435"
+      > </a
+      ><a name="436" class="Symbol"
+      >:</a
+      ><a name="437"
+      > </a
+      ><a name="438" href="Agda.Primitive.html#408" class="Postulate"
+      >Level</a
+      ><a name="443" class="Symbol"
+      >}</a
+      ><a name="444"
+      > </a
+      ><a name="445" class="Symbol"
+      >{</a
+      ><a name="446" href="Strict.html#446" class="Bound"
+      >A</a
+      ><a name="447"
+      > </a
+      ><a name="448" class="Symbol"
+      >:</a
+      ><a name="449"
+      > </a
+      ><a name="450" class="PrimitiveType"
+      >Set</a
+      ><a name="453"
+      > </a
+      ><a name="454" href="Strict.html#431" class="Bound"
+      >&#8467;</a
+      ><a name="455" class="Symbol"
+      >}</a
+      ><a name="456"
+      > </a
+      ><a name="457" class="Symbol"
+      >{</a
+      ><a name="458" href="Strict.html#458" class="Bound"
+      >B</a
+      ><a name="459"
+      > </a
+      ><a name="460" class="Symbol"
+      >:</a
+      ><a name="461"
+      > </a
+      ><a name="462" class="PrimitiveType"
+      >Set</a
+      ><a name="465"
+      > </a
+      ><a name="466" href="Strict.html#433" class="Bound"
+      >&#8467;&#8242;</a
+      ><a name="468" class="Symbol"
+      >}</a
+      ><a name="469"
+      > </a
+      ><a name="470" class="Keyword"
+      >where</a
+      ><a name="475"
+      >
+
+  </a
+      ><a name="479" href="Strict.html#479" class="Function"
+      >force&#8242;</a
+      ><a name="485"
+      > </a
+      ><a name="486" class="Symbol"
+      >:</a
+      ><a name="487"
+      > </a
+      ><a name="488" href="Strict.html#446" class="Bound"
+      >A</a
+      ><a name="489"
+      > </a
+      ><a name="490" class="Symbol"
+      >&#8594;</a
+      ><a name="491"
+      > </a
+      ><a name="492" class="Symbol"
+      >(</a
+      ><a name="493" href="Strict.html#446" class="Bound"
+      >A</a
+      ><a name="494"
+      > </a
+      ><a name="495" class="Symbol"
+      >&#8594;</a
+      ><a name="496"
+      > </a
+      ><a name="497" href="Strict.html#458" class="Bound"
+      >B</a
+      ><a name="498" class="Symbol"
+      >)</a
+      ><a name="499"
+      > </a
+      ><a name="500" class="Symbol"
+      >&#8594;</a
+      ><a name="501"
+      > </a
+      ><a name="502" href="Strict.html#458" class="Bound"
+      >B</a
+      ><a name="503"
+      >
+  </a
+      ><a name="506" href="Strict.html#479" class="Function"
+      >force&#8242;</a
+      ><a name="512"
+      > </a
+      ><a name="513" class="Symbol"
+      >=</a
+      ><a name="514"
+      > </a
+      ><a name="515" href="Agda.Builtin.Strict.html#111" class="Primitive"
+      >force</a
+      ><a name="520"
+      >
+
+  </a
+      ><a name="524" href="Strict.html#524" class="Function"
+      >force&#8242;-&#8801;</a
+      ><a name="532"
+      > </a
+      ><a name="533" class="Symbol"
+      >:</a
+      ><a name="534"
+      > </a
+      ><a name="535" class="Symbol"
+      >(</a
+      ><a name="536" href="Strict.html#536" class="Bound"
+      >a</a
+      ><a name="537"
+      > </a
+      ><a name="538" class="Symbol"
+      >:</a
+      ><a name="539"
+      > </a
+      ><a name="540" href="Strict.html#446" class="Bound"
+      >A</a
+      ><a name="541" class="Symbol"
+      >)</a
+      ><a name="542"
+      > </a
+      ><a name="543" class="Symbol"
+      >(</a
+      ><a name="544" href="Strict.html#544" class="Bound"
+      >f</a
+      ><a name="545"
+      > </a
+      ><a name="546" class="Symbol"
+      >:</a
+      ><a name="547"
+      > </a
+      ><a name="548" href="Strict.html#446" class="Bound"
+      >A</a
+      ><a name="549"
+      > </a
+      ><a name="550" class="Symbol"
+      >&#8594;</a
+      ><a name="551"
+      > </a
+      ><a name="552" href="Strict.html#458" class="Bound"
+      >B</a
+      ><a name="553" class="Symbol"
+      >)</a
+      ><a name="554"
+      > </a
+      ><a name="555" class="Symbol"
+      >&#8594;</a
+      ><a name="556"
+      > </a
+      ><a name="557" href="Strict.html#479" class="Function"
+      >force&#8242;</a
+      ><a name="563"
+      > </a
+      ><a name="564" href="Strict.html#536" class="Bound"
+      >a</a
+      ><a name="565"
+      > </a
+      ><a name="566" href="Strict.html#544" class="Bound"
+      >f</a
+      ><a name="567"
+      > </a
+      ><a name="568" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="569"
+      > </a
+      ><a name="570" href="Strict.html#544" class="Bound"
+      >f</a
+      ><a name="571"
+      > </a
+      ><a name="572" href="Strict.html#536" class="Bound"
+      >a</a
+      ><a name="573"
+      >
+  </a
+      ><a name="576" href="Strict.html#524" class="Function"
+      >force&#8242;-&#8801;</a
+      ><a name="584"
+      > </a
+      ><a name="585" class="Symbol"
+      >=</a
+      ><a name="586"
+      > </a
+      ><a name="587" href="Agda.Builtin.Strict.html#194" class="Primitive"
+      >force-&#8801;</a
+      ><a name="594"
+      >
+
+  </a
+      ><a name="598" href="Strict.html#598" class="Function"
+      >seq</a
+      ><a name="601"
+      > </a
+      ><a name="602" class="Symbol"
+      >:</a
+      ><a name="603"
+      > </a
+      ><a name="604" href="Strict.html#446" class="Bound"
+      >A</a
+      ><a name="605"
+      > </a
+      ><a name="606" class="Symbol"
+      >&#8594;</a
+      ><a name="607"
+      > </a
+      ><a name="608" href="Strict.html#458" class="Bound"
+      >B</a
+      ><a name="609"
+      > </a
+      ><a name="610" class="Symbol"
+      >&#8594;</a
+      ><a name="611"
+      > </a
+      ><a name="612" href="Strict.html#458" class="Bound"
+      >B</a
+      ><a name="613"
+      >
+  </a
+      ><a name="616" href="Strict.html#598" class="Function"
+      >seq</a
+      ><a name="619"
+      > </a
+      ><a name="620" href="Strict.html#620" class="Bound"
+      >a</a
+      ><a name="621"
+      > </a
+      ><a name="622" href="Strict.html#622" class="Bound"
+      >b</a
+      ><a name="623"
+      > </a
+      ><a name="624" class="Symbol"
+      >=</a
+      ><a name="625"
+      > </a
+      ><a name="626" href="Agda.Builtin.Strict.html#111" class="Primitive"
+      >force</a
+      ><a name="631"
+      > </a
+      ><a name="632" href="Strict.html#620" class="Bound"
+      >a</a
+      ><a name="633"
+      > </a
+      ><a name="634" class="Symbol"
+      >(&#955;</a
+      ><a name="636"
+      > </a
+      ><a name="637" href="Strict.html#637" class="Bound"
+      >_</a
+      ><a name="638"
+      > </a
+      ><a name="639" class="Symbol"
+      >&#8594;</a
+      ><a name="640"
+      > </a
+      ><a name="641" href="Strict.html#622" class="Bound"
+      >b</a
+      ><a name="642" class="Symbol"
+      >)</a
+      ><a name="643"
+      >
+
+  </a
+      ><a name="647" href="Strict.html#647" class="Function"
+      >seq-&#8801;</a
+      ><a name="652"
+      > </a
+      ><a name="653" class="Symbol"
+      >:</a
+      ><a name="654"
+      > </a
+      ><a name="655" class="Symbol"
+      >(</a
+      ><a name="656" href="Strict.html#656" class="Bound"
+      >a</a
+      ><a name="657"
+      > </a
+      ><a name="658" class="Symbol"
+      >:</a
+      ><a name="659"
+      > </a
+      ><a name="660" href="Strict.html#446" class="Bound"
+      >A</a
+      ><a name="661" class="Symbol"
+      >)</a
+      ><a name="662"
+      > </a
+      ><a name="663" class="Symbol"
+      >(</a
+      ><a name="664" href="Strict.html#664" class="Bound"
+      >b</a
+      ><a name="665"
+      > </a
+      ><a name="666" class="Symbol"
+      >:</a
+      ><a name="667"
+      > </a
+      ><a name="668" href="Strict.html#458" class="Bound"
+      >B</a
+      ><a name="669" class="Symbol"
+      >)</a
+      ><a name="670"
+      > </a
+      ><a name="671" class="Symbol"
+      >&#8594;</a
+      ><a name="672"
+      > </a
+      ><a name="673" href="Strict.html#598" class="Function"
+      >seq</a
+      ><a name="676"
+      > </a
+      ><a name="677" href="Strict.html#656" class="Bound"
+      >a</a
+      ><a name="678"
+      > </a
+      ><a name="679" href="Strict.html#664" class="Bound"
+      >b</a
+      ><a name="680"
+      > </a
+      ><a name="681" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="682"
+      > </a
+      ><a name="683" href="Strict.html#664" class="Bound"
+      >b</a
+      ><a name="684"
+      >
+  </a
+      ><a name="687" href="Strict.html#647" class="Function"
+      >seq-&#8801;</a
+      ><a name="692"
+      > </a
+      ><a name="693" href="Strict.html#693" class="Bound"
+      >a</a
+      ><a name="694"
+      > </a
+      ><a name="695" href="Strict.html#695" class="Bound"
+      >b</a
+      ><a name="696"
+      > </a
+      ><a name="697" class="Symbol"
+      >=</a
+      ><a name="698"
+      > </a
+      ><a name="699" href="Agda.Builtin.Strict.html#194" class="Primitive"
+      >force-&#8801;</a
+      ><a name="706"
+      > </a
+      ><a name="707" href="Strict.html#693" class="Bound"
+      >a</a
+      ><a name="708"
+      > </a
+      ><a name="709" class="Symbol"
+      >(&#955;</a
+      ><a name="711"
+      > </a
+      ><a name="712" href="Strict.html#712" class="Bound"
+      >_</a
+      ><a name="713"
+      > </a
+      ><a name="714" class="Symbol"
+      >&#8594;</a
+      ><a name="715"
+      > </a
+      ><a name="716" href="Strict.html#695" class="Bound"
+      >b</a
+      ><a name="717" class="Symbol"
+      >)</a
+      ><a name="718"
+      >
+</a
+      ></pre
+    ></body
+  ></html
+>

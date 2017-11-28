@@ -1,0 +1,6210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+><head
+  ><title
+    >libraries.listLib</title
+    ><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
+     /><meta http-equiv="Content-Style-Type" content="text/css"
+     /><link href="Agda.css" rel="stylesheet" type="text/css"
+     /></head
+  ><body
+  ><pre
+    ><a name="1" class="Keyword"
+      >module</a
+      ><a name="7"
+      > </a
+      ><a name="8" href="libraries.listLib.html#1" class="Module"
+      >libraries.listLib</a
+      ><a name="25"
+      > </a
+      ><a name="26" class="Keyword"
+      >where</a
+      ><a name="31"
+      >
+
+</a
+      ><a name="33" class="Keyword"
+      >open</a
+      ><a name="37"
+      > </a
+      ><a name="38" class="Keyword"
+      >import</a
+      ><a name="44"
+      > </a
+      ><a name="45" href="Data.List.html#1" class="Module"
+      >Data.List</a
+      ><a name="54"
+      >
+</a
+      ><a name="55" class="Keyword"
+      >open</a
+      ><a name="59"
+      > </a
+      ><a name="60" class="Keyword"
+      >import</a
+      ><a name="66"
+      > </a
+      ><a name="67" href="Data.Fin.html#1" class="Module"
+      >Data.Fin</a
+      ><a name="75"
+      > </a
+      ><a name="76" class="Keyword"
+      >hiding</a
+      ><a name="82"
+      > </a
+      ><a name="83" class="Symbol"
+      >(</a
+      ><a name="84" href="Data.Fin.html#3909" class="Function Operator"
+      >_+_</a
+      ><a name="87" class="Symbol"
+      >)</a
+      ><a name="88"
+      >
+</a
+      ><a name="89" class="Keyword"
+      >open</a
+      ><a name="93"
+      > </a
+      ><a name="94" class="Keyword"
+      >import</a
+      ><a name="100"
+      > </a
+      ><a name="101" href="Data.Nat.html#1" class="Module"
+      >Data.Nat</a
+      ><a name="109"
+      >
+</a
+      ><a name="110" class="Keyword"
+      >open</a
+      ><a name="114"
+      > </a
+      ><a name="115" class="Keyword"
+      >import</a
+      ><a name="121"
+      > </a
+      ><a name="122" href="Data.Bool.html#1" class="Module"
+      >Data.Bool</a
+      ><a name="131"
+      >
+</a
+      ><a name="132" class="Keyword"
+      >open</a
+      ><a name="136"
+      > </a
+      ><a name="137" class="Keyword"
+      >import</a
+      ><a name="143"
+      > </a
+      ><a name="144" href="Data.Product.html#1" class="Module"
+      >Data.Product</a
+      ><a name="156"
+      >
+</a
+      ><a name="157" class="Keyword"
+      >open</a
+      ><a name="161"
+      > </a
+      ><a name="162" class="Keyword"
+      >import</a
+      ><a name="168"
+      > </a
+      ><a name="169" href="Data.Unit.Base.html#1" class="Module"
+      >Data.Unit.Base</a
+      ><a name="183"
+      >
+</a
+      ><a name="184" class="Keyword"
+      >open</a
+      ><a name="188"
+      > </a
+      ><a name="189" class="Keyword"
+      >import</a
+      ><a name="195"
+      > </a
+      ><a name="196" href="Function.html#1" class="Module"
+      >Function</a
+      ><a name="204"
+      >
+</a
+      ><a name="205" class="Keyword"
+      >open</a
+      ><a name="209"
+      > </a
+      ><a name="210" class="Keyword"
+      >import</a
+      ><a name="216"
+      > </a
+      ><a name="217" href="Relation.Binary.PropositionalEquality.html#1" class="Module"
+      >Relation.Binary.PropositionalEquality</a
+      ><a name="254"
+      >
+
+
+</a
+      ><a name="257" href="libraries.listLib.html#257" class="Function"
+      >mapL</a
+      ><a name="261"
+      > </a
+      ><a name="262" class="Symbol"
+      >:</a
+      ><a name="263"
+      > </a
+      ><a name="264" class="Symbol"
+      >{</a
+      ><a name="265" href="libraries.listLib.html#265" class="Bound"
+      >X</a
+      ><a name="266"
+      > </a
+      ><a name="267" href="libraries.listLib.html#267" class="Bound"
+      >Y</a
+      ><a name="268"
+      > </a
+      ><a name="269" class="Symbol"
+      >:</a
+      ><a name="270"
+      > </a
+      ><a name="271" class="PrimitiveType"
+      >Set</a
+      ><a name="274" class="Symbol"
+      >}(</a
+      ><a name="276" href="libraries.listLib.html#276" class="Bound"
+      >f</a
+      ><a name="277"
+      > </a
+      ><a name="278" class="Symbol"
+      >:</a
+      ><a name="279"
+      > </a
+      ><a name="280" href="libraries.listLib.html#265" class="Bound"
+      >X</a
+      ><a name="281"
+      > </a
+      ><a name="282" class="Symbol"
+      >&#8594;</a
+      ><a name="283"
+      > </a
+      ><a name="284" href="libraries.listLib.html#267" class="Bound"
+      >Y</a
+      ><a name="285" class="Symbol"
+      >)(</a
+      ><a name="287" href="libraries.listLib.html#287" class="Bound"
+      >l</a
+      ><a name="288"
+      > </a
+      ><a name="289" class="Symbol"
+      >:</a
+      ><a name="290"
+      > </a
+      ><a name="291" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="295"
+      > </a
+      ><a name="296" href="libraries.listLib.html#265" class="Bound"
+      >X</a
+      ><a name="297" class="Symbol"
+      >)</a
+      ><a name="298"
+      > </a
+      ><a name="299" class="Symbol"
+      >&#8594;</a
+      ><a name="300"
+      > </a
+      ><a name="301" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="305"
+      > </a
+      ><a name="306" href="libraries.listLib.html#267" class="Bound"
+      >Y</a
+      ><a name="307"
+      >
+</a
+      ><a name="308" href="libraries.listLib.html#257" class="Function"
+      >mapL</a
+      ><a name="312"
+      > </a
+      ><a name="313" href="libraries.listLib.html#313" class="Bound"
+      >f</a
+      ><a name="314"
+      > </a
+      ><a name="315" href="Agda.Builtin.List.html#117" class="InductiveConstructor"
+      >[]</a
+      ><a name="317"
+      >       </a
+      ><a name="324" class="Symbol"
+      >=</a
+      ><a name="325"
+      > </a
+      ><a name="326" href="Agda.Builtin.List.html#117" class="InductiveConstructor"
+      >[]</a
+      ><a name="328"
+      >
+</a
+      ><a name="329" href="libraries.listLib.html#257" class="Function"
+      >mapL</a
+      ><a name="333"
+      > </a
+      ><a name="334" href="libraries.listLib.html#334" class="Bound"
+      >f</a
+      ><a name="335"
+      > </a
+      ><a name="336" class="Symbol"
+      >(</a
+      ><a name="337" href="libraries.listLib.html#337" class="Bound"
+      >x</a
+      ><a name="338"
+      > </a
+      ><a name="339" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="340"
+      > </a
+      ><a name="341" href="libraries.listLib.html#341" class="Bound"
+      >l</a
+      ><a name="342" class="Symbol"
+      >)</a
+      ><a name="343"
+      >  </a
+      ><a name="345" class="Symbol"
+      >=</a
+      ><a name="346"
+      > </a
+      ><a name="347" href="libraries.listLib.html#334" class="Bound"
+      >f</a
+      ><a name="348"
+      > </a
+      ><a name="349" href="libraries.listLib.html#337" class="Bound"
+      >x</a
+      ><a name="350"
+      > </a
+      ><a name="351" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="352"
+      > </a
+      ><a name="353" href="libraries.listLib.html#257" class="Function"
+      >mapL</a
+      ><a name="357"
+      > </a
+      ><a name="358" href="libraries.listLib.html#334" class="Bound"
+      >f</a
+      ><a name="359"
+      > </a
+      ><a name="360" href="libraries.listLib.html#341" class="Bound"
+      >l</a
+      ><a name="361"
+      >
+
+</a
+      ><a name="363" href="libraries.listLib.html#363" class="Function"
+      >corLengthMapL</a
+      ><a name="376"
+      > </a
+      ><a name="377" class="Symbol"
+      >:</a
+      ><a name="378"
+      > </a
+      ><a name="379" class="Symbol"
+      >{</a
+      ><a name="380" href="libraries.listLib.html#380" class="Bound"
+      >X</a
+      ><a name="381"
+      > </a
+      ><a name="382" href="libraries.listLib.html#382" class="Bound"
+      >Y</a
+      ><a name="383"
+      > </a
+      ><a name="384" class="Symbol"
+      >:</a
+      ><a name="385"
+      > </a
+      ><a name="386" class="PrimitiveType"
+      >Set</a
+      ><a name="389" class="Symbol"
+      >}(</a
+      ><a name="391" href="libraries.listLib.html#391" class="Bound"
+      >f</a
+      ><a name="392"
+      > </a
+      ><a name="393" class="Symbol"
+      >:</a
+      ><a name="394"
+      > </a
+      ><a name="395" href="libraries.listLib.html#380" class="Bound"
+      >X</a
+      ><a name="396"
+      > </a
+      ><a name="397" class="Symbol"
+      >&#8594;</a
+      ><a name="398"
+      > </a
+      ><a name="399" href="libraries.listLib.html#382" class="Bound"
+      >Y</a
+      ><a name="400" class="Symbol"
+      >)(</a
+      ><a name="402" href="libraries.listLib.html#402" class="Bound"
+      >l</a
+      ><a name="403"
+      > </a
+      ><a name="404" class="Symbol"
+      >:</a
+      ><a name="405"
+      > </a
+      ><a name="406" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="410"
+      > </a
+      ><a name="411" href="libraries.listLib.html#380" class="Bound"
+      >X</a
+      ><a name="412" class="Symbol"
+      >)</a
+      ><a name="413"
+      > </a
+      ><a name="414" class="Symbol"
+      >&#8594;</a
+      ><a name="415"
+      > </a
+      ><a name="416" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="422"
+      > </a
+      ><a name="423" class="Symbol"
+      >(</a
+      ><a name="424" href="libraries.listLib.html#257" class="Function"
+      >mapL</a
+      ><a name="428"
+      > </a
+      ><a name="429" href="libraries.listLib.html#391" class="Bound"
+      >f</a
+      ><a name="430"
+      > </a
+      ><a name="431" href="libraries.listLib.html#402" class="Bound"
+      >l</a
+      ><a name="432" class="Symbol"
+      >)</a
+      ><a name="433"
+      > </a
+      ><a name="434" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="435"
+      > </a
+      ><a name="436" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="442"
+      > </a
+      ><a name="443" href="libraries.listLib.html#402" class="Bound"
+      >l</a
+      ><a name="444"
+      >
+</a
+      ><a name="445" href="libraries.listLib.html#363" class="Function"
+      >corLengthMapL</a
+      ><a name="458"
+      > </a
+      ><a name="459" href="libraries.listLib.html#459" class="Bound"
+      >f</a
+      ><a name="460"
+      > </a
+      ><a name="461" href="Agda.Builtin.List.html#117" class="InductiveConstructor"
+      >[]</a
+      ><a name="463"
+      > </a
+      ><a name="464" class="Symbol"
+      >=</a
+      ><a name="465"
+      > </a
+      ><a name="466" href="Agda.Builtin.Equality.html#140" class="InductiveConstructor"
+      >refl</a
+      ><a name="470"
+      >
+</a
+      ><a name="471" href="libraries.listLib.html#363" class="Function"
+      >corLengthMapL</a
+      ><a name="484"
+      > </a
+      ><a name="485" href="libraries.listLib.html#485" class="Bound"
+      >f</a
+      ><a name="486"
+      > </a
+      ><a name="487" class="Symbol"
+      >(</a
+      ><a name="488" href="libraries.listLib.html#488" class="Bound"
+      >x</a
+      ><a name="489"
+      > </a
+      ><a name="490" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="491"
+      > </a
+      ><a name="492" href="libraries.listLib.html#492" class="Bound"
+      >l</a
+      ><a name="493" class="Symbol"
+      >)</a
+      ><a name="494"
+      > </a
+      ><a name="495" class="Symbol"
+      >=</a
+      ><a name="496"
+      > </a
+      ><a name="497" href="Relation.Binary.PropositionalEquality.html#1036" class="Function"
+      >cong</a
+      ><a name="501"
+      > </a
+      ><a name="502" href="Agda.Builtin.Nat.html#128" class="InductiveConstructor"
+      >suc</a
+      ><a name="505"
+      > </a
+      ><a name="506" class="Symbol"
+      >(</a
+      ><a name="507" href="libraries.listLib.html#363" class="Function"
+      >corLengthMapL</a
+      ><a name="520"
+      > </a
+      ><a name="521" href="libraries.listLib.html#485" class="Bound"
+      >f</a
+      ><a name="522"
+      >  </a
+      ><a name="524" href="libraries.listLib.html#492" class="Bound"
+      >l</a
+      ><a name="525" class="Symbol"
+      >)</a
+      ><a name="526"
+      >
+
+
+
+</a
+      ><a name="530" href="libraries.listLib.html#530" class="Function"
+      >nth</a
+      ><a name="533"
+      > </a
+      ><a name="534" class="Symbol"
+      >:</a
+      ><a name="535"
+      > </a
+      ><a name="536" class="Symbol"
+      >{</a
+      ><a name="537" href="libraries.listLib.html#537" class="Bound"
+      >X</a
+      ><a name="538"
+      > </a
+      ><a name="539" class="Symbol"
+      >:</a
+      ><a name="540"
+      > </a
+      ><a name="541" class="PrimitiveType"
+      >Set</a
+      ><a name="544" class="Symbol"
+      >}(</a
+      ><a name="546" href="libraries.listLib.html#546" class="Bound"
+      >l</a
+      ><a name="547"
+      > </a
+      ><a name="548" class="Symbol"
+      >:</a
+      ><a name="549"
+      > </a
+      ><a name="550" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="554"
+      > </a
+      ><a name="555" href="libraries.listLib.html#537" class="Bound"
+      >X</a
+      ><a name="556" class="Symbol"
+      >)</a
+      ><a name="557"
+      > </a
+      ><a name="558" class="Symbol"
+      >(</a
+      ><a name="559" href="libraries.listLib.html#559" class="Bound"
+      >i</a
+      ><a name="560"
+      > </a
+      ><a name="561" class="Symbol"
+      >:</a
+      ><a name="562"
+      > </a
+      ><a name="563" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="566"
+      > </a
+      ><a name="567" class="Symbol"
+      >(</a
+      ><a name="568" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="574"
+      > </a
+      ><a name="575" href="libraries.listLib.html#546" class="Bound"
+      >l</a
+      ><a name="576" class="Symbol"
+      >))</a
+      ><a name="578"
+      > </a
+      ><a name="579" class="Symbol"
+      >&#8594;</a
+      ><a name="580"
+      > </a
+      ><a name="581" href="libraries.listLib.html#537" class="Bound"
+      >X</a
+      ><a name="582"
+      >
+</a
+      ><a name="583" href="libraries.listLib.html#530" class="Function"
+      >nth</a
+      ><a name="586"
+      > </a
+      ><a name="587" href="Agda.Builtin.List.html#117" class="InductiveConstructor"
+      >[]</a
+      ><a name="589"
+      > </a
+      ><a name="590" class="Symbol"
+      >()</a
+      ><a name="592"
+      >
+</a
+      ><a name="593" href="libraries.listLib.html#530" class="Function"
+      >nth</a
+      ><a name="596"
+      > </a
+      ><a name="597" class="Symbol"
+      >(</a
+      ><a name="598" href="libraries.listLib.html#598" class="Bound"
+      >x</a
+      ><a name="599"
+      > </a
+      ><a name="600" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="601"
+      > </a
+      ><a name="602" href="libraries.listLib.html#602" class="Bound"
+      >l</a
+      ><a name="603" class="Symbol"
+      >)</a
+      ><a name="604"
+      > </a
+      ><a name="605" href="Data.Fin.html#945" class="InductiveConstructor"
+      >zero</a
+      ><a name="609"
+      > </a
+      ><a name="610" class="Symbol"
+      >=</a
+      ><a name="611"
+      > </a
+      ><a name="612" href="libraries.listLib.html#598" class="Bound"
+      >x</a
+      ><a name="613"
+      >
+</a
+      ><a name="614" href="libraries.listLib.html#530" class="Function"
+      >nth</a
+      ><a name="617"
+      > </a
+      ><a name="618" class="Symbol"
+      >(</a
+      ><a name="619" href="libraries.listLib.html#619" class="Bound"
+      >x</a
+      ><a name="620"
+      > </a
+      ><a name="621" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="622"
+      > </a
+      ><a name="623" href="libraries.listLib.html#623" class="Bound"
+      >l</a
+      ><a name="624" class="Symbol"
+      >)</a
+      ><a name="625"
+      > </a
+      ><a name="626" class="Symbol"
+      >(</a
+      ><a name="627" href="Data.Fin.html#976" class="InductiveConstructor"
+      >suc</a
+      ><a name="630"
+      > </a
+      ><a name="631" href="libraries.listLib.html#631" class="Bound"
+      >i</a
+      ><a name="632" class="Symbol"
+      >)</a
+      ><a name="633"
+      > </a
+      ><a name="634" class="Symbol"
+      >=</a
+      ><a name="635"
+      > </a
+      ><a name="636" href="libraries.listLib.html#530" class="Function"
+      >nth</a
+      ><a name="639"
+      > </a
+      ><a name="640" href="libraries.listLib.html#623" class="Bound"
+      >l</a
+      ><a name="641"
+      > </a
+      ><a name="642" href="libraries.listLib.html#631" class="Bound"
+      >i</a
+      ><a name="643"
+      >
+
+</a
+      ><a name="645" href="libraries.listLib.html#645" class="Function"
+      >delFromList</a
+      ><a name="656"
+      > </a
+      ><a name="657" class="Symbol"
+      >:</a
+      ><a name="658"
+      > </a
+      ><a name="659" class="Symbol"
+      >{</a
+      ><a name="660" href="libraries.listLib.html#660" class="Bound"
+      >X</a
+      ><a name="661"
+      > </a
+      ><a name="662" class="Symbol"
+      >:</a
+      ><a name="663"
+      > </a
+      ><a name="664" class="PrimitiveType"
+      >Set</a
+      ><a name="667" class="Symbol"
+      >}(</a
+      ><a name="669" href="libraries.listLib.html#669" class="Bound"
+      >l</a
+      ><a name="670"
+      > </a
+      ><a name="671" class="Symbol"
+      >:</a
+      ><a name="672"
+      > </a
+      ><a name="673" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="677"
+      > </a
+      ><a name="678" href="libraries.listLib.html#660" class="Bound"
+      >X</a
+      ><a name="679" class="Symbol"
+      >)(</a
+      ><a name="681" href="libraries.listLib.html#681" class="Bound"
+      >i</a
+      ><a name="682"
+      > </a
+      ><a name="683" class="Symbol"
+      >:</a
+      ><a name="684"
+      > </a
+      ><a name="685" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="688"
+      > </a
+      ><a name="689" class="Symbol"
+      >(</a
+      ><a name="690" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="696"
+      > </a
+      ><a name="697" href="libraries.listLib.html#669" class="Bound"
+      >l</a
+      ><a name="698" class="Symbol"
+      >))</a
+      ><a name="700"
+      > </a
+      ><a name="701" class="Symbol"
+      >&#8594;</a
+      ><a name="702"
+      > </a
+      ><a name="703" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="707"
+      > </a
+      ><a name="708" href="libraries.listLib.html#660" class="Bound"
+      >X</a
+      ><a name="709"
+      >
+</a
+      ><a name="710" href="libraries.listLib.html#645" class="Function"
+      >delFromList</a
+      ><a name="721"
+      > </a
+      ><a name="722" href="Agda.Builtin.List.html#117" class="InductiveConstructor"
+      >[]</a
+      ><a name="724"
+      > </a
+      ><a name="725" class="Symbol"
+      >()</a
+      ><a name="727"
+      >
+</a
+      ><a name="728" href="libraries.listLib.html#645" class="Function"
+      >delFromList</a
+      ><a name="739"
+      > </a
+      ><a name="740" class="Symbol"
+      >(</a
+      ><a name="741" href="libraries.listLib.html#741" class="Bound"
+      >x</a
+      ><a name="742"
+      > </a
+      ><a name="743" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="744"
+      > </a
+      ><a name="745" href="libraries.listLib.html#745" class="Bound"
+      >l</a
+      ><a name="746" class="Symbol"
+      >)</a
+      ><a name="747"
+      > </a
+      ><a name="748" href="Data.Fin.html#945" class="InductiveConstructor"
+      >zero</a
+      ><a name="752"
+      > </a
+      ><a name="753" class="Symbol"
+      >=</a
+      ><a name="754"
+      > </a
+      ><a name="755" href="libraries.listLib.html#745" class="Bound"
+      >l</a
+      ><a name="756"
+      >
+</a
+      ><a name="757" href="libraries.listLib.html#645" class="Function"
+      >delFromList</a
+      ><a name="768"
+      > </a
+      ><a name="769" class="Symbol"
+      >(</a
+      ><a name="770" href="libraries.listLib.html#770" class="Bound"
+      >x</a
+      ><a name="771"
+      > </a
+      ><a name="772" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="773"
+      > </a
+      ><a name="774" href="libraries.listLib.html#774" class="Bound"
+      >l</a
+      ><a name="775" class="Symbol"
+      >)</a
+      ><a name="776"
+      > </a
+      ><a name="777" class="Symbol"
+      >(</a
+      ><a name="778" href="Data.Fin.html#976" class="InductiveConstructor"
+      >suc</a
+      ><a name="781"
+      > </a
+      ><a name="782" href="libraries.listLib.html#782" class="Bound"
+      >i</a
+      ><a name="783" class="Symbol"
+      >)</a
+      ><a name="784"
+      > </a
+      ><a name="785" class="Symbol"
+      >=</a
+      ><a name="786"
+      > </a
+      ><a name="787" href="libraries.listLib.html#770" class="Bound"
+      >x</a
+      ><a name="788"
+      > </a
+      ><a name="789" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="790"
+      > </a
+      ><a name="791" href="libraries.listLib.html#645" class="Function"
+      >delFromList</a
+      ><a name="802"
+      > </a
+      ><a name="803" href="libraries.listLib.html#774" class="Bound"
+      >l</a
+      ><a name="804"
+      > </a
+      ><a name="805" href="libraries.listLib.html#782" class="Bound"
+      >i</a
+      ><a name="806"
+      >
+
+</a
+      ><a name="808" class="Comment"
+      >-- an index of (delFromList l i) is mapped to an index of l</a
+      ><a name="867"
+      >
+</a
+      ><a name="868" href="libraries.listLib.html#868" class="Function"
+      >delFromListIndexToOrigIndex</a
+      ><a name="895"
+      > </a
+      ><a name="896" class="Symbol"
+      >:</a
+      ><a name="897"
+      > </a
+      ><a name="898" class="Symbol"
+      >{</a
+      ><a name="899" href="libraries.listLib.html#899" class="Bound"
+      >X</a
+      ><a name="900"
+      > </a
+      ><a name="901" class="Symbol"
+      >:</a
+      ><a name="902"
+      > </a
+      ><a name="903" class="PrimitiveType"
+      >Set</a
+      ><a name="906" class="Symbol"
+      >}(</a
+      ><a name="908" href="libraries.listLib.html#908" class="Bound"
+      >l</a
+      ><a name="909"
+      > </a
+      ><a name="910" class="Symbol"
+      >:</a
+      ><a name="911"
+      > </a
+      ><a name="912" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="916"
+      > </a
+      ><a name="917" href="libraries.listLib.html#899" class="Bound"
+      >X</a
+      ><a name="918" class="Symbol"
+      >)(</a
+      ><a name="920" href="libraries.listLib.html#920" class="Bound"
+      >i</a
+      ><a name="921"
+      > </a
+      ><a name="922" class="Symbol"
+      >:</a
+      ><a name="923"
+      > </a
+      ><a name="924" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="927"
+      > </a
+      ><a name="928" class="Symbol"
+      >(</a
+      ><a name="929" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="935"
+      > </a
+      ><a name="936" href="libraries.listLib.html#908" class="Bound"
+      >l</a
+      ><a name="937" class="Symbol"
+      >))</a
+      ><a name="939"
+      >
+                                   </a
+      ><a name="975" class="Symbol"
+      >(</a
+      ><a name="976" href="libraries.listLib.html#976" class="Bound"
+      >j</a
+      ><a name="977"
+      > </a
+      ><a name="978" class="Symbol"
+      >:</a
+      ><a name="979"
+      > </a
+      ><a name="980" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="983"
+      > </a
+      ><a name="984" class="Symbol"
+      >(</a
+      ><a name="985" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="991"
+      > </a
+      ><a name="992" class="Symbol"
+      >(</a
+      ><a name="993" href="libraries.listLib.html#645" class="Function"
+      >delFromList</a
+      ><a name="1004"
+      > </a
+      ><a name="1005" href="libraries.listLib.html#908" class="Bound"
+      >l</a
+      ><a name="1006"
+      > </a
+      ><a name="1007" href="libraries.listLib.html#920" class="Bound"
+      >i</a
+      ><a name="1008" class="Symbol"
+      >)))</a
+      ><a name="1011"
+      >
+                                   </a
+      ><a name="1047" class="Symbol"
+      >&#8594;</a
+      ><a name="1048"
+      > </a
+      ><a name="1049" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="1052"
+      > </a
+      ><a name="1053" class="Symbol"
+      >(</a
+      ><a name="1054" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="1060"
+      > </a
+      ><a name="1061" href="libraries.listLib.html#908" class="Bound"
+      >l</a
+      ><a name="1062" class="Symbol"
+      >)</a
+      ><a name="1063"
+      >
+</a
+      ><a name="1064" href="libraries.listLib.html#868" class="Function"
+      >delFromListIndexToOrigIndex</a
+      ><a name="1091"
+      > </a
+      ><a name="1092" href="Agda.Builtin.List.html#117" class="InductiveConstructor"
+      >[]</a
+      ><a name="1094"
+      > </a
+      ><a name="1095" class="Symbol"
+      >()</a
+      ><a name="1097"
+      > </a
+      ><a name="1098" href="libraries.listLib.html#1098" class="Bound"
+      >j</a
+      ><a name="1099"
+      >
+</a
+      ><a name="1100" href="libraries.listLib.html#868" class="Function"
+      >delFromListIndexToOrigIndex</a
+      ><a name="1127"
+      > </a
+      ><a name="1128" class="Symbol"
+      >(</a
+      ><a name="1129" href="libraries.listLib.html#1129" class="Bound"
+      >x</a
+      ><a name="1130"
+      > </a
+      ><a name="1131" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="1132"
+      > </a
+      ><a name="1133" href="libraries.listLib.html#1133" class="Bound"
+      >l</a
+      ><a name="1134" class="Symbol"
+      >)</a
+      ><a name="1135"
+      > </a
+      ><a name="1136" href="Data.Fin.html#945" class="InductiveConstructor"
+      >zero</a
+      ><a name="1140"
+      > </a
+      ><a name="1141" href="libraries.listLib.html#1141" class="Bound"
+      >j</a
+      ><a name="1142"
+      > </a
+      ><a name="1143" class="Symbol"
+      >=</a
+      ><a name="1144"
+      > </a
+      ><a name="1145" href="Data.Fin.html#976" class="InductiveConstructor"
+      >suc</a
+      ><a name="1148"
+      > </a
+      ><a name="1149" href="libraries.listLib.html#1141" class="Bound"
+      >j</a
+      ><a name="1150"
+      >
+</a
+      ><a name="1151" href="libraries.listLib.html#868" class="Function"
+      >delFromListIndexToOrigIndex</a
+      ><a name="1178"
+      > </a
+      ><a name="1179" class="Symbol"
+      >(</a
+      ><a name="1180" href="libraries.listLib.html#1180" class="Bound"
+      >x</a
+      ><a name="1181"
+      > </a
+      ><a name="1182" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="1183"
+      > </a
+      ><a name="1184" href="libraries.listLib.html#1184" class="Bound"
+      >l</a
+      ><a name="1185" class="Symbol"
+      >)</a
+      ><a name="1186"
+      > </a
+      ><a name="1187" class="Symbol"
+      >(</a
+      ><a name="1188" href="Data.Fin.html#976" class="InductiveConstructor"
+      >suc</a
+      ><a name="1191"
+      > </a
+      ><a name="1192" href="libraries.listLib.html#1192" class="Bound"
+      >i</a
+      ><a name="1193" class="Symbol"
+      >)</a
+      ><a name="1194"
+      > </a
+      ><a name="1195" href="Data.Fin.html#945" class="InductiveConstructor"
+      >zero</a
+      ><a name="1199"
+      > </a
+      ><a name="1200" class="Symbol"
+      >=</a
+      ><a name="1201"
+      > </a
+      ><a name="1202" href="Data.Fin.html#945" class="InductiveConstructor"
+      >zero</a
+      ><a name="1206"
+      >
+</a
+      ><a name="1207" href="libraries.listLib.html#868" class="Function"
+      >delFromListIndexToOrigIndex</a
+      ><a name="1234"
+      > </a
+      ><a name="1235" class="Symbol"
+      >(</a
+      ><a name="1236" href="libraries.listLib.html#1236" class="Bound"
+      >x</a
+      ><a name="1237"
+      > </a
+      ><a name="1238" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="1239"
+      > </a
+      ><a name="1240" href="libraries.listLib.html#1240" class="Bound"
+      >l</a
+      ><a name="1241" class="Symbol"
+      >)</a
+      ><a name="1242"
+      > </a
+      ><a name="1243" class="Symbol"
+      >(</a
+      ><a name="1244" href="Data.Fin.html#976" class="InductiveConstructor"
+      >suc</a
+      ><a name="1247"
+      > </a
+      ><a name="1248" href="libraries.listLib.html#1248" class="Bound"
+      >i</a
+      ><a name="1249" class="Symbol"
+      >)</a
+      ><a name="1250"
+      > </a
+      ><a name="1251" class="Symbol"
+      >(</a
+      ><a name="1252" href="Data.Fin.html#976" class="InductiveConstructor"
+      >suc</a
+      ><a name="1255"
+      > </a
+      ><a name="1256" href="libraries.listLib.html#1256" class="Bound"
+      >j</a
+      ><a name="1257" class="Symbol"
+      >)</a
+      ><a name="1258"
+      > </a
+      ><a name="1259" class="Symbol"
+      >=</a
+      ><a name="1260"
+      > </a
+      ><a name="1261" href="Data.Fin.html#976" class="InductiveConstructor"
+      >suc</a
+      ><a name="1264"
+      > </a
+      ><a name="1265" class="Symbol"
+      >(</a
+      ><a name="1266" href="libraries.listLib.html#868" class="Function"
+      >delFromListIndexToOrigIndex</a
+      ><a name="1293"
+      > </a
+      ><a name="1294" href="libraries.listLib.html#1240" class="Bound"
+      >l</a
+      ><a name="1295"
+      > </a
+      ><a name="1296" href="libraries.listLib.html#1248" class="Bound"
+      >i</a
+      ><a name="1297"
+      > </a
+      ><a name="1298" href="libraries.listLib.html#1256" class="Bound"
+      >j</a
+      ><a name="1299" class="Symbol"
+      >)</a
+      ><a name="1300"
+      >
+
+</a
+      ><a name="1302" href="libraries.listLib.html#1302" class="Function"
+      >correctNthDelFromList</a
+      ><a name="1323"
+      > </a
+      ><a name="1324" class="Symbol"
+      >:</a
+      ><a name="1325"
+      > </a
+      ><a name="1326" class="Symbol"
+      >{</a
+      ><a name="1327" href="libraries.listLib.html#1327" class="Bound"
+      >X</a
+      ><a name="1328"
+      > </a
+      ><a name="1329" class="Symbol"
+      >:</a
+      ><a name="1330"
+      > </a
+      ><a name="1331" class="PrimitiveType"
+      >Set</a
+      ><a name="1334" class="Symbol"
+      >}(</a
+      ><a name="1336" href="libraries.listLib.html#1336" class="Bound"
+      >l</a
+      ><a name="1337"
+      > </a
+      ><a name="1338" class="Symbol"
+      >:</a
+      ><a name="1339"
+      > </a
+      ><a name="1340" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="1344"
+      > </a
+      ><a name="1345" href="libraries.listLib.html#1327" class="Bound"
+      >X</a
+      ><a name="1346" class="Symbol"
+      >)(</a
+      ><a name="1348" href="libraries.listLib.html#1348" class="Bound"
+      >i</a
+      ><a name="1349"
+      > </a
+      ><a name="1350" class="Symbol"
+      >:</a
+      ><a name="1351"
+      > </a
+      ><a name="1352" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="1355"
+      > </a
+      ><a name="1356" class="Symbol"
+      >(</a
+      ><a name="1357" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="1363"
+      > </a
+      ><a name="1364" href="libraries.listLib.html#1336" class="Bound"
+      >l</a
+      ><a name="1365" class="Symbol"
+      >))</a
+      ><a name="1367"
+      >
+                        </a
+      ><a name="1392" class="Symbol"
+      >(</a
+      ><a name="1393" href="libraries.listLib.html#1393" class="Bound"
+      >j</a
+      ><a name="1394"
+      > </a
+      ><a name="1395" class="Symbol"
+      >:</a
+      ><a name="1396"
+      > </a
+      ><a name="1397" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="1400"
+      > </a
+      ><a name="1401" class="Symbol"
+      >(</a
+      ><a name="1402" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="1408"
+      > </a
+      ><a name="1409" class="Symbol"
+      >(</a
+      ><a name="1410" href="libraries.listLib.html#645" class="Function"
+      >delFromList</a
+      ><a name="1421"
+      > </a
+      ><a name="1422" href="libraries.listLib.html#1336" class="Bound"
+      >l</a
+      ><a name="1423"
+      > </a
+      ><a name="1424" href="libraries.listLib.html#1348" class="Bound"
+      >i</a
+      ><a name="1425" class="Symbol"
+      >)))</a
+      ><a name="1428"
+      >
+                        </a
+      ><a name="1453" class="Symbol"
+      >&#8594;</a
+      ><a name="1454"
+      > </a
+      ><a name="1455" href="libraries.listLib.html#530" class="Function"
+      >nth</a
+      ><a name="1458"
+      > </a
+      ><a name="1459" class="Symbol"
+      >(</a
+      ><a name="1460" href="libraries.listLib.html#645" class="Function"
+      >delFromList</a
+      ><a name="1471"
+      > </a
+      ><a name="1472" href="libraries.listLib.html#1336" class="Bound"
+      >l</a
+      ><a name="1473"
+      > </a
+      ><a name="1474" href="libraries.listLib.html#1348" class="Bound"
+      >i</a
+      ><a name="1475" class="Symbol"
+      >)</a
+      ><a name="1476"
+      > </a
+      ><a name="1477" href="libraries.listLib.html#1393" class="Bound"
+      >j</a
+      ><a name="1478"
+      > </a
+      ><a name="1479" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="1480"
+      > </a
+      ><a name="1481" href="libraries.listLib.html#530" class="Function"
+      >nth</a
+      ><a name="1484"
+      > </a
+      ><a name="1485" href="libraries.listLib.html#1336" class="Bound"
+      >l</a
+      ><a name="1486"
+      > </a
+      ><a name="1487" class="Symbol"
+      >(</a
+      ><a name="1488" href="libraries.listLib.html#868" class="Function"
+      >delFromListIndexToOrigIndex</a
+      ><a name="1515"
+      > </a
+      ><a name="1516" href="libraries.listLib.html#1336" class="Bound"
+      >l</a
+      ><a name="1517"
+      > </a
+      ><a name="1518" href="libraries.listLib.html#1348" class="Bound"
+      >i</a
+      ><a name="1519"
+      > </a
+      ><a name="1520" href="libraries.listLib.html#1393" class="Bound"
+      >j</a
+      ><a name="1521" class="Symbol"
+      >)</a
+      ><a name="1522"
+      >
+</a
+      ><a name="1523" href="libraries.listLib.html#1302" class="Function"
+      >correctNthDelFromList</a
+      ><a name="1544"
+      > </a
+      ><a name="1545" href="Agda.Builtin.List.html#117" class="InductiveConstructor"
+      >[]</a
+      ><a name="1547"
+      > </a
+      ><a name="1548" class="Symbol"
+      >()</a
+      ><a name="1550"
+      > </a
+      ><a name="1551" href="libraries.listLib.html#1551" class="Bound"
+      >j</a
+      ><a name="1552"
+      >
+</a
+      ><a name="1553" href="libraries.listLib.html#1302" class="Function"
+      >correctNthDelFromList</a
+      ><a name="1574"
+      > </a
+      ><a name="1575" class="Symbol"
+      >(</a
+      ><a name="1576" href="libraries.listLib.html#1576" class="Bound"
+      >x</a
+      ><a name="1577"
+      > </a
+      ><a name="1578" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="1579"
+      > </a
+      ><a name="1580" href="libraries.listLib.html#1580" class="Bound"
+      >l</a
+      ><a name="1581" class="Symbol"
+      >)</a
+      ><a name="1582"
+      > </a
+      ><a name="1583" href="Data.Fin.html#945" class="InductiveConstructor"
+      >zero</a
+      ><a name="1587"
+      > </a
+      ><a name="1588" href="libraries.listLib.html#1588" class="Bound"
+      >j</a
+      ><a name="1589"
+      > </a
+      ><a name="1590" class="Symbol"
+      >=</a
+      ><a name="1591"
+      > </a
+      ><a name="1592" href="Agda.Builtin.Equality.html#140" class="InductiveConstructor"
+      >refl</a
+      ><a name="1596"
+      >
+</a
+      ><a name="1597" href="libraries.listLib.html#1302" class="Function"
+      >correctNthDelFromList</a
+      ><a name="1618"
+      > </a
+      ><a name="1619" class="Symbol"
+      >(</a
+      ><a name="1620" href="libraries.listLib.html#1620" class="Bound"
+      >x</a
+      ><a name="1621"
+      > </a
+      ><a name="1622" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="1623"
+      > </a
+      ><a name="1624" href="libraries.listLib.html#1624" class="Bound"
+      >l</a
+      ><a name="1625" class="Symbol"
+      >)</a
+      ><a name="1626"
+      > </a
+      ><a name="1627" class="Symbol"
+      >(</a
+      ><a name="1628" href="Data.Fin.html#976" class="InductiveConstructor"
+      >suc</a
+      ><a name="1631"
+      > </a
+      ><a name="1632" href="libraries.listLib.html#1632" class="Bound"
+      >i</a
+      ><a name="1633" class="Symbol"
+      >)</a
+      ><a name="1634"
+      > </a
+      ><a name="1635" href="Data.Fin.html#945" class="InductiveConstructor"
+      >zero</a
+      ><a name="1639"
+      > </a
+      ><a name="1640" class="Symbol"
+      >=</a
+      ><a name="1641"
+      > </a
+      ><a name="1642" href="Agda.Builtin.Equality.html#140" class="InductiveConstructor"
+      >refl</a
+      ><a name="1646"
+      >
+</a
+      ><a name="1647" href="libraries.listLib.html#1302" class="Function"
+      >correctNthDelFromList</a
+      ><a name="1668"
+      > </a
+      ><a name="1669" class="Symbol"
+      >(</a
+      ><a name="1670" href="libraries.listLib.html#1670" class="Bound"
+      >x</a
+      ><a name="1671"
+      > </a
+      ><a name="1672" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="1673"
+      > </a
+      ><a name="1674" href="libraries.listLib.html#1674" class="Bound"
+      >l</a
+      ><a name="1675" class="Symbol"
+      >)</a
+      ><a name="1676"
+      > </a
+      ><a name="1677" class="Symbol"
+      >(</a
+      ><a name="1678" href="Data.Fin.html#976" class="InductiveConstructor"
+      >suc</a
+      ><a name="1681"
+      > </a
+      ><a name="1682" href="libraries.listLib.html#1682" class="Bound"
+      >i</a
+      ><a name="1683" class="Symbol"
+      >)</a
+      ><a name="1684"
+      > </a
+      ><a name="1685" class="Symbol"
+      >(</a
+      ><a name="1686" href="Data.Fin.html#976" class="InductiveConstructor"
+      >suc</a
+      ><a name="1689"
+      > </a
+      ><a name="1690" href="libraries.listLib.html#1690" class="Bound"
+      >j</a
+      ><a name="1691" class="Symbol"
+      >)</a
+      ><a name="1692"
+      > </a
+      ><a name="1693" class="Symbol"
+      >=</a
+      ><a name="1694"
+      > </a
+      ><a name="1695" href="libraries.listLib.html#1302" class="Function"
+      >correctNthDelFromList</a
+      ><a name="1716"
+      > </a
+      ><a name="1717" href="libraries.listLib.html#1674" class="Bound"
+      >l</a
+      ><a name="1718"
+      > </a
+      ><a name="1719" href="libraries.listLib.html#1682" class="Bound"
+      >i</a
+      ><a name="1720"
+      > </a
+      ><a name="1721" href="libraries.listLib.html#1690" class="Bound"
+      >j</a
+      ><a name="1722"
+      >
+
+</a
+      ><a name="1724" class="Comment"
+      >--\listLib</a
+      ><a name="1734"
+      >
+</a
+      ><a name="1735" href="libraries.listLib.html#1735" class="Function"
+      >concatListIndex2OriginIndices</a
+      ><a name="1764"
+      > </a
+      ><a name="1765" class="Symbol"
+      >:</a
+      ><a name="1766"
+      > </a
+      ><a name="1767" class="Symbol"
+      >{</a
+      ><a name="1768" href="libraries.listLib.html#1768" class="Bound"
+      >X</a
+      ><a name="1769"
+      > </a
+      ><a name="1770" href="libraries.listLib.html#1770" class="Bound"
+      >Y</a
+      ><a name="1771"
+      > </a
+      ><a name="1772" class="Symbol"
+      >:</a
+      ><a name="1773"
+      > </a
+      ><a name="1774" class="PrimitiveType"
+      >Set</a
+      ><a name="1777" class="Symbol"
+      >}(</a
+      ><a name="1779" href="libraries.listLib.html#1779" class="Bound"
+      >l</a
+      ><a name="1780"
+      > </a
+      ><a name="1781" href="libraries.listLib.html#1781" class="Bound"
+      >l'</a
+      ><a name="1783"
+      > </a
+      ><a name="1784" class="Symbol"
+      >:</a
+      ><a name="1785"
+      > </a
+      ><a name="1786" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="1790"
+      > </a
+      ><a name="1791" href="libraries.listLib.html#1768" class="Bound"
+      >X</a
+      ><a name="1792" class="Symbol"
+      >)</a
+      ><a name="1793"
+      >
+                                </a
+      ><a name="1826" class="Symbol"
+      >(</a
+      ><a name="1827" href="libraries.listLib.html#1827" class="Bound"
+      >f</a
+      ><a name="1828"
+      >   </a
+      ><a name="1831" class="Symbol"
+      >:</a
+      ><a name="1832"
+      >  </a
+      ><a name="1834" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="1837"
+      > </a
+      ><a name="1838" class="Symbol"
+      >(</a
+      ><a name="1839" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="1845"
+      > </a
+      ><a name="1846" href="libraries.listLib.html#1779" class="Bound"
+      >l</a
+      ><a name="1847" class="Symbol"
+      >)</a
+      ><a name="1848"
+      > </a
+      ><a name="1849" class="Symbol"
+      >&#8594;</a
+      ><a name="1850"
+      > </a
+      ><a name="1851" href="libraries.listLib.html#1770" class="Bound"
+      >Y</a
+      ><a name="1852" class="Symbol"
+      >)(</a
+      ><a name="1854" href="libraries.listLib.html#1854" class="Bound"
+      >f'</a
+      ><a name="1856"
+      >  </a
+      ><a name="1858" class="Symbol"
+      >:</a
+      ><a name="1859"
+      >  </a
+      ><a name="1861" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="1864"
+      > </a
+      ><a name="1865" class="Symbol"
+      >(</a
+      ><a name="1866" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="1872"
+      > </a
+      ><a name="1873" href="libraries.listLib.html#1781" class="Bound"
+      >l'</a
+      ><a name="1875" class="Symbol"
+      >)</a
+      ><a name="1876"
+      > </a
+      ><a name="1877" class="Symbol"
+      >&#8594;</a
+      ><a name="1878"
+      > </a
+      ><a name="1879" href="libraries.listLib.html#1770" class="Bound"
+      >Y</a
+      ><a name="1880" class="Symbol"
+      >)</a
+      ><a name="1881"
+      >
+                                </a
+      ><a name="1914" class="Symbol"
+      >(</a
+      ><a name="1915" href="libraries.listLib.html#1915" class="Bound"
+      >i</a
+      ><a name="1916"
+      >   </a
+      ><a name="1919" class="Symbol"
+      >:</a
+      ><a name="1920"
+      > </a
+      ><a name="1921" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="1924"
+      > </a
+      ><a name="1925" class="Symbol"
+      >(</a
+      ><a name="1926" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="1932"
+      > </a
+      ><a name="1933" class="Symbol"
+      >(</a
+      ><a name="1934" href="libraries.listLib.html#1779" class="Bound"
+      >l</a
+      ><a name="1935"
+      > </a
+      ><a name="1936" href="Data.List.Base.html#982" class="Function Operator"
+      >++</a
+      ><a name="1938"
+      > </a
+      ><a name="1939" href="libraries.listLib.html#1781" class="Bound"
+      >l'</a
+      ><a name="1941" class="Symbol"
+      >)))</a
+      ><a name="1944"
+      >  </a
+      ><a name="1946" class="Symbol"
+      >&#8594;</a
+      ><a name="1947"
+      > </a
+      ><a name="1948" href="libraries.listLib.html#1770" class="Bound"
+      >Y</a
+      ><a name="1949"
+      >
+</a
+      ><a name="1950" href="libraries.listLib.html#1735" class="Function"
+      >concatListIndex2OriginIndices</a
+      ><a name="1979"
+      > </a
+      ><a name="1980" href="Agda.Builtin.List.html#117" class="InductiveConstructor"
+      >[]</a
+      ><a name="1982"
+      > </a
+      ><a name="1983" href="libraries.listLib.html#1983" class="Bound"
+      >l'</a
+      ><a name="1985"
+      > </a
+      ><a name="1986" href="libraries.listLib.html#1986" class="Bound"
+      >f</a
+      ><a name="1987"
+      > </a
+      ><a name="1988" href="libraries.listLib.html#1988" class="Bound"
+      >f'</a
+      ><a name="1990"
+      > </a
+      ><a name="1991" href="libraries.listLib.html#1991" class="Bound"
+      >i</a
+      ><a name="1992"
+      > </a
+      ><a name="1993" class="Symbol"
+      >=</a
+      ><a name="1994"
+      > </a
+      ><a name="1995" href="libraries.listLib.html#1988" class="Bound"
+      >f'</a
+      ><a name="1997"
+      > </a
+      ><a name="1998" href="libraries.listLib.html#1991" class="Bound"
+      >i</a
+      ><a name="1999"
+      >
+</a
+      ><a name="2000" href="libraries.listLib.html#1735" class="Function"
+      >concatListIndex2OriginIndices</a
+      ><a name="2029"
+      > </a
+      ><a name="2030" class="Symbol"
+      >(</a
+      ><a name="2031" href="libraries.listLib.html#2031" class="Bound"
+      >x</a
+      ><a name="2032"
+      > </a
+      ><a name="2033" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="2034"
+      > </a
+      ><a name="2035" href="libraries.listLib.html#2035" class="Bound"
+      >l</a
+      ><a name="2036" class="Symbol"
+      >)</a
+      ><a name="2037"
+      > </a
+      ><a name="2038" href="libraries.listLib.html#2038" class="Bound"
+      >l'</a
+      ><a name="2040"
+      > </a
+      ><a name="2041" href="libraries.listLib.html#2041" class="Bound"
+      >f</a
+      ><a name="2042"
+      > </a
+      ><a name="2043" href="libraries.listLib.html#2043" class="Bound"
+      >f'</a
+      ><a name="2045"
+      > </a
+      ><a name="2046" href="Data.Fin.html#945" class="InductiveConstructor"
+      >zero</a
+      ><a name="2050"
+      > </a
+      ><a name="2051" class="Symbol"
+      >=</a
+      ><a name="2052"
+      > </a
+      ><a name="2053" href="libraries.listLib.html#2041" class="Bound"
+      >f</a
+      ><a name="2054"
+      > </a
+      ><a name="2055" href="Data.Fin.html#945" class="InductiveConstructor"
+      >zero</a
+      ><a name="2059"
+      >
+</a
+      ><a name="2060" href="libraries.listLib.html#1735" class="Function"
+      >concatListIndex2OriginIndices</a
+      ><a name="2089"
+      > </a
+      ><a name="2090" class="Symbol"
+      >(</a
+      ><a name="2091" href="libraries.listLib.html#2091" class="Bound"
+      >x</a
+      ><a name="2092"
+      > </a
+      ><a name="2093" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="2094"
+      > </a
+      ><a name="2095" href="libraries.listLib.html#2095" class="Bound"
+      >l</a
+      ><a name="2096" class="Symbol"
+      >)</a
+      ><a name="2097"
+      > </a
+      ><a name="2098" href="libraries.listLib.html#2098" class="Bound"
+      >l'</a
+      ><a name="2100"
+      > </a
+      ><a name="2101" href="libraries.listLib.html#2101" class="Bound"
+      >f</a
+      ><a name="2102"
+      > </a
+      ><a name="2103" href="libraries.listLib.html#2103" class="Bound"
+      >f'</a
+      ><a name="2105"
+      > </a
+      ><a name="2106" class="Symbol"
+      >(</a
+      ><a name="2107" href="Data.Fin.html#976" class="InductiveConstructor"
+      >suc</a
+      ><a name="2110"
+      > </a
+      ><a name="2111" href="libraries.listLib.html#2111" class="Bound"
+      >i</a
+      ><a name="2112" class="Symbol"
+      >)</a
+      ><a name="2113"
+      > </a
+      ><a name="2114" class="Symbol"
+      >=</a
+      ><a name="2115"
+      >
+         </a
+      ><a name="2125" href="libraries.listLib.html#1735" class="Function"
+      >concatListIndex2OriginIndices</a
+      ><a name="2154"
+      > </a
+      ><a name="2155" href="libraries.listLib.html#2095" class="Bound"
+      >l</a
+      ><a name="2156"
+      > </a
+      ><a name="2157" href="libraries.listLib.html#2098" class="Bound"
+      >l'</a
+      ><a name="2159"
+      > </a
+      ><a name="2160" class="Symbol"
+      >(</a
+      ><a name="2161" href="libraries.listLib.html#2101" class="Bound"
+      >f</a
+      ><a name="2162"
+      > </a
+      ><a name="2163" href="Function.html#748" class="Function Operator"
+      >&#8728;</a
+      ><a name="2164"
+      > </a
+      ><a name="2165" href="Data.Fin.html#976" class="InductiveConstructor"
+      >suc</a
+      ><a name="2168" class="Symbol"
+      >)</a
+      ><a name="2169"
+      > </a
+      ><a name="2170" href="libraries.listLib.html#2103" class="Bound"
+      >f'</a
+      ><a name="2172"
+      > </a
+      ><a name="2173" href="libraries.listLib.html#2111" class="Bound"
+      >i</a
+      ><a name="2174"
+      >
+
+
+</a
+      ><a name="2177" href="libraries.listLib.html#2177" class="Function"
+      >corCconcatListIndex2OriginIndices</a
+      ><a name="2210"
+      > </a
+      ><a name="2211" class="Symbol"
+      >:</a
+      ><a name="2212"
+      > </a
+      ><a name="2213" class="Symbol"
+      >{</a
+      ><a name="2214" href="libraries.listLib.html#2214" class="Bound"
+      >X</a
+      ><a name="2215"
+      > </a
+      ><a name="2216" href="libraries.listLib.html#2216" class="Bound"
+      >Y</a
+      ><a name="2217"
+      > </a
+      ><a name="2218" class="Symbol"
+      >:</a
+      ><a name="2219"
+      > </a
+      ><a name="2220" class="PrimitiveType"
+      >Set</a
+      ><a name="2223" class="Symbol"
+      >}(</a
+      ><a name="2225" href="libraries.listLib.html#2225" class="Bound"
+      >l</a
+      ><a name="2226"
+      > </a
+      ><a name="2227" href="libraries.listLib.html#2227" class="Bound"
+      >l'</a
+      ><a name="2229"
+      > </a
+      ><a name="2230" class="Symbol"
+      >:</a
+      ><a name="2231"
+      > </a
+      ><a name="2232" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="2236"
+      > </a
+      ><a name="2237" href="libraries.listLib.html#2214" class="Bound"
+      >X</a
+      ><a name="2238" class="Symbol"
+      >)</a
+      ><a name="2239"
+      >
+                                    </a
+      ><a name="2276" class="Symbol"
+      >(</a
+      ><a name="2277" href="libraries.listLib.html#2277" class="Bound"
+      >f</a
+      ><a name="2278"
+      > </a
+      ><a name="2279" class="Symbol"
+      >:</a
+      ><a name="2280"
+      > </a
+      ><a name="2281" href="libraries.listLib.html#2214" class="Bound"
+      >X</a
+      ><a name="2282"
+      > </a
+      ><a name="2283" class="Symbol"
+      >&#8594;</a
+      ><a name="2284"
+      > </a
+      ><a name="2285" href="libraries.listLib.html#2216" class="Bound"
+      >Y</a
+      ><a name="2286" class="Symbol"
+      >)</a
+      ><a name="2287"
+      >
+                                    </a
+      ><a name="2324" class="Symbol"
+      >(</a
+      ><a name="2325" href="libraries.listLib.html#2325" class="Bound"
+      >g</a
+      ><a name="2326"
+      > </a
+      ><a name="2327" class="Symbol"
+      >:</a
+      ><a name="2328"
+      > </a
+      ><a name="2329" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="2332"
+      > </a
+      ><a name="2333" class="Symbol"
+      >(</a
+      ><a name="2334" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="2340"
+      > </a
+      ><a name="2341" href="libraries.listLib.html#2225" class="Bound"
+      >l</a
+      ><a name="2342" class="Symbol"
+      >)</a
+      ><a name="2343"
+      > </a
+      ><a name="2344" class="Symbol"
+      >&#8594;</a
+      ><a name="2345"
+      > </a
+      ><a name="2346" href="libraries.listLib.html#2216" class="Bound"
+      >Y</a
+      ><a name="2347" class="Symbol"
+      >)</a
+      ><a name="2348"
+      >
+                                    </a
+      ><a name="2385" class="Symbol"
+      >(</a
+      ><a name="2386" href="libraries.listLib.html#2386" class="Bound"
+      >g'</a
+      ><a name="2388"
+      > </a
+      ><a name="2389" class="Symbol"
+      >:</a
+      ><a name="2390"
+      > </a
+      ><a name="2391" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="2394"
+      > </a
+      ><a name="2395" class="Symbol"
+      >(</a
+      ><a name="2396" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="2402"
+      > </a
+      ><a name="2403" href="libraries.listLib.html#2227" class="Bound"
+      >l'</a
+      ><a name="2405" class="Symbol"
+      >)</a
+      ><a name="2406"
+      > </a
+      ><a name="2407" class="Symbol"
+      >&#8594;</a
+      ><a name="2408"
+      > </a
+      ><a name="2409" href="libraries.listLib.html#2216" class="Bound"
+      >Y</a
+      ><a name="2410" class="Symbol"
+      >)</a
+      ><a name="2411"
+      >
+                                    </a
+      ><a name="2448" class="Symbol"
+      >(</a
+      ><a name="2449" href="libraries.listLib.html#2449" class="Bound"
+      >cor1</a
+      ><a name="2453"
+      > </a
+      ><a name="2454" class="Symbol"
+      >:</a
+      ><a name="2455"
+      > </a
+      ><a name="2456" class="Symbol"
+      >(</a
+      ><a name="2457" href="libraries.listLib.html#2457" class="Bound"
+      >i</a
+      ><a name="2458"
+      > </a
+      ><a name="2459" class="Symbol"
+      >:</a
+      ><a name="2460"
+      > </a
+      ><a name="2461" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="2464"
+      > </a
+      ><a name="2465" class="Symbol"
+      >(</a
+      ><a name="2466" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="2472"
+      > </a
+      ><a name="2473" href="libraries.listLib.html#2225" class="Bound"
+      >l</a
+      ><a name="2474" class="Symbol"
+      >))</a
+      ><a name="2476"
+      > </a
+      ><a name="2477" class="Symbol"
+      >&#8594;</a
+      ><a name="2478"
+      > </a
+      ><a name="2479" href="libraries.listLib.html#2277" class="Bound"
+      >f</a
+      ><a name="2480"
+      > </a
+      ><a name="2481" class="Symbol"
+      >(</a
+      ><a name="2482" href="libraries.listLib.html#530" class="Function"
+      >nth</a
+      ><a name="2485"
+      > </a
+      ><a name="2486" href="libraries.listLib.html#2225" class="Bound"
+      >l</a
+      ><a name="2487"
+      > </a
+      ><a name="2488" href="libraries.listLib.html#2457" class="Bound"
+      >i</a
+      ><a name="2489" class="Symbol"
+      >)</a
+      ><a name="2490"
+      > </a
+      ><a name="2491" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="2492"
+      > </a
+      ><a name="2493" href="libraries.listLib.html#2325" class="Bound"
+      >g</a
+      ><a name="2494"
+      > </a
+      ><a name="2495" href="libraries.listLib.html#2457" class="Bound"
+      >i</a
+      ><a name="2496" class="Symbol"
+      >)</a
+      ><a name="2497"
+      >
+                                    </a
+      ><a name="2534" class="Symbol"
+      >(</a
+      ><a name="2535" href="libraries.listLib.html#2535" class="Bound"
+      >cor2</a
+      ><a name="2539"
+      > </a
+      ><a name="2540" class="Symbol"
+      >:</a
+      ><a name="2541"
+      > </a
+      ><a name="2542" class="Symbol"
+      >(</a
+      ><a name="2543" href="libraries.listLib.html#2543" class="Bound"
+      >i'</a
+      ><a name="2545"
+      > </a
+      ><a name="2546" class="Symbol"
+      >:</a
+      ><a name="2547"
+      > </a
+      ><a name="2548" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="2551"
+      > </a
+      ><a name="2552" class="Symbol"
+      >(</a
+      ><a name="2553" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="2559"
+      > </a
+      ><a name="2560" href="libraries.listLib.html#2227" class="Bound"
+      >l'</a
+      ><a name="2562" class="Symbol"
+      >))</a
+      ><a name="2564"
+      > </a
+      ><a name="2565" class="Symbol"
+      >&#8594;</a
+      ><a name="2566"
+      > </a
+      ><a name="2567" href="libraries.listLib.html#2277" class="Bound"
+      >f</a
+      ><a name="2568"
+      > </a
+      ><a name="2569" class="Symbol"
+      >(</a
+      ><a name="2570" href="libraries.listLib.html#530" class="Function"
+      >nth</a
+      ><a name="2573"
+      > </a
+      ><a name="2574" href="libraries.listLib.html#2227" class="Bound"
+      >l'</a
+      ><a name="2576"
+      > </a
+      ><a name="2577" href="libraries.listLib.html#2543" class="Bound"
+      >i'</a
+      ><a name="2579" class="Symbol"
+      >)</a
+      ><a name="2580"
+      > </a
+      ><a name="2581" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="2582"
+      > </a
+      ><a name="2583" href="libraries.listLib.html#2386" class="Bound"
+      >g'</a
+      ><a name="2585"
+      > </a
+      ><a name="2586" href="libraries.listLib.html#2543" class="Bound"
+      >i'</a
+      ><a name="2588" class="Symbol"
+      >)</a
+      ><a name="2589"
+      >
+                                    </a
+      ><a name="2626" class="Symbol"
+      >(</a
+      ><a name="2627" href="libraries.listLib.html#2627" class="Bound"
+      >i</a
+      ><a name="2628"
+      > </a
+      ><a name="2629" class="Symbol"
+      >:</a
+      ><a name="2630"
+      > </a
+      ><a name="2631" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="2634"
+      > </a
+      ><a name="2635" class="Symbol"
+      >(</a
+      ><a name="2636" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="2642"
+      > </a
+      ><a name="2643" class="Symbol"
+      >(</a
+      ><a name="2644" href="libraries.listLib.html#2225" class="Bound"
+      >l</a
+      ><a name="2645"
+      > </a
+      ><a name="2646" href="Data.List.Base.html#982" class="Function Operator"
+      >++</a
+      ><a name="2648"
+      > </a
+      ><a name="2649" href="libraries.listLib.html#2227" class="Bound"
+      >l'</a
+      ><a name="2651" class="Symbol"
+      >)))</a
+      ><a name="2654"
+      >
+                                    </a
+      ><a name="2691" class="Symbol"
+      >&#8594;</a
+      ><a name="2692"
+      > </a
+      ><a name="2693" href="libraries.listLib.html#2277" class="Bound"
+      >f</a
+      ><a name="2694"
+      > </a
+      ><a name="2695" class="Symbol"
+      >(</a
+      ><a name="2696" href="libraries.listLib.html#530" class="Function"
+      >nth</a
+      ><a name="2699"
+      > </a
+      ><a name="2700" class="Symbol"
+      >(</a
+      ><a name="2701" href="libraries.listLib.html#2225" class="Bound"
+      >l</a
+      ><a name="2702"
+      > </a
+      ><a name="2703" href="Data.List.Base.html#982" class="Function Operator"
+      >++</a
+      ><a name="2705"
+      > </a
+      ><a name="2706" href="libraries.listLib.html#2227" class="Bound"
+      >l'</a
+      ><a name="2708" class="Symbol"
+      >)</a
+      ><a name="2709"
+      > </a
+      ><a name="2710" href="libraries.listLib.html#2627" class="Bound"
+      >i</a
+      ><a name="2711" class="Symbol"
+      >)</a
+      ><a name="2712"
+      >
+                                       </a
+      ><a name="2752" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="2753"
+      > </a
+      ><a name="2754" href="libraries.listLib.html#1735" class="Function"
+      >concatListIndex2OriginIndices</a
+      ><a name="2783"
+      > </a
+      ><a name="2784" href="libraries.listLib.html#2225" class="Bound"
+      >l</a
+      ><a name="2785"
+      > </a
+      ><a name="2786" href="libraries.listLib.html#2227" class="Bound"
+      >l'</a
+      ><a name="2788"
+      > </a
+      ><a name="2789" href="libraries.listLib.html#2325" class="Bound"
+      >g</a
+      ><a name="2790"
+      > </a
+      ><a name="2791" href="libraries.listLib.html#2386" class="Bound"
+      >g'</a
+      ><a name="2793"
+      > </a
+      ><a name="2794" href="libraries.listLib.html#2627" class="Bound"
+      >i</a
+      ><a name="2795"
+      >
+</a
+      ><a name="2796" href="libraries.listLib.html#2177" class="Function"
+      >corCconcatListIndex2OriginIndices</a
+      ><a name="2829"
+      > </a
+      ><a name="2830" href="Agda.Builtin.List.html#117" class="InductiveConstructor"
+      >[]</a
+      ><a name="2832"
+      > </a
+      ><a name="2833" href="libraries.listLib.html#2833" class="Bound"
+      >l'</a
+      ><a name="2835"
+      > </a
+      ><a name="2836" href="libraries.listLib.html#2836" class="Bound"
+      >f</a
+      ><a name="2837"
+      > </a
+      ><a name="2838" href="libraries.listLib.html#2838" class="Bound"
+      >g</a
+      ><a name="2839"
+      > </a
+      ><a name="2840" href="libraries.listLib.html#2840" class="Bound"
+      >g'</a
+      ><a name="2842"
+      > </a
+      ><a name="2843" href="libraries.listLib.html#2843" class="Bound"
+      >cor1</a
+      ><a name="2847"
+      > </a
+      ><a name="2848" href="libraries.listLib.html#2848" class="Bound"
+      >cor2</a
+      ><a name="2852"
+      > </a
+      ><a name="2853" href="libraries.listLib.html#2853" class="Bound"
+      >i</a
+      ><a name="2854"
+      > </a
+      ><a name="2855" class="Symbol"
+      >=</a
+      ><a name="2856"
+      > </a
+      ><a name="2857" href="libraries.listLib.html#2848" class="Bound"
+      >cor2</a
+      ><a name="2861"
+      > </a
+      ><a name="2862" href="libraries.listLib.html#2853" class="Bound"
+      >i</a
+      ><a name="2863"
+      >
+</a
+      ><a name="2864" href="libraries.listLib.html#2177" class="Function"
+      >corCconcatListIndex2OriginIndices</a
+      ><a name="2897"
+      > </a
+      ><a name="2898" class="Symbol"
+      >(</a
+      ><a name="2899" href="libraries.listLib.html#2899" class="Bound"
+      >x</a
+      ><a name="2900"
+      > </a
+      ><a name="2901" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="2902"
+      > </a
+      ><a name="2903" href="libraries.listLib.html#2903" class="Bound"
+      >l</a
+      ><a name="2904" class="Symbol"
+      >)</a
+      ><a name="2905"
+      > </a
+      ><a name="2906" href="libraries.listLib.html#2906" class="Bound"
+      >l'</a
+      ><a name="2908"
+      > </a
+      ><a name="2909" href="libraries.listLib.html#2909" class="Bound"
+      >f</a
+      ><a name="2910"
+      > </a
+      ><a name="2911" href="libraries.listLib.html#2911" class="Bound"
+      >g</a
+      ><a name="2912"
+      > </a
+      ><a name="2913" href="libraries.listLib.html#2913" class="Bound"
+      >g'</a
+      ><a name="2915"
+      > </a
+      ><a name="2916" href="libraries.listLib.html#2916" class="Bound"
+      >cor1</a
+      ><a name="2920"
+      > </a
+      ><a name="2921" href="libraries.listLib.html#2921" class="Bound"
+      >cor2</a
+      ><a name="2925"
+      > </a
+      ><a name="2926" href="Data.Fin.html#945" class="InductiveConstructor"
+      >zero</a
+      ><a name="2930"
+      > </a
+      ><a name="2931" class="Symbol"
+      >=</a
+      ><a name="2932"
+      > </a
+      ><a name="2933" href="libraries.listLib.html#2916" class="Bound"
+      >cor1</a
+      ><a name="2937"
+      > </a
+      ><a name="2938" href="Data.Fin.html#945" class="InductiveConstructor"
+      >zero</a
+      ><a name="2942"
+      >
+</a
+      ><a name="2943" href="libraries.listLib.html#2177" class="Function"
+      >corCconcatListIndex2OriginIndices</a
+      ><a name="2976"
+      > </a
+      ><a name="2977" class="Symbol"
+      >(</a
+      ><a name="2978" href="libraries.listLib.html#2978" class="Bound"
+      >x</a
+      ><a name="2979"
+      > </a
+      ><a name="2980" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="2981"
+      > </a
+      ><a name="2982" href="libraries.listLib.html#2982" class="Bound"
+      >l</a
+      ><a name="2983" class="Symbol"
+      >)</a
+      ><a name="2984"
+      > </a
+      ><a name="2985" href="libraries.listLib.html#2985" class="Bound"
+      >l'</a
+      ><a name="2987"
+      > </a
+      ><a name="2988" href="libraries.listLib.html#2988" class="Bound"
+      >f</a
+      ><a name="2989"
+      > </a
+      ><a name="2990" href="libraries.listLib.html#2990" class="Bound"
+      >g</a
+      ><a name="2991"
+      > </a
+      ><a name="2992" href="libraries.listLib.html#2992" class="Bound"
+      >g'</a
+      ><a name="2994"
+      > </a
+      ><a name="2995" href="libraries.listLib.html#2995" class="Bound"
+      >cor1</a
+      ><a name="2999"
+      > </a
+      ><a name="3000" href="libraries.listLib.html#3000" class="Bound"
+      >cor2</a
+      ><a name="3004"
+      > </a
+      ><a name="3005" class="Symbol"
+      >(</a
+      ><a name="3006" href="Data.Fin.html#976" class="InductiveConstructor"
+      >suc</a
+      ><a name="3009"
+      > </a
+      ><a name="3010" href="libraries.listLib.html#3010" class="Bound"
+      >i</a
+      ><a name="3011" class="Symbol"
+      >)</a
+      ><a name="3012"
+      > </a
+      ><a name="3013" class="Symbol"
+      >=</a
+      ><a name="3014"
+      >
+    </a
+      ><a name="3019" href="libraries.listLib.html#2177" class="Function"
+      >corCconcatListIndex2OriginIndices</a
+      ><a name="3052"
+      > </a
+      ><a name="3053" href="libraries.listLib.html#2982" class="Bound"
+      >l</a
+      ><a name="3054"
+      > </a
+      ><a name="3055" href="libraries.listLib.html#2985" class="Bound"
+      >l'</a
+      ><a name="3057"
+      > </a
+      ><a name="3058" href="libraries.listLib.html#2988" class="Bound"
+      >f</a
+      ><a name="3059"
+      > </a
+      ><a name="3060" class="Symbol"
+      >(</a
+      ><a name="3061" href="libraries.listLib.html#2990" class="Bound"
+      >g</a
+      ><a name="3062"
+      > </a
+      ><a name="3063" href="Function.html#748" class="Function Operator"
+      >&#8728;</a
+      ><a name="3064"
+      > </a
+      ><a name="3065" href="Data.Fin.html#976" class="InductiveConstructor"
+      >suc</a
+      ><a name="3068" class="Symbol"
+      >)</a
+      ><a name="3069"
+      > </a
+      ><a name="3070" href="libraries.listLib.html#2992" class="Bound"
+      >g'</a
+      ><a name="3072"
+      > </a
+      ><a name="3073" class="Symbol"
+      >(</a
+      ><a name="3074" href="libraries.listLib.html#2995" class="Bound"
+      >cor1</a
+      ><a name="3078"
+      > </a
+      ><a name="3079" href="Function.html#748" class="Function Operator"
+      >&#8728;</a
+      ><a name="3080"
+      > </a
+      ><a name="3081" href="Data.Fin.html#976" class="InductiveConstructor"
+      >suc</a
+      ><a name="3084" class="Symbol"
+      >)</a
+      ><a name="3085"
+      > </a
+      ><a name="3086" href="libraries.listLib.html#3000" class="Bound"
+      >cor2</a
+      ><a name="3090"
+      > </a
+      ><a name="3091" href="libraries.listLib.html#3010" class="Bound"
+      >i</a
+      ><a name="3092"
+      >
+
+
+</a
+      ><a name="3095" class="Comment"
+      >--\listLib</a
+      ><a name="3105"
+      >
+</a
+      ><a name="3106" href="libraries.listLib.html#3106" class="Function"
+      >listOfElementsOfFin</a
+      ><a name="3125"
+      > </a
+      ><a name="3126" class="Symbol"
+      >:</a
+      ><a name="3127"
+      > </a
+      ><a name="3128" class="Symbol"
+      >(</a
+      ><a name="3129" href="libraries.listLib.html#3129" class="Bound"
+      >n</a
+      ><a name="3130"
+      > </a
+      ><a name="3131" class="Symbol"
+      >:</a
+      ><a name="3132"
+      > </a
+      ><a name="3133" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="3134" class="Symbol"
+      >)</a
+      ><a name="3135"
+      > </a
+      ><a name="3136" class="Symbol"
+      >&#8594;</a
+      ><a name="3137"
+      > </a
+      ><a name="3138" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="3142"
+      > </a
+      ><a name="3143" class="Symbol"
+      >(</a
+      ><a name="3144" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="3147"
+      > </a
+      ><a name="3148" href="libraries.listLib.html#3129" class="Bound"
+      >n</a
+      ><a name="3149" class="Symbol"
+      >)</a
+      ><a name="3150"
+      >
+</a
+      ><a name="3151" href="libraries.listLib.html#3106" class="Function"
+      >listOfElementsOfFin</a
+      ><a name="3170"
+      > </a
+      ><a name="3171" href="Agda.Builtin.Nat.html#115" class="InductiveConstructor"
+      >zero</a
+      ><a name="3175"
+      > </a
+      ><a name="3176" class="Symbol"
+      >=</a
+      ><a name="3177"
+      > </a
+      ><a name="3178" href="Agda.Builtin.List.html#117" class="InductiveConstructor"
+      >[]</a
+      ><a name="3180"
+      >
+</a
+      ><a name="3181" href="libraries.listLib.html#3106" class="Function"
+      >listOfElementsOfFin</a
+      ><a name="3200"
+      > </a
+      ><a name="3201" class="Symbol"
+      >(</a
+      ><a name="3202" href="Agda.Builtin.Nat.html#128" class="InductiveConstructor"
+      >suc</a
+      ><a name="3205"
+      > </a
+      ><a name="3206" href="libraries.listLib.html#3206" class="Bound"
+      >n</a
+      ><a name="3207" class="Symbol"
+      >)</a
+      ><a name="3208"
+      > </a
+      ><a name="3209" class="Symbol"
+      >=</a
+      ><a name="3210"
+      > </a
+      ><a name="3211" href="Data.Fin.html#945" class="InductiveConstructor"
+      >zero</a
+      ><a name="3215"
+      > </a
+      ><a name="3216" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="3217"
+      > </a
+      ><a name="3218" class="Symbol"
+      >(</a
+      ><a name="3219" href="libraries.listLib.html#257" class="Function"
+      >mapL</a
+      ><a name="3223"
+      > </a
+      ><a name="3224" href="Data.Fin.html#976" class="InductiveConstructor"
+      >suc</a
+      ><a name="3227"
+      > </a
+      ><a name="3228" class="Symbol"
+      >(</a
+      ><a name="3229" href="libraries.listLib.html#3106" class="Function"
+      >listOfElementsOfFin</a
+      ><a name="3248"
+      > </a
+      ><a name="3249" href="libraries.listLib.html#3206" class="Bound"
+      >n</a
+      ><a name="3250" class="Symbol"
+      >))</a
+      ><a name="3252"
+      >
+
+</a
+      ><a name="3254" href="libraries.listLib.html#3254" class="Function"
+      >corListOfElementsOfFinLength</a
+      ><a name="3282"
+      > </a
+      ><a name="3283" class="Symbol"
+      >:</a
+      ><a name="3284"
+      > </a
+      ><a name="3285" class="Symbol"
+      >(</a
+      ><a name="3286" href="libraries.listLib.html#3286" class="Bound"
+      >n</a
+      ><a name="3287"
+      > </a
+      ><a name="3288" class="Symbol"
+      >:</a
+      ><a name="3289"
+      > </a
+      ><a name="3290" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="3291" class="Symbol"
+      >)</a
+      ><a name="3292"
+      > </a
+      ><a name="3293" class="Symbol"
+      >&#8594;</a
+      ><a name="3294"
+      > </a
+      ><a name="3295" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="3301"
+      > </a
+      ><a name="3302" class="Symbol"
+      >(</a
+      ><a name="3303" href="libraries.listLib.html#3106" class="Function"
+      >listOfElementsOfFin</a
+      ><a name="3322"
+      > </a
+      ><a name="3323" href="libraries.listLib.html#3286" class="Bound"
+      >n</a
+      ><a name="3324" class="Symbol"
+      >)</a
+      ><a name="3325"
+      > </a
+      ><a name="3326" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="3327"
+      > </a
+      ><a name="3328" href="libraries.listLib.html#3286" class="Bound"
+      >n</a
+      ><a name="3329"
+      >
+</a
+      ><a name="3330" href="libraries.listLib.html#3254" class="Function"
+      >corListOfElementsOfFinLength</a
+      ><a name="3358"
+      > </a
+      ><a name="3359" href="Agda.Builtin.Nat.html#115" class="InductiveConstructor"
+      >zero</a
+      ><a name="3363"
+      > </a
+      ><a name="3364" class="Symbol"
+      >=</a
+      ><a name="3365"
+      > </a
+      ><a name="3366" href="Agda.Builtin.Equality.html#140" class="InductiveConstructor"
+      >refl</a
+      ><a name="3370"
+      >
+</a
+      ><a name="3371" href="libraries.listLib.html#3254" class="Function"
+      >corListOfElementsOfFinLength</a
+      ><a name="3399"
+      > </a
+      ><a name="3400" class="Symbol"
+      >(</a
+      ><a name="3401" href="Agda.Builtin.Nat.html#128" class="InductiveConstructor"
+      >suc</a
+      ><a name="3404"
+      > </a
+      ><a name="3405" href="libraries.listLib.html#3405" class="Bound"
+      >n</a
+      ><a name="3406" class="Symbol"
+      >)</a
+      ><a name="3407"
+      > </a
+      ><a name="3408" class="Symbol"
+      >=</a
+      ><a name="3409"
+      > </a
+      ><a name="3410" href="Relation.Binary.PropositionalEquality.html#1036" class="Function"
+      >cong</a
+      ><a name="3414"
+      > </a
+      ><a name="3415" href="Agda.Builtin.Nat.html#128" class="InductiveConstructor"
+      >suc</a
+      ><a name="3418"
+      > </a
+      ><a name="3419" href="libraries.listLib.html#3720" class="Function"
+      >cor3</a
+      ><a name="3423"
+      >
+    </a
+      ><a name="3428" class="Keyword"
+      >where</a
+      ><a name="3433"
+      >
+         </a
+      ><a name="3443" href="libraries.listLib.html#3443" class="Function"
+      >cor1</a
+      ><a name="3447"
+      > </a
+      ><a name="3448" class="Symbol"
+      >:</a
+      ><a name="3449"
+      > </a
+      ><a name="3450" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="3456"
+      > </a
+      ><a name="3457" class="Symbol"
+      >(</a
+      ><a name="3458" href="libraries.listLib.html#257" class="Function"
+      >mapL</a
+      ><a name="3462"
+      > </a
+      ><a name="3463" class="Symbol"
+      >{</a
+      ><a name="3464" class="Argument"
+      >Y</a
+      ><a name="3465"
+      > </a
+      ><a name="3466" class="Symbol"
+      >=</a
+      ><a name="3467"
+      > </a
+      ><a name="3468" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="3471"
+      > </a
+      ><a name="3472" class="Symbol"
+      >(</a
+      ><a name="3473" href="Agda.Builtin.Nat.html#128" class="InductiveConstructor"
+      >suc</a
+      ><a name="3476"
+      > </a
+      ><a name="3477" href="libraries.listLib.html#3405" class="Bound"
+      >n</a
+      ><a name="3478" class="Symbol"
+      >)}</a
+      ><a name="3480"
+      > </a
+      ><a name="3481" class="Symbol"
+      >(&#955;</a
+      ><a name="3483"
+      > </a
+      ><a name="3484" href="libraries.listLib.html#3484" class="Bound"
+      >i</a
+      ><a name="3485"
+      > </a
+      ><a name="3486" class="Symbol"
+      >&#8594;</a
+      ><a name="3487"
+      > </a
+      ><a name="3488" href="Data.Fin.html#976" class="InductiveConstructor"
+      >suc</a
+      ><a name="3491"
+      > </a
+      ><a name="3492" href="libraries.listLib.html#3484" class="Bound"
+      >i</a
+      ><a name="3493" class="Symbol"
+      >)</a
+      ><a name="3494"
+      > </a
+      ><a name="3495" class="Symbol"
+      >(</a
+      ><a name="3496" href="libraries.listLib.html#3106" class="Function"
+      >listOfElementsOfFin</a
+      ><a name="3515"
+      > </a
+      ><a name="3516" href="libraries.listLib.html#3405" class="Bound"
+      >n</a
+      ><a name="3517" class="Symbol"
+      >))</a
+      ><a name="3519"
+      > </a
+      ><a name="3520" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="3521"
+      > </a
+      ><a name="3522" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="3528"
+      > </a
+      ><a name="3529" class="Symbol"
+      >(</a
+      ><a name="3530" href="libraries.listLib.html#3106" class="Function"
+      >listOfElementsOfFin</a
+      ><a name="3549"
+      > </a
+      ><a name="3550" href="libraries.listLib.html#3405" class="Bound"
+      >n</a
+      ><a name="3551" class="Symbol"
+      >)</a
+      ><a name="3552"
+      >
+         </a
+      ><a name="3562" href="libraries.listLib.html#3443" class="Function"
+      >cor1</a
+      ><a name="3566"
+      > </a
+      ><a name="3567" class="Symbol"
+      >=</a
+      ><a name="3568"
+      > </a
+      ><a name="3569" href="libraries.listLib.html#363" class="Function"
+      >corLengthMapL</a
+      ><a name="3582"
+      > </a
+      ><a name="3583" href="Data.Fin.html#976" class="InductiveConstructor"
+      >suc</a
+      ><a name="3586"
+      > </a
+      ><a name="3587" class="Symbol"
+      >(</a
+      ><a name="3588" href="libraries.listLib.html#3106" class="Function"
+      >listOfElementsOfFin</a
+      ><a name="3607"
+      > </a
+      ><a name="3608" href="libraries.listLib.html#3405" class="Bound"
+      >n</a
+      ><a name="3609" class="Symbol"
+      >)</a
+      ><a name="3610"
+      >
+
+         </a
+      ><a name="3621" href="libraries.listLib.html#3621" class="Function"
+      >cor2</a
+      ><a name="3625"
+      > </a
+      ><a name="3626" class="Symbol"
+      >:</a
+      ><a name="3627"
+      > </a
+      ><a name="3628" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="3634"
+      > </a
+      ><a name="3635" class="Symbol"
+      >(</a
+      ><a name="3636" href="libraries.listLib.html#3106" class="Function"
+      >listOfElementsOfFin</a
+      ><a name="3655"
+      > </a
+      ><a name="3656" href="libraries.listLib.html#3405" class="Bound"
+      >n</a
+      ><a name="3657" class="Symbol"
+      >)</a
+      ><a name="3658"
+      > </a
+      ><a name="3659" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="3660"
+      > </a
+      ><a name="3661" href="libraries.listLib.html#3405" class="Bound"
+      >n</a
+      ><a name="3662"
+      >
+         </a
+      ><a name="3672" href="libraries.listLib.html#3621" class="Function"
+      >cor2</a
+      ><a name="3676"
+      > </a
+      ><a name="3677" class="Symbol"
+      >=</a
+      ><a name="3678"
+      > </a
+      ><a name="3679" href="libraries.listLib.html#3254" class="Function"
+      >corListOfElementsOfFinLength</a
+      ><a name="3707"
+      > </a
+      ><a name="3708" href="libraries.listLib.html#3405" class="Bound"
+      >n</a
+      ><a name="3709"
+      >
+
+         </a
+      ><a name="3720" href="libraries.listLib.html#3720" class="Function"
+      >cor3</a
+      ><a name="3724"
+      > </a
+      ><a name="3725" class="Symbol"
+      >:</a
+      ><a name="3726"
+      > </a
+      ><a name="3727" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="3733"
+      > </a
+      ><a name="3734" class="Symbol"
+      >(</a
+      ><a name="3735" href="libraries.listLib.html#257" class="Function"
+      >mapL</a
+      ><a name="3739"
+      > </a
+      ><a name="3740" class="Symbol"
+      >{</a
+      ><a name="3741" class="Argument"
+      >Y</a
+      ><a name="3742"
+      > </a
+      ><a name="3743" class="Symbol"
+      >=</a
+      ><a name="3744"
+      > </a
+      ><a name="3745" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="3748"
+      > </a
+      ><a name="3749" class="Symbol"
+      >(</a
+      ><a name="3750" href="Agda.Builtin.Nat.html#128" class="InductiveConstructor"
+      >suc</a
+      ><a name="3753"
+      > </a
+      ><a name="3754" href="libraries.listLib.html#3405" class="Bound"
+      >n</a
+      ><a name="3755" class="Symbol"
+      >)}</a
+      ><a name="3757"
+      > </a
+      ><a name="3758" class="Symbol"
+      >(&#955;</a
+      ><a name="3760"
+      > </a
+      ><a name="3761" href="libraries.listLib.html#3761" class="Bound"
+      >i</a
+      ><a name="3762"
+      > </a
+      ><a name="3763" class="Symbol"
+      >&#8594;</a
+      ><a name="3764"
+      > </a
+      ><a name="3765" href="Data.Fin.html#976" class="InductiveConstructor"
+      >suc</a
+      ><a name="3768"
+      > </a
+      ><a name="3769" href="libraries.listLib.html#3761" class="Bound"
+      >i</a
+      ><a name="3770" class="Symbol"
+      >)</a
+      ><a name="3771"
+      > </a
+      ><a name="3772" class="Symbol"
+      >(</a
+      ><a name="3773" href="libraries.listLib.html#3106" class="Function"
+      >listOfElementsOfFin</a
+      ><a name="3792"
+      > </a
+      ><a name="3793" href="libraries.listLib.html#3405" class="Bound"
+      >n</a
+      ><a name="3794" class="Symbol"
+      >))</a
+      ><a name="3796"
+      > </a
+      ><a name="3797" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="3798"
+      > </a
+      ><a name="3799" href="libraries.listLib.html#3405" class="Bound"
+      >n</a
+      ><a name="3800"
+      >
+         </a
+      ><a name="3810" href="libraries.listLib.html#3720" class="Function"
+      >cor3</a
+      ><a name="3814"
+      > </a
+      ><a name="3815" class="Symbol"
+      >=</a
+      ><a name="3816"
+      > </a
+      ><a name="3817" href="Relation.Binary.PropositionalEquality.Core.html#632" class="Function"
+      >trans</a
+      ><a name="3822"
+      > </a
+      ><a name="3823" href="libraries.listLib.html#3443" class="Function"
+      >cor1</a
+      ><a name="3827"
+      > </a
+      ><a name="3828" href="libraries.listLib.html#3621" class="Function"
+      >cor2</a
+      ><a name="3832"
+      >
+
+</a
+      ><a name="3834" class="Comment"
+      >-- subtract list consists of elements from the list which are about to</a
+      ><a name="3904"
+      >
+</a
+      ><a name="3905" class="Comment"
+      >-- be subtracted from it.</a
+      ><a name="3930"
+      >
+</a
+      ><a name="3931" class="Comment"
+      >-- every element of the list can be subtracted only once</a
+      ><a name="3987"
+      >
+</a
+      ><a name="3988" class="Comment"
+      >-- however since elements can occur multiple times they can still occur</a
+      ><a name="4059"
+      >
+</a
+      ><a name="4060" class="Comment"
+      >-- multiple times (as many times as they occur in the list) from the list</a
+      ><a name="4133"
+      >
+
+</a
+      ><a name="4135" class="Comment"
+      >--\listLib</a
+      ><a name="4145"
+      >
+</a
+      ><a name="4146" class="Keyword"
+      >data</a
+      ><a name="4150"
+      > </a
+      ><a name="4151" href="libraries.listLib.html#4151" class="Datatype"
+      >SubList</a
+      ><a name="4158"
+      > </a
+      ><a name="4159" class="Symbol"
+      >{</a
+      ><a name="4160" href="libraries.listLib.html#4160" class="Bound"
+      >X</a
+      ><a name="4161"
+      > </a
+      ><a name="4162" class="Symbol"
+      >:</a
+      ><a name="4163"
+      > </a
+      ><a name="4164" class="PrimitiveType"
+      >Set</a
+      ><a name="4167" class="Symbol"
+      >}</a
+      ><a name="4168"
+      > </a
+      ><a name="4169" class="Symbol"
+      >:</a
+      ><a name="4170"
+      > </a
+      ><a name="4171" class="Symbol"
+      >(</a
+      ><a name="4172" href="libraries.listLib.html#4172" class="Bound"
+      >l</a
+      ><a name="4173"
+      > </a
+      ><a name="4174" class="Symbol"
+      >:</a
+      ><a name="4175"
+      > </a
+      ><a name="4176" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="4180"
+      > </a
+      ><a name="4181" href="libraries.listLib.html#4160" class="Bound"
+      >X</a
+      ><a name="4182" class="Symbol"
+      >)</a
+      ><a name="4183"
+      > </a
+      ><a name="4184" class="Symbol"
+      >&#8594;</a
+      ><a name="4185"
+      > </a
+      ><a name="4186" class="PrimitiveType"
+      >Set</a
+      ><a name="4189"
+      > </a
+      ><a name="4190" class="Keyword"
+      >where</a
+      ><a name="4195"
+      >
+  </a
+      ><a name="4198" href="libraries.listLib.html#4198" class="InductiveConstructor"
+      >[]</a
+      ><a name="4200"
+      >    </a
+      ><a name="4204" class="Symbol"
+      >:</a
+      ><a name="4205"
+      >  </a
+      ><a name="4207" class="Symbol"
+      >{</a
+      ><a name="4208" href="libraries.listLib.html#4208" class="Bound"
+      >l</a
+      ><a name="4209"
+      > </a
+      ><a name="4210" class="Symbol"
+      >:</a
+      ><a name="4211"
+      > </a
+      ><a name="4212" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="4216"
+      > </a
+      ><a name="4217" href="libraries.listLib.html#4160" class="Bound"
+      >X</a
+      ><a name="4218" class="Symbol"
+      >}</a
+      ><a name="4219"
+      > </a
+      ><a name="4220" class="Symbol"
+      >&#8594;</a
+      ><a name="4221"
+      > </a
+      ><a name="4222" href="libraries.listLib.html#4151" class="Datatype"
+      >SubList</a
+      ><a name="4229"
+      > </a
+      ><a name="4230" href="libraries.listLib.html#4208" class="Bound"
+      >l</a
+      ><a name="4231"
+      >
+  </a
+      ><a name="4234" href="libraries.listLib.html#4234" class="InductiveConstructor"
+      >cons</a
+      ><a name="4238"
+      >  </a
+      ><a name="4240" class="Symbol"
+      >:</a
+      ><a name="4241"
+      >  </a
+      ><a name="4243" class="Symbol"
+      >{</a
+      ><a name="4244" href="libraries.listLib.html#4244" class="Bound"
+      >l</a
+      ><a name="4245"
+      > </a
+      ><a name="4246" class="Symbol"
+      >:</a
+      ><a name="4247"
+      > </a
+      ><a name="4248" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="4252"
+      > </a
+      ><a name="4253" href="libraries.listLib.html#4160" class="Bound"
+      >X</a
+      ><a name="4254" class="Symbol"
+      >}(</a
+      ><a name="4256" href="libraries.listLib.html#4256" class="Bound"
+      >i</a
+      ><a name="4257"
+      > </a
+      ><a name="4258" class="Symbol"
+      >:</a
+      ><a name="4259"
+      > </a
+      ><a name="4260" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="4263"
+      > </a
+      ><a name="4264" class="Symbol"
+      >(</a
+      ><a name="4265" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="4271"
+      > </a
+      ><a name="4272" href="libraries.listLib.html#4244" class="Bound"
+      >l</a
+      ><a name="4273" class="Symbol"
+      >))(</a
+      ><a name="4276" href="libraries.listLib.html#4276" class="Bound"
+      >o</a
+      ><a name="4277"
+      > </a
+      ><a name="4278" class="Symbol"
+      >:</a
+      ><a name="4279"
+      > </a
+      ><a name="4280" href="libraries.listLib.html#4151" class="Datatype"
+      >SubList</a
+      ><a name="4287"
+      > </a
+      ><a name="4288" class="Symbol"
+      >(</a
+      ><a name="4289" href="libraries.listLib.html#645" class="Function"
+      >delFromList</a
+      ><a name="4300"
+      > </a
+      ><a name="4301" href="libraries.listLib.html#4244" class="Bound"
+      >l</a
+      ><a name="4302"
+      > </a
+      ><a name="4303" href="libraries.listLib.html#4256" class="Bound"
+      >i</a
+      ><a name="4304" class="Symbol"
+      >))</a
+      ><a name="4306"
+      > </a
+      ><a name="4307" class="Symbol"
+      >&#8594;</a
+      ><a name="4308"
+      > </a
+      ><a name="4309" href="libraries.listLib.html#4151" class="Datatype"
+      >SubList</a
+      ><a name="4316"
+      > </a
+      ><a name="4317" href="libraries.listLib.html#4244" class="Bound"
+      >l</a
+      ><a name="4318"
+      >
+
+</a
+      ><a name="4320" class="Comment"
+      >--\listLib</a
+      ><a name="4330"
+      >
+</a
+      ><a name="4331" href="libraries.listLib.html#4331" class="Function"
+      >listMinusSubList</a
+      ><a name="4347"
+      > </a
+      ><a name="4348" class="Symbol"
+      >:</a
+      ><a name="4349"
+      > </a
+      ><a name="4350" class="Symbol"
+      >{</a
+      ><a name="4351" href="libraries.listLib.html#4351" class="Bound"
+      >X</a
+      ><a name="4352"
+      > </a
+      ><a name="4353" class="Symbol"
+      >:</a
+      ><a name="4354"
+      > </a
+      ><a name="4355" class="PrimitiveType"
+      >Set</a
+      ><a name="4358" class="Symbol"
+      >}(</a
+      ><a name="4360" href="libraries.listLib.html#4360" class="Bound"
+      >l</a
+      ><a name="4361"
+      > </a
+      ><a name="4362" class="Symbol"
+      >:</a
+      ><a name="4363"
+      > </a
+      ><a name="4364" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="4368"
+      > </a
+      ><a name="4369" href="libraries.listLib.html#4351" class="Bound"
+      >X</a
+      ><a name="4370" class="Symbol"
+      >)(</a
+      ><a name="4372" href="libraries.listLib.html#4372" class="Bound"
+      >o</a
+      ><a name="4373"
+      > </a
+      ><a name="4374" class="Symbol"
+      >:</a
+      ><a name="4375"
+      > </a
+      ><a name="4376" href="libraries.listLib.html#4151" class="Datatype"
+      >SubList</a
+      ><a name="4383"
+      > </a
+      ><a name="4384" href="libraries.listLib.html#4360" class="Bound"
+      >l</a
+      ><a name="4385" class="Symbol"
+      >)</a
+      ><a name="4386"
+      > </a
+      ><a name="4387" class="Symbol"
+      >&#8594;</a
+      ><a name="4388"
+      > </a
+      ><a name="4389" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="4393"
+      > </a
+      ><a name="4394" href="libraries.listLib.html#4351" class="Bound"
+      >X</a
+      ><a name="4395"
+      >
+</a
+      ><a name="4396" href="libraries.listLib.html#4331" class="Function"
+      >listMinusSubList</a
+      ><a name="4412"
+      > </a
+      ><a name="4413" href="libraries.listLib.html#4413" class="Bound"
+      >l</a
+      ><a name="4414"
+      > </a
+      ><a name="4415" href="libraries.listLib.html#4198" class="InductiveConstructor"
+      >[]</a
+      ><a name="4417"
+      >          </a
+      ><a name="4427" class="Symbol"
+      >=</a
+      ><a name="4428"
+      > </a
+      ><a name="4429" href="libraries.listLib.html#4413" class="Bound"
+      >l</a
+      ><a name="4430"
+      >
+</a
+      ><a name="4431" href="libraries.listLib.html#4331" class="Function"
+      >listMinusSubList</a
+      ><a name="4447"
+      > </a
+      ><a name="4448" href="libraries.listLib.html#4448" class="Bound"
+      >l</a
+      ><a name="4449"
+      > </a
+      ><a name="4450" class="Symbol"
+      >(</a
+      ><a name="4451" href="libraries.listLib.html#4234" class="InductiveConstructor"
+      >cons</a
+      ><a name="4455"
+      > </a
+      ><a name="4456" href="libraries.listLib.html#4456" class="Bound"
+      >i</a
+      ><a name="4457"
+      > </a
+      ><a name="4458" href="libraries.listLib.html#4458" class="Bound"
+      >o</a
+      ><a name="4459" class="Symbol"
+      >)</a
+      ><a name="4460"
+      >  </a
+      ><a name="4462" class="Symbol"
+      >=</a
+      ><a name="4463"
+      > </a
+      ><a name="4464" href="libraries.listLib.html#4331" class="Function"
+      >listMinusSubList</a
+      ><a name="4480"
+      > </a
+      ><a name="4481" class="Symbol"
+      >(</a
+      ><a name="4482" href="libraries.listLib.html#645" class="Function"
+      >delFromList</a
+      ><a name="4493"
+      > </a
+      ><a name="4494" href="libraries.listLib.html#4448" class="Bound"
+      >l</a
+      ><a name="4495"
+      > </a
+      ><a name="4496" href="libraries.listLib.html#4456" class="Bound"
+      >i</a
+      ><a name="4497" class="Symbol"
+      >)</a
+      ><a name="4498"
+      > </a
+      ><a name="4499" href="libraries.listLib.html#4458" class="Bound"
+      >o</a
+      ><a name="4500"
+      >
+
+</a
+      ><a name="4502" href="libraries.listLib.html#4502" class="Function"
+      >subList2List</a
+      ><a name="4514"
+      > </a
+      ><a name="4515" class="Symbol"
+      >:</a
+      ><a name="4516"
+      > </a
+      ><a name="4517" class="Symbol"
+      >{</a
+      ><a name="4518" href="libraries.listLib.html#4518" class="Bound"
+      >X</a
+      ><a name="4519"
+      > </a
+      ><a name="4520" class="Symbol"
+      >:</a
+      ><a name="4521"
+      > </a
+      ><a name="4522" class="PrimitiveType"
+      >Set</a
+      ><a name="4525" class="Symbol"
+      >}{</a
+      ><a name="4527" href="libraries.listLib.html#4527" class="Bound"
+      >l</a
+      ><a name="4528"
+      > </a
+      ><a name="4529" class="Symbol"
+      >:</a
+      ><a name="4530"
+      > </a
+      ><a name="4531" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="4535"
+      > </a
+      ><a name="4536" href="libraries.listLib.html#4518" class="Bound"
+      >X</a
+      ><a name="4537" class="Symbol"
+      >}(</a
+      ><a name="4539" href="libraries.listLib.html#4539" class="Bound"
+      >sl</a
+      ><a name="4541"
+      > </a
+      ><a name="4542" class="Symbol"
+      >:</a
+      ><a name="4543"
+      > </a
+      ><a name="4544" href="libraries.listLib.html#4151" class="Datatype"
+      >SubList</a
+      ><a name="4551"
+      > </a
+      ><a name="4552" href="libraries.listLib.html#4527" class="Bound"
+      >l</a
+      ><a name="4553" class="Symbol"
+      >)</a
+      ><a name="4554"
+      > </a
+      ><a name="4555" class="Symbol"
+      >&#8594;</a
+      ><a name="4556"
+      > </a
+      ><a name="4557" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="4561"
+      > </a
+      ><a name="4562" href="libraries.listLib.html#4518" class="Bound"
+      >X</a
+      ><a name="4563"
+      >
+</a
+      ><a name="4564" href="libraries.listLib.html#4502" class="Function"
+      >subList2List</a
+      ><a name="4576"
+      > </a
+      ><a name="4577" href="libraries.listLib.html#4198" class="InductiveConstructor"
+      >[]</a
+      ><a name="4579"
+      >                   </a
+      ><a name="4598" class="Symbol"
+      >=</a
+      ><a name="4599"
+      > </a
+      ><a name="4600" href="Agda.Builtin.List.html#117" class="InductiveConstructor"
+      >[]</a
+      ><a name="4602"
+      >
+</a
+      ><a name="4603" href="libraries.listLib.html#4502" class="Function"
+      >subList2List</a
+      ><a name="4615"
+      > </a
+      ><a name="4616" class="Symbol"
+      >{</a
+      ><a name="4617" class="Argument"
+      >l</a
+      ><a name="4618"
+      > </a
+      ><a name="4619" class="Symbol"
+      >=</a
+      ><a name="4620"
+      > </a
+      ><a name="4621" href="libraries.listLib.html#4621" class="Bound"
+      >l</a
+      ><a name="4622" class="Symbol"
+      >}</a
+      ><a name="4623"
+      > </a
+      ><a name="4624" class="Symbol"
+      >(</a
+      ><a name="4625" href="libraries.listLib.html#4234" class="InductiveConstructor"
+      >cons</a
+      ><a name="4629"
+      > </a
+      ><a name="4630" href="libraries.listLib.html#4630" class="Bound"
+      >i</a
+      ><a name="4631"
+      > </a
+      ><a name="4632" href="libraries.listLib.html#4632" class="Bound"
+      >sl</a
+      ><a name="4634" class="Symbol"
+      >)</a
+      ><a name="4635"
+      >  </a
+      ><a name="4637" class="Symbol"
+      >=</a
+      ><a name="4638"
+      > </a
+      ><a name="4639" href="libraries.listLib.html#530" class="Function"
+      >nth</a
+      ><a name="4642"
+      > </a
+      ><a name="4643" href="libraries.listLib.html#4621" class="Bound"
+      >l</a
+      ><a name="4644"
+      > </a
+      ><a name="4645" href="libraries.listLib.html#4630" class="Bound"
+      >i</a
+      ><a name="4646"
+      > </a
+      ><a name="4647" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="4648"
+      > </a
+      ><a name="4649" href="libraries.listLib.html#4502" class="Function"
+      >subList2List</a
+      ><a name="4661"
+      > </a
+      ><a name="4662" href="libraries.listLib.html#4632" class="Bound"
+      >sl</a
+      ><a name="4664"
+      >
+
+</a
+      ><a name="4666" class="Comment"
+      >--\listLib</a
+      ><a name="4676"
+      >
+</a
+      ><a name="4677" class="Keyword"
+      >data</a
+      ><a name="4681"
+      > </a
+      ><a name="4682" href="libraries.listLib.html#4682" class="Datatype"
+      >SubList+</a
+      ><a name="4690"
+      > </a
+      ><a name="4691" class="Symbol"
+      >{</a
+      ><a name="4692" href="libraries.listLib.html#4692" class="Bound"
+      >X</a
+      ><a name="4693"
+      > </a
+      ><a name="4694" class="Symbol"
+      >:</a
+      ><a name="4695"
+      > </a
+      ><a name="4696" class="PrimitiveType"
+      >Set</a
+      ><a name="4699" class="Symbol"
+      >}</a
+      ><a name="4700"
+      > </a
+      ><a name="4701" class="Symbol"
+      >(</a
+      ><a name="4702" href="libraries.listLib.html#4702" class="Bound"
+      >Y</a
+      ><a name="4703"
+      > </a
+      ><a name="4704" class="Symbol"
+      >:</a
+      ><a name="4705"
+      > </a
+      ><a name="4706" class="PrimitiveType"
+      >Set</a
+      ><a name="4709" class="Symbol"
+      >)</a
+      ><a name="4710"
+      > </a
+      ><a name="4711" class="Symbol"
+      >:</a
+      ><a name="4712"
+      > </a
+      ><a name="4713" class="Symbol"
+      >(</a
+      ><a name="4714" href="libraries.listLib.html#4714" class="Bound"
+      >l</a
+      ><a name="4715"
+      > </a
+      ><a name="4716" class="Symbol"
+      >:</a
+      ><a name="4717"
+      > </a
+      ><a name="4718" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="4722"
+      > </a
+      ><a name="4723" href="libraries.listLib.html#4692" class="Bound"
+      >X</a
+      ><a name="4724" class="Symbol"
+      >)</a
+      ><a name="4725"
+      > </a
+      ><a name="4726" class="Symbol"
+      >&#8594;</a
+      ><a name="4727"
+      > </a
+      ><a name="4728" class="PrimitiveType"
+      >Set</a
+      ><a name="4731"
+      > </a
+      ><a name="4732" class="Keyword"
+      >where</a
+      ><a name="4737"
+      >
+  </a
+      ><a name="4740" href="libraries.listLib.html#4740" class="InductiveConstructor"
+      >[]</a
+      ><a name="4742"
+      >   </a
+      ><a name="4745" class="Symbol"
+      >:</a
+      ><a name="4746"
+      >  </a
+      ><a name="4748" class="Symbol"
+      >{</a
+      ><a name="4749" href="libraries.listLib.html#4749" class="Bound"
+      >l</a
+      ><a name="4750"
+      > </a
+      ><a name="4751" class="Symbol"
+      >:</a
+      ><a name="4752"
+      > </a
+      ><a name="4753" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="4757"
+      > </a
+      ><a name="4758" href="libraries.listLib.html#4692" class="Bound"
+      >X</a
+      ><a name="4759" class="Symbol"
+      >}</a
+      ><a name="4760"
+      > </a
+      ><a name="4761" class="Symbol"
+      >&#8594;</a
+      ><a name="4762"
+      > </a
+      ><a name="4763" href="libraries.listLib.html#4682" class="Datatype"
+      >SubList+</a
+      ><a name="4771"
+      > </a
+      ><a name="4772" href="libraries.listLib.html#4702" class="Bound"
+      >Y</a
+      ><a name="4773"
+      > </a
+      ><a name="4774" href="libraries.listLib.html#4749" class="Bound"
+      >l</a
+      ><a name="4775"
+      >
+  </a
+      ><a name="4778" href="libraries.listLib.html#4778" class="InductiveConstructor"
+      >cons</a
+      ><a name="4782"
+      > </a
+      ><a name="4783" class="Symbol"
+      >:</a
+      ><a name="4784"
+      >  </a
+      ><a name="4786" class="Symbol"
+      >{</a
+      ><a name="4787" href="libraries.listLib.html#4787" class="Bound"
+      >l</a
+      ><a name="4788"
+      > </a
+      ><a name="4789" class="Symbol"
+      >:</a
+      ><a name="4790"
+      > </a
+      ><a name="4791" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="4795"
+      > </a
+      ><a name="4796" href="libraries.listLib.html#4692" class="Bound"
+      >X</a
+      ><a name="4797" class="Symbol"
+      >}(</a
+      ><a name="4799" href="libraries.listLib.html#4799" class="Bound"
+      >i</a
+      ><a name="4800"
+      > </a
+      ><a name="4801" class="Symbol"
+      >:</a
+      ><a name="4802"
+      > </a
+      ><a name="4803" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="4806"
+      > </a
+      ><a name="4807" class="Symbol"
+      >(</a
+      ><a name="4808" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="4814"
+      > </a
+      ><a name="4815" href="libraries.listLib.html#4787" class="Bound"
+      >l</a
+      ><a name="4816" class="Symbol"
+      >))(</a
+      ><a name="4819" href="libraries.listLib.html#4819" class="Bound"
+      >y</a
+      ><a name="4820"
+      > </a
+      ><a name="4821" class="Symbol"
+      >:</a
+      ><a name="4822"
+      > </a
+      ><a name="4823" href="libraries.listLib.html#4702" class="Bound"
+      >Y</a
+      ><a name="4824" class="Symbol"
+      >)(</a
+      ><a name="4826" href="libraries.listLib.html#4826" class="Bound"
+      >o</a
+      ><a name="4827"
+      > </a
+      ><a name="4828" class="Symbol"
+      >:</a
+      ><a name="4829"
+      > </a
+      ><a name="4830" href="libraries.listLib.html#4682" class="Datatype"
+      >SubList+</a
+      ><a name="4838"
+      > </a
+      ><a name="4839" href="libraries.listLib.html#4702" class="Bound"
+      >Y</a
+      ><a name="4840"
+      > </a
+      ><a name="4841" class="Symbol"
+      >(</a
+      ><a name="4842" href="libraries.listLib.html#645" class="Function"
+      >delFromList</a
+      ><a name="4853"
+      > </a
+      ><a name="4854" href="libraries.listLib.html#4787" class="Bound"
+      >l</a
+      ><a name="4855"
+      > </a
+      ><a name="4856" href="libraries.listLib.html#4799" class="Bound"
+      >i</a
+      ><a name="4857" class="Symbol"
+      >))</a
+      ><a name="4859"
+      >
+          </a
+      ><a name="4870" class="Symbol"
+      >&#8594;</a
+      ><a name="4871"
+      > </a
+      ><a name="4872" href="libraries.listLib.html#4682" class="Datatype"
+      >SubList+</a
+      ><a name="4880"
+      > </a
+      ><a name="4881" href="libraries.listLib.html#4702" class="Bound"
+      >Y</a
+      ><a name="4882"
+      > </a
+      ><a name="4883" href="libraries.listLib.html#4787" class="Bound"
+      >l</a
+      ><a name="4884"
+      >
+
+</a
+      ><a name="4886" class="Comment"
+      >--\listLib</a
+      ><a name="4896"
+      >
+</a
+      ><a name="4897" href="libraries.listLib.html#4897" class="Function"
+      >listMinusSubList+</a
+      ><a name="4914"
+      > </a
+      ><a name="4915" class="Symbol"
+      >:</a
+      ><a name="4916"
+      > </a
+      ><a name="4917" class="Symbol"
+      >{</a
+      ><a name="4918" href="libraries.listLib.html#4918" class="Bound"
+      >X</a
+      ><a name="4919"
+      > </a
+      ><a name="4920" href="libraries.listLib.html#4920" class="Bound"
+      >Y</a
+      ><a name="4921"
+      > </a
+      ><a name="4922" class="Symbol"
+      >:</a
+      ><a name="4923"
+      > </a
+      ><a name="4924" class="PrimitiveType"
+      >Set</a
+      ><a name="4927" class="Symbol"
+      >}(</a
+      ><a name="4929" href="libraries.listLib.html#4929" class="Bound"
+      >l</a
+      ><a name="4930"
+      > </a
+      ><a name="4931" class="Symbol"
+      >:</a
+      ><a name="4932"
+      > </a
+      ><a name="4933" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="4937"
+      > </a
+      ><a name="4938" href="libraries.listLib.html#4918" class="Bound"
+      >X</a
+      ><a name="4939" class="Symbol"
+      >)(</a
+      ><a name="4941" href="libraries.listLib.html#4941" class="Bound"
+      >o</a
+      ><a name="4942"
+      > </a
+      ><a name="4943" class="Symbol"
+      >:</a
+      ><a name="4944"
+      > </a
+      ><a name="4945" href="libraries.listLib.html#4682" class="Datatype"
+      >SubList+</a
+      ><a name="4953"
+      > </a
+      ><a name="4954" href="libraries.listLib.html#4920" class="Bound"
+      >Y</a
+      ><a name="4955"
+      > </a
+      ><a name="4956" href="libraries.listLib.html#4929" class="Bound"
+      >l</a
+      ><a name="4957" class="Symbol"
+      >)</a
+      ><a name="4958"
+      > </a
+      ><a name="4959" class="Symbol"
+      >&#8594;</a
+      ><a name="4960"
+      > </a
+      ><a name="4961" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="4965"
+      > </a
+      ><a name="4966" href="libraries.listLib.html#4918" class="Bound"
+      >X</a
+      ><a name="4967"
+      >
+
+</a
+      ><a name="4969" href="libraries.listLib.html#4897" class="Function"
+      >listMinusSubList+</a
+      ><a name="4986"
+      > </a
+      ><a name="4987" href="libraries.listLib.html#4987" class="Bound"
+      >l</a
+      ><a name="4988"
+      > </a
+      ><a name="4989" href="libraries.listLib.html#4740" class="InductiveConstructor"
+      >[]</a
+      ><a name="4991"
+      > </a
+      ><a name="4992" class="Symbol"
+      >=</a
+      ><a name="4993"
+      > </a
+      ><a name="4994" href="libraries.listLib.html#4987" class="Bound"
+      >l</a
+      ><a name="4995"
+      >
+</a
+      ><a name="4996" href="libraries.listLib.html#4897" class="Function"
+      >listMinusSubList+</a
+      ><a name="5013"
+      > </a
+      ><a name="5014" href="libraries.listLib.html#5014" class="Bound"
+      >l</a
+      ><a name="5015"
+      > </a
+      ><a name="5016" class="Symbol"
+      >(</a
+      ><a name="5017" href="libraries.listLib.html#4778" class="InductiveConstructor"
+      >cons</a
+      ><a name="5021"
+      > </a
+      ><a name="5022" href="libraries.listLib.html#5022" class="Bound"
+      >i</a
+      ><a name="5023"
+      > </a
+      ><a name="5024" href="libraries.listLib.html#5024" class="Bound"
+      >y</a
+      ><a name="5025"
+      > </a
+      ><a name="5026" href="libraries.listLib.html#5026" class="Bound"
+      >o</a
+      ><a name="5027" class="Symbol"
+      >)</a
+      ><a name="5028"
+      > </a
+      ><a name="5029" class="Symbol"
+      >=</a
+      ><a name="5030"
+      > </a
+      ><a name="5031" href="libraries.listLib.html#4897" class="Function"
+      >listMinusSubList+</a
+      ><a name="5048"
+      > </a
+      ><a name="5049" class="Symbol"
+      >(</a
+      ><a name="5050" href="libraries.listLib.html#645" class="Function"
+      >delFromList</a
+      ><a name="5061"
+      > </a
+      ><a name="5062" href="libraries.listLib.html#5014" class="Bound"
+      >l</a
+      ><a name="5063"
+      > </a
+      ><a name="5064" href="libraries.listLib.html#5022" class="Bound"
+      >i</a
+      ><a name="5065" class="Symbol"
+      >)</a
+      ><a name="5066"
+      > </a
+      ><a name="5067" href="libraries.listLib.html#5026" class="Bound"
+      >o</a
+      ><a name="5068"
+      >
+
+
+</a
+      ><a name="5071" class="Comment"
+      >-- needed fromutxo2Msg</a
+      ><a name="5093"
+      >
+</a
+      ><a name="5094" class="Comment"
+      >--\listLib</a
+      ><a name="5104"
+      >
+</a
+      ><a name="5105" href="libraries.listLib.html#5105" class="Function"
+      >subList+2List</a
+      ><a name="5118"
+      > </a
+      ><a name="5119" class="Symbol"
+      >:</a
+      ><a name="5120"
+      > </a
+      ><a name="5121" class="Symbol"
+      >{</a
+      ><a name="5122" href="libraries.listLib.html#5122" class="Bound"
+      >X</a
+      ><a name="5123"
+      > </a
+      ><a name="5124" href="libraries.listLib.html#5124" class="Bound"
+      >Y</a
+      ><a name="5125"
+      > </a
+      ><a name="5126" class="Symbol"
+      >:</a
+      ><a name="5127"
+      > </a
+      ><a name="5128" class="PrimitiveType"
+      >Set</a
+      ><a name="5131" class="Symbol"
+      >}{</a
+      ><a name="5133" href="libraries.listLib.html#5133" class="Bound"
+      >l</a
+      ><a name="5134"
+      > </a
+      ><a name="5135" class="Symbol"
+      >:</a
+      ><a name="5136"
+      > </a
+      ><a name="5137" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="5141"
+      > </a
+      ><a name="5142" href="libraries.listLib.html#5122" class="Bound"
+      >X</a
+      ><a name="5143" class="Symbol"
+      >}(</a
+      ><a name="5145" href="libraries.listLib.html#5145" class="Bound"
+      >sl</a
+      ><a name="5147"
+      > </a
+      ><a name="5148" class="Symbol"
+      >:</a
+      ><a name="5149"
+      > </a
+      ><a name="5150" href="libraries.listLib.html#4682" class="Datatype"
+      >SubList+</a
+      ><a name="5158"
+      > </a
+      ><a name="5159" href="libraries.listLib.html#5124" class="Bound"
+      >Y</a
+      ><a name="5160"
+      > </a
+      ><a name="5161" href="libraries.listLib.html#5133" class="Bound"
+      >l</a
+      ><a name="5162" class="Symbol"
+      >)</a
+      ><a name="5163"
+      > </a
+      ><a name="5164" class="Symbol"
+      >&#8594;</a
+      ><a name="5165"
+      > </a
+      ><a name="5166" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="5170"
+      > </a
+      ><a name="5171" class="Symbol"
+      >(</a
+      ><a name="5172" href="libraries.listLib.html#5122" class="Bound"
+      >X</a
+      ><a name="5173"
+      > </a
+      ><a name="5174" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="5175"
+      > </a
+      ><a name="5176" href="libraries.listLib.html#5124" class="Bound"
+      >Y</a
+      ><a name="5177" class="Symbol"
+      >)</a
+      ><a name="5178"
+      >
+
+</a
+      ><a name="5180" href="libraries.listLib.html#5105" class="Function"
+      >subList+2List</a
+      ><a name="5193"
+      > </a
+      ><a name="5194" href="libraries.listLib.html#4740" class="InductiveConstructor"
+      >[]</a
+      ><a name="5196"
+      > </a
+      ><a name="5197" class="Symbol"
+      >=</a
+      ><a name="5198"
+      > </a
+      ><a name="5199" href="Agda.Builtin.List.html#117" class="InductiveConstructor"
+      >[]</a
+      ><a name="5201"
+      >
+</a
+      ><a name="5202" href="libraries.listLib.html#5105" class="Function"
+      >subList+2List</a
+      ><a name="5215"
+      > </a
+      ><a name="5216" class="Symbol"
+      >{</a
+      ><a name="5217" href="libraries.listLib.html#5217" class="Bound"
+      >X</a
+      ><a name="5218" class="Symbol"
+      >}</a
+      ><a name="5219"
+      > </a
+      ><a name="5220" class="Symbol"
+      >{</a
+      ><a name="5221" href="libraries.listLib.html#5221" class="Bound"
+      >Y</a
+      ><a name="5222" class="Symbol"
+      >}</a
+      ><a name="5223"
+      > </a
+      ><a name="5224" class="Symbol"
+      >{</a
+      ><a name="5225" href="libraries.listLib.html#5225" class="Bound"
+      >l</a
+      ><a name="5226" class="Symbol"
+      >}</a
+      ><a name="5227"
+      > </a
+      ><a name="5228" class="Symbol"
+      >(</a
+      ><a name="5229" href="libraries.listLib.html#4778" class="InductiveConstructor"
+      >cons</a
+      ><a name="5233"
+      > </a
+      ><a name="5234" href="libraries.listLib.html#5234" class="Bound"
+      >i</a
+      ><a name="5235"
+      > </a
+      ><a name="5236" href="libraries.listLib.html#5236" class="Bound"
+      >y</a
+      ><a name="5237"
+      > </a
+      ><a name="5238" href="libraries.listLib.html#5238" class="Bound"
+      >sl</a
+      ><a name="5240" class="Symbol"
+      >)</a
+      ><a name="5241"
+      > </a
+      ><a name="5242" class="Symbol"
+      >=</a
+      ><a name="5243"
+      > </a
+      ><a name="5244" class="Symbol"
+      >(</a
+      ><a name="5245" href="libraries.listLib.html#530" class="Function"
+      >nth</a
+      ><a name="5248"
+      > </a
+      ><a name="5249" href="libraries.listLib.html#5225" class="Bound"
+      >l</a
+      ><a name="5250"
+      > </a
+      ><a name="5251" href="libraries.listLib.html#5234" class="Bound"
+      >i</a
+      ><a name="5252"
+      > </a
+      ><a name="5253" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="5254"
+      > </a
+      ><a name="5255" href="libraries.listLib.html#5236" class="Bound"
+      >y</a
+      ><a name="5256" class="Symbol"
+      >)</a
+      ><a name="5257"
+      > </a
+      ><a name="5258" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="5259"
+      > </a
+      ><a name="5260" href="libraries.listLib.html#5105" class="Function"
+      >subList+2List</a
+      ><a name="5273"
+      > </a
+      ><a name="5274" href="libraries.listLib.html#5238" class="Bound"
+      >sl</a
+      ><a name="5276"
+      >
+
+</a
+      ><a name="5278" class="Comment"
+      >--\listLib</a
+      ><a name="5288"
+      >
+</a
+      ><a name="5289" href="libraries.listLib.html#5289" class="Function"
+      >listMinusSubList+Index2OrgIndex</a
+      ><a name="5320"
+      > </a
+      ><a name="5321" class="Symbol"
+      >:</a
+      ><a name="5322"
+      > </a
+      ><a name="5323" class="Symbol"
+      >{</a
+      ><a name="5324" href="libraries.listLib.html#5324" class="Bound"
+      >X</a
+      ><a name="5325"
+      > </a
+      ><a name="5326" href="libraries.listLib.html#5326" class="Bound"
+      >Y</a
+      ><a name="5327"
+      > </a
+      ><a name="5328" class="Symbol"
+      >:</a
+      ><a name="5329"
+      > </a
+      ><a name="5330" class="PrimitiveType"
+      >Set</a
+      ><a name="5333" class="Symbol"
+      >}(</a
+      ><a name="5335" href="libraries.listLib.html#5335" class="Bound"
+      >l</a
+      ><a name="5336"
+      > </a
+      ><a name="5337" class="Symbol"
+      >:</a
+      ><a name="5338"
+      > </a
+      ><a name="5339" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="5343"
+      > </a
+      ><a name="5344" href="libraries.listLib.html#5324" class="Bound"
+      >X</a
+      ><a name="5345" class="Symbol"
+      >)(</a
+      ><a name="5347" href="libraries.listLib.html#5347" class="Bound"
+      >o</a
+      ><a name="5348"
+      > </a
+      ><a name="5349" class="Symbol"
+      >:</a
+      ><a name="5350"
+      > </a
+      ><a name="5351" href="libraries.listLib.html#4682" class="Datatype"
+      >SubList+</a
+      ><a name="5359"
+      > </a
+      ><a name="5360" href="libraries.listLib.html#5326" class="Bound"
+      >Y</a
+      ><a name="5361"
+      > </a
+      ><a name="5362" href="libraries.listLib.html#5335" class="Bound"
+      >l</a
+      ><a name="5363" class="Symbol"
+      >)</a
+      ><a name="5364"
+      >
+                                  </a
+      ><a name="5399" class="Symbol"
+      >(</a
+      ><a name="5400" href="libraries.listLib.html#5400" class="Bound"
+      >i</a
+      ><a name="5401"
+      > </a
+      ><a name="5402" class="Symbol"
+      >:</a
+      ><a name="5403"
+      > </a
+      ><a name="5404" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="5407"
+      > </a
+      ><a name="5408" class="Symbol"
+      >(</a
+      ><a name="5409" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="5415"
+      > </a
+      ><a name="5416" class="Symbol"
+      >(</a
+      ><a name="5417" href="libraries.listLib.html#4897" class="Function"
+      >listMinusSubList+</a
+      ><a name="5434"
+      > </a
+      ><a name="5435" href="libraries.listLib.html#5335" class="Bound"
+      >l</a
+      ><a name="5436"
+      > </a
+      ><a name="5437" href="libraries.listLib.html#5347" class="Bound"
+      >o</a
+      ><a name="5438" class="Symbol"
+      >)))</a
+      ><a name="5441"
+      > </a
+      ><a name="5442" class="Symbol"
+      >&#8594;</a
+      ><a name="5443"
+      > </a
+      ><a name="5444" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="5447"
+      > </a
+      ><a name="5448" class="Symbol"
+      >(</a
+      ><a name="5449" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="5455"
+      > </a
+      ><a name="5456" href="libraries.listLib.html#5335" class="Bound"
+      >l</a
+      ><a name="5457" class="Symbol"
+      >)</a
+      ><a name="5458"
+      >
+
+</a
+      ><a name="5460" href="libraries.listLib.html#5289" class="Function"
+      >listMinusSubList+Index2OrgIndex</a
+      ><a name="5491"
+      > </a
+      ><a name="5492" href="libraries.listLib.html#5492" class="Bound"
+      >l</a
+      ><a name="5493"
+      > </a
+      ><a name="5494" href="libraries.listLib.html#4740" class="InductiveConstructor"
+      >[]</a
+      ><a name="5496"
+      > </a
+      ><a name="5497" href="libraries.listLib.html#5497" class="Bound"
+      >i</a
+      ><a name="5498"
+      >              </a
+      ><a name="5512" class="Symbol"
+      >=</a
+      ><a name="5513"
+      > </a
+      ><a name="5514" href="libraries.listLib.html#5497" class="Bound"
+      >i</a
+      ><a name="5515"
+      >
+</a
+      ><a name="5516" href="libraries.listLib.html#5289" class="Function"
+      >listMinusSubList+Index2OrgIndex</a
+      ><a name="5547"
+      > </a
+      ><a name="5548" href="libraries.listLib.html#5548" class="Bound"
+      >l</a
+      ><a name="5549"
+      > </a
+      ><a name="5550" class="Symbol"
+      >(</a
+      ><a name="5551" href="libraries.listLib.html#4778" class="InductiveConstructor"
+      >cons</a
+      ><a name="5555"
+      > </a
+      ><a name="5556" href="libraries.listLib.html#5556" class="Bound"
+      >i&#8321;</a
+      ><a name="5558"
+      > </a
+      ><a name="5559" href="libraries.listLib.html#5559" class="Bound"
+      >y</a
+      ><a name="5560"
+      > </a
+      ><a name="5561" href="libraries.listLib.html#5561" class="Bound"
+      >o</a
+      ><a name="5562" class="Symbol"
+      >)</a
+      ><a name="5563"
+      > </a
+      ><a name="5564" href="libraries.listLib.html#5564" class="Bound"
+      >i</a
+      ><a name="5565"
+      >   </a
+      ><a name="5568" class="Symbol"
+      >=</a
+      ><a name="5569"
+      >
+         </a
+      ><a name="5579" href="libraries.listLib.html#868" class="Function"
+      >delFromListIndexToOrigIndex</a
+      ><a name="5606"
+      > </a
+      ><a name="5607" href="libraries.listLib.html#5548" class="Bound"
+      >l</a
+      ><a name="5608"
+      > </a
+      ><a name="5609" href="libraries.listLib.html#5556" class="Bound"
+      >i&#8321;</a
+      ><a name="5611"
+      > </a
+      ><a name="5612" class="Symbol"
+      >(</a
+      ><a name="5613" href="libraries.listLib.html#5289" class="Function"
+      >listMinusSubList+Index2OrgIndex</a
+      ><a name="5644"
+      > </a
+      ><a name="5645" class="Symbol"
+      >(</a
+      ><a name="5646" href="libraries.listLib.html#645" class="Function"
+      >delFromList</a
+      ><a name="5657"
+      > </a
+      ><a name="5658" href="libraries.listLib.html#5548" class="Bound"
+      >l</a
+      ><a name="5659"
+      > </a
+      ><a name="5660" href="libraries.listLib.html#5556" class="Bound"
+      >i&#8321;</a
+      ><a name="5662" class="Symbol"
+      >)</a
+      ><a name="5663"
+      > </a
+      ><a name="5664" href="libraries.listLib.html#5561" class="Bound"
+      >o</a
+      ><a name="5665"
+      > </a
+      ><a name="5666" href="libraries.listLib.html#5564" class="Bound"
+      >i</a
+      ><a name="5667" class="Symbol"
+      >)</a
+      ><a name="5668"
+      >
+
+</a
+      ><a name="5670" href="libraries.listLib.html#5670" class="Function"
+      >corListMinusSubList+Index2OrgIndex</a
+      ><a name="5704"
+      > </a
+      ><a name="5705" class="Symbol"
+      >:</a
+      ><a name="5706"
+      > </a
+      ><a name="5707" class="Symbol"
+      >{</a
+      ><a name="5708" href="libraries.listLib.html#5708" class="Bound"
+      >X</a
+      ><a name="5709"
+      > </a
+      ><a name="5710" href="libraries.listLib.html#5710" class="Bound"
+      >Y</a
+      ><a name="5711"
+      > </a
+      ><a name="5712" class="Symbol"
+      >:</a
+      ><a name="5713"
+      > </a
+      ><a name="5714" class="PrimitiveType"
+      >Set</a
+      ><a name="5717" class="Symbol"
+      >}(</a
+      ><a name="5719" href="libraries.listLib.html#5719" class="Bound"
+      >l</a
+      ><a name="5720"
+      > </a
+      ><a name="5721" class="Symbol"
+      >:</a
+      ><a name="5722"
+      > </a
+      ><a name="5723" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="5727"
+      > </a
+      ><a name="5728" href="libraries.listLib.html#5708" class="Bound"
+      >X</a
+      ><a name="5729" class="Symbol"
+      >)(</a
+      ><a name="5731" href="libraries.listLib.html#5731" class="Bound"
+      >o</a
+      ><a name="5732"
+      > </a
+      ><a name="5733" class="Symbol"
+      >:</a
+      ><a name="5734"
+      > </a
+      ><a name="5735" href="libraries.listLib.html#4682" class="Datatype"
+      >SubList+</a
+      ><a name="5743"
+      > </a
+      ><a name="5744" href="libraries.listLib.html#5710" class="Bound"
+      >Y</a
+      ><a name="5745"
+      > </a
+      ><a name="5746" href="libraries.listLib.html#5719" class="Bound"
+      >l</a
+      ><a name="5747" class="Symbol"
+      >)</a
+      ><a name="5748"
+      >
+                                  </a
+      ><a name="5783" class="Symbol"
+      >(</a
+      ><a name="5784" href="libraries.listLib.html#5784" class="Bound"
+      >i</a
+      ><a name="5785"
+      > </a
+      ><a name="5786" class="Symbol"
+      >:</a
+      ><a name="5787"
+      > </a
+      ><a name="5788" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="5791"
+      > </a
+      ><a name="5792" class="Symbol"
+      >(</a
+      ><a name="5793" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="5799"
+      > </a
+      ><a name="5800" class="Symbol"
+      >(</a
+      ><a name="5801" href="libraries.listLib.html#4897" class="Function"
+      >listMinusSubList+</a
+      ><a name="5818"
+      > </a
+      ><a name="5819" href="libraries.listLib.html#5719" class="Bound"
+      >l</a
+      ><a name="5820"
+      > </a
+      ><a name="5821" href="libraries.listLib.html#5731" class="Bound"
+      >o</a
+      ><a name="5822" class="Symbol"
+      >)))</a
+      ><a name="5825"
+      >
+                                  </a
+      ><a name="5860" class="Symbol"
+      >&#8594;</a
+      ><a name="5861"
+      > </a
+      ><a name="5862" href="libraries.listLib.html#530" class="Function"
+      >nth</a
+      ><a name="5865"
+      > </a
+      ><a name="5866" class="Symbol"
+      >(</a
+      ><a name="5867" href="libraries.listLib.html#4897" class="Function"
+      >listMinusSubList+</a
+      ><a name="5884"
+      > </a
+      ><a name="5885" href="libraries.listLib.html#5719" class="Bound"
+      >l</a
+      ><a name="5886"
+      > </a
+      ><a name="5887" href="libraries.listLib.html#5731" class="Bound"
+      >o</a
+      ><a name="5888" class="Symbol"
+      >)</a
+      ><a name="5889"
+      > </a
+      ><a name="5890" href="libraries.listLib.html#5784" class="Bound"
+      >i</a
+      ><a name="5891"
+      >
+                                      </a
+      ><a name="5930" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="5931"
+      > </a
+      ><a name="5932" href="libraries.listLib.html#530" class="Function"
+      >nth</a
+      ><a name="5935"
+      > </a
+      ><a name="5936" href="libraries.listLib.html#5719" class="Bound"
+      >l</a
+      ><a name="5937"
+      > </a
+      ><a name="5938" class="Symbol"
+      >(</a
+      ><a name="5939" href="libraries.listLib.html#5289" class="Function"
+      >listMinusSubList+Index2OrgIndex</a
+      ><a name="5970"
+      > </a
+      ><a name="5971" href="libraries.listLib.html#5719" class="Bound"
+      >l</a
+      ><a name="5972"
+      > </a
+      ><a name="5973" href="libraries.listLib.html#5731" class="Bound"
+      >o</a
+      ><a name="5974"
+      > </a
+      ><a name="5975" href="libraries.listLib.html#5784" class="Bound"
+      >i</a
+      ><a name="5976" class="Symbol"
+      >)</a
+      ><a name="5977"
+      >
+</a
+      ><a name="5978" href="libraries.listLib.html#5670" class="Function"
+      >corListMinusSubList+Index2OrgIndex</a
+      ><a name="6012"
+      > </a
+      ><a name="6013" href="libraries.listLib.html#6013" class="Bound"
+      >l</a
+      ><a name="6014"
+      > </a
+      ><a name="6015" href="libraries.listLib.html#4740" class="InductiveConstructor"
+      >[]</a
+      ><a name="6017"
+      > </a
+      ><a name="6018" href="libraries.listLib.html#6018" class="Bound"
+      >i</a
+      ><a name="6019"
+      > </a
+      ><a name="6020" class="Symbol"
+      >=</a
+      ><a name="6021"
+      > </a
+      ><a name="6022" href="Agda.Builtin.Equality.html#140" class="InductiveConstructor"
+      >refl</a
+      ><a name="6026"
+      >
+</a
+      ><a name="6027" href="libraries.listLib.html#5670" class="Function"
+      >corListMinusSubList+Index2OrgIndex</a
+      ><a name="6061"
+      > </a
+      ><a name="6062" href="Agda.Builtin.List.html#117" class="InductiveConstructor"
+      >[]</a
+      ><a name="6064"
+      > </a
+      ><a name="6065" class="Symbol"
+      >(</a
+      ><a name="6066" href="libraries.listLib.html#4778" class="InductiveConstructor"
+      >cons</a
+      ><a name="6070"
+      > </a
+      ><a name="6071" class="Symbol"
+      >()</a
+      ><a name="6073"
+      > </a
+      ><a name="6074" href="libraries.listLib.html#6074" class="Bound"
+      >y</a
+      ><a name="6075"
+      > </a
+      ><a name="6076" href="libraries.listLib.html#6076" class="Bound"
+      >o</a
+      ><a name="6077" class="Symbol"
+      >)</a
+      ><a name="6078"
+      > </a
+      ><a name="6079" href="libraries.listLib.html#6079" class="Bound"
+      >i</a
+      ><a name="6080"
+      >
+</a
+      ><a name="6081" href="libraries.listLib.html#5670" class="Function"
+      >corListMinusSubList+Index2OrgIndex</a
+      ><a name="6115"
+      > </a
+      ><a name="6116" class="Symbol"
+      >(</a
+      ><a name="6117" href="libraries.listLib.html#6117" class="Bound"
+      >x</a
+      ><a name="6118"
+      > </a
+      ><a name="6119" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="6120"
+      > </a
+      ><a name="6121" href="libraries.listLib.html#6121" class="Bound"
+      >l</a
+      ><a name="6122" class="Symbol"
+      >)</a
+      ><a name="6123"
+      > </a
+      ><a name="6124" class="Symbol"
+      >(</a
+      ><a name="6125" href="libraries.listLib.html#4778" class="InductiveConstructor"
+      >cons</a
+      ><a name="6129"
+      > </a
+      ><a name="6130" href="Data.Fin.html#945" class="InductiveConstructor"
+      >zero</a
+      ><a name="6134"
+      > </a
+      ><a name="6135" href="libraries.listLib.html#6135" class="Bound"
+      >y</a
+      ><a name="6136"
+      > </a
+      ><a name="6137" href="libraries.listLib.html#6137" class="Bound"
+      >o</a
+      ><a name="6138" class="Symbol"
+      >)</a
+      ><a name="6139"
+      > </a
+      ><a name="6140" href="libraries.listLib.html#6140" class="Bound"
+      >i</a
+      ><a name="6141"
+      > </a
+      ><a name="6142" class="Symbol"
+      >=</a
+      ><a name="6143"
+      > </a
+      ><a name="6144" href="libraries.listLib.html#5670" class="Function"
+      >corListMinusSubList+Index2OrgIndex</a
+      ><a name="6178"
+      > </a
+      ><a name="6179" href="libraries.listLib.html#6121" class="Bound"
+      >l</a
+      ><a name="6180"
+      > </a
+      ><a name="6181" href="libraries.listLib.html#6137" class="Bound"
+      >o</a
+      ><a name="6182"
+      > </a
+      ><a name="6183" href="libraries.listLib.html#6140" class="Bound"
+      >i</a
+      ><a name="6184"
+      >
+</a
+      ><a name="6185" href="libraries.listLib.html#5670" class="Function"
+      >corListMinusSubList+Index2OrgIndex</a
+      ><a name="6219"
+      > </a
+      ><a name="6220" class="Symbol"
+      >(</a
+      ><a name="6221" href="libraries.listLib.html#6221" class="Bound"
+      >x</a
+      ><a name="6222"
+      > </a
+      ><a name="6223" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="6224"
+      > </a
+      ><a name="6225" href="libraries.listLib.html#6225" class="Bound"
+      >l</a
+      ><a name="6226" class="Symbol"
+      >)</a
+      ><a name="6227"
+      > </a
+      ><a name="6228" class="Symbol"
+      >(</a
+      ><a name="6229" href="libraries.listLib.html#4778" class="InductiveConstructor"
+      >cons</a
+      ><a name="6233"
+      > </a
+      ><a name="6234" class="Symbol"
+      >(</a
+      ><a name="6235" href="Data.Fin.html#976" class="InductiveConstructor"
+      >suc</a
+      ><a name="6238"
+      > </a
+      ><a name="6239" href="libraries.listLib.html#6239" class="Bound"
+      >i&#8321;</a
+      ><a name="6241" class="Symbol"
+      >)</a
+      ><a name="6242"
+      > </a
+      ><a name="6243" href="libraries.listLib.html#6243" class="Bound"
+      >y</a
+      ><a name="6244"
+      > </a
+      ><a name="6245" href="libraries.listLib.html#6245" class="Bound"
+      >o</a
+      ><a name="6246" class="Symbol"
+      >)</a
+      ><a name="6247"
+      > </a
+      ><a name="6248" href="libraries.listLib.html#6248" class="Bound"
+      >i</a
+      ><a name="6249"
+      > </a
+      ><a name="6250" class="Symbol"
+      >=</a
+      ><a name="6251"
+      > </a
+      ><a name="6252" href="Relation.Binary.PropositionalEquality.Core.html#632" class="Function"
+      >trans</a
+      ><a name="6257"
+      > </a
+      ><a name="6258" href="libraries.listLib.html#6287" class="Function"
+      >eq1</a
+      ><a name="6261"
+      > </a
+      ><a name="6262" href="libraries.listLib.html#6554" class="Function"
+      >eq2</a
+      ><a name="6265"
+      >
+      </a
+      ><a name="6272" class="Keyword"
+      >where</a
+      ><a name="6277"
+      >
+         </a
+      ><a name="6287" href="libraries.listLib.html#6287" class="Function"
+      >eq1</a
+      ><a name="6290"
+      > </a
+      ><a name="6291" class="Symbol"
+      >:</a
+      ><a name="6292"
+      > </a
+      ><a name="6293" href="libraries.listLib.html#530" class="Function"
+      >nth</a
+      ><a name="6296"
+      > </a
+      ><a name="6297" class="Symbol"
+      >(</a
+      ><a name="6298" href="libraries.listLib.html#4897" class="Function"
+      >listMinusSubList+</a
+      ><a name="6315"
+      > </a
+      ><a name="6316" class="Symbol"
+      >(</a
+      ><a name="6317" href="libraries.listLib.html#6221" class="Bound"
+      >x</a
+      ><a name="6318"
+      > </a
+      ><a name="6319" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="6320"
+      > </a
+      ><a name="6321" href="libraries.listLib.html#645" class="Function"
+      >delFromList</a
+      ><a name="6332"
+      > </a
+      ><a name="6333" href="libraries.listLib.html#6225" class="Bound"
+      >l</a
+      ><a name="6334"
+      > </a
+      ><a name="6335" href="libraries.listLib.html#6239" class="Bound"
+      >i&#8321;</a
+      ><a name="6337" class="Symbol"
+      >)</a
+      ><a name="6338"
+      > </a
+      ><a name="6339" href="libraries.listLib.html#6245" class="Bound"
+      >o</a
+      ><a name="6340" class="Symbol"
+      >)</a
+      ><a name="6341"
+      > </a
+      ><a name="6342" href="libraries.listLib.html#6248" class="Bound"
+      >i</a
+      ><a name="6343"
+      > </a
+      ><a name="6344" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="6345"
+      >
+               </a
+      ><a name="6361" href="libraries.listLib.html#530" class="Function"
+      >nth</a
+      ><a name="6364"
+      > </a
+      ><a name="6365" class="Symbol"
+      >(</a
+      ><a name="6366" href="libraries.listLib.html#6221" class="Bound"
+      >x</a
+      ><a name="6367"
+      > </a
+      ><a name="6368" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="6369"
+      > </a
+      ><a name="6370" href="libraries.listLib.html#645" class="Function"
+      >delFromList</a
+      ><a name="6381"
+      > </a
+      ><a name="6382" href="libraries.listLib.html#6225" class="Bound"
+      >l</a
+      ><a name="6383"
+      > </a
+      ><a name="6384" href="libraries.listLib.html#6239" class="Bound"
+      >i&#8321;</a
+      ><a name="6386" class="Symbol"
+      >)</a
+      ><a name="6387"
+      >
+                  </a
+      ><a name="6406" class="Symbol"
+      >(</a
+      ><a name="6407" href="libraries.listLib.html#5289" class="Function"
+      >listMinusSubList+Index2OrgIndex</a
+      ><a name="6438"
+      > </a
+      ><a name="6439" class="Symbol"
+      >(</a
+      ><a name="6440" href="libraries.listLib.html#6221" class="Bound"
+      >x</a
+      ><a name="6441"
+      > </a
+      ><a name="6442" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="6443"
+      > </a
+      ><a name="6444" href="libraries.listLib.html#645" class="Function"
+      >delFromList</a
+      ><a name="6455"
+      > </a
+      ><a name="6456" href="libraries.listLib.html#6225" class="Bound"
+      >l</a
+      ><a name="6457"
+      > </a
+      ><a name="6458" href="libraries.listLib.html#6239" class="Bound"
+      >i&#8321;</a
+      ><a name="6460" class="Symbol"
+      >)</a
+      ><a name="6461"
+      > </a
+      ><a name="6462" href="libraries.listLib.html#6245" class="Bound"
+      >o</a
+      ><a name="6463"
+      > </a
+      ><a name="6464" href="libraries.listLib.html#6248" class="Bound"
+      >i</a
+      ><a name="6465" class="Symbol"
+      >)</a
+      ><a name="6466"
+      >
+         </a
+      ><a name="6476" href="libraries.listLib.html#6287" class="Function"
+      >eq1</a
+      ><a name="6479"
+      > </a
+      ><a name="6480" class="Symbol"
+      >=</a
+      ><a name="6481"
+      > </a
+      ><a name="6482" href="libraries.listLib.html#5670" class="Function"
+      >corListMinusSubList+Index2OrgIndex</a
+      ><a name="6516"
+      > </a
+      ><a name="6517" class="Symbol"
+      >(</a
+      ><a name="6518" href="libraries.listLib.html#6221" class="Bound"
+      >x</a
+      ><a name="6519"
+      > </a
+      ><a name="6520" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="6521"
+      > </a
+      ><a name="6522" href="libraries.listLib.html#645" class="Function"
+      >delFromList</a
+      ><a name="6533"
+      > </a
+      ><a name="6534" href="libraries.listLib.html#6225" class="Bound"
+      >l</a
+      ><a name="6535"
+      > </a
+      ><a name="6536" href="libraries.listLib.html#6239" class="Bound"
+      >i&#8321;</a
+      ><a name="6538" class="Symbol"
+      >)</a
+      ><a name="6539"
+      > </a
+      ><a name="6540" href="libraries.listLib.html#6245" class="Bound"
+      >o</a
+      ><a name="6541"
+      > </a
+      ><a name="6542" href="libraries.listLib.html#6248" class="Bound"
+      >i</a
+      ><a name="6543"
+      >
+
+         </a
+      ><a name="6554" href="libraries.listLib.html#6554" class="Function"
+      >eq2</a
+      ><a name="6557"
+      > </a
+      ><a name="6558" class="Symbol"
+      >:</a
+      ><a name="6559"
+      > </a
+      ><a name="6560" href="libraries.listLib.html#530" class="Function"
+      >nth</a
+      ><a name="6563"
+      > </a
+      ><a name="6564" class="Symbol"
+      >(</a
+      ><a name="6565" href="libraries.listLib.html#6221" class="Bound"
+      >x</a
+      ><a name="6566"
+      > </a
+      ><a name="6567" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="6568"
+      > </a
+      ><a name="6569" href="libraries.listLib.html#645" class="Function"
+      >delFromList</a
+      ><a name="6580"
+      > </a
+      ><a name="6581" href="libraries.listLib.html#6225" class="Bound"
+      >l</a
+      ><a name="6582"
+      > </a
+      ><a name="6583" href="libraries.listLib.html#6239" class="Bound"
+      >i&#8321;</a
+      ><a name="6585" class="Symbol"
+      >)</a
+      ><a name="6586"
+      >
+                  </a
+      ><a name="6605" class="Symbol"
+      >(</a
+      ><a name="6606" href="libraries.listLib.html#5289" class="Function"
+      >listMinusSubList+Index2OrgIndex</a
+      ><a name="6637"
+      > </a
+      ><a name="6638" class="Symbol"
+      >(</a
+      ><a name="6639" href="libraries.listLib.html#6221" class="Bound"
+      >x</a
+      ><a name="6640"
+      > </a
+      ><a name="6641" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="6642"
+      > </a
+      ><a name="6643" href="libraries.listLib.html#645" class="Function"
+      >delFromList</a
+      ><a name="6654"
+      > </a
+      ><a name="6655" href="libraries.listLib.html#6225" class="Bound"
+      >l</a
+      ><a name="6656"
+      > </a
+      ><a name="6657" href="libraries.listLib.html#6239" class="Bound"
+      >i&#8321;</a
+      ><a name="6659" class="Symbol"
+      >)</a
+      ><a name="6660"
+      > </a
+      ><a name="6661" href="libraries.listLib.html#6245" class="Bound"
+      >o</a
+      ><a name="6662"
+      > </a
+      ><a name="6663" href="libraries.listLib.html#6248" class="Bound"
+      >i</a
+      ><a name="6664" class="Symbol"
+      >)</a
+      ><a name="6665"
+      >
+               </a
+      ><a name="6681" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="6682"
+      > </a
+      ><a name="6683" href="libraries.listLib.html#530" class="Function"
+      >nth</a
+      ><a name="6686"
+      > </a
+      ><a name="6687" class="Symbol"
+      >(</a
+      ><a name="6688" href="libraries.listLib.html#6221" class="Bound"
+      >x</a
+      ><a name="6689"
+      > </a
+      ><a name="6690" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="6691"
+      > </a
+      ><a name="6692" href="libraries.listLib.html#6225" class="Bound"
+      >l</a
+      ><a name="6693" class="Symbol"
+      >)</a
+      ><a name="6694"
+      >
+                  </a
+      ><a name="6713" class="Symbol"
+      >(</a
+      ><a name="6714" href="libraries.listLib.html#868" class="Function"
+      >delFromListIndexToOrigIndex</a
+      ><a name="6741"
+      > </a
+      ><a name="6742" class="Symbol"
+      >(</a
+      ><a name="6743" href="libraries.listLib.html#6221" class="Bound"
+      >x</a
+      ><a name="6744"
+      > </a
+      ><a name="6745" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="6746"
+      > </a
+      ><a name="6747" href="libraries.listLib.html#6225" class="Bound"
+      >l</a
+      ><a name="6748" class="Symbol"
+      >)</a
+      ><a name="6749"
+      > </a
+      ><a name="6750" class="Symbol"
+      >(</a
+      ><a name="6751" href="Data.Fin.html#976" class="InductiveConstructor"
+      >suc</a
+      ><a name="6754"
+      > </a
+      ><a name="6755" href="libraries.listLib.html#6239" class="Bound"
+      >i&#8321;</a
+      ><a name="6757" class="Symbol"
+      >)</a
+      ><a name="6758"
+      >
+                  </a
+      ><a name="6777" class="Symbol"
+      >(</a
+      ><a name="6778" href="libraries.listLib.html#5289" class="Function"
+      >listMinusSubList+Index2OrgIndex</a
+      ><a name="6809"
+      > </a
+      ><a name="6810" class="Symbol"
+      >(</a
+      ><a name="6811" href="libraries.listLib.html#6221" class="Bound"
+      >x</a
+      ><a name="6812"
+      > </a
+      ><a name="6813" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="6814"
+      > </a
+      ><a name="6815" href="libraries.listLib.html#645" class="Function"
+      >delFromList</a
+      ><a name="6826"
+      > </a
+      ><a name="6827" href="libraries.listLib.html#6225" class="Bound"
+      >l</a
+      ><a name="6828"
+      > </a
+      ><a name="6829" href="libraries.listLib.html#6239" class="Bound"
+      >i&#8321;</a
+      ><a name="6831" class="Symbol"
+      >)</a
+      ><a name="6832"
+      > </a
+      ><a name="6833" href="libraries.listLib.html#6245" class="Bound"
+      >o</a
+      ><a name="6834"
+      > </a
+      ><a name="6835" href="libraries.listLib.html#6248" class="Bound"
+      >i</a
+      ><a name="6836" class="Symbol"
+      >))</a
+      ><a name="6838"
+      >
+         </a
+      ><a name="6848" href="libraries.listLib.html#6554" class="Function"
+      >eq2</a
+      ><a name="6851"
+      >  </a
+      ><a name="6853" class="Symbol"
+      >=</a
+      ><a name="6854"
+      > </a
+      ><a name="6855" href="libraries.listLib.html#1302" class="Function"
+      >correctNthDelFromList</a
+      ><a name="6876"
+      > </a
+      ><a name="6877" class="Symbol"
+      >(</a
+      ><a name="6878" href="libraries.listLib.html#6221" class="Bound"
+      >x</a
+      ><a name="6879"
+      > </a
+      ><a name="6880" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="6881"
+      > </a
+      ><a name="6882" href="libraries.listLib.html#6225" class="Bound"
+      >l</a
+      ><a name="6883" class="Symbol"
+      >)</a
+      ><a name="6884"
+      > </a
+      ><a name="6885" class="Symbol"
+      >(</a
+      ><a name="6886" href="Data.Fin.html#976" class="InductiveConstructor"
+      >suc</a
+      ><a name="6889"
+      > </a
+      ><a name="6890" href="libraries.listLib.html#6239" class="Bound"
+      >i&#8321;</a
+      ><a name="6892" class="Symbol"
+      >)</a
+      ><a name="6893"
+      >
+                </a
+      ><a name="6910" class="Symbol"
+      >((</a
+      ><a name="6912" href="libraries.listLib.html#5289" class="Function"
+      >listMinusSubList+Index2OrgIndex</a
+      ><a name="6943"
+      > </a
+      ><a name="6944" class="Symbol"
+      >(</a
+      ><a name="6945" href="libraries.listLib.html#6221" class="Bound"
+      >x</a
+      ><a name="6946"
+      > </a
+      ><a name="6947" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="6948"
+      > </a
+      ><a name="6949" href="libraries.listLib.html#645" class="Function"
+      >delFromList</a
+      ><a name="6960"
+      > </a
+      ><a name="6961" href="libraries.listLib.html#6225" class="Bound"
+      >l</a
+      ><a name="6962"
+      > </a
+      ><a name="6963" href="libraries.listLib.html#6239" class="Bound"
+      >i&#8321;</a
+      ><a name="6965" class="Symbol"
+      >)</a
+      ><a name="6966"
+      > </a
+      ><a name="6967" href="libraries.listLib.html#6245" class="Bound"
+      >o</a
+      ><a name="6968"
+      > </a
+      ><a name="6969" href="libraries.listLib.html#6248" class="Bound"
+      >i</a
+      ><a name="6970" class="Symbol"
+      >))</a
+      ><a name="6972"
+      >
+
+
+</a
+      ><a name="6975" class="Comment"
+      >--\listLib</a
+      ><a name="6985"
+      >
+</a
+      ><a name="6986" href="libraries.listLib.html#6986" class="Function"
+      >subList+2IndicesOriginalList</a
+      ><a name="7014"
+      > </a
+      ><a name="7015" class="Symbol"
+      >:</a
+      ><a name="7016"
+      > </a
+      ><a name="7017" class="Symbol"
+      >{</a
+      ><a name="7018" href="libraries.listLib.html#7018" class="Bound"
+      >X</a
+      ><a name="7019"
+      > </a
+      ><a name="7020" href="libraries.listLib.html#7020" class="Bound"
+      >Y</a
+      ><a name="7021"
+      > </a
+      ><a name="7022" class="Symbol"
+      >:</a
+      ><a name="7023"
+      > </a
+      ><a name="7024" class="PrimitiveType"
+      >Set</a
+      ><a name="7027" class="Symbol"
+      >}(</a
+      ><a name="7029" href="libraries.listLib.html#7029" class="Bound"
+      >l</a
+      ><a name="7030"
+      > </a
+      ><a name="7031" class="Symbol"
+      >:</a
+      ><a name="7032"
+      > </a
+      ><a name="7033" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="7037"
+      > </a
+      ><a name="7038" href="libraries.listLib.html#7018" class="Bound"
+      >X</a
+      ><a name="7039" class="Symbol"
+      >)(</a
+      ><a name="7041" href="libraries.listLib.html#7041" class="Bound"
+      >sl</a
+      ><a name="7043"
+      > </a
+      ><a name="7044" class="Symbol"
+      >:</a
+      ><a name="7045"
+      > </a
+      ><a name="7046" href="libraries.listLib.html#4682" class="Datatype"
+      >SubList+</a
+      ><a name="7054"
+      > </a
+      ><a name="7055" href="libraries.listLib.html#7020" class="Bound"
+      >Y</a
+      ><a name="7056"
+      > </a
+      ><a name="7057" href="libraries.listLib.html#7029" class="Bound"
+      >l</a
+      ><a name="7058" class="Symbol"
+      >)</a
+      ><a name="7059"
+      > </a
+      ><a name="7060" class="Symbol"
+      >&#8594;</a
+      ><a name="7061"
+      > </a
+      ><a name="7062" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="7066"
+      > </a
+      ><a name="7067" class="Symbol"
+      >(</a
+      ><a name="7068" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="7071"
+      > </a
+      ><a name="7072" class="Symbol"
+      >(</a
+      ><a name="7073" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="7079"
+      > </a
+      ><a name="7080" href="libraries.listLib.html#7029" class="Bound"
+      >l</a
+      ><a name="7081" class="Symbol"
+      >)</a
+      ><a name="7082"
+      > </a
+      ><a name="7083" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="7084"
+      > </a
+      ><a name="7085" href="libraries.listLib.html#7020" class="Bound"
+      >Y</a
+      ><a name="7086" class="Symbol"
+      >)</a
+      ><a name="7087"
+      >
+</a
+      ><a name="7088" href="libraries.listLib.html#6986" class="Function"
+      >subList+2IndicesOriginalList</a
+      ><a name="7116"
+      > </a
+      ><a name="7117" href="libraries.listLib.html#7117" class="Bound"
+      >l</a
+      ><a name="7118"
+      > </a
+      ><a name="7119" href="libraries.listLib.html#4740" class="InductiveConstructor"
+      >[]</a
+      ><a name="7121"
+      > </a
+      ><a name="7122" class="Symbol"
+      >=</a
+      ><a name="7123"
+      > </a
+      ><a name="7124" href="Agda.Builtin.List.html#117" class="InductiveConstructor"
+      >[]</a
+      ><a name="7126"
+      >
+</a
+      ><a name="7127" href="libraries.listLib.html#6986" class="Function"
+      >subList+2IndicesOriginalList</a
+      ><a name="7155"
+      > </a
+      ><a name="7156" class="Symbol"
+      >{</a
+      ><a name="7157" href="libraries.listLib.html#7157" class="Bound"
+      >X</a
+      ><a name="7158" class="Symbol"
+      >}</a
+      ><a name="7159"
+      > </a
+      ><a name="7160" class="Symbol"
+      >{</a
+      ><a name="7161" href="libraries.listLib.html#7161" class="Bound"
+      >Y</a
+      ><a name="7162" class="Symbol"
+      >}</a
+      ><a name="7163"
+      > </a
+      ><a name="7164" href="libraries.listLib.html#7164" class="Bound"
+      >l</a
+      ><a name="7165"
+      > </a
+      ><a name="7166" class="Symbol"
+      >(</a
+      ><a name="7167" href="libraries.listLib.html#4778" class="InductiveConstructor"
+      >cons</a
+      ><a name="7171"
+      > </a
+      ><a name="7172" href="libraries.listLib.html#7172" class="Bound"
+      >i</a
+      ><a name="7173"
+      > </a
+      ><a name="7174" href="libraries.listLib.html#7174" class="Bound"
+      >y</a
+      ><a name="7175"
+      > </a
+      ><a name="7176" href="libraries.listLib.html#7176" class="Bound"
+      >sl</a
+      ><a name="7178" class="Symbol"
+      >)</a
+      ><a name="7179"
+      > </a
+      ><a name="7180" class="Symbol"
+      >=</a
+      ><a name="7181"
+      >
+      </a
+      ><a name="7188" class="Symbol"
+      >(</a
+      ><a name="7189" href="libraries.listLib.html#7172" class="Bound"
+      >i</a
+      ><a name="7190"
+      > </a
+      ><a name="7191" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="7192"
+      > </a
+      ><a name="7193" href="libraries.listLib.html#7174" class="Bound"
+      >y</a
+      ><a name="7194" class="Symbol"
+      >)</a
+      ><a name="7195"
+      > </a
+      ><a name="7196" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="7197"
+      > </a
+      ><a name="7198" href="libraries.listLib.html#257" class="Function"
+      >mapL</a
+      ><a name="7202"
+      > </a
+      ><a name="7203" class="Symbol"
+      >(&#955;{(</a
+      ><a name="7207" href="libraries.listLib.html#7207" class="Bound"
+      >j</a
+      ><a name="7208"
+      > </a
+      ><a name="7209" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="7210"
+      > </a
+      ><a name="7211" href="libraries.listLib.html#7211" class="Bound"
+      >y</a
+      ><a name="7212" class="Symbol"
+      >)</a
+      ><a name="7213"
+      > </a
+      ><a name="7214" class="Symbol"
+      >&#8594;</a
+      ><a name="7215"
+      > </a
+      ><a name="7216" class="Symbol"
+      >(</a
+      ><a name="7217" href="libraries.listLib.html#868" class="Function"
+      >delFromListIndexToOrigIndex</a
+      ><a name="7244"
+      > </a
+      ><a name="7245" href="libraries.listLib.html#7164" class="Bound"
+      >l</a
+      ><a name="7246"
+      > </a
+      ><a name="7247" href="libraries.listLib.html#7172" class="Bound"
+      >i</a
+      ><a name="7248"
+      > </a
+      ><a name="7249" href="libraries.listLib.html#7207" class="Bound"
+      >j</a
+      ><a name="7250"
+      > </a
+      ><a name="7251" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="7252"
+      > </a
+      ><a name="7253" href="libraries.listLib.html#7211" class="Bound"
+      >y</a
+      ><a name="7254" class="Symbol"
+      >)})</a
+      ><a name="7257"
+      > </a
+      ><a name="7258" href="libraries.listLib.html#7281" class="Function"
+      >res1</a
+      ><a name="7262"
+      >
+    </a
+      ><a name="7267" class="Keyword"
+      >where</a
+      ><a name="7272"
+      >
+        </a
+      ><a name="7281" href="libraries.listLib.html#7281" class="Function"
+      >res1</a
+      ><a name="7285"
+      > </a
+      ><a name="7286" class="Symbol"
+      >:</a
+      ><a name="7287"
+      > </a
+      ><a name="7288" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="7292"
+      > </a
+      ><a name="7293" class="Symbol"
+      >(</a
+      ><a name="7294" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="7297"
+      > </a
+      ><a name="7298" class="Symbol"
+      >(</a
+      ><a name="7299" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="7305"
+      > </a
+      ><a name="7306" class="Symbol"
+      >(</a
+      ><a name="7307" href="libraries.listLib.html#645" class="Function"
+      >delFromList</a
+      ><a name="7318"
+      > </a
+      ><a name="7319" href="libraries.listLib.html#7164" class="Bound"
+      >l</a
+      ><a name="7320"
+      > </a
+      ><a name="7321" href="libraries.listLib.html#7172" class="Bound"
+      >i</a
+      ><a name="7322" class="Symbol"
+      >))</a
+      ><a name="7324"
+      > </a
+      ><a name="7325" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="7326"
+      > </a
+      ><a name="7327" href="libraries.listLib.html#7161" class="Bound"
+      >Y</a
+      ><a name="7328" class="Symbol"
+      >)</a
+      ><a name="7329"
+      >
+        </a
+      ><a name="7338" href="libraries.listLib.html#7281" class="Function"
+      >res1</a
+      ><a name="7342"
+      > </a
+      ><a name="7343" class="Symbol"
+      >=</a
+      ><a name="7344"
+      > </a
+      ><a name="7345" href="libraries.listLib.html#6986" class="Function"
+      >subList+2IndicesOriginalList</a
+      ><a name="7373"
+      > </a
+      ><a name="7374" class="Symbol"
+      >(</a
+      ><a name="7375" href="libraries.listLib.html#645" class="Function"
+      >delFromList</a
+      ><a name="7386"
+      > </a
+      ><a name="7387" href="libraries.listLib.html#7164" class="Bound"
+      >l</a
+      ><a name="7388"
+      > </a
+      ><a name="7389" href="libraries.listLib.html#7172" class="Bound"
+      >i</a
+      ><a name="7390" class="Symbol"
+      >)</a
+      ><a name="7391"
+      > </a
+      ><a name="7392" href="libraries.listLib.html#7176" class="Bound"
+      >sl</a
+      ><a name="7394"
+      >
+
+
+</a
+      ><a name="7397" class="Comment"
+      >-- \listLib</a
+      ><a name="7408"
+      >
+</a
+      ><a name="7409" href="libraries.listLib.html#7409" class="Function"
+      >sumListViaf</a
+      ><a name="7420"
+      > </a
+      ><a name="7421" class="Symbol"
+      >:</a
+      ><a name="7422"
+      > </a
+      ><a name="7423" class="Symbol"
+      >{</a
+      ><a name="7424" href="libraries.listLib.html#7424" class="Bound"
+      >X</a
+      ><a name="7425"
+      > </a
+      ><a name="7426" class="Symbol"
+      >:</a
+      ><a name="7427"
+      > </a
+      ><a name="7428" class="PrimitiveType"
+      >Set</a
+      ><a name="7431" class="Symbol"
+      >}</a
+      ><a name="7432"
+      > </a
+      ><a name="7433" class="Symbol"
+      >(</a
+      ><a name="7434" href="libraries.listLib.html#7434" class="Bound"
+      >f</a
+      ><a name="7435"
+      > </a
+      ><a name="7436" class="Symbol"
+      >:</a
+      ><a name="7437"
+      > </a
+      ><a name="7438" href="libraries.listLib.html#7424" class="Bound"
+      >X</a
+      ><a name="7439"
+      > </a
+      ><a name="7440" class="Symbol"
+      >&#8594;</a
+      ><a name="7441"
+      > </a
+      ><a name="7442" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="7443" class="Symbol"
+      >)(</a
+      ><a name="7445" href="libraries.listLib.html#7445" class="Bound"
+      >l</a
+      ><a name="7446"
+      > </a
+      ><a name="7447" class="Symbol"
+      >:</a
+      ><a name="7448"
+      > </a
+      ><a name="7449" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="7453"
+      > </a
+      ><a name="7454" href="libraries.listLib.html#7424" class="Bound"
+      >X</a
+      ><a name="7455" class="Symbol"
+      >)</a
+      ><a name="7456"
+      > </a
+      ><a name="7457" class="Symbol"
+      >&#8594;</a
+      ><a name="7458"
+      > </a
+      ><a name="7459" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="7460"
+      >
+</a
+      ><a name="7461" href="libraries.listLib.html#7409" class="Function"
+      >sumListViaf</a
+      ><a name="7472"
+      > </a
+      ><a name="7473" href="libraries.listLib.html#7473" class="Bound"
+      >f</a
+      ><a name="7474"
+      > </a
+      ><a name="7475" href="Agda.Builtin.List.html#117" class="InductiveConstructor"
+      >[]</a
+      ><a name="7477"
+      > </a
+      ><a name="7478" class="Symbol"
+      >=</a
+      ><a name="7479"
+      > </a
+      ><a name="7480" class="Number"
+      >0</a
+      ><a name="7481"
+      >
+</a
+      ><a name="7482" href="libraries.listLib.html#7409" class="Function"
+      >sumListViaf</a
+      ><a name="7493"
+      > </a
+      ><a name="7494" href="libraries.listLib.html#7494" class="Bound"
+      >f</a
+      ><a name="7495"
+      > </a
+      ><a name="7496" class="Symbol"
+      >(</a
+      ><a name="7497" href="libraries.listLib.html#7497" class="Bound"
+      >x</a
+      ><a name="7498"
+      > </a
+      ><a name="7499" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="7500"
+      > </a
+      ><a name="7501" href="libraries.listLib.html#7501" class="Bound"
+      >l</a
+      ><a name="7502" class="Symbol"
+      >)</a
+      ><a name="7503"
+      > </a
+      ><a name="7504" class="Symbol"
+      >=</a
+      ><a name="7505"
+      > </a
+      ><a name="7506" href="libraries.listLib.html#7494" class="Bound"
+      >f</a
+      ><a name="7507"
+      > </a
+      ><a name="7508" href="libraries.listLib.html#7497" class="Bound"
+      >x</a
+      ><a name="7509"
+      > </a
+      ><a name="7510" href="Agda.Builtin.Nat.html#230" class="Primitive Operator"
+      >+</a
+      ><a name="7511"
+      > </a
+      ><a name="7512" href="libraries.listLib.html#7409" class="Function"
+      >sumListViaf</a
+      ><a name="7523"
+      > </a
+      ><a name="7524" href="libraries.listLib.html#7494" class="Bound"
+      >f</a
+      ><a name="7525"
+      > </a
+      ><a name="7526" href="libraries.listLib.html#7501" class="Bound"
+      >l</a
+      ><a name="7527"
+      >
+
+</a
+      ><a name="7529" class="Comment"
+      >--\listLib</a
+      ><a name="7539"
+      >
+</a
+      ><a name="7540" href="libraries.listLib.html#7540" class="Function"
+      >&#8704;inList</a
+      ><a name="7547"
+      > </a
+      ><a name="7548" class="Symbol"
+      >:</a
+      ><a name="7549"
+      > </a
+      ><a name="7550" class="Symbol"
+      >{</a
+      ><a name="7551" href="libraries.listLib.html#7551" class="Bound"
+      >X</a
+      ><a name="7552"
+      > </a
+      ><a name="7553" class="Symbol"
+      >:</a
+      ><a name="7554"
+      > </a
+      ><a name="7555" class="PrimitiveType"
+      >Set</a
+      ><a name="7558" class="Symbol"
+      >}(</a
+      ><a name="7560" href="libraries.listLib.html#7560" class="Bound"
+      >l</a
+      ><a name="7561"
+      > </a
+      ><a name="7562" class="Symbol"
+      >:</a
+      ><a name="7563"
+      > </a
+      ><a name="7564" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="7568"
+      > </a
+      ><a name="7569" href="libraries.listLib.html#7551" class="Bound"
+      >X</a
+      ><a name="7570" class="Symbol"
+      >)(</a
+      ><a name="7572" href="libraries.listLib.html#7572" class="Bound"
+      >P</a
+      ><a name="7573"
+      > </a
+      ><a name="7574" class="Symbol"
+      >:</a
+      ><a name="7575"
+      > </a
+      ><a name="7576" href="libraries.listLib.html#7551" class="Bound"
+      >X</a
+      ><a name="7577"
+      > </a
+      ><a name="7578" class="Symbol"
+      >&#8594;</a
+      ><a name="7579"
+      > </a
+      ><a name="7580" class="PrimitiveType"
+      >Set</a
+      ><a name="7583" class="Symbol"
+      >)</a
+      ><a name="7584"
+      > </a
+      ><a name="7585" class="Symbol"
+      >&#8594;</a
+      ><a name="7586"
+      > </a
+      ><a name="7587" class="PrimitiveType"
+      >Set</a
+      ><a name="7590"
+      >
+</a
+      ><a name="7591" href="libraries.listLib.html#7540" class="Function"
+      >&#8704;inList</a
+      ><a name="7598"
+      > </a
+      ><a name="7599" href="Agda.Builtin.List.html#117" class="InductiveConstructor"
+      >[]</a
+      ><a name="7601"
+      > </a
+      ><a name="7602" href="libraries.listLib.html#7602" class="Bound"
+      >P</a
+      ><a name="7603"
+      >        </a
+      ><a name="7611" class="Symbol"
+      >=</a
+      ><a name="7612"
+      > </a
+      ><a name="7613" href="Agda.Builtin.Unit.html#69" class="Record"
+      >&#8868;</a
+      ><a name="7614"
+      >
+</a
+      ><a name="7615" href="libraries.listLib.html#7540" class="Function"
+      >&#8704;inList</a
+      ><a name="7622"
+      > </a
+      ><a name="7623" class="Symbol"
+      >(</a
+      ><a name="7624" href="libraries.listLib.html#7624" class="Bound"
+      >x</a
+      ><a name="7625"
+      > </a
+      ><a name="7626" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="7627"
+      > </a
+      ><a name="7628" href="libraries.listLib.html#7628" class="Bound"
+      >l</a
+      ><a name="7629" class="Symbol"
+      >)</a
+      ><a name="7630"
+      > </a
+      ><a name="7631" href="libraries.listLib.html#7631" class="Bound"
+      >P</a
+      ><a name="7632"
+      >   </a
+      ><a name="7635" class="Symbol"
+      >=</a
+      ><a name="7636"
+      > </a
+      ><a name="7637" href="libraries.listLib.html#7631" class="Bound"
+      >P</a
+      ><a name="7638"
+      > </a
+      ><a name="7639" href="libraries.listLib.html#7624" class="Bound"
+      >x</a
+      ><a name="7640"
+      > </a
+      ><a name="7641" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="7642"
+      >  </a
+      ><a name="7644" href="libraries.listLib.html#7540" class="Function"
+      >&#8704;inList</a
+      ><a name="7651"
+      > </a
+      ><a name="7652" href="libraries.listLib.html#7628" class="Bound"
+      >l</a
+      ><a name="7653"
+      >  </a
+      ><a name="7655" href="libraries.listLib.html#7631" class="Bound"
+      >P</a
+      ><a name="7656"
+      >
+
+</a
+      ><a name="7658" class="Comment"
+      >--\listLib</a
+      ><a name="7668"
+      >
+</a
+      ><a name="7669" href="libraries.listLib.html#7669" class="Function"
+      >nonNil</a
+      ><a name="7675"
+      > </a
+      ><a name="7676" class="Symbol"
+      >:</a
+      ><a name="7677"
+      > </a
+      ><a name="7678" class="Symbol"
+      >{</a
+      ><a name="7679" href="libraries.listLib.html#7679" class="Bound"
+      >X</a
+      ><a name="7680"
+      > </a
+      ><a name="7681" class="Symbol"
+      >:</a
+      ><a name="7682"
+      > </a
+      ><a name="7683" class="PrimitiveType"
+      >Set</a
+      ><a name="7686" class="Symbol"
+      >}(</a
+      ><a name="7688" href="libraries.listLib.html#7688" class="Bound"
+      >l</a
+      ><a name="7689"
+      > </a
+      ><a name="7690" class="Symbol"
+      >:</a
+      ><a name="7691"
+      > </a
+      ><a name="7692" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="7696"
+      > </a
+      ><a name="7697" href="libraries.listLib.html#7679" class="Bound"
+      >X</a
+      ><a name="7698" class="Symbol"
+      >)</a
+      ><a name="7699"
+      > </a
+      ><a name="7700" class="Symbol"
+      >&#8594;</a
+      ><a name="7701"
+      > </a
+      ><a name="7702" href="Agda.Builtin.Bool.html#67" class="Datatype"
+      >Bool</a
+      ><a name="7706"
+      >
+</a
+      ><a name="7707" href="libraries.listLib.html#7669" class="Function"
+      >nonNil</a
+      ><a name="7713"
+      > </a
+      ><a name="7714" href="Agda.Builtin.List.html#117" class="InductiveConstructor"
+      >[]</a
+      ><a name="7716"
+      > </a
+      ><a name="7717" class="Symbol"
+      >=</a
+      ><a name="7718"
+      > </a
+      ><a name="7719" href="Agda.Builtin.Bool.html#92" class="InductiveConstructor"
+      >true</a
+      ><a name="7723"
+      >
+</a
+      ><a name="7724" href="libraries.listLib.html#7669" class="Function"
+      >nonNil</a
+      ><a name="7730"
+      > </a
+      ><a name="7731" class="Symbol"
+      >(_</a
+      ><a name="7733"
+      > </a
+      ><a name="7734" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="7735"
+      > </a
+      ><a name="7736" class="Symbol"
+      >_)</a
+      ><a name="7738"
+      > </a
+      ><a name="7739" class="Symbol"
+      >=</a
+      ><a name="7740"
+      > </a
+      ><a name="7741" href="Agda.Builtin.Bool.html#86" class="InductiveConstructor"
+      >false</a
+      ><a name="7746"
+      >
+
+</a
+      ><a name="7748" href="libraries.listLib.html#7748" class="Function"
+      >NonNil</a
+      ><a name="7754"
+      > </a
+      ><a name="7755" class="Symbol"
+      >:</a
+      ><a name="7756"
+      > </a
+      ><a name="7757" class="Symbol"
+      >{</a
+      ><a name="7758" href="libraries.listLib.html#7758" class="Bound"
+      >X</a
+      ><a name="7759"
+      > </a
+      ><a name="7760" class="Symbol"
+      >:</a
+      ><a name="7761"
+      > </a
+      ><a name="7762" class="PrimitiveType"
+      >Set</a
+      ><a name="7765" class="Symbol"
+      >}(</a
+      ><a name="7767" href="libraries.listLib.html#7767" class="Bound"
+      >l</a
+      ><a name="7768"
+      > </a
+      ><a name="7769" class="Symbol"
+      >:</a
+      ><a name="7770"
+      > </a
+      ><a name="7771" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="7775"
+      > </a
+      ><a name="7776" href="libraries.listLib.html#7758" class="Bound"
+      >X</a
+      ><a name="7777" class="Symbol"
+      >)</a
+      ><a name="7778"
+      > </a
+      ><a name="7779" class="Symbol"
+      >&#8594;</a
+      ><a name="7780"
+      > </a
+      ><a name="7781" class="PrimitiveType"
+      >Set</a
+      ><a name="7784"
+      >
+</a
+      ><a name="7785" href="libraries.listLib.html#7748" class="Function"
+      >NonNil</a
+      ><a name="7791"
+      > </a
+      ><a name="7792" href="libraries.listLib.html#7792" class="Bound"
+      >l</a
+      ><a name="7793"
+      > </a
+      ><a name="7794" class="Symbol"
+      >=</a
+      ><a name="7795"
+      > </a
+      ><a name="7796" href="Data.Bool.Base.html#791" class="Function"
+      >T</a
+      ><a name="7797"
+      > </a
+      ><a name="7798" class="Symbol"
+      >(</a
+      ><a name="7799" href="libraries.listLib.html#7669" class="Function"
+      >nonNil</a
+      ><a name="7805"
+      > </a
+      ><a name="7806" href="libraries.listLib.html#7792" class="Bound"
+      >l</a
+      ><a name="7807" class="Symbol"
+      >)</a
+      ><a name="7808"
+      >
+
+
+</a
+      ><a name="7811" class="Comment"
+      >-- adds the index to it but adds in addition n to the result</a
+      ><a name="7871"
+      >
+</a
+      ><a name="7872" class="Comment"
+      >-- used as an auxiliary function in the next part</a
+      ><a name="7921"
+      >
+
+</a
+      ><a name="7923" href="libraries.listLib.html#7923" class="Function"
+      >list2ListWithIndexaux</a
+      ><a name="7944"
+      > </a
+      ><a name="7945" class="Symbol"
+      >:</a
+      ><a name="7946"
+      > </a
+      ><a name="7947" class="Symbol"
+      >{</a
+      ><a name="7948" href="libraries.listLib.html#7948" class="Bound"
+      >X</a
+      ><a name="7949"
+      > </a
+      ><a name="7950" class="Symbol"
+      >:</a
+      ><a name="7951"
+      > </a
+      ><a name="7952" class="PrimitiveType"
+      >Set</a
+      ><a name="7955" class="Symbol"
+      >}(</a
+      ><a name="7957" href="libraries.listLib.html#7957" class="Bound"
+      >n</a
+      ><a name="7958"
+      > </a
+      ><a name="7959" class="Symbol"
+      >:</a
+      ><a name="7960"
+      > </a
+      ><a name="7961" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="7962" class="Symbol"
+      >)</a
+      ><a name="7963"
+      > </a
+      ><a name="7964" class="Symbol"
+      >(</a
+      ><a name="7965" href="libraries.listLib.html#7965" class="Bound"
+      >l</a
+      ><a name="7966"
+      > </a
+      ><a name="7967" class="Symbol"
+      >:</a
+      ><a name="7968"
+      > </a
+      ><a name="7969" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="7973"
+      > </a
+      ><a name="7974" href="libraries.listLib.html#7948" class="Bound"
+      >X</a
+      ><a name="7975" class="Symbol"
+      >)</a
+      ><a name="7976"
+      > </a
+      ><a name="7977" class="Symbol"
+      >&#8594;</a
+      ><a name="7978"
+      > </a
+      ><a name="7979" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="7983"
+      > </a
+      ><a name="7984" class="Symbol"
+      >(</a
+      ><a name="7985" href="libraries.listLib.html#7948" class="Bound"
+      >X</a
+      ><a name="7986"
+      > </a
+      ><a name="7987" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="7988"
+      > </a
+      ><a name="7989" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="7990" class="Symbol"
+      >)</a
+      ><a name="7991"
+      >
+</a
+      ><a name="7992" href="libraries.listLib.html#7923" class="Function"
+      >list2ListWithIndexaux</a
+      ><a name="8013"
+      > </a
+      ><a name="8014" href="libraries.listLib.html#8014" class="Bound"
+      >n</a
+      ><a name="8015"
+      > </a
+      ><a name="8016" href="Agda.Builtin.List.html#117" class="InductiveConstructor"
+      >[]</a
+      ><a name="8018"
+      > </a
+      ><a name="8019" class="Symbol"
+      >=</a
+      ><a name="8020"
+      > </a
+      ><a name="8021" href="Agda.Builtin.List.html#117" class="InductiveConstructor"
+      >[]</a
+      ><a name="8023"
+      >
+</a
+      ><a name="8024" href="libraries.listLib.html#7923" class="Function"
+      >list2ListWithIndexaux</a
+      ><a name="8045"
+      > </a
+      ><a name="8046" href="libraries.listLib.html#8046" class="Bound"
+      >n</a
+      ><a name="8047"
+      > </a
+      ><a name="8048" class="Symbol"
+      >(</a
+      ><a name="8049" href="libraries.listLib.html#8049" class="Bound"
+      >x</a
+      ><a name="8050"
+      > </a
+      ><a name="8051" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="8052"
+      > </a
+      ><a name="8053" href="libraries.listLib.html#8053" class="Bound"
+      >l</a
+      ><a name="8054" class="Symbol"
+      >)</a
+      ><a name="8055"
+      > </a
+      ><a name="8056" class="Symbol"
+      >=</a
+      ><a name="8057"
+      > </a
+      ><a name="8058" class="Symbol"
+      >(</a
+      ><a name="8059" href="libraries.listLib.html#8049" class="Bound"
+      >x</a
+      ><a name="8060"
+      > </a
+      ><a name="8061" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="8062"
+      > </a
+      ><a name="8063" href="libraries.listLib.html#8046" class="Bound"
+      >n</a
+      ><a name="8064" class="Symbol"
+      >)</a
+      ><a name="8065"
+      > </a
+      ><a name="8066" href="Agda.Builtin.List.html#132" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="8067"
+      > </a
+      ><a name="8068" href="libraries.listLib.html#7923" class="Function"
+      >list2ListWithIndexaux</a
+      ><a name="8089"
+      > </a
+      ><a name="8090" class="Symbol"
+      >(</a
+      ><a name="8091" href="Agda.Builtin.Nat.html#128" class="InductiveConstructor"
+      >suc</a
+      ><a name="8094"
+      > </a
+      ><a name="8095" href="libraries.listLib.html#8046" class="Bound"
+      >n</a
+      ><a name="8096" class="Symbol"
+      >)</a
+      ><a name="8097"
+      > </a
+      ><a name="8098" href="libraries.listLib.html#8053" class="Bound"
+      >l</a
+      ><a name="8099"
+      >
+
+</a
+      ><a name="8101" href="libraries.listLib.html#8101" class="Function"
+      >list2ListWithIndex</a
+      ><a name="8119"
+      > </a
+      ><a name="8120" class="Symbol"
+      >:</a
+      ><a name="8121"
+      > </a
+      ><a name="8122" class="Symbol"
+      >{</a
+      ><a name="8123" href="libraries.listLib.html#8123" class="Bound"
+      >X</a
+      ><a name="8124"
+      > </a
+      ><a name="8125" class="Symbol"
+      >:</a
+      ><a name="8126"
+      > </a
+      ><a name="8127" class="PrimitiveType"
+      >Set</a
+      ><a name="8130" class="Symbol"
+      >}(</a
+      ><a name="8132" href="libraries.listLib.html#8132" class="Bound"
+      >l</a
+      ><a name="8133"
+      > </a
+      ><a name="8134" class="Symbol"
+      >:</a
+      ><a name="8135"
+      > </a
+      ><a name="8136" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="8140"
+      > </a
+      ><a name="8141" href="libraries.listLib.html#8123" class="Bound"
+      >X</a
+      ><a name="8142" class="Symbol"
+      >)</a
+      ><a name="8143"
+      > </a
+      ><a name="8144" class="Symbol"
+      >&#8594;</a
+      ><a name="8145"
+      > </a
+      ><a name="8146" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="8150"
+      > </a
+      ><a name="8151" class="Symbol"
+      >(</a
+      ><a name="8152" href="libraries.listLib.html#8123" class="Bound"
+      >X</a
+      ><a name="8153"
+      > </a
+      ><a name="8154" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="8155"
+      > </a
+      ><a name="8156" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="8157" class="Symbol"
+      >)</a
+      ><a name="8158"
+      >
+</a
+      ><a name="8159" href="libraries.listLib.html#8101" class="Function"
+      >list2ListWithIndex</a
+      ><a name="8177"
+      > </a
+      ><a name="8178" href="libraries.listLib.html#8178" class="Bound"
+      >l</a
+      ><a name="8179"
+      > </a
+      ><a name="8180" class="Symbol"
+      >=</a
+      ><a name="8181"
+      > </a
+      ><a name="8182" href="libraries.listLib.html#7923" class="Function"
+      >list2ListWithIndexaux</a
+      ><a name="8203"
+      > </a
+      ><a name="8204" class="Number"
+      >0</a
+      ><a name="8205"
+      > </a
+      ><a name="8206" href="libraries.listLib.html#8178" class="Bound"
+      >l</a
+      ><a name="8207"
+      >
+</a
+      ></pre
+    ></body
+  ></html
+>

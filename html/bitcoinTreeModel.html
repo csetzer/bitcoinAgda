@@ -1,0 +1,6993 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+><head
+  ><title
+    >bitcoinTreeModel</title
+    ><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
+     /><meta http-equiv="Content-Style-Type" content="text/css"
+     /><link href="Agda.css" rel="stylesheet" type="text/css"
+     /></head
+  ><body
+  ><pre
+    ><a name="1"
+      >
+</a
+      ><a name="2" class="Keyword"
+      >module</a
+      ><a name="8"
+      > </a
+      ><a name="9" href="bitcoinTreeModel.html#1" class="Module"
+      >bitcoinTreeModel</a
+      ><a name="25"
+      > </a
+      ><a name="26" class="Keyword"
+      >where</a
+      ><a name="31"
+      >
+
+</a
+      ><a name="33" class="Comment"
+      >-- open import bool</a
+      ><a name="52"
+      >
+</a
+      ><a name="53" class="Keyword"
+      >open</a
+      ><a name="57"
+      > </a
+      ><a name="58" class="Keyword"
+      >import</a
+      ><a name="64"
+      > </a
+      ><a name="65" href="libraries.listLib.html#1" class="Module"
+      >libraries.listLib</a
+      ><a name="82"
+      >
+</a
+      ><a name="83" class="Keyword"
+      >open</a
+      ><a name="87"
+      > </a
+      ><a name="88" class="Keyword"
+      >import</a
+      ><a name="94"
+      > </a
+      ><a name="95" href="libraries.natLib.html#1" class="Module"
+      >libraries.natLib</a
+      ><a name="111"
+      >
+</a
+      ><a name="112" class="Keyword"
+      >open</a
+      ><a name="116"
+      > </a
+      ><a name="117" class="Keyword"
+      >import</a
+      ><a name="123"
+      > </a
+      ><a name="124" href="libraries.finLib.html#1" class="Module"
+      >libraries.finLib</a
+      ><a name="140"
+      >
+</a
+      ><a name="141" class="Keyword"
+      >open</a
+      ><a name="145"
+      > </a
+      ><a name="146" class="Keyword"
+      >import</a
+      ><a name="152"
+      > </a
+      ><a name="153" href="Data.Nat.html#1" class="Module"
+      >Data.Nat</a
+      ><a name="161"
+      >
+</a
+      ><a name="162" class="Keyword"
+      >open</a
+      ><a name="166"
+      > </a
+      ><a name="167" class="Keyword"
+      >import</a
+      ><a name="173"
+      > </a
+      ><a name="174" href="Data.Empty.html#1" class="Module"
+      >Data.Empty</a
+      ><a name="184"
+      >
+</a
+      ><a name="185" class="Keyword"
+      >open</a
+      ><a name="189"
+      > </a
+      ><a name="190" class="Keyword"
+      >import</a
+      ><a name="196"
+      > </a
+      ><a name="197" href="Data.Fin.html#1" class="Module"
+      >Data.Fin</a
+      ><a name="205"
+      > </a
+      ><a name="206" class="Keyword"
+      >hiding</a
+      ><a name="212"
+      > </a
+      ><a name="213" class="Symbol"
+      >(</a
+      ><a name="214" href="Data.Fin.html#3909" class="Function Operator"
+      >_+_</a
+      ><a name="217"
+      > </a
+      ><a name="218" class="Symbol"
+      >;</a
+      ><a name="219"
+      > </a
+      ><a name="220" href="Data.Fin.html#5350" class="Function Operator"
+      >_&#8804;_</a
+      ><a name="223"
+      > </a
+      ><a name="224" class="Symbol"
+      >)</a
+      ><a name="225"
+      >
+</a
+      ><a name="226" class="Keyword"
+      >open</a
+      ><a name="230"
+      > </a
+      ><a name="231" class="Keyword"
+      >import</a
+      ><a name="237"
+      > </a
+      ><a name="238" href="Data.List.html#1" class="Module"
+      >Data.List</a
+      ><a name="247"
+      >
+</a
+      ><a name="248" class="Keyword"
+      >open</a
+      ><a name="252"
+      > </a
+      ><a name="253" class="Keyword"
+      >import</a
+      ><a name="259"
+      > </a
+      ><a name="260" href="Data.Unit.html#1" class="Module"
+      >Data.Unit</a
+      ><a name="269"
+      > </a
+      ><a name="270" class="Keyword"
+      >hiding</a
+      ><a name="276"
+      > </a
+      ><a name="277" class="Symbol"
+      >(</a
+      ><a name="278" href="Data.Unit.Base.html#483" class="Record Operator"
+      >_&#8804;_</a
+      ><a name="281"
+      > </a
+      ><a name="282" class="Symbol"
+      >)</a
+      ><a name="283"
+      >
+</a
+      ><a name="284" class="Keyword"
+      >open</a
+      ><a name="288"
+      > </a
+      ><a name="289" class="Keyword"
+      >import</a
+      ><a name="295"
+      > </a
+      ><a name="296" href="Data.Bool.html#1" class="Module"
+      >Data.Bool</a
+      ><a name="305"
+      >
+</a
+      ><a name="306" class="Keyword"
+      >open</a
+      ><a name="310"
+      > </a
+      ><a name="311" class="Keyword"
+      >import</a
+      ><a name="317"
+      > </a
+      ><a name="318" href="Data.Product.html#1" class="Module"
+      >Data.Product</a
+      ><a name="330"
+      >
+</a
+      ><a name="331" class="Keyword"
+      >open</a
+      ><a name="335"
+      > </a
+      ><a name="336" class="Keyword"
+      >import</a
+      ><a name="342"
+      > </a
+      ><a name="343" href="Data.Nat.Base.html#1" class="Module"
+      >Data.Nat.Base</a
+      ><a name="356"
+      >
+</a
+      ><a name="357" class="Keyword"
+      >open</a
+      ><a name="361"
+      > </a
+      ><a name="362" class="Keyword"
+      >import</a
+      ><a name="368"
+      > </a
+      ><a name="369" href="Data.Maybe.html#1" class="Module"
+      >Data.Maybe</a
+      ><a name="379"
+      >
+</a
+      ><a name="380" class="Keyword"
+      >open</a
+      ><a name="384"
+      > </a
+      ><a name="385" class="Keyword"
+      >import</a
+      ><a name="391"
+      > </a
+      ><a name="392" href="Relation.Binary.PropositionalEquality.html#1" class="Module"
+      >Relation.Binary.PropositionalEquality</a
+      ><a name="429"
+      >
+</a
+      ><a name="430" class="Keyword"
+      >open</a
+      ><a name="434"
+      > </a
+      ><a name="435" class="Keyword"
+      >import</a
+      ><a name="441"
+      > </a
+      ><a name="442" href="Relation.Nullary.html#1" class="Module"
+      >Relation.Nullary</a
+      ><a name="458"
+      >
+
+
+</a
+      ><a name="461" class="Comment"
+      >-- #####################################</a
+      ><a name="501"
+      >
+</a
+      ><a name="502" class="Comment"
+      >-- #  Preliminaries                    #</a
+      ><a name="542"
+      >
+</a
+      ><a name="543" class="Comment"
+      >-- #####################################</a
+      ><a name="583"
+      >
+
+
+</a
+      ><a name="586" class="Keyword"
+      >infixr</a
+      ><a name="592"
+      > </a
+      ><a name="593" class="Number"
+      >3</a
+      ><a name="594"
+      > </a
+      ><a name="595" href="bitcoinTreeModel.html#829" class="InductiveConstructor Operator"
+      >_+msg_</a
+      ><a name="601"
+      >
+
+</a
+      ><a name="603" href="bitcoinTreeModel.html#603" class="Function"
+      >Time</a
+      ><a name="607"
+      > </a
+      ><a name="608" class="Symbol"
+      >:</a
+      ><a name="609"
+      > </a
+      ><a name="610" class="PrimitiveType"
+      >Set</a
+      ><a name="613"
+      >
+</a
+      ><a name="614" href="bitcoinTreeModel.html#603" class="Function"
+      >Time</a
+      ><a name="618"
+      > </a
+      ><a name="619" class="Symbol"
+      >=</a
+      ><a name="620"
+      > </a
+      ><a name="621" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="622"
+      >
+
+</a
+      ><a name="624" href="bitcoinTreeModel.html#624" class="Function"
+      >Amount</a
+      ><a name="630"
+      > </a
+      ><a name="631" class="Symbol"
+      >:</a
+      ><a name="632"
+      > </a
+      ><a name="633" class="PrimitiveType"
+      >Set</a
+      ><a name="636"
+      >
+</a
+      ><a name="637" href="bitcoinTreeModel.html#624" class="Function"
+      >Amount</a
+      ><a name="643"
+      > </a
+      ><a name="644" class="Symbol"
+      >=</a
+      ><a name="645"
+      > </a
+      ><a name="646" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="647"
+      >
+
+</a
+      ><a name="649" href="bitcoinTreeModel.html#649" class="Function"
+      >Address</a
+      ><a name="656"
+      > </a
+      ><a name="657" class="Symbol"
+      >:</a
+      ><a name="658"
+      > </a
+      ><a name="659" class="PrimitiveType"
+      >Set</a
+      ><a name="662"
+      >
+</a
+      ><a name="663" href="bitcoinTreeModel.html#649" class="Function"
+      >Address</a
+      ><a name="670"
+      > </a
+      ><a name="671" class="Symbol"
+      >=</a
+      ><a name="672"
+      > </a
+      ><a name="673" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="674"
+      >
+
+</a
+      ><a name="676" href="bitcoinTreeModel.html#676" class="Function"
+      >TXID</a
+      ><a name="680"
+      > </a
+      ><a name="681" class="Symbol"
+      >:</a
+      ><a name="682"
+      > </a
+      ><a name="683" class="PrimitiveType"
+      >Set</a
+      ><a name="686"
+      >
+</a
+      ><a name="687" href="bitcoinTreeModel.html#676" class="Function"
+      >TXID</a
+      ><a name="691"
+      > </a
+      ><a name="692" class="Symbol"
+      >=</a
+      ><a name="693"
+      > </a
+      ><a name="694" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="695"
+      >
+
+</a
+      ><a name="697" href="bitcoinTreeModel.html#697" class="Function"
+      >Signature</a
+      ><a name="706"
+      > </a
+      ><a name="707" class="Symbol"
+      >:</a
+      ><a name="708"
+      > </a
+      ><a name="709" class="PrimitiveType"
+      >Set</a
+      ><a name="712"
+      >
+</a
+      ><a name="713" href="bitcoinTreeModel.html#697" class="Function"
+      >Signature</a
+      ><a name="722"
+      >  </a
+      ><a name="724" class="Symbol"
+      >=</a
+      ><a name="725"
+      >  </a
+      ><a name="727" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="728"
+      >
+
+</a
+      ><a name="730" href="bitcoinTreeModel.html#730" class="Function"
+      >PublicKey</a
+      ><a name="739"
+      > </a
+      ><a name="740" class="Symbol"
+      >:</a
+      ><a name="741"
+      > </a
+      ><a name="742" class="PrimitiveType"
+      >Set</a
+      ><a name="745"
+      >
+</a
+      ><a name="746" href="bitcoinTreeModel.html#730" class="Function"
+      >PublicKey</a
+      ><a name="755"
+      >  </a
+      ><a name="757" class="Symbol"
+      >=</a
+      ><a name="758"
+      >  </a
+      ><a name="760" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="761"
+      >
+
+</a
+      ><a name="763" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="781"
+      >
+</a
+      ><a name="782" class="Keyword"
+      >data</a
+      ><a name="786"
+      > </a
+      ><a name="787" href="bitcoinTreeModel.html#787" class="Datatype"
+      >Msg</a
+      ><a name="790"
+      > </a
+      ><a name="791" class="Symbol"
+      >:</a
+      ><a name="792"
+      > </a
+      ><a name="793" class="PrimitiveType"
+      >Set</a
+      ><a name="796"
+      > </a
+      ><a name="797" class="Keyword"
+      >where</a
+      ><a name="802"
+      >
+   </a
+      ><a name="806" href="bitcoinTreeModel.html#806" class="InductiveConstructor"
+      >nat</a
+      ><a name="809"
+      > </a
+      ><a name="810" class="Symbol"
+      >:</a
+      ><a name="811"
+      > </a
+      ><a name="812" class="Symbol"
+      >(</a
+      ><a name="813" href="bitcoinTreeModel.html#813" class="Bound"
+      >n</a
+      ><a name="814"
+      > </a
+      ><a name="815" class="Symbol"
+      >:</a
+      ><a name="816"
+      > </a
+      ><a name="817" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="818" class="Symbol"
+      >)</a
+      ><a name="819"
+      > </a
+      ><a name="820" class="Symbol"
+      >&#8594;</a
+      ><a name="821"
+      > </a
+      ><a name="822" href="bitcoinTreeModel.html#787" class="Datatype"
+      >Msg</a
+      ><a name="825"
+      >
+   </a
+      ><a name="829" href="bitcoinTreeModel.html#829" class="InductiveConstructor Operator"
+      >_+msg_</a
+      ><a name="835"
+      > </a
+      ><a name="836" class="Symbol"
+      >:</a
+      ><a name="837"
+      > </a
+      ><a name="838" class="Symbol"
+      >(</a
+      ><a name="839" href="bitcoinTreeModel.html#839" class="Bound"
+      >m</a
+      ><a name="840"
+      > </a
+      ><a name="841" href="bitcoinTreeModel.html#841" class="Bound"
+      >m'</a
+      ><a name="843"
+      > </a
+      ><a name="844" class="Symbol"
+      >:</a
+      ><a name="845"
+      > </a
+      ><a name="846" href="bitcoinTreeModel.html#787" class="Datatype"
+      >Msg</a
+      ><a name="849" class="Symbol"
+      >)</a
+      ><a name="850"
+      > </a
+      ><a name="851" class="Symbol"
+      >&#8594;</a
+      ><a name="852"
+      > </a
+      ><a name="853" href="bitcoinTreeModel.html#787" class="Datatype"
+      >Msg</a
+      ><a name="856"
+      >
+   </a
+      ><a name="860" href="bitcoinTreeModel.html#860" class="InductiveConstructor"
+      >list</a
+      ><a name="864"
+      > </a
+      ><a name="865" class="Symbol"
+      >:</a
+      ><a name="866"
+      > </a
+      ><a name="867" class="Symbol"
+      >(</a
+      ><a name="868" href="bitcoinTreeModel.html#868" class="Bound"
+      >l</a
+      ><a name="869"
+      >  </a
+      ><a name="871" class="Symbol"
+      >:</a
+      ><a name="872"
+      > </a
+      ><a name="873" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="877"
+      > </a
+      ><a name="878" href="bitcoinTreeModel.html#787" class="Datatype"
+      >Msg</a
+      ><a name="881" class="Symbol"
+      >)</a
+      ><a name="882"
+      > </a
+      ><a name="883" class="Symbol"
+      >&#8594;</a
+      ><a name="884"
+      > </a
+      ><a name="885" href="bitcoinTreeModel.html#787" class="Datatype"
+      >Msg</a
+      ><a name="888"
+      >
+
+</a
+      ><a name="890" class="Keyword"
+      >postulate</a
+      ><a name="899"
+      > </a
+      ><a name="900" href="bitcoinTreeModel.html#900" class="Postulate"
+      >hashMsg</a
+      ><a name="907"
+      > </a
+      ><a name="908" class="Symbol"
+      >:</a
+      ><a name="909"
+      > </a
+      ><a name="910" href="bitcoinTreeModel.html#787" class="Datatype"
+      >Msg</a
+      ><a name="913"
+      > </a
+      ><a name="914" class="Symbol"
+      >&#8594;</a
+      ><a name="915"
+      > </a
+      ><a name="916" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="917"
+      >
+
+</a
+      ><a name="919" class="Comment"
+      >-- +msg could be replaced by a list with two elements; we use +msg</a
+      ><a name="985"
+      >
+</a
+      ><a name="986" class="Comment"
+      >-- since it is closer to how messages are serialised where</a
+      ><a name="1044"
+      >
+</a
+      ><a name="1045" class="Comment"
+      >-- a list requires an extra length argument.x</a
+      ><a name="1090"
+      >
+
+</a
+      ><a name="1092" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="1110"
+      >
+</a
+      ><a name="1111" class="Comment"
+      >-- already in \bitcoinVersFive</a
+      ><a name="1141"
+      >
+</a
+      ><a name="1142" class="Keyword"
+      >postulate</a
+      ><a name="1151"
+      > </a
+      ><a name="1152" href="bitcoinTreeModel.html#1152" class="Postulate"
+      >publicKey2Address</a
+      ><a name="1169"
+      > </a
+      ><a name="1170" class="Symbol"
+      >:</a
+      ><a name="1171"
+      > </a
+      ><a name="1172" class="Symbol"
+      >(</a
+      ><a name="1173" href="bitcoinTreeModel.html#1173" class="Bound"
+      >pubk</a
+      ><a name="1177"
+      > </a
+      ><a name="1178" class="Symbol"
+      >:</a
+      ><a name="1179"
+      > </a
+      ><a name="1180" href="bitcoinTreeModel.html#730" class="Function"
+      >PublicKey</a
+      ><a name="1189" class="Symbol"
+      >)</a
+      ><a name="1190"
+      > </a
+      ><a name="1191" class="Symbol"
+      >&#8594;</a
+      ><a name="1192"
+      > </a
+      ><a name="1193" href="bitcoinTreeModel.html#649" class="Function"
+      >Address</a
+      ><a name="1200"
+      >
+
+</a
+      ><a name="1202" class="Comment"
+      >-- Signed means that Msg msg has been signed</a
+      ><a name="1246"
+      >
+</a
+      ><a name="1247" class="Comment"
+      >-- by private key corresponding to pubk</a
+      ><a name="1286"
+      >
+
+</a
+      ><a name="1288" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="1306"
+      >
+</a
+      ><a name="1307" class="Comment"
+      >-- already in \bitcoinVersFive</a
+      ><a name="1337"
+      >
+</a
+      ><a name="1338" class="Keyword"
+      >postulate</a
+      ><a name="1347"
+      > </a
+      ><a name="1348" href="bitcoinTreeModel.html#1348" class="Postulate"
+      >Signed</a
+      ><a name="1354"
+      > </a
+      ><a name="1355" class="Symbol"
+      >:</a
+      ><a name="1356"
+      > </a
+      ><a name="1357" class="Symbol"
+      >(</a
+      ><a name="1358" href="bitcoinTreeModel.html#1358" class="Bound"
+      >msg</a
+      ><a name="1361"
+      > </a
+      ><a name="1362" class="Symbol"
+      >:</a
+      ><a name="1363"
+      > </a
+      ><a name="1364" href="bitcoinTreeModel.html#787" class="Datatype"
+      >Msg</a
+      ><a name="1367" class="Symbol"
+      >)(</a
+      ><a name="1369" href="bitcoinTreeModel.html#1369" class="Bound"
+      >publicKey</a
+      ><a name="1378"
+      > </a
+      ><a name="1379" class="Symbol"
+      >:</a
+      ><a name="1380"
+      > </a
+      ><a name="1381" href="bitcoinTreeModel.html#730" class="Function"
+      >PublicKey</a
+      ><a name="1390" class="Symbol"
+      >)(</a
+      ><a name="1392" href="bitcoinTreeModel.html#1392" class="Bound"
+      >s</a
+      ><a name="1393"
+      > </a
+      ><a name="1394" class="Symbol"
+      >:</a
+      ><a name="1395"
+      > </a
+      ><a name="1396" href="bitcoinTreeModel.html#697" class="Function"
+      >Signature</a
+      ><a name="1405" class="Symbol"
+      >)</a
+      ><a name="1406"
+      > </a
+      ><a name="1407" class="Symbol"
+      >&#8594;</a
+      ><a name="1408"
+      > </a
+      ><a name="1409" class="PrimitiveType"
+      >Set</a
+      ><a name="1412"
+      >
+</a
+      ><a name="1413" class="Comment"
+      >-- postulate sign2&#8469; : (msg : Msg)(addr : Address)(s : Signed msg addr)</a
+      ><a name="1483"
+      >
+</a
+      ><a name="1484" class="Comment"
+      >--                    &#8594; &#8469;</a
+      ><a name="1509"
+      >
+
+</a
+      ><a name="1511" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="1529"
+      >
+</a
+      ><a name="1530" class="Keyword"
+      >postulate</a
+      ><a name="1539"
+      > </a
+      ><a name="1540" href="bitcoinTreeModel.html#1540" class="Postulate"
+      >minerReward</a
+      ><a name="1551"
+      > </a
+      ><a name="1552" class="Symbol"
+      >:</a
+      ><a name="1553"
+      > </a
+      ><a name="1554" class="Symbol"
+      >(</a
+      ><a name="1555" href="bitcoinTreeModel.html#1555" class="Bound"
+      >t</a
+      ><a name="1556"
+      > </a
+      ><a name="1557" class="Symbol"
+      >:</a
+      ><a name="1558"
+      > </a
+      ><a name="1559" href="bitcoinTreeModel.html#603" class="Function"
+      >Time</a
+      ><a name="1563" class="Symbol"
+      >)</a
+      ><a name="1564"
+      > </a
+      ><a name="1565" class="Symbol"
+      >&#8594;</a
+      ><a name="1566"
+      > </a
+      ><a name="1567" href="bitcoinTreeModel.html#624" class="Function"
+      >Amount</a
+      ><a name="1573"
+      >
+</a
+      ><a name="1574" class="Keyword"
+      >postulate</a
+      ><a name="1583"
+      > </a
+      ><a name="1584" href="bitcoinTreeModel.html#1584" class="Postulate"
+      >blockMaturationTime</a
+      ><a name="1603"
+      > </a
+      ><a name="1604" class="Symbol"
+      >:</a
+      ><a name="1605"
+      > </a
+      ><a name="1606" href="bitcoinTreeModel.html#603" class="Function"
+      >Time</a
+      ><a name="1610"
+      >
+</a
+      ><a name="1611" class="Comment"
+      >-- reward for miner at time t</a
+      ><a name="1640"
+      >
+</a
+      ><a name="1641" class="Comment"
+      >-- how long the miner needs to wait before his reward can be spent</a
+      ><a name="1707"
+      >
+</a
+      ><a name="1708" class="Comment"
+      >-- should be 101</a
+      ><a name="1724"
+      >
+
+
+</a
+      ><a name="1727" class="Comment"
+      >-- #############################################################################</a
+      ><a name="1807"
+      >
+</a
+      ><a name="1808" class="Comment"
+      >-- #  Inductive-Recursive Definition of                                        #</a
+      ><a name="1888"
+      >
+</a
+      ><a name="1889" class="Comment"
+      >-- #       Transaction Tree, Transactions, and                                 #</a
+      ><a name="1969"
+      >
+</a
+      ><a name="1970" class="Comment"
+      >-- #  Unspent Transaction Outputs                                              #</a
+      ><a name="2050"
+      >
+</a
+      ><a name="2051" class="Comment"
+      >-- #############################################################################</a
+      ><a name="2131"
+      >
+
+</a
+      ><a name="2133" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="2151"
+      >
+</a
+      ><a name="2152" class="Keyword"
+      >record</a
+      ><a name="2158"
+      > </a
+      ><a name="2159" href="bitcoinTreeModel.html#2159" class="Record"
+      >TXOutputfield</a
+      ><a name="2172"
+      > </a
+      ><a name="2173" class="Symbol"
+      >:</a
+      ><a name="2174"
+      > </a
+      ><a name="2175" class="PrimitiveType"
+      >Set</a
+      ><a name="2178"
+      > </a
+      ><a name="2179" class="Keyword"
+      >where</a
+      ><a name="2184"
+      >
+  </a
+      ><a name="2187" class="Keyword"
+      >constructor</a
+      ><a name="2198"
+      > </a
+      ><a name="2199" href="bitcoinTreeModel.html#2199" class="InductiveConstructor"
+      >txOutputfield</a
+      ><a name="2212"
+      >
+  </a
+      ><a name="2215" class="Keyword"
+      >field</a
+      ><a name="2220"
+      >  </a
+      ><a name="2222" href="bitcoinTreeModel.html#2222" class="Field"
+      >amount</a
+      ><a name="2228"
+      > </a
+      ><a name="2229" class="Symbol"
+      >:</a
+      ><a name="2230"
+      > </a
+      ><a name="2231" href="bitcoinTreeModel.html#624" class="Function"
+      >Amount</a
+      ><a name="2237"
+      >
+         </a
+      ><a name="2247" href="bitcoinTreeModel.html#2247" class="Field"
+      >address</a
+      ><a name="2254"
+      > </a
+      ><a name="2255" class="Symbol"
+      >:</a
+      ><a name="2256"
+      > </a
+      ><a name="2257" href="bitcoinTreeModel.html#649" class="Function"
+      >Address</a
+      ><a name="2264"
+      >
+</a
+      ><a name="2265" class="Keyword"
+      >open</a
+      ><a name="2269"
+      > </a
+      ><a name="2270" href="bitcoinTreeModel.html#2159" class="Module"
+      >TXOutputfield</a
+      ><a name="2283"
+      > </a
+      ><a name="2284" class="Keyword"
+      >public</a
+      ><a name="2290"
+      >
+
+
+</a
+      ><a name="2293" class="Keyword"
+      >mutual</a
+      ><a name="2299"
+      >
+</a
+      ><a name="2300" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="2318"
+      >
+  </a
+      ><a name="2321" class="Keyword"
+      >data</a
+      ><a name="2325"
+      > </a
+      ><a name="2326" href="bitcoinTreeModel.html#2326" class="Datatype"
+      >TXTree</a
+      ><a name="2332"
+      >  </a
+      ><a name="2334" class="Symbol"
+      >:</a
+      ><a name="2335"
+      > </a
+      ><a name="2336" class="PrimitiveType"
+      >Set</a
+      ><a name="2339"
+      > </a
+      ><a name="2340" class="Keyword"
+      >where</a
+      ><a name="2345"
+      >
+    </a
+      ><a name="2350" href="bitcoinTreeModel.html#2350" class="InductiveConstructor"
+      >genesisTree</a
+      ><a name="2361"
+      >  </a
+      ><a name="2363" class="Symbol"
+      >:</a
+      ><a name="2364"
+      >  </a
+      ><a name="2366" href="bitcoinTreeModel.html#2326" class="Datatype"
+      >TXTree</a
+      ><a name="2372"
+      >
+    </a
+      ><a name="2377" href="bitcoinTreeModel.html#2377" class="InductiveConstructor"
+      >txtree</a
+      ><a name="2383"
+      >       </a
+      ><a name="2390" class="Symbol"
+      >:</a
+      ><a name="2391"
+      >  </a
+      ><a name="2393" class="Symbol"
+      >(</a
+      ><a name="2394" href="bitcoinTreeModel.html#2394" class="Bound"
+      >tree</a
+      ><a name="2398"
+      > </a
+      ><a name="2399" class="Symbol"
+      >:</a
+      ><a name="2400"
+      > </a
+      ><a name="2401" href="bitcoinTreeModel.html#2326" class="Datatype"
+      >TXTree</a
+      ><a name="2407" class="Symbol"
+      >)(</a
+      ><a name="2409" href="bitcoinTreeModel.html#2409" class="Bound"
+      >tx</a
+      ><a name="2411"
+      > </a
+      ><a name="2412" class="Symbol"
+      >:</a
+      ><a name="2413"
+      > </a
+      ><a name="2414" href="bitcoinTreeModel.html#2459" class="Datatype"
+      >TX</a
+      ><a name="2416"
+      > </a
+      ><a name="2417" href="bitcoinTreeModel.html#2394" class="Bound"
+      >tree</a
+      ><a name="2421" class="Symbol"
+      >)</a
+      ><a name="2422"
+      > </a
+      ><a name="2423" class="Symbol"
+      >&#8594;</a
+      ><a name="2424"
+      > </a
+      ><a name="2425" href="bitcoinTreeModel.html#2326" class="Datatype"
+      >TXTree</a
+      ><a name="2431"
+      >
+
+</a
+      ><a name="2433" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="2451"
+      >
+  </a
+      ><a name="2454" class="Keyword"
+      >data</a
+      ><a name="2458"
+      > </a
+      ><a name="2459" href="bitcoinTreeModel.html#2459" class="Datatype"
+      >TX</a
+      ><a name="2461"
+      > </a
+      ><a name="2462" class="Symbol"
+      >(</a
+      ><a name="2463" href="bitcoinTreeModel.html#2463" class="Bound"
+      >tr</a
+      ><a name="2465"
+      > </a
+      ><a name="2466" class="Symbol"
+      >:</a
+      ><a name="2467"
+      > </a
+      ><a name="2468" href="bitcoinTreeModel.html#2326" class="Datatype"
+      >TXTree</a
+      ><a name="2474" class="Symbol"
+      >)</a
+      ><a name="2475"
+      > </a
+      ><a name="2476" class="Symbol"
+      >:</a
+      ><a name="2477"
+      >  </a
+      ><a name="2479" class="PrimitiveType"
+      >Set</a
+      ><a name="2482"
+      > </a
+      ><a name="2483" class="Keyword"
+      >where</a
+      ><a name="2488"
+      >
+     </a
+      ><a name="2494" href="bitcoinTreeModel.html#2494" class="InductiveConstructor"
+      >normalTX</a
+      ><a name="2502"
+      >  </a
+      ><a name="2504" class="Symbol"
+      >:</a
+      ><a name="2505"
+      >  </a
+      ><a name="2507" class="Symbol"
+      >(</a
+      ><a name="2508" href="bitcoinTreeModel.html#2508" class="Bound"
+      >inputs</a
+      ><a name="2514"
+      >   </a
+      ><a name="2517" class="Symbol"
+      >:</a
+      ><a name="2518"
+      >  </a
+      ><a name="2520" href="bitcoinTreeModel.html#3009" class="Function"
+      >TxInputs</a
+      ><a name="2528"
+      > </a
+      ><a name="2529" href="bitcoinTreeModel.html#2463" class="Bound"
+      >tr</a
+      ><a name="2531" class="Symbol"
+      >)</a
+      ><a name="2532"
+      >  </a
+      ><a name="2534" class="Symbol"
+      >(</a
+      ><a name="2535" href="bitcoinTreeModel.html#2535" class="Bound"
+      >outputs</a
+      ><a name="2542"
+      >  </a
+      ><a name="2544" class="Symbol"
+      >:</a
+      ><a name="2545"
+      >  </a
+      ><a name="2547" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="2551"
+      > </a
+      ><a name="2552" href="bitcoinTreeModel.html#2159" class="Record"
+      >TXOutputfield</a
+      ><a name="2565" class="Symbol"
+      >)</a
+      ><a name="2566"
+      >  </a
+      ><a name="2568" class="Symbol"
+      >&#8594;</a
+      ><a name="2569"
+      > </a
+      ><a name="2570" href="bitcoinTreeModel.html#2459" class="Datatype"
+      >TX</a
+      ><a name="2572"
+      > </a
+      ><a name="2573" href="bitcoinTreeModel.html#2463" class="Bound"
+      >tr</a
+      ><a name="2575"
+      >
+     </a
+      ><a name="2581" href="bitcoinTreeModel.html#2581" class="InductiveConstructor"
+      >coinbase</a
+      ><a name="2589"
+      >  </a
+      ><a name="2591" class="Symbol"
+      >:</a
+      ><a name="2592"
+      >  </a
+      ><a name="2594" class="Symbol"
+      >(</a
+      ><a name="2595" href="bitcoinTreeModel.html#2595" class="Bound"
+      >time</a
+      ><a name="2599"
+      > </a
+      ><a name="2600" class="Symbol"
+      >:</a
+      ><a name="2601"
+      > </a
+      ><a name="2602" href="bitcoinTreeModel.html#603" class="Function"
+      >Time</a
+      ><a name="2606" class="Symbol"
+      >)</a
+      ><a name="2607"
+      >              </a
+      ><a name="2621" class="Symbol"
+      >(</a
+      ><a name="2622" href="bitcoinTreeModel.html#2622" class="Bound"
+      >outputs</a
+      ><a name="2629"
+      >  </a
+      ><a name="2631" class="Symbol"
+      >:</a
+      ><a name="2632"
+      >  </a
+      ><a name="2634" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="2638"
+      > </a
+      ><a name="2639" href="bitcoinTreeModel.html#2159" class="Record"
+      >TXOutputfield</a
+      ><a name="2652" class="Symbol"
+      >)</a
+      ><a name="2653"
+      >  </a
+      ><a name="2655" class="Symbol"
+      >&#8594;</a
+      ><a name="2656"
+      > </a
+      ><a name="2657" href="bitcoinTreeModel.html#2459" class="Datatype"
+      >TX</a
+      ><a name="2659"
+      > </a
+      ><a name="2660" href="bitcoinTreeModel.html#2463" class="Bound"
+      >tr</a
+      ><a name="2662"
+      >
+
+</a
+      ><a name="2664" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="2682"
+      >
+  </a
+      ><a name="2685" class="Keyword"
+      >record</a
+      ><a name="2691"
+      > </a
+      ><a name="2692" href="bitcoinTreeModel.html#2692" class="Record"
+      >TXOutput</a
+      ><a name="2700"
+      > </a
+      ><a name="2701" class="Symbol"
+      >:</a
+      ><a name="2702"
+      > </a
+      ><a name="2703" class="PrimitiveType"
+      >Set</a
+      ><a name="2706"
+      > </a
+      ><a name="2707" class="Keyword"
+      >where</a
+      ><a name="2712"
+      >
+    </a
+      ><a name="2717" class="Keyword"
+      >inductive</a
+      ><a name="2726"
+      >
+    </a
+      ><a name="2731" class="Keyword"
+      >constructor</a
+      ><a name="2742"
+      > </a
+      ><a name="2743" href="bitcoinTreeModel.html#2743" class="InductiveConstructor"
+      >txOutput</a
+      ><a name="2751"
+      >
+    </a
+      ><a name="2756" class="Keyword"
+      >field</a
+      ><a name="2761"
+      >  </a
+      ><a name="2763" href="bitcoinTreeModel.html#2763" class="Field"
+      >trTree</a
+      ><a name="2769"
+      >   </a
+      ><a name="2772" class="Symbol"
+      >:</a
+      ><a name="2773"
+      > </a
+      ><a name="2774" href="bitcoinTreeModel.html#2326" class="Datatype"
+      >TXTree</a
+      ><a name="2780"
+      >
+           </a
+      ><a name="2792" href="bitcoinTreeModel.html#2792" class="Field"
+      >tx</a
+      ><a name="2794"
+      >       </a
+      ><a name="2801" class="Symbol"
+      >:</a
+      ><a name="2802"
+      > </a
+      ><a name="2803" href="bitcoinTreeModel.html#2459" class="Datatype"
+      >TX</a
+      ><a name="2805"
+      > </a
+      ><a name="2806" href="bitcoinTreeModel.html#2763" class="Field"
+      >trTree</a
+      ><a name="2812"
+      >
+           </a
+      ><a name="2824" href="bitcoinTreeModel.html#2824" class="Field"
+      >output</a
+      ><a name="2830"
+      >   </a
+      ><a name="2833" class="Symbol"
+      >:</a
+      ><a name="2834"
+      > </a
+      ><a name="2835" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="2838"
+      > </a
+      ><a name="2839" class="Symbol"
+      >(</a
+      ><a name="2840" href="bitcoinTreeModel.html#3767" class="Function"
+      >nrOutputs</a
+      ><a name="2849"
+      > </a
+      ><a name="2850" href="bitcoinTreeModel.html#2763" class="Field"
+      >trTree</a
+      ><a name="2856"
+      >  </a
+      ><a name="2858" href="bitcoinTreeModel.html#2792" class="Field"
+      >tx</a
+      ><a name="2860" class="Symbol"
+      >)</a
+      ><a name="2861"
+      >
+
+
+</a
+      ><a name="2864" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="2882"
+      >
+  </a
+      ><a name="2885" href="bitcoinTreeModel.html#2885" class="Function"
+      >utxoMinusNewInputs</a
+      ><a name="2903"
+      > </a
+      ><a name="2904" class="Symbol"
+      >:</a
+      ><a name="2905"
+      > </a
+      ><a name="2906" class="Symbol"
+      >(</a
+      ><a name="2907" href="bitcoinTreeModel.html#2907" class="Bound"
+      >tr</a
+      ><a name="2909"
+      > </a
+      ><a name="2910" class="Symbol"
+      >:</a
+      ><a name="2911"
+      > </a
+      ><a name="2912" href="bitcoinTreeModel.html#2326" class="Datatype"
+      >TXTree</a
+      ><a name="2918" class="Symbol"
+      >)(</a
+      ><a name="2920" href="bitcoinTreeModel.html#2920" class="Bound"
+      >tx</a
+      ><a name="2922"
+      > </a
+      ><a name="2923" class="Symbol"
+      >:</a
+      ><a name="2924"
+      > </a
+      ><a name="2925" href="bitcoinTreeModel.html#2459" class="Datatype"
+      >TX</a
+      ><a name="2927"
+      > </a
+      ><a name="2928" href="bitcoinTreeModel.html#2907" class="Bound"
+      >tr</a
+      ><a name="2930" class="Symbol"
+      >)</a
+      ><a name="2931"
+      > </a
+      ><a name="2932" class="Symbol"
+      >&#8594;</a
+      ><a name="2933"
+      > </a
+      ><a name="2934" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="2938"
+      > </a
+      ><a name="2939" href="bitcoinTreeModel.html#2692" class="Record"
+      >TXOutput</a
+      ><a name="2947"
+      >
+  </a
+      ><a name="2950" href="bitcoinTreeModel.html#2950" class="Function"
+      >utxo</a
+      ><a name="2954"
+      > </a
+      ><a name="2955" class="Symbol"
+      >:</a
+      ><a name="2956"
+      > </a
+      ><a name="2957" class="Symbol"
+      >(</a
+      ><a name="2958" href="bitcoinTreeModel.html#2958" class="Bound"
+      >tr</a
+      ><a name="2960"
+      > </a
+      ><a name="2961" class="Symbol"
+      >:</a
+      ><a name="2962"
+      > </a
+      ><a name="2963" href="bitcoinTreeModel.html#2326" class="Datatype"
+      >TXTree</a
+      ><a name="2969" class="Symbol"
+      >)</a
+      ><a name="2970"
+      > </a
+      ><a name="2971" class="Symbol"
+      >&#8594;</a
+      ><a name="2972"
+      > </a
+      ><a name="2973" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="2977"
+      > </a
+      ><a name="2978" href="bitcoinTreeModel.html#2692" class="Record"
+      >TXOutput</a
+      ><a name="2986"
+      >
+
+</a
+      ><a name="2988" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="3006"
+      >
+  </a
+      ><a name="3009" href="bitcoinTreeModel.html#3009" class="Function"
+      >TxInputs</a
+      ><a name="3017"
+      > </a
+      ><a name="3018" class="Symbol"
+      >:</a
+      ><a name="3019"
+      > </a
+      ><a name="3020" class="Symbol"
+      >(</a
+      ><a name="3021" href="bitcoinTreeModel.html#3021" class="Bound"
+      >tr</a
+      ><a name="3023"
+      > </a
+      ><a name="3024" class="Symbol"
+      >:</a
+      ><a name="3025"
+      > </a
+      ><a name="3026" href="bitcoinTreeModel.html#2326" class="Datatype"
+      >TXTree</a
+      ><a name="3032" class="Symbol"
+      >)</a
+      ><a name="3033"
+      > </a
+      ><a name="3034" class="Symbol"
+      >&#8594;</a
+      ><a name="3035"
+      > </a
+      ><a name="3036" class="PrimitiveType"
+      >Set</a
+      ><a name="3039"
+      >
+  </a
+      ><a name="3042" href="bitcoinTreeModel.html#3009" class="Function"
+      >TxInputs</a
+      ><a name="3050"
+      > </a
+      ><a name="3051" href="bitcoinTreeModel.html#3051" class="Bound"
+      >tr</a
+      ><a name="3053"
+      > </a
+      ><a name="3054" class="Symbol"
+      >=</a
+      ><a name="3055"
+      > </a
+      ><a name="3056" href="libraries.listLib.html#4682" class="Datatype"
+      >SubList+</a
+      ><a name="3064"
+      > </a
+      ><a name="3065" class="Symbol"
+      >(</a
+      ><a name="3066" href="bitcoinTreeModel.html#730" class="Function"
+      >PublicKey</a
+      ><a name="3075"
+      > </a
+      ><a name="3076" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="3077"
+      >  </a
+      ><a name="3079" href="bitcoinTreeModel.html#697" class="Function"
+      >Signature</a
+      ><a name="3088" class="Symbol"
+      >)</a
+      ><a name="3089"
+      > </a
+      ><a name="3090" class="Symbol"
+      >(</a
+      ><a name="3091" href="bitcoinTreeModel.html#2950" class="Function"
+      >utxo</a
+      ><a name="3095"
+      > </a
+      ><a name="3096" href="bitcoinTreeModel.html#3051" class="Bound"
+      >tr</a
+      ><a name="3098" class="Symbol"
+      >)</a
+      ><a name="3099"
+      >
+
+</a
+      ><a name="3101" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="3119"
+      >
+  </a
+      ><a name="3122" href="bitcoinTreeModel.html#2885" class="Function"
+      >utxoMinusNewInputs</a
+      ><a name="3140"
+      > </a
+      ><a name="3141" href="bitcoinTreeModel.html#3141" class="Bound"
+      >tr</a
+      ><a name="3143"
+      > </a
+      ><a name="3144" class="Symbol"
+      >(</a
+      ><a name="3145" href="bitcoinTreeModel.html#2494" class="InductiveConstructor"
+      >normalTX</a
+      ><a name="3153"
+      > </a
+      ><a name="3154" href="bitcoinTreeModel.html#3154" class="Bound"
+      >inputs</a
+      ><a name="3160"
+      > </a
+      ><a name="3161" href="bitcoinTreeModel.html#3161" class="Bound"
+      >outputs</a
+      ><a name="3168" class="Symbol"
+      >)</a
+      ><a name="3169"
+      >  </a
+      ><a name="3171" class="Symbol"
+      >=</a
+      ><a name="3172"
+      >  </a
+      ><a name="3174" href="libraries.listLib.html#4897" class="Function"
+      >listMinusSubList+</a
+      ><a name="3191"
+      > </a
+      ><a name="3192" class="Symbol"
+      >(</a
+      ><a name="3193" href="bitcoinTreeModel.html#2950" class="Function"
+      >utxo</a
+      ><a name="3197"
+      > </a
+      ><a name="3198" href="bitcoinTreeModel.html#3141" class="Bound"
+      >tr</a
+      ><a name="3200" class="Symbol"
+      >)</a
+      ><a name="3201"
+      > </a
+      ><a name="3202" href="bitcoinTreeModel.html#3154" class="Bound"
+      >inputs</a
+      ><a name="3208"
+      >
+  </a
+      ><a name="3211" href="bitcoinTreeModel.html#2885" class="Function"
+      >utxoMinusNewInputs</a
+      ><a name="3229"
+      > </a
+      ><a name="3230" href="bitcoinTreeModel.html#3230" class="Bound"
+      >tr</a
+      ><a name="3232"
+      > </a
+      ><a name="3233" class="Symbol"
+      >(</a
+      ><a name="3234" href="bitcoinTreeModel.html#2581" class="InductiveConstructor"
+      >coinbase</a
+      ><a name="3242"
+      > </a
+      ><a name="3243" href="bitcoinTreeModel.html#3243" class="Bound"
+      >time</a
+      ><a name="3247"
+      > </a
+      ><a name="3248" href="bitcoinTreeModel.html#3248" class="Bound"
+      >outputs</a
+      ><a name="3255" class="Symbol"
+      >)</a
+      ><a name="3256"
+      >    </a
+      ><a name="3260" class="Symbol"
+      >=</a
+      ><a name="3261"
+      >  </a
+      ><a name="3263" href="bitcoinTreeModel.html#2950" class="Function"
+      >utxo</a
+      ><a name="3267"
+      > </a
+      ><a name="3268" href="bitcoinTreeModel.html#3230" class="Bound"
+      >tr</a
+      ><a name="3270"
+      >
+
+  </a
+      ><a name="3274" href="bitcoinTreeModel.html#2950" class="Function"
+      >utxo</a
+      ><a name="3278"
+      > </a
+      ><a name="3279" href="bitcoinTreeModel.html#2350" class="InductiveConstructor"
+      >genesisTree</a
+      ><a name="3290"
+      >     </a
+      ><a name="3295" class="Symbol"
+      >=</a
+      ><a name="3296"
+      >  </a
+      ><a name="3298" href="Agda.Builtin.List.html#117" class="InductiveConstructor"
+      >[]</a
+      ><a name="3300"
+      >
+  </a
+      ><a name="3303" href="bitcoinTreeModel.html#2950" class="Function"
+      >utxo</a
+      ><a name="3307"
+      > </a
+      ><a name="3308" class="Symbol"
+      >(</a
+      ><a name="3309" href="bitcoinTreeModel.html#2377" class="InductiveConstructor"
+      >txtree</a
+      ><a name="3315"
+      > </a
+      ><a name="3316" href="bitcoinTreeModel.html#3316" class="Bound"
+      >tr</a
+      ><a name="3318"
+      > </a
+      ><a name="3319" href="bitcoinTreeModel.html#3319" class="Bound"
+      >tx</a
+      ><a name="3321" class="Symbol"
+      >)</a
+      ><a name="3322"
+      >  </a
+      ><a name="3324" class="Symbol"
+      >=</a
+      ><a name="3325"
+      >  </a
+      ><a name="3327" href="bitcoinTreeModel.html#2885" class="Function"
+      >utxoMinusNewInputs</a
+      ><a name="3345"
+      > </a
+      ><a name="3346" href="bitcoinTreeModel.html#3316" class="Bound"
+      >tr</a
+      ><a name="3348"
+      > </a
+      ><a name="3349" href="bitcoinTreeModel.html#3319" class="Bound"
+      >tx</a
+      ><a name="3351"
+      > </a
+      ><a name="3352" href="Data.List.Base.html#982" class="Function Operator"
+      >++</a
+      ><a name="3354"
+      > </a
+      ><a name="3355" href="bitcoinTreeModel.html#3595" class="Function"
+      >tx2TXOutputs</a
+      ><a name="3367"
+      > </a
+      ><a name="3368" href="bitcoinTreeModel.html#3316" class="Bound"
+      >tr</a
+      ><a name="3370"
+      > </a
+      ><a name="3371" href="bitcoinTreeModel.html#3319" class="Bound"
+      >tx</a
+      ><a name="3373"
+      >
+
+</a
+      ><a name="3375" class="Comment"
+      >--(normalTX inp outp)) =</a
+      ><a name="3399"
+      >
+</a
+      ><a name="3400" class="Comment"
+      >--           listMinusSubList+ (utxo tr) inp ++ tx2TXOutputs tr  (normalTX inp outp)</a
+      ><a name="3484"
+      >
+</a
+      ><a name="3485" class="Comment"
+      >--  utxo (txtree tr (coinbase t outp)) = utxo tr ++ tx2TXOutputs tr  (coinbase t outp)</a
+      ><a name="3571"
+      >
+
+
+</a
+      ><a name="3574" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="3592"
+      >
+  </a
+      ><a name="3595" href="bitcoinTreeModel.html#3595" class="Function"
+      >tx2TXOutputs</a
+      ><a name="3607"
+      > </a
+      ><a name="3608" class="Symbol"
+      >:</a
+      ><a name="3609"
+      > </a
+      ><a name="3610" class="Symbol"
+      >(</a
+      ><a name="3611" href="bitcoinTreeModel.html#3611" class="Bound"
+      >tr</a
+      ><a name="3613"
+      > </a
+      ><a name="3614" class="Symbol"
+      >:</a
+      ><a name="3615"
+      > </a
+      ><a name="3616" href="bitcoinTreeModel.html#2326" class="Datatype"
+      >TXTree</a
+      ><a name="3622" class="Symbol"
+      >)(</a
+      ><a name="3624" href="bitcoinTreeModel.html#3624" class="Bound"
+      >tx</a
+      ><a name="3626"
+      > </a
+      ><a name="3627" class="Symbol"
+      >:</a
+      ><a name="3628"
+      > </a
+      ><a name="3629" href="bitcoinTreeModel.html#2459" class="Datatype"
+      >TX</a
+      ><a name="3631"
+      > </a
+      ><a name="3632" href="bitcoinTreeModel.html#3611" class="Bound"
+      >tr</a
+      ><a name="3634" class="Symbol"
+      >)</a
+      ><a name="3635"
+      > </a
+      ><a name="3636" class="Symbol"
+      >&#8594;</a
+      ><a name="3637"
+      > </a
+      ><a name="3638" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="3642"
+      > </a
+      ><a name="3643" href="bitcoinTreeModel.html#2692" class="Record"
+      >TXOutput</a
+      ><a name="3651"
+      >
+  </a
+      ><a name="3654" href="bitcoinTreeModel.html#3595" class="Function"
+      >tx2TXOutputs</a
+      ><a name="3666"
+      > </a
+      ><a name="3667" href="bitcoinTreeModel.html#3667" class="Bound"
+      >tr</a
+      ><a name="3669"
+      > </a
+      ><a name="3670" href="bitcoinTreeModel.html#3670" class="Bound"
+      >tx</a
+      ><a name="3672"
+      >  </a
+      ><a name="3674" class="Symbol"
+      >=</a
+      ><a name="3675"
+      > </a
+      ><a name="3676" href="libraries.listLib.html#257" class="Function"
+      >mapL</a
+      ><a name="3680"
+      > </a
+      ><a name="3681" class="Symbol"
+      >(&#955;</a
+      ><a name="3683"
+      > </a
+      ><a name="3684" href="bitcoinTreeModel.html#3684" class="Bound"
+      >i</a
+      ><a name="3685"
+      > </a
+      ><a name="3686" class="Symbol"
+      >&#8594;</a
+      ><a name="3687"
+      > </a
+      ><a name="3688" href="bitcoinTreeModel.html#2743" class="InductiveConstructor"
+      >txOutput</a
+      ><a name="3696"
+      > </a
+      ><a name="3697" href="bitcoinTreeModel.html#3667" class="Bound"
+      >tr</a
+      ><a name="3699"
+      > </a
+      ><a name="3700" href="bitcoinTreeModel.html#3670" class="Bound"
+      >tx</a
+      ><a name="3702"
+      > </a
+      ><a name="3703" href="bitcoinTreeModel.html#3684" class="Bound"
+      >i</a
+      ><a name="3704" class="Symbol"
+      >)(</a
+      ><a name="3706" href="libraries.listLib.html#3106" class="Function"
+      >listOfElementsOfFin</a
+      ><a name="3725"
+      > </a
+      ><a name="3726" class="Symbol"
+      >(</a
+      ><a name="3727" href="bitcoinTreeModel.html#3767" class="Function"
+      >nrOutputs</a
+      ><a name="3736"
+      > </a
+      ><a name="3737" href="bitcoinTreeModel.html#3667" class="Bound"
+      >tr</a
+      ><a name="3739"
+      > </a
+      ><a name="3740" href="bitcoinTreeModel.html#3670" class="Bound"
+      >tx</a
+      ><a name="3742" class="Symbol"
+      >))</a
+      ><a name="3744"
+      >
+
+</a
+      ><a name="3746" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="3764"
+      >
+  </a
+      ><a name="3767" href="bitcoinTreeModel.html#3767" class="Function"
+      >nrOutputs</a
+      ><a name="3776"
+      > </a
+      ><a name="3777" class="Symbol"
+      >:</a
+      ><a name="3778"
+      > </a
+      ><a name="3779" class="Symbol"
+      >(</a
+      ><a name="3780" href="bitcoinTreeModel.html#3780" class="Bound"
+      >tr</a
+      ><a name="3782"
+      > </a
+      ><a name="3783" class="Symbol"
+      >:</a
+      ><a name="3784"
+      > </a
+      ><a name="3785" href="bitcoinTreeModel.html#2326" class="Datatype"
+      >TXTree</a
+      ><a name="3791" class="Symbol"
+      >)</a
+      ><a name="3792"
+      > </a
+      ><a name="3793" class="Symbol"
+      >(</a
+      ><a name="3794" href="bitcoinTreeModel.html#3794" class="Bound"
+      >tx</a
+      ><a name="3796"
+      > </a
+      ><a name="3797" class="Symbol"
+      >:</a
+      ><a name="3798"
+      > </a
+      ><a name="3799" href="bitcoinTreeModel.html#2459" class="Datatype"
+      >TX</a
+      ><a name="3801"
+      > </a
+      ><a name="3802" href="bitcoinTreeModel.html#3780" class="Bound"
+      >tr</a
+      ><a name="3804" class="Symbol"
+      >)</a
+      ><a name="3805"
+      > </a
+      ><a name="3806" class="Symbol"
+      >&#8594;</a
+      ><a name="3807"
+      > </a
+      ><a name="3808" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="3809"
+      >
+
+  </a
+      ><a name="3813" href="bitcoinTreeModel.html#3767" class="Function"
+      >nrOutputs</a
+      ><a name="3822"
+      > </a
+      ><a name="3823" href="bitcoinTreeModel.html#3823" class="Bound"
+      >tr</a
+      ><a name="3825"
+      > </a
+      ><a name="3826" class="Symbol"
+      >(</a
+      ><a name="3827" href="bitcoinTreeModel.html#2494" class="InductiveConstructor"
+      >normalTX</a
+      ><a name="3835"
+      > </a
+      ><a name="3836" href="bitcoinTreeModel.html#3836" class="Bound"
+      >inp</a
+      ><a name="3839"
+      > </a
+      ><a name="3840" href="bitcoinTreeModel.html#3840" class="Bound"
+      >outp</a
+      ><a name="3844" class="Symbol"
+      >)</a
+      ><a name="3845"
+      > </a
+      ><a name="3846" class="Symbol"
+      >=</a
+      ><a name="3847"
+      > </a
+      ><a name="3848" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="3854"
+      > </a
+      ><a name="3855" href="bitcoinTreeModel.html#3840" class="Bound"
+      >outp</a
+      ><a name="3859"
+      >
+  </a
+      ><a name="3862" href="bitcoinTreeModel.html#3767" class="Function"
+      >nrOutputs</a
+      ><a name="3871"
+      > </a
+      ><a name="3872" href="bitcoinTreeModel.html#3872" class="Bound"
+      >tr</a
+      ><a name="3874"
+      > </a
+      ><a name="3875" class="Symbol"
+      >(</a
+      ><a name="3876" href="bitcoinTreeModel.html#2581" class="InductiveConstructor"
+      >coinbase</a
+      ><a name="3884"
+      > </a
+      ><a name="3885" href="bitcoinTreeModel.html#3885" class="Bound"
+      >t</a
+      ><a name="3886"
+      > </a
+      ><a name="3887" href="bitcoinTreeModel.html#3887" class="Bound"
+      >outp</a
+      ><a name="3891" class="Symbol"
+      >)</a
+      ><a name="3892"
+      > </a
+      ><a name="3893" class="Symbol"
+      >=</a
+      ><a name="3894"
+      > </a
+      ><a name="3895" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="3901"
+      > </a
+      ><a name="3902" href="bitcoinTreeModel.html#3887" class="Bound"
+      >outp</a
+      ><a name="3906"
+      >
+
+
+
+</a
+      ><a name="3910" class="Keyword"
+      >open</a
+      ><a name="3914"
+      > </a
+      ><a name="3915" href="bitcoinTreeModel.html#2692" class="Module"
+      >TXOutput</a
+      ><a name="3923"
+      > </a
+      ><a name="3924" class="Keyword"
+      >public</a
+      ><a name="3930"
+      >
+</a
+      ><a name="3931" class="Keyword"
+      >open</a
+      ><a name="3935"
+      > </a
+      ><a name="3936" href="bitcoinTreeModel.html#2326" class="Module"
+      >TXTree</a
+      ><a name="3942"
+      > </a
+      ><a name="3943" class="Keyword"
+      >public</a
+      ><a name="3949"
+      >
+</a
+      ><a name="3950" class="Keyword"
+      >open</a
+      ><a name="3954"
+      > </a
+      ><a name="3955" href="bitcoinTreeModel.html#2459" class="Module"
+      >TX</a
+      ><a name="3957"
+      > </a
+      ><a name="3958" class="Keyword"
+      >public</a
+      ><a name="3964"
+      >
+
+
+</a
+      ><a name="3967" class="Comment"
+      >-- #############################################################################</a
+      ><a name="4047"
+      >
+</a
+      ><a name="4048" class="Comment"
+      >-- #  Computing Sum of Inputs and Outputs of Transactions and Transaction Fees #</a
+      ><a name="4128"
+      >
+</a
+      ><a name="4129" class="Comment"
+      >-- #############################################################################</a
+      ><a name="4209"
+      >
+
+</a
+      ><a name="4211" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="4229"
+      >
+</a
+      ><a name="4230" href="bitcoinTreeModel.html#4230" class="Function"
+      >outputs2SumAmount</a
+      ><a name="4247"
+      > </a
+      ><a name="4248" class="Symbol"
+      >:</a
+      ><a name="4249"
+      > </a
+      ><a name="4250" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="4254"
+      > </a
+      ><a name="4255" href="bitcoinTreeModel.html#2159" class="Record"
+      >TXOutputfield</a
+      ><a name="4268"
+      > </a
+      ><a name="4269" class="Symbol"
+      >&#8594;</a
+      ><a name="4270"
+      > </a
+      ><a name="4271" href="bitcoinTreeModel.html#624" class="Function"
+      >Amount</a
+      ><a name="4277"
+      >
+</a
+      ><a name="4278" href="bitcoinTreeModel.html#4230" class="Function"
+      >outputs2SumAmount</a
+      ><a name="4295"
+      > </a
+      ><a name="4296" href="bitcoinTreeModel.html#4296" class="Bound"
+      >l</a
+      ><a name="4297"
+      > </a
+      ><a name="4298" class="Symbol"
+      >=</a
+      ><a name="4299"
+      > </a
+      ><a name="4300" href="libraries.listLib.html#7409" class="Function"
+      >sumListViaf</a
+      ><a name="4311"
+      > </a
+      ><a name="4312" href="bitcoinTreeModel.html#2222" class="Field"
+      >amount</a
+      ><a name="4318"
+      > </a
+      ><a name="4319" href="bitcoinTreeModel.html#4296" class="Bound"
+      >l</a
+      ><a name="4320"
+      >
+
+</a
+      ><a name="4322" href="bitcoinTreeModel.html#4322" class="Function"
+      >tx2SumOutputs</a
+      ><a name="4335"
+      > </a
+      ><a name="4336" class="Symbol"
+      >:</a
+      ><a name="4337"
+      > </a
+      ><a name="4338" class="Symbol"
+      >{</a
+      ><a name="4339" href="bitcoinTreeModel.html#4339" class="Bound"
+      >tr</a
+      ><a name="4341"
+      > </a
+      ><a name="4342" class="Symbol"
+      >:</a
+      ><a name="4343"
+      > </a
+      ><a name="4344" href="bitcoinTreeModel.html#2326" class="Datatype"
+      >TXTree</a
+      ><a name="4350" class="Symbol"
+      >}(</a
+      ><a name="4352" href="bitcoinTreeModel.html#4352" class="Bound"
+      >tx</a
+      ><a name="4354"
+      > </a
+      ><a name="4355" class="Symbol"
+      >:</a
+      ><a name="4356"
+      > </a
+      ><a name="4357" href="bitcoinTreeModel.html#2459" class="Datatype"
+      >TX</a
+      ><a name="4359"
+      > </a
+      ><a name="4360" href="bitcoinTreeModel.html#4339" class="Bound"
+      >tr</a
+      ><a name="4362" class="Symbol"
+      >)</a
+      ><a name="4363"
+      > </a
+      ><a name="4364" class="Symbol"
+      >&#8594;</a
+      ><a name="4365"
+      > </a
+      ><a name="4366" href="bitcoinTreeModel.html#624" class="Function"
+      >Amount</a
+      ><a name="4372"
+      >
+</a
+      ><a name="4373" href="bitcoinTreeModel.html#4322" class="Function"
+      >tx2SumOutputs</a
+      ><a name="4386"
+      > </a
+      ><a name="4387" class="Symbol"
+      >(</a
+      ><a name="4388" href="bitcoinTreeModel.html#2494" class="InductiveConstructor"
+      >normalTX</a
+      ><a name="4396"
+      > </a
+      ><a name="4397" href="bitcoinTreeModel.html#4397" class="Bound"
+      >inputs</a
+      ><a name="4403"
+      > </a
+      ><a name="4404" href="bitcoinTreeModel.html#4404" class="Bound"
+      >outputs</a
+      ><a name="4411" class="Symbol"
+      >)</a
+      ><a name="4412"
+      > </a
+      ><a name="4413" class="Symbol"
+      >=</a
+      ><a name="4414"
+      > </a
+      ><a name="4415" href="bitcoinTreeModel.html#4230" class="Function"
+      >outputs2SumAmount</a
+      ><a name="4432"
+      > </a
+      ><a name="4433" href="bitcoinTreeModel.html#4404" class="Bound"
+      >outputs</a
+      ><a name="4440"
+      >
+</a
+      ><a name="4441" href="bitcoinTreeModel.html#4322" class="Function"
+      >tx2SumOutputs</a
+      ><a name="4454"
+      > </a
+      ><a name="4455" class="Symbol"
+      >(</a
+      ><a name="4456" href="bitcoinTreeModel.html#2581" class="InductiveConstructor"
+      >coinbase</a
+      ><a name="4464"
+      > </a
+      ><a name="4465" href="bitcoinTreeModel.html#4465" class="Bound"
+      >time</a
+      ><a name="4469"
+      > </a
+      ><a name="4470" href="bitcoinTreeModel.html#4470" class="Bound"
+      >outputs</a
+      ><a name="4477" class="Symbol"
+      >)</a
+      ><a name="4478"
+      > </a
+      ><a name="4479" class="Symbol"
+      >=</a
+      ><a name="4480"
+      >  </a
+      ><a name="4482" href="bitcoinTreeModel.html#4230" class="Function"
+      >outputs2SumAmount</a
+      ><a name="4499"
+      > </a
+      ><a name="4500" href="bitcoinTreeModel.html#4470" class="Bound"
+      >outputs</a
+      ><a name="4507"
+      >
+
+
+</a
+      ><a name="4510" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="4528"
+      >
+</a
+      ><a name="4529" href="bitcoinTreeModel.html#4529" class="Function"
+      >txOutput2Outputfield</a
+      ><a name="4549"
+      > </a
+      ><a name="4550" class="Symbol"
+      >:</a
+      ><a name="4551"
+      > </a
+      ><a name="4552" href="bitcoinTreeModel.html#2692" class="Record"
+      >TXOutput</a
+      ><a name="4560"
+      > </a
+      ><a name="4561" class="Symbol"
+      >&#8594;</a
+      ><a name="4562"
+      > </a
+      ><a name="4563" href="bitcoinTreeModel.html#2159" class="Record"
+      >TXOutputfield</a
+      ><a name="4576"
+      >
+</a
+      ><a name="4577" href="bitcoinTreeModel.html#4529" class="Function"
+      >txOutput2Outputfield</a
+      ><a name="4597"
+      > </a
+      ><a name="4598" class="Symbol"
+      >(</a
+      ><a name="4599" href="bitcoinTreeModel.html#2743" class="InductiveConstructor"
+      >txOutput</a
+      ><a name="4607"
+      > </a
+      ><a name="4608" href="bitcoinTreeModel.html#4608" class="Bound"
+      >trTree</a
+      ><a name="4614"
+      > </a
+      ><a name="4615" class="Symbol"
+      >(</a
+      ><a name="4616" href="bitcoinTreeModel.html#2494" class="InductiveConstructor"
+      >normalTX</a
+      ><a name="4624"
+      > </a
+      ><a name="4625" href="bitcoinTreeModel.html#4625" class="Bound"
+      >inputs</a
+      ><a name="4631"
+      > </a
+      ><a name="4632" href="bitcoinTreeModel.html#4632" class="Bound"
+      >outputs</a
+      ><a name="4639" class="Symbol"
+      >)</a
+      ><a name="4640"
+      > </a
+      ><a name="4641" href="bitcoinTreeModel.html#4641" class="Bound"
+      >i</a
+      ><a name="4642" class="Symbol"
+      >)</a
+      ><a name="4643"
+      > </a
+      ><a name="4644" class="Symbol"
+      >=</a
+      ><a name="4645"
+      > </a
+      ><a name="4646" href="libraries.listLib.html#530" class="Function"
+      >nth</a
+      ><a name="4649"
+      > </a
+      ><a name="4650" href="bitcoinTreeModel.html#4632" class="Bound"
+      >outputs</a
+      ><a name="4657"
+      > </a
+      ><a name="4658" href="bitcoinTreeModel.html#4641" class="Bound"
+      >i</a
+      ><a name="4659"
+      >
+</a
+      ><a name="4660" href="bitcoinTreeModel.html#4529" class="Function"
+      >txOutput2Outputfield</a
+      ><a name="4680"
+      > </a
+      ><a name="4681" class="Symbol"
+      >(</a
+      ><a name="4682" href="bitcoinTreeModel.html#2743" class="InductiveConstructor"
+      >txOutput</a
+      ><a name="4690"
+      > </a
+      ><a name="4691" href="bitcoinTreeModel.html#4691" class="Bound"
+      >trTree</a
+      ><a name="4697"
+      > </a
+      ><a name="4698" class="Symbol"
+      >(</a
+      ><a name="4699" href="bitcoinTreeModel.html#2581" class="InductiveConstructor"
+      >coinbase</a
+      ><a name="4707"
+      > </a
+      ><a name="4708" href="bitcoinTreeModel.html#4708" class="Bound"
+      >time</a
+      ><a name="4712"
+      > </a
+      ><a name="4713" href="bitcoinTreeModel.html#4713" class="Bound"
+      >outputs</a
+      ><a name="4720" class="Symbol"
+      >)</a
+      ><a name="4721"
+      > </a
+      ><a name="4722" href="bitcoinTreeModel.html#4722" class="Bound"
+      >i</a
+      ><a name="4723" class="Symbol"
+      >)</a
+      ><a name="4724"
+      >   </a
+      ><a name="4727" class="Symbol"
+      >=</a
+      ><a name="4728"
+      > </a
+      ><a name="4729" href="libraries.listLib.html#530" class="Function"
+      >nth</a
+      ><a name="4732"
+      > </a
+      ><a name="4733" href="bitcoinTreeModel.html#4713" class="Bound"
+      >outputs</a
+      ><a name="4740"
+      > </a
+      ><a name="4741" href="bitcoinTreeModel.html#4722" class="Bound"
+      >i</a
+      ><a name="4742"
+      >
+
+</a
+      ><a name="4744" href="bitcoinTreeModel.html#4744" class="Function"
+      >txOutput2Amount</a
+      ><a name="4759"
+      > </a
+      ><a name="4760" class="Symbol"
+      >:</a
+      ><a name="4761"
+      > </a
+      ><a name="4762" href="bitcoinTreeModel.html#2692" class="Record"
+      >TXOutput</a
+      ><a name="4770"
+      > </a
+      ><a name="4771" class="Symbol"
+      >&#8594;</a
+      ><a name="4772"
+      > </a
+      ><a name="4773" href="bitcoinTreeModel.html#624" class="Function"
+      >Amount</a
+      ><a name="4779"
+      >
+</a
+      ><a name="4780" href="bitcoinTreeModel.html#4744" class="Function"
+      >txOutput2Amount</a
+      ><a name="4795"
+      > </a
+      ><a name="4796" href="bitcoinTreeModel.html#4796" class="Bound"
+      >output</a
+      ><a name="4802"
+      > </a
+      ><a name="4803" class="Symbol"
+      >=</a
+      ><a name="4804"
+      > </a
+      ><a name="4805" href="bitcoinTreeModel.html#2222" class="Field"
+      >amount</a
+      ><a name="4811"
+      > </a
+      ><a name="4812" class="Symbol"
+      >(</a
+      ><a name="4813" href="bitcoinTreeModel.html#4529" class="Function"
+      >txOutput2Outputfield</a
+      ><a name="4833"
+      > </a
+      ><a name="4834" href="bitcoinTreeModel.html#4796" class="Bound"
+      >output</a
+      ><a name="4840" class="Symbol"
+      >)</a
+      ><a name="4841"
+      >
+
+</a
+      ><a name="4843" href="bitcoinTreeModel.html#4843" class="Function"
+      >txOutput2Address</a
+      ><a name="4859"
+      > </a
+      ><a name="4860" class="Symbol"
+      >:</a
+      ><a name="4861"
+      > </a
+      ><a name="4862" href="bitcoinTreeModel.html#2692" class="Record"
+      >TXOutput</a
+      ><a name="4870"
+      > </a
+      ><a name="4871" class="Symbol"
+      >&#8594;</a
+      ><a name="4872"
+      > </a
+      ><a name="4873" href="bitcoinTreeModel.html#649" class="Function"
+      >Address</a
+      ><a name="4880"
+      >
+</a
+      ><a name="4881" href="bitcoinTreeModel.html#4843" class="Function"
+      >txOutput2Address</a
+      ><a name="4897"
+      > </a
+      ><a name="4898" href="bitcoinTreeModel.html#4898" class="Bound"
+      >output</a
+      ><a name="4904"
+      > </a
+      ><a name="4905" class="Symbol"
+      >=</a
+      ><a name="4906"
+      > </a
+      ><a name="4907" href="bitcoinTreeModel.html#2247" class="Field"
+      >address</a
+      ><a name="4914"
+      > </a
+      ><a name="4915" class="Symbol"
+      >(</a
+      ><a name="4916" href="bitcoinTreeModel.html#4529" class="Function"
+      >txOutput2Outputfield</a
+      ><a name="4936"
+      > </a
+      ><a name="4937" href="bitcoinTreeModel.html#4898" class="Bound"
+      >output</a
+      ><a name="4943" class="Symbol"
+      >)</a
+      ><a name="4944"
+      >
+
+
+</a
+      ><a name="4947" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="4965"
+      >
+</a
+      ><a name="4966" href="bitcoinTreeModel.html#4966" class="Function"
+      >inputs2PrevOutputsSigPbk</a
+      ><a name="4990"
+      > </a
+      ><a name="4991" class="Symbol"
+      >:</a
+      ><a name="4992"
+      >  </a
+      ><a name="4994" class="Symbol"
+      >(</a
+      ><a name="4995" href="bitcoinTreeModel.html#4995" class="Bound"
+      >tr</a
+      ><a name="4997"
+      > </a
+      ><a name="4998" class="Symbol"
+      >:</a
+      ><a name="4999"
+      > </a
+      ><a name="5000" href="bitcoinTreeModel.html#2326" class="Datatype"
+      >TXTree</a
+      ><a name="5006" class="Symbol"
+      >)(</a
+      ><a name="5008" href="bitcoinTreeModel.html#5008" class="Bound"
+      >inputs</a
+      ><a name="5014"
+      > </a
+      ><a name="5015" class="Symbol"
+      >:</a
+      ><a name="5016"
+      > </a
+      ><a name="5017" href="bitcoinTreeModel.html#3009" class="Function"
+      >TxInputs</a
+      ><a name="5025"
+      > </a
+      ><a name="5026" href="bitcoinTreeModel.html#4995" class="Bound"
+      >tr</a
+      ><a name="5028" class="Symbol"
+      >)</a
+      ><a name="5029"
+      >
+                            </a
+      ><a name="5058" class="Symbol"
+      >&#8594;</a
+      ><a name="5059"
+      > </a
+      ><a name="5060" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="5064"
+      > </a
+      ><a name="5065" class="Symbol"
+      >(</a
+      ><a name="5066" href="bitcoinTreeModel.html#2692" class="Record"
+      >TXOutput</a
+      ><a name="5074"
+      > </a
+      ><a name="5075" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="5076"
+      > </a
+      ><a name="5077" href="bitcoinTreeModel.html#730" class="Function"
+      >PublicKey</a
+      ><a name="5086"
+      > </a
+      ><a name="5087" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="5088"
+      > </a
+      ><a name="5089" href="bitcoinTreeModel.html#697" class="Function"
+      >Signature</a
+      ><a name="5098" class="Symbol"
+      >)</a
+      ><a name="5099"
+      >
+</a
+      ><a name="5100" href="bitcoinTreeModel.html#4966" class="Function"
+      >inputs2PrevOutputsSigPbk</a
+      ><a name="5124"
+      > </a
+      ><a name="5125" href="bitcoinTreeModel.html#5125" class="Bound"
+      >tr</a
+      ><a name="5127"
+      > </a
+      ><a name="5128" href="bitcoinTreeModel.html#5128" class="Bound"
+      >inputs</a
+      ><a name="5134"
+      > </a
+      ><a name="5135" class="Symbol"
+      >=</a
+      ><a name="5136"
+      > </a
+      ><a name="5137" href="libraries.listLib.html#5105" class="Function"
+      >subList+2List</a
+      ><a name="5150"
+      > </a
+      ><a name="5151" href="bitcoinTreeModel.html#5128" class="Bound"
+      >inputs</a
+      ><a name="5157"
+      >
+
+</a
+      ><a name="5159" href="bitcoinTreeModel.html#5159" class="Function"
+      >inputs2PrevOutputs</a
+      ><a name="5177"
+      > </a
+      ><a name="5178" class="Symbol"
+      >:</a
+      ><a name="5179"
+      > </a
+      ><a name="5180" class="Symbol"
+      >(</a
+      ><a name="5181" href="bitcoinTreeModel.html#5181" class="Bound"
+      >tr</a
+      ><a name="5183"
+      > </a
+      ><a name="5184" class="Symbol"
+      >:</a
+      ><a name="5185"
+      > </a
+      ><a name="5186" href="bitcoinTreeModel.html#2326" class="Datatype"
+      >TXTree</a
+      ><a name="5192" class="Symbol"
+      >)(</a
+      ><a name="5194" href="bitcoinTreeModel.html#5194" class="Bound"
+      >inputs</a
+      ><a name="5200"
+      > </a
+      ><a name="5201" class="Symbol"
+      >:</a
+      ><a name="5202"
+      > </a
+      ><a name="5203" href="bitcoinTreeModel.html#3009" class="Function"
+      >TxInputs</a
+      ><a name="5211"
+      > </a
+      ><a name="5212" href="bitcoinTreeModel.html#5181" class="Bound"
+      >tr</a
+      ><a name="5214" class="Symbol"
+      >)</a
+      ><a name="5215"
+      > </a
+      ><a name="5216" class="Symbol"
+      >&#8594;</a
+      ><a name="5217"
+      > </a
+      ><a name="5218" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="5222"
+      > </a
+      ><a name="5223" href="bitcoinTreeModel.html#2692" class="Record"
+      >TXOutput</a
+      ><a name="5231"
+      >
+</a
+      ><a name="5232" href="bitcoinTreeModel.html#5159" class="Function"
+      >inputs2PrevOutputs</a
+      ><a name="5250"
+      > </a
+      ><a name="5251" href="bitcoinTreeModel.html#5251" class="Bound"
+      >tr</a
+      ><a name="5253"
+      > </a
+      ><a name="5254" href="bitcoinTreeModel.html#5254" class="Bound"
+      >inputs</a
+      ><a name="5260"
+      > </a
+      ><a name="5261" class="Symbol"
+      >=</a
+      ><a name="5262"
+      > </a
+      ><a name="5263" href="libraries.listLib.html#257" class="Function"
+      >mapL</a
+      ><a name="5267"
+      > </a
+      ><a name="5268" href="Data.Product.html#525" class="Field"
+      >proj&#8321;</a
+      ><a name="5273"
+      > </a
+      ><a name="5274" class="Symbol"
+      >(</a
+      ><a name="5275" href="bitcoinTreeModel.html#4966" class="Function"
+      >inputs2PrevOutputsSigPbk</a
+      ><a name="5299"
+      > </a
+      ><a name="5300" href="bitcoinTreeModel.html#5251" class="Bound"
+      >tr</a
+      ><a name="5302"
+      > </a
+      ><a name="5303" href="bitcoinTreeModel.html#5254" class="Bound"
+      >inputs</a
+      ><a name="5309" class="Symbol"
+      >)</a
+      ><a name="5310"
+      >
+
+</a
+      ><a name="5312" href="bitcoinTreeModel.html#5312" class="Function"
+      >inputs2Sum</a
+      ><a name="5322"
+      > </a
+      ><a name="5323" class="Symbol"
+      >:</a
+      ><a name="5324"
+      > </a
+      ><a name="5325" class="Symbol"
+      >(</a
+      ><a name="5326" href="bitcoinTreeModel.html#5326" class="Bound"
+      >tr</a
+      ><a name="5328"
+      > </a
+      ><a name="5329" class="Symbol"
+      >:</a
+      ><a name="5330"
+      > </a
+      ><a name="5331" href="bitcoinTreeModel.html#2326" class="Datatype"
+      >TXTree</a
+      ><a name="5337" class="Symbol"
+      >)(</a
+      ><a name="5339" href="bitcoinTreeModel.html#5339" class="Bound"
+      >inputs</a
+      ><a name="5345"
+      > </a
+      ><a name="5346" class="Symbol"
+      >:</a
+      ><a name="5347"
+      > </a
+      ><a name="5348" href="bitcoinTreeModel.html#3009" class="Function"
+      >TxInputs</a
+      ><a name="5356"
+      > </a
+      ><a name="5357" href="bitcoinTreeModel.html#5326" class="Bound"
+      >tr</a
+      ><a name="5359" class="Symbol"
+      >)</a
+      ><a name="5360"
+      > </a
+      ><a name="5361" class="Symbol"
+      >&#8594;</a
+      ><a name="5362"
+      > </a
+      ><a name="5363" href="bitcoinTreeModel.html#624" class="Function"
+      >Amount</a
+      ><a name="5369"
+      >
+</a
+      ><a name="5370" href="bitcoinTreeModel.html#5312" class="Function"
+      >inputs2Sum</a
+      ><a name="5380"
+      >  </a
+      ><a name="5382" href="bitcoinTreeModel.html#5382" class="Bound"
+      >tr</a
+      ><a name="5384"
+      > </a
+      ><a name="5385" href="bitcoinTreeModel.html#5385" class="Bound"
+      >inputs</a
+      ><a name="5391"
+      > </a
+      ><a name="5392" class="Symbol"
+      >=</a
+      ><a name="5393"
+      > </a
+      ><a name="5394" href="libraries.listLib.html#7409" class="Function"
+      >sumListViaf</a
+      ><a name="5405"
+      > </a
+      ><a name="5406" href="bitcoinTreeModel.html#4744" class="Function"
+      >txOutput2Amount</a
+      ><a name="5421"
+      > </a
+      ><a name="5422" class="Symbol"
+      >(</a
+      ><a name="5423" href="bitcoinTreeModel.html#5159" class="Function"
+      >inputs2PrevOutputs</a
+      ><a name="5441"
+      > </a
+      ><a name="5442" href="bitcoinTreeModel.html#5382" class="Bound"
+      >tr</a
+      ><a name="5444"
+      > </a
+      ><a name="5445" href="bitcoinTreeModel.html#5385" class="Bound"
+      >inputs</a
+      ><a name="5451" class="Symbol"
+      >)</a
+      ><a name="5452"
+      >
+
+</a
+      ><a name="5454" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="5472"
+      >
+</a
+      ><a name="5473" href="bitcoinTreeModel.html#5473" class="Function"
+      >txTree2TimeNextTobeMinedBlock</a
+      ><a name="5502"
+      > </a
+      ><a name="5503" class="Symbol"
+      >:</a
+      ><a name="5504"
+      > </a
+      ><a name="5505" class="Symbol"
+      >(</a
+      ><a name="5506" href="bitcoinTreeModel.html#5506" class="Bound"
+      >tr</a
+      ><a name="5508"
+      > </a
+      ><a name="5509" class="Symbol"
+      >:</a
+      ><a name="5510"
+      > </a
+      ><a name="5511" href="bitcoinTreeModel.html#2326" class="Datatype"
+      >TXTree</a
+      ><a name="5517" class="Symbol"
+      >)</a
+      ><a name="5518"
+      > </a
+      ><a name="5519" class="Symbol"
+      >&#8594;</a
+      ><a name="5520"
+      > </a
+      ><a name="5521" href="bitcoinTreeModel.html#603" class="Function"
+      >Time</a
+      ><a name="5525"
+      >
+</a
+      ><a name="5526" href="bitcoinTreeModel.html#5473" class="Function"
+      >txTree2TimeNextTobeMinedBlock</a
+      ><a name="5555"
+      > </a
+      ><a name="5556" href="bitcoinTreeModel.html#2350" class="InductiveConstructor"
+      >genesisTree</a
+      ><a name="5567"
+      > </a
+      ><a name="5568" class="Symbol"
+      >=</a
+      ><a name="5569"
+      > </a
+      ><a name="5570" class="Number"
+      >0</a
+      ><a name="5571"
+      >
+</a
+      ><a name="5572" href="bitcoinTreeModel.html#5473" class="Function"
+      >txTree2TimeNextTobeMinedBlock</a
+      ><a name="5601"
+      > </a
+      ><a name="5602" class="Symbol"
+      >(</a
+      ><a name="5603" href="bitcoinTreeModel.html#2377" class="InductiveConstructor"
+      >txtree</a
+      ><a name="5609"
+      > </a
+      ><a name="5610" href="bitcoinTreeModel.html#5610" class="Bound"
+      >tree</a
+      ><a name="5614"
+      > </a
+      ><a name="5615" class="Symbol"
+      >(</a
+      ><a name="5616" href="bitcoinTreeModel.html#2494" class="InductiveConstructor"
+      >normalTX</a
+      ><a name="5624"
+      > </a
+      ><a name="5625" href="bitcoinTreeModel.html#5625" class="Bound"
+      >inputs</a
+      ><a name="5631"
+      > </a
+      ><a name="5632" href="bitcoinTreeModel.html#5632" class="Bound"
+      >outputs</a
+      ><a name="5639" class="Symbol"
+      >))</a
+      ><a name="5641"
+      > </a
+      ><a name="5642" class="Symbol"
+      >=</a
+      ><a name="5643"
+      >
+            </a
+      ><a name="5656" href="bitcoinTreeModel.html#5473" class="Function"
+      >txTree2TimeNextTobeMinedBlock</a
+      ><a name="5685"
+      > </a
+      ><a name="5686" href="bitcoinTreeModel.html#5610" class="Bound"
+      >tree</a
+      ><a name="5690"
+      >
+</a
+      ><a name="5691" href="bitcoinTreeModel.html#5473" class="Function"
+      >txTree2TimeNextTobeMinedBlock</a
+      ><a name="5720"
+      > </a
+      ><a name="5721" class="Symbol"
+      >(</a
+      ><a name="5722" href="bitcoinTreeModel.html#2377" class="InductiveConstructor"
+      >txtree</a
+      ><a name="5728"
+      > </a
+      ><a name="5729" href="bitcoinTreeModel.html#5729" class="Bound"
+      >tree</a
+      ><a name="5733"
+      > </a
+      ><a name="5734" class="Symbol"
+      >(</a
+      ><a name="5735" href="bitcoinTreeModel.html#2581" class="InductiveConstructor"
+      >coinbase</a
+      ><a name="5743"
+      > </a
+      ><a name="5744" href="bitcoinTreeModel.html#5744" class="Bound"
+      >time</a
+      ><a name="5748"
+      > </a
+      ><a name="5749" href="bitcoinTreeModel.html#5749" class="Bound"
+      >outputs</a
+      ><a name="5756" class="Symbol"
+      >))</a
+      ><a name="5758"
+      > </a
+      ><a name="5759" class="Symbol"
+      >=</a
+      ><a name="5760"
+      > </a
+      ><a name="5761" href="Agda.Builtin.Nat.html#128" class="InductiveConstructor"
+      >suc</a
+      ><a name="5764"
+      > </a
+      ><a name="5765" href="bitcoinTreeModel.html#5744" class="Bound"
+      >time</a
+      ><a name="5769"
+      >
+
+</a
+      ><a name="5771" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="5789"
+      >
+</a
+      ><a name="5790" class="Keyword"
+      >mutual</a
+      ><a name="5796"
+      >
+  </a
+      ><a name="5799" href="bitcoinTreeModel.html#5799" class="Function"
+      >tx2SumInputs</a
+      ><a name="5811"
+      > </a
+      ><a name="5812" class="Symbol"
+      >:</a
+      ><a name="5813"
+      > </a
+      ><a name="5814" class="Symbol"
+      >(</a
+      ><a name="5815" href="bitcoinTreeModel.html#5815" class="Bound"
+      >tr</a
+      ><a name="5817"
+      > </a
+      ><a name="5818" class="Symbol"
+      >:</a
+      ><a name="5819"
+      > </a
+      ><a name="5820" href="bitcoinTreeModel.html#2326" class="Datatype"
+      >TXTree</a
+      ><a name="5826" class="Symbol"
+      >)(</a
+      ><a name="5828" href="bitcoinTreeModel.html#5828" class="Bound"
+      >tx</a
+      ><a name="5830"
+      > </a
+      ><a name="5831" class="Symbol"
+      >:</a
+      ><a name="5832"
+      > </a
+      ><a name="5833" href="bitcoinTreeModel.html#2459" class="Datatype"
+      >TX</a
+      ><a name="5835"
+      > </a
+      ><a name="5836" href="bitcoinTreeModel.html#5815" class="Bound"
+      >tr</a
+      ><a name="5838" class="Symbol"
+      >)</a
+      ><a name="5839"
+      > </a
+      ><a name="5840" class="Symbol"
+      >&#8594;</a
+      ><a name="5841"
+      > </a
+      ><a name="5842" href="bitcoinTreeModel.html#624" class="Function"
+      >Amount</a
+      ><a name="5848"
+      >
+  </a
+      ><a name="5851" href="bitcoinTreeModel.html#5799" class="Function"
+      >tx2SumInputs</a
+      ><a name="5863"
+      > </a
+      ><a name="5864" href="bitcoinTreeModel.html#5864" class="Bound"
+      >tr</a
+      ><a name="5866"
+      > </a
+      ><a name="5867" class="Symbol"
+      >(</a
+      ><a name="5868" href="bitcoinTreeModel.html#2494" class="InductiveConstructor"
+      >normalTX</a
+      ><a name="5876"
+      > </a
+      ><a name="5877" href="bitcoinTreeModel.html#5877" class="Bound"
+      >inputs</a
+      ><a name="5883"
+      > </a
+      ><a name="5884" href="bitcoinTreeModel.html#5884" class="Bound"
+      >outputs</a
+      ><a name="5891" class="Symbol"
+      >)</a
+      ><a name="5892"
+      > </a
+      ><a name="5893" class="Symbol"
+      >=</a
+      ><a name="5894"
+      > </a
+      ><a name="5895" href="bitcoinTreeModel.html#5312" class="Function"
+      >inputs2Sum</a
+      ><a name="5905"
+      > </a
+      ><a name="5906" href="bitcoinTreeModel.html#5864" class="Bound"
+      >tr</a
+      ><a name="5908"
+      > </a
+      ><a name="5909" href="bitcoinTreeModel.html#5877" class="Bound"
+      >inputs</a
+      ><a name="5915"
+      >
+  </a
+      ><a name="5918" href="bitcoinTreeModel.html#5799" class="Function"
+      >tx2SumInputs</a
+      ><a name="5930"
+      > </a
+      ><a name="5931" href="bitcoinTreeModel.html#5931" class="Bound"
+      >tr</a
+      ><a name="5933"
+      > </a
+      ><a name="5934" class="Symbol"
+      >(</a
+      ><a name="5935" href="bitcoinTreeModel.html#2581" class="InductiveConstructor"
+      >coinbase</a
+      ><a name="5943"
+      > </a
+      ><a name="5944" href="bitcoinTreeModel.html#5944" class="Bound"
+      >time</a
+      ><a name="5948"
+      > </a
+      ><a name="5949" href="bitcoinTreeModel.html#5949" class="Bound"
+      >outputs</a
+      ><a name="5956" class="Symbol"
+      >)</a
+      ><a name="5957"
+      > </a
+      ><a name="5958" class="Symbol"
+      >=</a
+      ><a name="5959"
+      >
+     </a
+      ><a name="5965" href="bitcoinTreeModel.html#6040" class="Function"
+      >txTree2RecentTXFees</a
+      ><a name="5984"
+      > </a
+      ><a name="5985" href="bitcoinTreeModel.html#5931" class="Bound"
+      >tr</a
+      ><a name="5987"
+      > </a
+      ><a name="5988" href="Agda.Builtin.Nat.html#230" class="Primitive Operator"
+      >+</a
+      ><a name="5989"
+      > </a
+      ><a name="5990" href="bitcoinTreeModel.html#1540" class="Postulate"
+      >minerReward</a
+      ><a name="6001"
+      > </a
+      ><a name="6002" class="Symbol"
+      >(</a
+      ><a name="6003" href="bitcoinTreeModel.html#5473" class="Function"
+      >txTree2TimeNextTobeMinedBlock</a
+      ><a name="6032"
+      > </a
+      ><a name="6033" href="bitcoinTreeModel.html#5931" class="Bound"
+      >tr</a
+      ><a name="6035" class="Symbol"
+      >)</a
+      ><a name="6036"
+      >
+
+  </a
+      ><a name="6040" href="bitcoinTreeModel.html#6040" class="Function"
+      >txTree2RecentTXFees</a
+      ><a name="6059"
+      > </a
+      ><a name="6060" class="Symbol"
+      >:</a
+      ><a name="6061"
+      > </a
+      ><a name="6062" class="Symbol"
+      >(</a
+      ><a name="6063" href="bitcoinTreeModel.html#6063" class="Bound"
+      >tr</a
+      ><a name="6065"
+      > </a
+      ><a name="6066" class="Symbol"
+      >:</a
+      ><a name="6067"
+      > </a
+      ><a name="6068" href="bitcoinTreeModel.html#2326" class="Datatype"
+      >TXTree</a
+      ><a name="6074" class="Symbol"
+      >)</a
+      ><a name="6075"
+      > </a
+      ><a name="6076" class="Symbol"
+      >&#8594;</a
+      ><a name="6077"
+      > </a
+      ><a name="6078" href="bitcoinTreeModel.html#624" class="Function"
+      >Amount</a
+      ><a name="6084"
+      >
+  </a
+      ><a name="6087" href="bitcoinTreeModel.html#6040" class="Function"
+      >txTree2RecentTXFees</a
+      ><a name="6106"
+      > </a
+      ><a name="6107" href="bitcoinTreeModel.html#2350" class="InductiveConstructor"
+      >genesisTree</a
+      ><a name="6118"
+      > </a
+      ><a name="6119" class="Symbol"
+      >=</a
+      ><a name="6120"
+      > </a
+      ><a name="6121" class="Number"
+      >0</a
+      ><a name="6122"
+      >
+  </a
+      ><a name="6125" href="bitcoinTreeModel.html#6040" class="Function"
+      >txTree2RecentTXFees</a
+      ><a name="6144"
+      > </a
+      ><a name="6145" class="Symbol"
+      >(</a
+      ><a name="6146" href="bitcoinTreeModel.html#2377" class="InductiveConstructor"
+      >txtree</a
+      ><a name="6152"
+      > </a
+      ><a name="6153" href="bitcoinTreeModel.html#6153" class="Bound"
+      >tr</a
+      ><a name="6155"
+      > </a
+      ><a name="6156" class="Symbol"
+      >(</a
+      ><a name="6157" href="bitcoinTreeModel.html#2494" class="InductiveConstructor"
+      >normalTX</a
+      ><a name="6165"
+      > </a
+      ><a name="6166" href="bitcoinTreeModel.html#6166" class="Bound"
+      >inputs</a
+      ><a name="6172"
+      > </a
+      ><a name="6173" href="bitcoinTreeModel.html#6173" class="Bound"
+      >outputs</a
+      ><a name="6180" class="Symbol"
+      >))</a
+      ><a name="6182"
+      > </a
+      ><a name="6183" class="Symbol"
+      >=</a
+      ><a name="6184"
+      >
+     </a
+      ><a name="6190" href="bitcoinTreeModel.html#6040" class="Function"
+      >txTree2RecentTXFees</a
+      ><a name="6209"
+      > </a
+      ><a name="6210" href="bitcoinTreeModel.html#6153" class="Bound"
+      >tr</a
+      ><a name="6212"
+      > </a
+      ><a name="6213" href="Agda.Builtin.Nat.html#230" class="Primitive Operator"
+      >+</a
+      ><a name="6214"
+      > </a
+      ><a name="6215" class="Symbol"
+      >(</a
+      ><a name="6216" href="bitcoinTreeModel.html#5312" class="Function"
+      >inputs2Sum</a
+      ><a name="6226"
+      > </a
+      ><a name="6227" href="bitcoinTreeModel.html#6153" class="Bound"
+      >tr</a
+      ><a name="6229"
+      > </a
+      ><a name="6230" href="bitcoinTreeModel.html#6166" class="Bound"
+      >inputs</a
+      ><a name="6236"
+      > </a
+      ><a name="6237" href="Agda.Builtin.Nat.html#320" class="Primitive Operator"
+      >&#8760;</a
+      ><a name="6238"
+      > </a
+      ><a name="6239" href="bitcoinTreeModel.html#4230" class="Function"
+      >outputs2SumAmount</a
+      ><a name="6256"
+      > </a
+      ><a name="6257" href="bitcoinTreeModel.html#6173" class="Bound"
+      >outputs</a
+      ><a name="6264" class="Symbol"
+      >)</a
+      ><a name="6265"
+      >
+  </a
+      ><a name="6268" href="bitcoinTreeModel.html#6040" class="Function"
+      >txTree2RecentTXFees</a
+      ><a name="6287"
+      > </a
+      ><a name="6288" class="Symbol"
+      >(</a
+      ><a name="6289" href="bitcoinTreeModel.html#2377" class="InductiveConstructor"
+      >txtree</a
+      ><a name="6295"
+      > </a
+      ><a name="6296" href="bitcoinTreeModel.html#6296" class="Bound"
+      >tr</a
+      ><a name="6298"
+      > </a
+      ><a name="6299" class="Symbol"
+      >(</a
+      ><a name="6300" href="bitcoinTreeModel.html#2581" class="InductiveConstructor"
+      >coinbase</a
+      ><a name="6308"
+      > </a
+      ><a name="6309" href="bitcoinTreeModel.html#6309" class="Bound"
+      >time</a
+      ><a name="6313"
+      > </a
+      ><a name="6314" href="bitcoinTreeModel.html#6314" class="Bound"
+      >outputs</a
+      ><a name="6321" class="Symbol"
+      >))</a
+      ><a name="6323"
+      > </a
+      ><a name="6324" class="Symbol"
+      >=</a
+      ><a name="6325"
+      > </a
+      ><a name="6326" class="Number"
+      >0</a
+      ><a name="6327"
+      >
+
+</a
+      ><a name="6329" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="6347"
+      >
+</a
+      ><a name="6348" href="bitcoinTreeModel.html#6348" class="Function"
+      >output2MaturationTime</a
+      ><a name="6369"
+      > </a
+      ><a name="6370" class="Symbol"
+      >:</a
+      ><a name="6371"
+      > </a
+      ><a name="6372" href="bitcoinTreeModel.html#2692" class="Record"
+      >TXOutput</a
+      ><a name="6380"
+      > </a
+      ><a name="6381" class="Symbol"
+      >&#8594;</a
+      ><a name="6382"
+      > </a
+      ><a name="6383" href="bitcoinTreeModel.html#603" class="Function"
+      >Time</a
+      ><a name="6387"
+      >
+</a
+      ><a name="6388" href="bitcoinTreeModel.html#6348" class="Function"
+      >output2MaturationTime</a
+      ><a name="6409"
+      > </a
+      ><a name="6410" class="Symbol"
+      >(</a
+      ><a name="6411" href="bitcoinTreeModel.html#2743" class="InductiveConstructor"
+      >txOutput</a
+      ><a name="6419"
+      > </a
+      ><a name="6420" href="bitcoinTreeModel.html#6420" class="Bound"
+      >trTree</a
+      ><a name="6426"
+      > </a
+      ><a name="6427" class="Symbol"
+      >(</a
+      ><a name="6428" href="bitcoinTreeModel.html#2494" class="InductiveConstructor"
+      >normalTX</a
+      ><a name="6436"
+      > </a
+      ><a name="6437" href="bitcoinTreeModel.html#6437" class="Bound"
+      >inputs</a
+      ><a name="6443"
+      > </a
+      ><a name="6444" href="bitcoinTreeModel.html#6444" class="Bound"
+      >outputs</a
+      ><a name="6451" class="Symbol"
+      >)</a
+      ><a name="6452"
+      > </a
+      ><a name="6453" href="bitcoinTreeModel.html#6453" class="Bound"
+      >i</a
+      ><a name="6454" class="Symbol"
+      >)</a
+      ><a name="6455"
+      > </a
+      ><a name="6456" class="Symbol"
+      >=</a
+      ><a name="6457"
+      > </a
+      ><a name="6458" class="Number"
+      >0</a
+      ><a name="6459"
+      >
+</a
+      ><a name="6460" href="bitcoinTreeModel.html#6348" class="Function"
+      >output2MaturationTime</a
+      ><a name="6481"
+      > </a
+      ><a name="6482" class="Symbol"
+      >(</a
+      ><a name="6483" href="bitcoinTreeModel.html#2743" class="InductiveConstructor"
+      >txOutput</a
+      ><a name="6491"
+      > </a
+      ><a name="6492" href="bitcoinTreeModel.html#6492" class="Bound"
+      >trTree</a
+      ><a name="6498"
+      > </a
+      ><a name="6499" class="Symbol"
+      >(</a
+      ><a name="6500" href="bitcoinTreeModel.html#2581" class="InductiveConstructor"
+      >coinbase</a
+      ><a name="6508"
+      > </a
+      ><a name="6509" href="bitcoinTreeModel.html#6509" class="Bound"
+      >time</a
+      ><a name="6513"
+      > </a
+      ><a name="6514" href="bitcoinTreeModel.html#6514" class="Bound"
+      >outputs</a
+      ><a name="6521" class="Symbol"
+      >)</a
+      ><a name="6522"
+      > </a
+      ><a name="6523" href="bitcoinTreeModel.html#6523" class="Bound"
+      >i</a
+      ><a name="6524" class="Symbol"
+      >)</a
+      ><a name="6525"
+      > </a
+      ><a name="6526" class="Symbol"
+      >=</a
+      ><a name="6527"
+      > </a
+      ><a name="6528" href="bitcoinTreeModel.html#6509" class="Bound"
+      >time</a
+      ><a name="6532"
+      > </a
+      ><a name="6533" href="Agda.Builtin.Nat.html#230" class="Primitive Operator"
+      >+</a
+      ><a name="6534"
+      > </a
+      ><a name="6535" href="bitcoinTreeModel.html#1584" class="Postulate"
+      >blockMaturationTime</a
+      ><a name="6554"
+      >
+
+
+</a
+      ><a name="6557" class="Comment"
+      >-- ##############################################################</a
+      ><a name="6622"
+      >
+</a
+      ><a name="6623" class="Comment"
+      >-- #  Computing Messages to be Signed and Transaction IDs       #</a
+      ><a name="6688"
+      >
+</a
+      ><a name="6689" class="Comment"
+      >-- ##############################################################</a
+      ><a name="6754"
+      >
+
+</a
+      ><a name="6756" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="6774"
+      >
+</a
+      ><a name="6775" href="bitcoinTreeModel.html#6775" class="Function"
+      >txOutputfield2Msg</a
+      ><a name="6792"
+      > </a
+      ><a name="6793" class="Symbol"
+      >:</a
+      ><a name="6794"
+      > </a
+      ><a name="6795" href="bitcoinTreeModel.html#2159" class="Record"
+      >TXOutputfield</a
+      ><a name="6808"
+      > </a
+      ><a name="6809" class="Symbol"
+      >&#8594;</a
+      ><a name="6810"
+      > </a
+      ><a name="6811" href="bitcoinTreeModel.html#787" class="Datatype"
+      >Msg</a
+      ><a name="6814"
+      >
+</a
+      ><a name="6815" href="bitcoinTreeModel.html#6775" class="Function"
+      >txOutputfield2Msg</a
+      ><a name="6832"
+      > </a
+      ><a name="6833" class="Symbol"
+      >(</a
+      ><a name="6834" href="bitcoinTreeModel.html#2199" class="InductiveConstructor"
+      >txOutputfield</a
+      ><a name="6847"
+      > </a
+      ><a name="6848" href="bitcoinTreeModel.html#6848" class="Bound"
+      >amount&#8321;</a
+      ><a name="6855"
+      > </a
+      ><a name="6856" href="bitcoinTreeModel.html#6856" class="Bound"
+      >address&#8321;</a
+      ><a name="6864" class="Symbol"
+      >)</a
+      ><a name="6865"
+      > </a
+      ><a name="6866" class="Symbol"
+      >=</a
+      ><a name="6867"
+      > </a
+      ><a name="6868" href="bitcoinTreeModel.html#806" class="InductiveConstructor"
+      >nat</a
+      ><a name="6871"
+      > </a
+      ><a name="6872" href="bitcoinTreeModel.html#6848" class="Bound"
+      >amount&#8321;</a
+      ><a name="6879"
+      > </a
+      ><a name="6880" href="bitcoinTreeModel.html#829" class="InductiveConstructor Operator"
+      >+msg</a
+      ><a name="6884"
+      > </a
+      ><a name="6885" href="bitcoinTreeModel.html#806" class="InductiveConstructor"
+      >nat</a
+      ><a name="6888"
+      > </a
+      ><a name="6889" href="bitcoinTreeModel.html#6856" class="Bound"
+      >address&#8321;</a
+      ><a name="6897"
+      >
+
+</a
+      ><a name="6899" href="bitcoinTreeModel.html#6899" class="Function"
+      >outputFields2Msg</a
+      ><a name="6915"
+      > </a
+      ><a name="6916" class="Symbol"
+      >:</a
+      ><a name="6917"
+      > </a
+      ><a name="6918" class="Symbol"
+      >(</a
+      ><a name="6919" href="bitcoinTreeModel.html#6919" class="Bound"
+      >outp</a
+      ><a name="6923"
+      > </a
+      ><a name="6924" class="Symbol"
+      >:</a
+      ><a name="6925"
+      > </a
+      ><a name="6926" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="6930"
+      > </a
+      ><a name="6931" href="bitcoinTreeModel.html#2159" class="Record"
+      >TXOutputfield</a
+      ><a name="6944" class="Symbol"
+      >)</a
+      ><a name="6945"
+      > </a
+      ><a name="6946" class="Symbol"
+      >&#8594;</a
+      ><a name="6947"
+      > </a
+      ><a name="6948" href="bitcoinTreeModel.html#787" class="Datatype"
+      >Msg</a
+      ><a name="6951"
+      >
+</a
+      ><a name="6952" href="bitcoinTreeModel.html#6899" class="Function"
+      >outputFields2Msg</a
+      ><a name="6968"
+      > </a
+      ><a name="6969" href="bitcoinTreeModel.html#6969" class="Bound"
+      >outp</a
+      ><a name="6973"
+      > </a
+      ><a name="6974" class="Symbol"
+      >=</a
+      ><a name="6975"
+      > </a
+      ><a name="6976" href="bitcoinTreeModel.html#860" class="InductiveConstructor"
+      >list</a
+      ><a name="6980"
+      > </a
+      ><a name="6981" class="Symbol"
+      >(</a
+      ><a name="6982" href="libraries.listLib.html#257" class="Function"
+      >mapL</a
+      ><a name="6986"
+      > </a
+      ><a name="6987" href="bitcoinTreeModel.html#6775" class="Function"
+      >txOutputfield2Msg</a
+      ><a name="7004"
+      > </a
+      ><a name="7005" href="bitcoinTreeModel.html#6969" class="Bound"
+      >outp</a
+      ><a name="7009" class="Symbol"
+      >)</a
+      ><a name="7010"
+      >
+
+</a
+      ><a name="7012" class="Keyword"
+      >mutual</a
+      ><a name="7018"
+      >
+
+</a
+      ><a name="7020" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="7038"
+      >
+  </a
+      ><a name="7041" href="bitcoinTreeModel.html#7041" class="Function"
+      >tx2Msg</a
+      ><a name="7047"
+      > </a
+      ><a name="7048" class="Symbol"
+      >:</a
+      ><a name="7049"
+      > </a
+      ><a name="7050" class="Symbol"
+      >(</a
+      ><a name="7051" href="bitcoinTreeModel.html#7051" class="Bound"
+      >tr</a
+      ><a name="7053"
+      > </a
+      ><a name="7054" class="Symbol"
+      >:</a
+      ><a name="7055"
+      > </a
+      ><a name="7056" href="bitcoinTreeModel.html#2326" class="Datatype"
+      >TXTree</a
+      ><a name="7062" class="Symbol"
+      >)(</a
+      ><a name="7064" href="bitcoinTreeModel.html#7064" class="Bound"
+      >tx</a
+      ><a name="7066"
+      > </a
+      ><a name="7067" class="Symbol"
+      >:</a
+      ><a name="7068"
+      > </a
+      ><a name="7069" href="bitcoinTreeModel.html#2459" class="Datatype"
+      >TX</a
+      ><a name="7071"
+      > </a
+      ><a name="7072" href="bitcoinTreeModel.html#7051" class="Bound"
+      >tr</a
+      ><a name="7074" class="Symbol"
+      >)</a
+      ><a name="7075"
+      > </a
+      ><a name="7076" class="Symbol"
+      >&#8594;</a
+      ><a name="7077"
+      > </a
+      ><a name="7078" href="bitcoinTreeModel.html#787" class="Datatype"
+      >Msg</a
+      ><a name="7081"
+      >
+  </a
+      ><a name="7084" href="bitcoinTreeModel.html#7041" class="Function"
+      >tx2Msg</a
+      ><a name="7090"
+      > </a
+      ><a name="7091" href="bitcoinTreeModel.html#7091" class="Bound"
+      >tr</a
+      ><a name="7093"
+      > </a
+      ><a name="7094" class="Symbol"
+      >(</a
+      ><a name="7095" href="bitcoinTreeModel.html#2494" class="InductiveConstructor"
+      >normalTX</a
+      ><a name="7103"
+      > </a
+      ><a name="7104" href="bitcoinTreeModel.html#7104" class="Bound"
+      >inputs&#8321;</a
+      ><a name="7111"
+      > </a
+      ><a name="7112" href="bitcoinTreeModel.html#7112" class="Bound"
+      >outputs&#8321;</a
+      ><a name="7120" class="Symbol"
+      >)</a
+      ><a name="7121"
+      > </a
+      ><a name="7122" class="Symbol"
+      >=</a
+      ><a name="7123"
+      >  </a
+      ><a name="7125" href="bitcoinTreeModel.html#860" class="InductiveConstructor"
+      >list</a
+      ><a name="7129"
+      > </a
+      ><a name="7130" class="Symbol"
+      >(</a
+      ><a name="7131" href="libraries.listLib.html#257" class="Function"
+      >mapL</a
+      ><a name="7135"
+      > </a
+      ><a name="7136" href="bitcoinTreeModel.html#7412" class="Function"
+      >utxoIndexSig2Msg</a
+      ><a name="7152"
+      > </a
+      ><a name="7153" href="bitcoinTreeModel.html#7262" class="Function"
+      >inputIndices</a
+      ><a name="7165" class="Symbol"
+      >)</a
+      ><a name="7166"
+      >
+                                           </a
+      ><a name="7210" href="bitcoinTreeModel.html#829" class="InductiveConstructor Operator"
+      >+msg</a
+      ><a name="7214"
+      > </a
+      ><a name="7215" href="bitcoinTreeModel.html#6899" class="Function"
+      >outputFields2Msg</a
+      ><a name="7231"
+      > </a
+      ><a name="7232" href="bitcoinTreeModel.html#7112" class="Bound"
+      >outputs&#8321;</a
+      ><a name="7240"
+      >
+      </a
+      ><a name="7247" class="Keyword"
+      >where</a
+      ><a name="7252"
+      >
+         </a
+      ><a name="7262" href="bitcoinTreeModel.html#7262" class="Function"
+      >inputIndices</a
+      ><a name="7274"
+      > </a
+      ><a name="7275" class="Symbol"
+      >:</a
+      ><a name="7276"
+      > </a
+      ><a name="7277" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="7281"
+      > </a
+      ><a name="7282" class="Symbol"
+      >(</a
+      ><a name="7283" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="7286"
+      > </a
+      ><a name="7287" class="Symbol"
+      >(</a
+      ><a name="7288" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="7294"
+      > </a
+      ><a name="7295" class="Symbol"
+      >(</a
+      ><a name="7296" href="bitcoinTreeModel.html#2950" class="Function"
+      >utxo</a
+      ><a name="7300"
+      > </a
+      ><a name="7301" href="bitcoinTreeModel.html#7091" class="Bound"
+      >tr</a
+      ><a name="7303" class="Symbol"
+      >))</a
+      ><a name="7305"
+      > </a
+      ><a name="7306" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="7307"
+      > </a
+      ><a name="7308" href="bitcoinTreeModel.html#730" class="Function"
+      >PublicKey</a
+      ><a name="7317"
+      > </a
+      ><a name="7318" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="7319"
+      > </a
+      ><a name="7320" href="bitcoinTreeModel.html#697" class="Function"
+      >Signature</a
+      ><a name="7329" class="Symbol"
+      >)</a
+      ><a name="7330"
+      >
+         </a
+      ><a name="7340" href="bitcoinTreeModel.html#7262" class="Function"
+      >inputIndices</a
+      ><a name="7352"
+      > </a
+      ><a name="7353" class="Symbol"
+      >=</a
+      ><a name="7354"
+      > </a
+      ><a name="7355" href="libraries.listLib.html#6986" class="Function"
+      >subList+2IndicesOriginalList</a
+      ><a name="7383"
+      > </a
+      ><a name="7384" class="Symbol"
+      >(</a
+      ><a name="7385" href="bitcoinTreeModel.html#2950" class="Function"
+      >utxo</a
+      ><a name="7389"
+      > </a
+      ><a name="7390" href="bitcoinTreeModel.html#7091" class="Bound"
+      >tr</a
+      ><a name="7392" class="Symbol"
+      >)</a
+      ><a name="7393"
+      > </a
+      ><a name="7394" href="bitcoinTreeModel.html#7104" class="Bound"
+      >inputs&#8321;</a
+      ><a name="7401"
+      >
+
+         </a
+      ><a name="7412" href="bitcoinTreeModel.html#7412" class="Function"
+      >utxoIndexSig2Msg</a
+      ><a name="7428"
+      > </a
+      ><a name="7429" class="Symbol"
+      >:</a
+      ><a name="7430"
+      > </a
+      ><a name="7431" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="7434"
+      > </a
+      ><a name="7435" class="Symbol"
+      >(</a
+      ><a name="7436" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="7442"
+      > </a
+      ><a name="7443" class="Symbol"
+      >(</a
+      ><a name="7444" href="bitcoinTreeModel.html#2950" class="Function"
+      >utxo</a
+      ><a name="7448"
+      > </a
+      ><a name="7449" href="bitcoinTreeModel.html#7091" class="Bound"
+      >tr</a
+      ><a name="7451" class="Symbol"
+      >))</a
+      ><a name="7453"
+      > </a
+      ><a name="7454" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="7455"
+      > </a
+      ><a name="7456" href="bitcoinTreeModel.html#730" class="Function"
+      >PublicKey</a
+      ><a name="7465"
+      > </a
+      ><a name="7466" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="7467"
+      > </a
+      ><a name="7468" href="bitcoinTreeModel.html#697" class="Function"
+      >Signature</a
+      ><a name="7477"
+      > </a
+      ><a name="7478" class="Symbol"
+      >&#8594;</a
+      ><a name="7479"
+      > </a
+      ><a name="7480" href="bitcoinTreeModel.html#787" class="Datatype"
+      >Msg</a
+      ><a name="7483"
+      >
+         </a
+      ><a name="7493" href="bitcoinTreeModel.html#7412" class="Function"
+      >utxoIndexSig2Msg</a
+      ><a name="7509"
+      > </a
+      ><a name="7510" class="Symbol"
+      >(</a
+      ><a name="7511" href="bitcoinTreeModel.html#7511" class="Bound"
+      >i</a
+      ><a name="7512"
+      > </a
+      ><a name="7513" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="7514"
+      > </a
+      ><a name="7515" class="Symbol"
+      >(</a
+      ><a name="7516" href="bitcoinTreeModel.html#7516" class="Bound"
+      >pbk</a
+      ><a name="7519"
+      > </a
+      ><a name="7520" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="7521"
+      > </a
+      ><a name="7522" href="bitcoinTreeModel.html#7522" class="Bound"
+      >sig</a
+      ><a name="7525" class="Symbol"
+      >))</a
+      ><a name="7527"
+      > </a
+      ><a name="7528" class="Symbol"
+      >=</a
+      ><a name="7529"
+      > </a
+      ><a name="7530" href="bitcoinTreeModel.html#8392" class="Function"
+      >utxo2Msg</a
+      ><a name="7538"
+      > </a
+      ><a name="7539" href="bitcoinTreeModel.html#7091" class="Bound"
+      >tr</a
+      ><a name="7541"
+      > </a
+      ><a name="7542" href="bitcoinTreeModel.html#7511" class="Bound"
+      >i</a
+      ><a name="7543"
+      > </a
+      ><a name="7544" href="bitcoinTreeModel.html#829" class="InductiveConstructor Operator"
+      >+msg</a
+      ><a name="7548"
+      > </a
+      ><a name="7549" href="bitcoinTreeModel.html#806" class="InductiveConstructor"
+      >nat</a
+      ><a name="7552"
+      > </a
+      ><a name="7553" href="bitcoinTreeModel.html#7516" class="Bound"
+      >pbk</a
+      ><a name="7556"
+      > </a
+      ><a name="7557" href="bitcoinTreeModel.html#829" class="InductiveConstructor Operator"
+      >+msg</a
+      ><a name="7561"
+      > </a
+      ><a name="7562" href="bitcoinTreeModel.html#806" class="InductiveConstructor"
+      >nat</a
+      ><a name="7565"
+      > </a
+      ><a name="7566" href="bitcoinTreeModel.html#7522" class="Bound"
+      >sig</a
+      ><a name="7569"
+      >
+
+  </a
+      ><a name="7573" href="bitcoinTreeModel.html#7041" class="Function"
+      >tx2Msg</a
+      ><a name="7579"
+      > </a
+      ><a name="7580" href="bitcoinTreeModel.html#7580" class="Bound"
+      >tr</a
+      ><a name="7582"
+      > </a
+      ><a name="7583" class="Symbol"
+      >(</a
+      ><a name="7584" href="bitcoinTreeModel.html#2581" class="InductiveConstructor"
+      >coinbase</a
+      ><a name="7592"
+      > </a
+      ><a name="7593" href="bitcoinTreeModel.html#7593" class="Bound"
+      >time</a
+      ><a name="7597"
+      > </a
+      ><a name="7598" href="bitcoinTreeModel.html#7598" class="Bound"
+      >outputs&#8321;</a
+      ><a name="7606" class="Symbol"
+      >)</a
+      ><a name="7607"
+      > </a
+      ><a name="7608" class="Symbol"
+      >=</a
+      ><a name="7609"
+      > </a
+      ><a name="7610" href="bitcoinTreeModel.html#806" class="InductiveConstructor"
+      >nat</a
+      ><a name="7613"
+      > </a
+      ><a name="7614" href="bitcoinTreeModel.html#7593" class="Bound"
+      >time</a
+      ><a name="7618"
+      > </a
+      ><a name="7619" href="bitcoinTreeModel.html#829" class="InductiveConstructor Operator"
+      >+msg</a
+      ><a name="7623"
+      > </a
+      ><a name="7624" href="bitcoinTreeModel.html#6899" class="Function"
+      >outputFields2Msg</a
+      ><a name="7640"
+      > </a
+      ><a name="7641" href="bitcoinTreeModel.html#7598" class="Bound"
+      >outputs&#8321;</a
+      ><a name="7649"
+      >
+
+</a
+      ><a name="7651" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="7669"
+      >
+  </a
+      ><a name="7672" href="bitcoinTreeModel.html#7672" class="Function"
+      >tx2id</a
+      ><a name="7677"
+      > </a
+      ><a name="7678" class="Symbol"
+      >:</a
+      ><a name="7679"
+      > </a
+      ><a name="7680" class="Symbol"
+      >(</a
+      ><a name="7681" href="bitcoinTreeModel.html#7681" class="Bound"
+      >tr</a
+      ><a name="7683"
+      > </a
+      ><a name="7684" class="Symbol"
+      >:</a
+      ><a name="7685"
+      > </a
+      ><a name="7686" href="bitcoinTreeModel.html#2326" class="Datatype"
+      >TXTree</a
+      ><a name="7692" class="Symbol"
+      >)(</a
+      ><a name="7694" href="bitcoinTreeModel.html#7694" class="Bound"
+      >tx</a
+      ><a name="7696"
+      > </a
+      ><a name="7697" class="Symbol"
+      >:</a
+      ><a name="7698"
+      > </a
+      ><a name="7699" href="bitcoinTreeModel.html#2459" class="Datatype"
+      >TX</a
+      ><a name="7701"
+      > </a
+      ><a name="7702" href="bitcoinTreeModel.html#7681" class="Bound"
+      >tr</a
+      ><a name="7704" class="Symbol"
+      >)</a
+      ><a name="7705"
+      > </a
+      ><a name="7706" class="Symbol"
+      >&#8594;</a
+      ><a name="7707"
+      > </a
+      ><a name="7708" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="7709"
+      >
+  </a
+      ><a name="7712" href="bitcoinTreeModel.html#7672" class="Function"
+      >tx2id</a
+      ><a name="7717"
+      > </a
+      ><a name="7718" href="bitcoinTreeModel.html#7718" class="Bound"
+      >tr</a
+      ><a name="7720"
+      > </a
+      ><a name="7721" href="bitcoinTreeModel.html#7721" class="Bound"
+      >tx</a
+      ><a name="7723"
+      > </a
+      ><a name="7724" class="Symbol"
+      >=</a
+      ><a name="7725"
+      > </a
+      ><a name="7726" href="bitcoinTreeModel.html#900" class="Postulate"
+      >hashMsg</a
+      ><a name="7733"
+      > </a
+      ><a name="7734" class="Symbol"
+      >(</a
+      ><a name="7735" href="bitcoinTreeModel.html#7041" class="Function"
+      >tx2Msg</a
+      ><a name="7741"
+      > </a
+      ><a name="7742" href="bitcoinTreeModel.html#7718" class="Bound"
+      >tr</a
+      ><a name="7744"
+      > </a
+      ><a name="7745" href="bitcoinTreeModel.html#7721" class="Bound"
+      >tx</a
+      ><a name="7747" class="Symbol"
+      >)</a
+      ><a name="7748"
+      >
+
+  </a
+      ><a name="7752" class="Comment"
+      >-- note time included following the fix for nonuniqueness of ids</a
+      ><a name="7816"
+      >
+  </a
+      ><a name="7819" class="Comment"
+      >-- in \cite{github:bip-0034.mediawiki}</a
+      ><a name="7857"
+      >
+
+</a
+      ><a name="7859" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="7877"
+      >
+  </a
+      ><a name="7880" href="bitcoinTreeModel.html#7880" class="Function"
+      >utxoMinusNewInputs2Msg</a
+      ><a name="7902"
+      > </a
+      ><a name="7903" class="Symbol"
+      >:</a
+      ><a name="7904"
+      > </a
+      ><a name="7905" class="Symbol"
+      >(</a
+      ><a name="7906" href="bitcoinTreeModel.html#7906" class="Bound"
+      >tr</a
+      ><a name="7908"
+      > </a
+      ><a name="7909" class="Symbol"
+      >:</a
+      ><a name="7910"
+      > </a
+      ><a name="7911" href="bitcoinTreeModel.html#2326" class="Datatype"
+      >TXTree</a
+      ><a name="7917" class="Symbol"
+      >)(</a
+      ><a name="7919" href="bitcoinTreeModel.html#7919" class="Bound"
+      >tx</a
+      ><a name="7921"
+      > </a
+      ><a name="7922" class="Symbol"
+      >:</a
+      ><a name="7923"
+      > </a
+      ><a name="7924" href="bitcoinTreeModel.html#2459" class="Datatype"
+      >TX</a
+      ><a name="7926"
+      > </a
+      ><a name="7927" href="bitcoinTreeModel.html#7906" class="Bound"
+      >tr</a
+      ><a name="7929" class="Symbol"
+      >)(</a
+      ><a name="7931" href="bitcoinTreeModel.html#7931" class="Bound"
+      >i</a
+      ><a name="7932"
+      > </a
+      ><a name="7933" class="Symbol"
+      >:</a
+      ><a name="7934"
+      > </a
+      ><a name="7935" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="7938"
+      > </a
+      ><a name="7939" class="Symbol"
+      >(</a
+      ><a name="7940" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="7946"
+      > </a
+      ><a name="7947" class="Symbol"
+      >(</a
+      ><a name="7948" href="bitcoinTreeModel.html#2885" class="Function"
+      >utxoMinusNewInputs</a
+      ><a name="7966"
+      > </a
+      ><a name="7967" href="bitcoinTreeModel.html#7906" class="Bound"
+      >tr</a
+      ><a name="7969"
+      > </a
+      ><a name="7970" href="bitcoinTreeModel.html#7919" class="Bound"
+      >tx</a
+      ><a name="7972" class="Symbol"
+      >)))</a
+      ><a name="7975"
+      >
+                   </a
+      ><a name="7995" class="Symbol"
+      >&#8594;</a
+      ><a name="7996"
+      > </a
+      ><a name="7997" href="bitcoinTreeModel.html#787" class="Datatype"
+      >Msg</a
+      ><a name="8000"
+      >
+  </a
+      ><a name="8003" href="bitcoinTreeModel.html#7880" class="Function"
+      >utxoMinusNewInputs2Msg</a
+      ><a name="8025"
+      > </a
+      ><a name="8026" href="bitcoinTreeModel.html#8026" class="Bound"
+      >tr</a
+      ><a name="8028"
+      > </a
+      ><a name="8029" class="Symbol"
+      >(</a
+      ><a name="8030" href="bitcoinTreeModel.html#2494" class="InductiveConstructor"
+      >normalTX</a
+      ><a name="8038"
+      > </a
+      ><a name="8039" href="bitcoinTreeModel.html#8039" class="Bound"
+      >inputs</a
+      ><a name="8045"
+      > </a
+      ><a name="8046" href="bitcoinTreeModel.html#8046" class="Bound"
+      >outputs</a
+      ><a name="8053" class="Symbol"
+      >)</a
+      ><a name="8054"
+      > </a
+      ><a name="8055" href="bitcoinTreeModel.html#8055" class="Bound"
+      >i</a
+      ><a name="8056"
+      > </a
+      ><a name="8057" class="Symbol"
+      >=</a
+      ><a name="8058"
+      > </a
+      ><a name="8059" href="bitcoinTreeModel.html#8392" class="Function"
+      >utxo2Msg</a
+      ><a name="8067"
+      > </a
+      ><a name="8068" href="bitcoinTreeModel.html#8026" class="Bound"
+      >tr</a
+      ><a name="8070"
+      > </a
+      ><a name="8071" class="Symbol"
+      >(</a
+      ><a name="8072" href="libraries.listLib.html#5289" class="Function"
+      >listMinusSubList+Index2OrgIndex</a
+      ><a name="8103"
+      > </a
+      ><a name="8104" class="Symbol"
+      >(</a
+      ><a name="8105" href="bitcoinTreeModel.html#2950" class="Function"
+      >utxo</a
+      ><a name="8109"
+      > </a
+      ><a name="8110" href="bitcoinTreeModel.html#8026" class="Bound"
+      >tr</a
+      ><a name="8112" class="Symbol"
+      >)</a
+      ><a name="8113"
+      > </a
+      ><a name="8114" href="bitcoinTreeModel.html#8039" class="Bound"
+      >inputs</a
+      ><a name="8120"
+      > </a
+      ><a name="8121" href="bitcoinTreeModel.html#8055" class="Bound"
+      >i</a
+      ><a name="8122" class="Symbol"
+      >)</a
+      ><a name="8123"
+      >
+  </a
+      ><a name="8126" href="bitcoinTreeModel.html#7880" class="Function"
+      >utxoMinusNewInputs2Msg</a
+      ><a name="8148"
+      > </a
+      ><a name="8149" href="bitcoinTreeModel.html#8149" class="Bound"
+      >tr</a
+      ><a name="8151"
+      > </a
+      ><a name="8152" class="Symbol"
+      >(</a
+      ><a name="8153" href="bitcoinTreeModel.html#2581" class="InductiveConstructor"
+      >coinbase</a
+      ><a name="8161"
+      > </a
+      ><a name="8162" href="bitcoinTreeModel.html#8162" class="Bound"
+      >time</a
+      ><a name="8166"
+      > </a
+      ><a name="8167" href="bitcoinTreeModel.html#8167" class="Bound"
+      >outputs</a
+      ><a name="8174" class="Symbol"
+      >)</a
+      ><a name="8175"
+      > </a
+      ><a name="8176" href="bitcoinTreeModel.html#8176" class="Bound"
+      >i</a
+      ><a name="8177"
+      > </a
+      ><a name="8178" class="Symbol"
+      >=</a
+      ><a name="8179"
+      > </a
+      ><a name="8180" href="bitcoinTreeModel.html#8392" class="Function"
+      >utxo2Msg</a
+      ><a name="8188"
+      > </a
+      ><a name="8189" href="bitcoinTreeModel.html#8149" class="Bound"
+      >tr</a
+      ><a name="8191"
+      > </a
+      ><a name="8192" href="bitcoinTreeModel.html#8176" class="Bound"
+      >i</a
+      ><a name="8193"
+      >
+
+    </a
+      ><a name="8199" class="Comment"
+      >-- listMinusSubList+Index2OrgIndex</a
+      ><a name="8233"
+      >
+    </a
+      ><a name="8238" class="Comment"
+      >-- will map the result of deleting entries indices to the original</a
+      ><a name="8304"
+      >
+    </a
+      ><a name="8309" class="Comment"
+      >-- entries</a
+      ><a name="8319"
+      >
+    </a
+      ><a name="8324" class="Comment"
+      >-- we now need to add as well the new indices</a
+      ><a name="8369"
+      >
+
+</a
+      ><a name="8371" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="8389"
+      >
+  </a
+      ><a name="8392" href="bitcoinTreeModel.html#8392" class="Function"
+      >utxo2Msg</a
+      ><a name="8400"
+      > </a
+      ><a name="8401" class="Symbol"
+      >:</a
+      ><a name="8402"
+      > </a
+      ><a name="8403" class="Symbol"
+      >(</a
+      ><a name="8404" href="bitcoinTreeModel.html#8404" class="Bound"
+      >tr</a
+      ><a name="8406"
+      > </a
+      ><a name="8407" class="Symbol"
+      >:</a
+      ><a name="8408"
+      > </a
+      ><a name="8409" href="bitcoinTreeModel.html#2326" class="Datatype"
+      >TXTree</a
+      ><a name="8415" class="Symbol"
+      >)(</a
+      ><a name="8417" href="bitcoinTreeModel.html#8417" class="Bound"
+      >i</a
+      ><a name="8418"
+      > </a
+      ><a name="8419" class="Symbol"
+      >:</a
+      ><a name="8420"
+      > </a
+      ><a name="8421" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="8424"
+      > </a
+      ><a name="8425" class="Symbol"
+      >(</a
+      ><a name="8426" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="8432"
+      > </a
+      ><a name="8433" class="Symbol"
+      >(</a
+      ><a name="8434" href="bitcoinTreeModel.html#2950" class="Function"
+      >utxo</a
+      ><a name="8438"
+      > </a
+      ><a name="8439" href="bitcoinTreeModel.html#8404" class="Bound"
+      >tr</a
+      ><a name="8441" class="Symbol"
+      >)))</a
+      ><a name="8444"
+      > </a
+      ><a name="8445" class="Symbol"
+      >&#8594;</a
+      ><a name="8446"
+      > </a
+      ><a name="8447" href="bitcoinTreeModel.html#787" class="Datatype"
+      >Msg</a
+      ><a name="8450"
+      >
+  </a
+      ><a name="8453" href="bitcoinTreeModel.html#8392" class="Function"
+      >utxo2Msg</a
+      ><a name="8461"
+      > </a
+      ><a name="8462" href="bitcoinTreeModel.html#2350" class="InductiveConstructor"
+      >genesisTree</a
+      ><a name="8473"
+      > </a
+      ><a name="8474" class="Symbol"
+      >()</a
+      ><a name="8476"
+      >
+  </a
+      ><a name="8479" href="bitcoinTreeModel.html#8392" class="Function"
+      >utxo2Msg</a
+      ><a name="8487"
+      > </a
+      ><a name="8488" class="Symbol"
+      >(</a
+      ><a name="8489" href="bitcoinTreeModel.html#2377" class="InductiveConstructor"
+      >txtree</a
+      ><a name="8495"
+      > </a
+      ><a name="8496" href="bitcoinTreeModel.html#8496" class="Bound"
+      >tr</a
+      ><a name="8498"
+      > </a
+      ><a name="8499" href="bitcoinTreeModel.html#8499" class="Bound"
+      >tx</a
+      ><a name="8501" class="Symbol"
+      >)</a
+      ><a name="8502"
+      > </a
+      ><a name="8503" class="Symbol"
+      >=</a
+      ><a name="8504"
+      > </a
+      ><a name="8505" href="libraries.listLib.html#1735" class="Function"
+      >concatListIndex2OriginIndices</a
+      ><a name="8534"
+      > </a
+      ><a name="8535" href="bitcoinTreeModel.html#8584" class="Function"
+      >l&#8320;</a
+      ><a name="8537"
+      > </a
+      ><a name="8538" href="bitcoinTreeModel.html#8650" class="Function"
+      >l&#8321;</a
+      ><a name="8540"
+      > </a
+      ><a name="8541" href="bitcoinTreeModel.html#8710" class="Function"
+      >f&#8320;</a
+      ><a name="8543"
+      > </a
+      ><a name="8544" href="bitcoinTreeModel.html#8793" class="Function"
+      >f&#8321;</a
+      ><a name="8546"
+      >
+    </a
+      ><a name="8551" class="Keyword"
+      >module</a
+      ><a name="8557"
+      > </a
+      ><a name="8558" href="bitcoinTreeModel.html#8558" class="Module"
+      >utxo2Msgaux</a
+      ><a name="8569"
+      > </a
+      ><a name="8570" class="Keyword"
+      >where</a
+      ><a name="8575"
+      >
+        </a
+      ><a name="8584" href="bitcoinTreeModel.html#8584" class="Function"
+      >l&#8320;</a
+      ><a name="8586"
+      > </a
+      ><a name="8587" class="Symbol"
+      >:</a
+      ><a name="8588"
+      > </a
+      ><a name="8589" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="8593"
+      > </a
+      ><a name="8594" href="bitcoinTreeModel.html#2692" class="Record"
+      >TXOutput</a
+      ><a name="8602"
+      >
+        </a
+      ><a name="8611" href="bitcoinTreeModel.html#8584" class="Function"
+      >l&#8320;</a
+      ><a name="8613"
+      > </a
+      ><a name="8614" class="Symbol"
+      >=</a
+      ><a name="8615"
+      > </a
+      ><a name="8616" href="bitcoinTreeModel.html#2885" class="Function"
+      >utxoMinusNewInputs</a
+      ><a name="8634"
+      > </a
+      ><a name="8635" href="bitcoinTreeModel.html#8496" class="Bound"
+      >tr</a
+      ><a name="8637"
+      > </a
+      ><a name="8638" href="bitcoinTreeModel.html#8499" class="Bound"
+      >tx</a
+      ><a name="8640"
+      >
+
+        </a
+      ><a name="8650" href="bitcoinTreeModel.html#8650" class="Function"
+      >l&#8321;</a
+      ><a name="8652"
+      > </a
+      ><a name="8653" class="Symbol"
+      >:</a
+      ><a name="8654"
+      > </a
+      ><a name="8655" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="8659"
+      > </a
+      ><a name="8660" href="bitcoinTreeModel.html#2692" class="Record"
+      >TXOutput</a
+      ><a name="8668"
+      >
+        </a
+      ><a name="8677" href="bitcoinTreeModel.html#8650" class="Function"
+      >l&#8321;</a
+      ><a name="8679"
+      > </a
+      ><a name="8680" class="Symbol"
+      >=</a
+      ><a name="8681"
+      > </a
+      ><a name="8682" href="bitcoinTreeModel.html#3595" class="Function"
+      >tx2TXOutputs</a
+      ><a name="8694"
+      > </a
+      ><a name="8695" href="bitcoinTreeModel.html#8496" class="Bound"
+      >tr</a
+      ><a name="8697"
+      > </a
+      ><a name="8698" href="bitcoinTreeModel.html#8499" class="Bound"
+      >tx</a
+      ><a name="8700"
+      >
+
+        </a
+      ><a name="8710" href="bitcoinTreeModel.html#8710" class="Function"
+      >f&#8320;</a
+      ><a name="8712"
+      > </a
+      ><a name="8713" class="Symbol"
+      >:</a
+      ><a name="8714"
+      > </a
+      ><a name="8715" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="8718"
+      > </a
+      ><a name="8719" class="Symbol"
+      >(</a
+      ><a name="8720" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="8726"
+      > </a
+      ><a name="8727" href="bitcoinTreeModel.html#8584" class="Function"
+      >l&#8320;</a
+      ><a name="8729" class="Symbol"
+      >)</a
+      ><a name="8730"
+      >  </a
+      ><a name="8732" class="Symbol"
+      >&#8594;</a
+      ><a name="8733"
+      > </a
+      ><a name="8734" href="bitcoinTreeModel.html#787" class="Datatype"
+      >Msg</a
+      ><a name="8737"
+      >
+        </a
+      ><a name="8746" href="bitcoinTreeModel.html#8710" class="Function"
+      >f&#8320;</a
+      ><a name="8748"
+      > </a
+      ><a name="8749" href="bitcoinTreeModel.html#8749" class="Bound"
+      >i</a
+      ><a name="8750"
+      > </a
+      ><a name="8751" class="Symbol"
+      >=</a
+      ><a name="8752"
+      > </a
+      ><a name="8753" href="bitcoinTreeModel.html#7880" class="Function"
+      >utxoMinusNewInputs2Msg</a
+      ><a name="8775"
+      > </a
+      ><a name="8776" href="bitcoinTreeModel.html#8496" class="Bound"
+      >tr</a
+      ><a name="8778"
+      > </a
+      ><a name="8779" href="bitcoinTreeModel.html#8499" class="Bound"
+      >tx</a
+      ><a name="8781"
+      > </a
+      ><a name="8782" href="bitcoinTreeModel.html#8749" class="Bound"
+      >i</a
+      ><a name="8783"
+      >
+
+        </a
+      ><a name="8793" href="bitcoinTreeModel.html#8793" class="Function"
+      >f&#8321;</a
+      ><a name="8795"
+      > </a
+      ><a name="8796" class="Symbol"
+      >:</a
+      ><a name="8797"
+      > </a
+      ><a name="8798" href="Data.Fin.html#923" class="Datatype"
+      >Fin</a
+      ><a name="8801"
+      > </a
+      ><a name="8802" class="Symbol"
+      >(</a
+      ><a name="8803" href="Data.List.Base.html#2832" class="Function"
+      >length</a
+      ><a name="8809"
+      > </a
+      ><a name="8810" href="bitcoinTreeModel.html#8650" class="Function"
+      >l&#8321;</a
+      ><a name="8812" class="Symbol"
+      >)</a
+      ><a name="8813"
+      > </a
+      ><a name="8814" class="Symbol"
+      >&#8594;</a
+      ><a name="8815"
+      > </a
+      ><a name="8816" href="bitcoinTreeModel.html#787" class="Datatype"
+      >Msg</a
+      ><a name="8819"
+      >
+        </a
+      ><a name="8828" href="bitcoinTreeModel.html#8793" class="Function"
+      >f&#8321;</a
+      ><a name="8830"
+      > </a
+      ><a name="8831" href="bitcoinTreeModel.html#8831" class="Bound"
+      >i</a
+      ><a name="8832"
+      > </a
+      ><a name="8833" class="Symbol"
+      >=</a
+      ><a name="8834"
+      > </a
+      ><a name="8835" href="bitcoinTreeModel.html#806" class="InductiveConstructor"
+      >nat</a
+      ><a name="8838"
+      > </a
+      ><a name="8839" class="Symbol"
+      >(</a
+      ><a name="8840" href="bitcoinTreeModel.html#7672" class="Function"
+      >tx2id</a
+      ><a name="8845"
+      > </a
+      ><a name="8846" href="bitcoinTreeModel.html#8496" class="Bound"
+      >tr</a
+      ><a name="8848"
+      > </a
+      ><a name="8849" href="bitcoinTreeModel.html#8499" class="Bound"
+      >tx</a
+      ><a name="8851" class="Symbol"
+      >)</a
+      ><a name="8852"
+      > </a
+      ><a name="8853" href="bitcoinTreeModel.html#829" class="InductiveConstructor Operator"
+      >+msg</a
+      ><a name="8857"
+      > </a
+      ><a name="8858" href="bitcoinTreeModel.html#806" class="InductiveConstructor"
+      >nat</a
+      ><a name="8861"
+      > </a
+      ><a name="8862" class="Symbol"
+      >(</a
+      ><a name="8863" href="Data.Fin.html#1049" class="Function"
+      >to&#8469;</a
+      ><a name="8866"
+      > </a
+      ><a name="8867" href="bitcoinTreeModel.html#8831" class="Bound"
+      >i</a
+      ><a name="8868" class="Symbol"
+      >)</a
+      ><a name="8869"
+      >
+
+
+
+</a
+      ><a name="8873" class="Comment"
+      >-- msg to be signed is what needs to be signed by the user</a
+      ><a name="8931"
+      >
+</a
+      ><a name="8932" class="Comment"
+      >-- in \cite{derosa:theFirstTransacationPt1} he writes:\\</a
+      ><a name="8988"
+      >
+</a
+      ><a name="8989" class="Comment"
+      >-- In practice, for each input I, the message to be signed is a slightly modified version of the transaction where:</a
+      ><a name="9104"
+      >
+</a
+      ><a name="9105" class="Comment"
+      >-- -  The I script is set to the output script of the UTXO it refers to.</a
+      ><a name="9177"
+      >
+</a
+      ><a name="9178" class="Comment"
+      >-- - Input scripts other than I are truncated to zero-length.</a
+      ><a name="9239"
+      >
+</a
+      ><a name="9240" class="Comment"
+      >-- - A SIGHASH flag is appended.</a
+      ><a name="9272"
+      >
+</a
+      ><a name="9273" class="Comment"
+      >--</a
+      ><a name="9275"
+      >
+</a
+      ><a name="9276" class="Comment"
+      >-- since in our case the output scrpt is epresented by by the address in the</a
+      ><a name="9352"
+      >
+</a
+      ><a name="9353" class="Comment"
+      >--   txoutput field, we get the following:</a
+      ><a name="9395"
+      >
+
+</a
+      ><a name="9397" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="9415"
+      >
+</a
+      ><a name="9416" class="Comment"
+      >-- unused</a
+      ><a name="9425"
+      >
+</a
+      ><a name="9426" href="bitcoinTreeModel.html#9426" class="Function"
+      >txOutput2Msg</a
+      ><a name="9438"
+      > </a
+      ><a name="9439" class="Symbol"
+      >:</a
+      ><a name="9440"
+      > </a
+      ><a name="9441" class="Symbol"
+      >(</a
+      ><a name="9442" href="bitcoinTreeModel.html#9442" class="Bound"
+      >txout</a
+      ><a name="9447"
+      >  </a
+      ><a name="9449" class="Symbol"
+      >:</a
+      ><a name="9450"
+      > </a
+      ><a name="9451" href="bitcoinTreeModel.html#2692" class="Record"
+      >TXOutput</a
+      ><a name="9459" class="Symbol"
+      >)</a
+      ><a name="9460"
+      > </a
+      ><a name="9461" class="Symbol"
+      >&#8594;</a
+      ><a name="9462"
+      > </a
+      ><a name="9463" href="bitcoinTreeModel.html#787" class="Datatype"
+      >Msg</a
+      ><a name="9466"
+      >
+</a
+      ><a name="9467" href="bitcoinTreeModel.html#9426" class="Function"
+      >txOutput2Msg</a
+      ><a name="9479"
+      > </a
+      ><a name="9480" class="Symbol"
+      >(</a
+      ><a name="9481" href="bitcoinTreeModel.html#2743" class="InductiveConstructor"
+      >txOutput</a
+      ><a name="9489"
+      > </a
+      ><a name="9490" href="bitcoinTreeModel.html#9490" class="Bound"
+      >tr</a
+      ><a name="9492"
+      > </a
+      ><a name="9493" href="bitcoinTreeModel.html#9493" class="Bound"
+      >tx</a
+      ><a name="9495"
+      > </a
+      ><a name="9496" href="bitcoinTreeModel.html#9496" class="Bound"
+      >i</a
+      ><a name="9497" class="Symbol"
+      >)</a
+      ><a name="9498"
+      > </a
+      ><a name="9499" class="Symbol"
+      >=</a
+      ><a name="9500"
+      > </a
+      ><a name="9501" href="bitcoinTreeModel.html#806" class="InductiveConstructor"
+      >nat</a
+      ><a name="9504"
+      > </a
+      ><a name="9505" class="Symbol"
+      >(</a
+      ><a name="9506" href="bitcoinTreeModel.html#7672" class="Function"
+      >tx2id</a
+      ><a name="9511"
+      > </a
+      ><a name="9512" href="bitcoinTreeModel.html#9490" class="Bound"
+      >tr</a
+      ><a name="9514"
+      > </a
+      ><a name="9515" href="bitcoinTreeModel.html#9493" class="Bound"
+      >tx</a
+      ><a name="9517" class="Symbol"
+      >)</a
+      ><a name="9518"
+      > </a
+      ><a name="9519" href="bitcoinTreeModel.html#829" class="InductiveConstructor Operator"
+      >+msg</a
+      ><a name="9523"
+      > </a
+      ><a name="9524" href="bitcoinTreeModel.html#806" class="InductiveConstructor"
+      >nat</a
+      ><a name="9527"
+      > </a
+      ><a name="9528" class="Symbol"
+      >(</a
+      ><a name="9529" href="Data.Fin.html#1049" class="Function"
+      >to&#8469;</a
+      ><a name="9532"
+      > </a
+      ><a name="9533" href="bitcoinTreeModel.html#9496" class="Bound"
+      >i</a
+      ><a name="9534" class="Symbol"
+      >)</a
+      ><a name="9535"
+      >
+
+
+
+</a
+      ><a name="9539" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="9557"
+      >
+</a
+      ><a name="9558" href="bitcoinTreeModel.html#9558" class="Function"
+      >msgToBeSignedByInput</a
+      ><a name="9578"
+      > </a
+      ><a name="9579" class="Symbol"
+      >:</a
+      ><a name="9580"
+      > </a
+      ><a name="9581" class="Symbol"
+      >(</a
+      ><a name="9582" href="bitcoinTreeModel.html#9582" class="Bound"
+      >txoutput</a
+      ><a name="9590"
+      > </a
+      ><a name="9591" class="Symbol"
+      >:</a
+      ><a name="9592"
+      > </a
+      ><a name="9593" href="bitcoinTreeModel.html#2692" class="Record"
+      >TXOutput</a
+      ><a name="9601" class="Symbol"
+      >)(</a
+      ><a name="9603" href="bitcoinTreeModel.html#9603" class="Bound"
+      >outputs</a
+      ><a name="9610"
+      >    </a
+      ><a name="9614" class="Symbol"
+      >:</a
+      ><a name="9615"
+      > </a
+      ><a name="9616" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="9620"
+      > </a
+      ><a name="9621" href="bitcoinTreeModel.html#2159" class="Record"
+      >TXOutputfield</a
+      ><a name="9634" class="Symbol"
+      >)</a
+      ><a name="9635"
+      > </a
+      ><a name="9636" class="Symbol"
+      >&#8594;</a
+      ><a name="9637"
+      > </a
+      ><a name="9638" href="bitcoinTreeModel.html#787" class="Datatype"
+      >Msg</a
+      ><a name="9641"
+      >
+</a
+      ><a name="9642" href="bitcoinTreeModel.html#9558" class="Function"
+      >msgToBeSignedByInput</a
+      ><a name="9662"
+      > </a
+      ><a name="9663" href="bitcoinTreeModel.html#9663" class="Bound"
+      >txoutput</a
+      ><a name="9671"
+      > </a
+      ><a name="9672" href="bitcoinTreeModel.html#9672" class="Bound"
+      >outputs</a
+      ><a name="9679"
+      > </a
+      ><a name="9680" class="Symbol"
+      >=</a
+      ><a name="9681"
+      >
+                   </a
+      ><a name="9701" class="Symbol"
+      >(</a
+      ><a name="9702" href="bitcoinTreeModel.html#806" class="InductiveConstructor"
+      >nat</a
+      ><a name="9705"
+      > </a
+      ><a name="9706" class="Symbol"
+      >(</a
+      ><a name="9707" href="bitcoinTreeModel.html#7672" class="Function"
+      >tx2id</a
+      ><a name="9712"
+      > </a
+      ><a name="9713" class="Symbol"
+      >(</a
+      ><a name="9714" href="bitcoinTreeModel.html#2763" class="Field"
+      >trTree</a
+      ><a name="9720"
+      > </a
+      ><a name="9721" href="bitcoinTreeModel.html#9663" class="Bound"
+      >txoutput</a
+      ><a name="9729" class="Symbol"
+      >)</a
+      ><a name="9730"
+      > </a
+      ><a name="9731" class="Symbol"
+      >(</a
+      ><a name="9732" href="bitcoinTreeModel.html#2792" class="Field"
+      >tx</a
+      ><a name="9734"
+      > </a
+      ><a name="9735" href="bitcoinTreeModel.html#9663" class="Bound"
+      >txoutput</a
+      ><a name="9743" class="Symbol"
+      >))</a
+      ><a name="9745"
+      > </a
+      ><a name="9746" href="bitcoinTreeModel.html#829" class="InductiveConstructor Operator"
+      >+msg</a
+      ><a name="9750"
+      >
+                    </a
+      ><a name="9771" href="bitcoinTreeModel.html#806" class="InductiveConstructor"
+      >nat</a
+      ><a name="9774"
+      > </a
+      ><a name="9775" class="Symbol"
+      >(</a
+      ><a name="9776" href="Data.Fin.html#1049" class="Function"
+      >to&#8469;</a
+      ><a name="9779"
+      > </a
+      ><a name="9780" class="Symbol"
+      >(</a
+      ><a name="9781" href="bitcoinTreeModel.html#2824" class="Field"
+      >output</a
+      ><a name="9787"
+      > </a
+      ><a name="9788" href="bitcoinTreeModel.html#9663" class="Bound"
+      >txoutput</a
+      ><a name="9796" class="Symbol"
+      >))</a
+      ><a name="9798"
+      > </a
+      ><a name="9799" href="bitcoinTreeModel.html#829" class="InductiveConstructor Operator"
+      >+msg</a
+      ><a name="9803"
+      >
+                    </a
+      ><a name="9824" href="bitcoinTreeModel.html#806" class="InductiveConstructor"
+      >nat</a
+      ><a name="9827"
+      > </a
+      ><a name="9828" class="Symbol"
+      >(</a
+      ><a name="9829" href="bitcoinTreeModel.html#4843" class="Function"
+      >txOutput2Address</a
+      ><a name="9845"
+      > </a
+      ><a name="9846" href="bitcoinTreeModel.html#9663" class="Bound"
+      >txoutput</a
+      ><a name="9854" class="Symbol"
+      >))</a
+      ><a name="9856"
+      > </a
+      ><a name="9857" href="bitcoinTreeModel.html#829" class="InductiveConstructor Operator"
+      >+msg</a
+      ><a name="9861"
+      >
+                   </a
+      ><a name="9881" href="bitcoinTreeModel.html#6899" class="Function"
+      >outputFields2Msg</a
+      ><a name="9897"
+      > </a
+      ><a name="9898" href="bitcoinTreeModel.html#9672" class="Bound"
+      >outputs</a
+      ><a name="9905"
+      >
+
+ </a
+      ><a name="9908" class="Comment"
+      >-- first item is the id of previous transaction</a
+      ><a name="9955"
+      >
+ </a
+      ><a name="9957" class="Comment"
+      >-- second item is the nr of the output within this transaction</a
+      ><a name="10019"
+      >
+ </a
+      ><a name="10021" class="Comment"
+      >-- thrid item is the output address of this transcation</a
+      ><a name="10076"
+      >
+ </a
+      ><a name="10078" class="Comment"
+      >-- last item is the essage for the outputs</a
+      ><a name="10120"
+      >
+
+                           </a
+      ><a name="10149" class="Comment"
+      >-- address</a
+      ><a name="10159"
+      >
+                           </a
+      ><a name="10187" class="Comment"
+      >-- with script it would be</a
+      ><a name="10213"
+      >
+                           </a
+      ><a name="10241" class="Comment"
+      >--   the scriptPubKey of the output</a
+      ><a name="10276"
+      >
+                           </a
+      ><a name="10304" class="Comment"
+      >-- here it is the address</a
+      ><a name="10329"
+      >
+
+</a
+      ><a name="10331" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="10349"
+      >
+</a
+      ><a name="10350" href="bitcoinTreeModel.html#10350" class="Function"
+      >CorrectTX</a
+      ><a name="10359"
+      > </a
+      ><a name="10360" class="Symbol"
+      >:</a
+      ><a name="10361"
+      > </a
+      ><a name="10362" class="Symbol"
+      >(</a
+      ><a name="10363" href="bitcoinTreeModel.html#10363" class="Bound"
+      >tr</a
+      ><a name="10365"
+      > </a
+      ><a name="10366" class="Symbol"
+      >:</a
+      ><a name="10367"
+      > </a
+      ><a name="10368" href="bitcoinTreeModel.html#2326" class="Datatype"
+      >TXTree</a
+      ><a name="10374" class="Symbol"
+      >)(</a
+      ><a name="10376" href="bitcoinTreeModel.html#10376" class="Bound"
+      >tx</a
+      ><a name="10378"
+      > </a
+      ><a name="10379" class="Symbol"
+      >:</a
+      ><a name="10380"
+      > </a
+      ><a name="10381" href="bitcoinTreeModel.html#2459" class="Datatype"
+      >TX</a
+      ><a name="10383"
+      > </a
+      ><a name="10384" href="bitcoinTreeModel.html#10363" class="Bound"
+      >tr</a
+      ><a name="10386" class="Symbol"
+      >)</a
+      ><a name="10387"
+      > </a
+      ><a name="10388" class="Symbol"
+      >&#8594;</a
+      ><a name="10389"
+      > </a
+      ><a name="10390" class="PrimitiveType"
+      >Set</a
+      ><a name="10393"
+      >
+</a
+      ><a name="10394" href="bitcoinTreeModel.html#10350" class="Function"
+      >CorrectTX</a
+      ><a name="10403"
+      > </a
+      ><a name="10404" href="bitcoinTreeModel.html#10404" class="Bound"
+      >tr</a
+      ><a name="10406"
+      > </a
+      ><a name="10407" class="Symbol"
+      >(</a
+      ><a name="10408" href="bitcoinTreeModel.html#2494" class="InductiveConstructor"
+      >normalTX</a
+      ><a name="10416"
+      > </a
+      ><a name="10417" href="bitcoinTreeModel.html#10417" class="Bound"
+      >inputs</a
+      ><a name="10423"
+      > </a
+      ><a name="10424" href="bitcoinTreeModel.html#10424" class="Bound"
+      >outputs</a
+      ><a name="10431" class="Symbol"
+      >)</a
+      ><a name="10432"
+      > </a
+      ><a name="10433" class="Symbol"
+      >=</a
+      ><a name="10434"
+      >
+         </a
+      ><a name="10444" href="libraries.listLib.html#7748" class="Function"
+      >NonNil</a
+      ><a name="10450"
+      > </a
+      ><a name="10451" class="Symbol"
+      >(</a
+      ><a name="10452" href="bitcoinTreeModel.html#5159" class="Function"
+      >inputs2PrevOutputs</a
+      ><a name="10470"
+      > </a
+      ><a name="10471" href="bitcoinTreeModel.html#10404" class="Bound"
+      >tr</a
+      ><a name="10473"
+      > </a
+      ><a name="10474" href="bitcoinTreeModel.html#10417" class="Bound"
+      >inputs</a
+      ><a name="10480" class="Symbol"
+      >)</a
+      ><a name="10481"
+      > </a
+      ><a name="10482" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="10483"
+      >
+         </a
+      ><a name="10493" href="libraries.listLib.html#7748" class="Function"
+      >NonNil</a
+      ><a name="10499"
+      > </a
+      ><a name="10500" href="bitcoinTreeModel.html#10424" class="Bound"
+      >outputs</a
+      ><a name="10507"
+      > </a
+      ><a name="10508" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="10509"
+      >
+         </a
+      ><a name="10519" class="Symbol"
+      >(</a
+      ><a name="10520" href="bitcoinTreeModel.html#5312" class="Function"
+      >inputs2Sum</a
+      ><a name="10530"
+      > </a
+      ><a name="10531" href="bitcoinTreeModel.html#10404" class="Bound"
+      >tr</a
+      ><a name="10533"
+      > </a
+      ><a name="10534" href="bitcoinTreeModel.html#10417" class="Bound"
+      >inputs</a
+      ><a name="10540"
+      > </a
+      ><a name="10541" href="Data.Nat.Base.html#962" class="Function Operator"
+      >&#8805;</a
+      ><a name="10542"
+      >  </a
+      ><a name="10544" href="bitcoinTreeModel.html#4230" class="Function"
+      >outputs2SumAmount</a
+      ><a name="10561"
+      > </a
+      ><a name="10562" href="bitcoinTreeModel.html#10424" class="Bound"
+      >outputs</a
+      ><a name="10569" class="Symbol"
+      >)</a
+      ><a name="10570"
+      > </a
+      ><a name="10571" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="10572"
+      >
+         </a
+      ><a name="10582" class="Symbol"
+      >(</a
+      ><a name="10583" href="libraries.listLib.html#7540" class="Function"
+      >&#8704;inList</a
+      ><a name="10590"
+      > </a
+      ><a name="10591" class="Symbol"
+      >(</a
+      ><a name="10592" href="bitcoinTreeModel.html#5159" class="Function"
+      >inputs2PrevOutputs</a
+      ><a name="10610"
+      > </a
+      ><a name="10611" href="bitcoinTreeModel.html#10404" class="Bound"
+      >tr</a
+      ><a name="10613"
+      > </a
+      ><a name="10614" href="bitcoinTreeModel.html#10417" class="Bound"
+      >inputs</a
+      ><a name="10620" class="Symbol"
+      >)</a
+      ><a name="10621"
+      >
+                  </a
+      ><a name="10640" class="Symbol"
+      >(&#955;</a
+      ><a name="10642"
+      > </a
+      ><a name="10643" href="bitcoinTreeModel.html#10643" class="Bound"
+      >o</a
+      ><a name="10644"
+      > </a
+      ><a name="10645" class="Symbol"
+      >&#8594;</a
+      ><a name="10646"
+      > </a
+      ><a name="10647" href="bitcoinTreeModel.html#6348" class="Function"
+      >output2MaturationTime</a
+      ><a name="10668"
+      > </a
+      ><a name="10669" href="bitcoinTreeModel.html#10643" class="Bound"
+      >o</a
+      ><a name="10670"
+      > </a
+      ><a name="10671" href="Data.Nat.Base.html#802" class="Datatype Operator"
+      >&#8804;</a
+      ><a name="10672"
+      > </a
+      ><a name="10673" href="bitcoinTreeModel.html#5473" class="Function"
+      >txTree2TimeNextTobeMinedBlock</a
+      ><a name="10702"
+      > </a
+      ><a name="10703" href="bitcoinTreeModel.html#10404" class="Bound"
+      >tr</a
+      ><a name="10705" class="Symbol"
+      >))</a
+      ><a name="10707"
+      > </a
+      ><a name="10708" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="10709"
+      >
+         </a
+      ><a name="10719" class="Symbol"
+      >(</a
+      ><a name="10720" href="libraries.listLib.html#7540" class="Function"
+      >&#8704;inList</a
+      ><a name="10727"
+      > </a
+      ><a name="10728" class="Symbol"
+      >(</a
+      ><a name="10729" href="bitcoinTreeModel.html#4966" class="Function"
+      >inputs2PrevOutputsSigPbk</a
+      ><a name="10753"
+      > </a
+      ><a name="10754" href="bitcoinTreeModel.html#10404" class="Bound"
+      >tr</a
+      ><a name="10756"
+      > </a
+      ><a name="10757" href="bitcoinTreeModel.html#10417" class="Bound"
+      >inputs</a
+      ><a name="10763" class="Symbol"
+      >)</a
+      ><a name="10764"
+      >
+            </a
+      ><a name="10777" class="Symbol"
+      >(&#955;</a
+      ><a name="10779"
+      > </a
+      ><a name="10780" class="Symbol"
+      >{(</a
+      ><a name="10782" href="bitcoinTreeModel.html#10782" class="Bound"
+      >outp</a
+      ><a name="10786"
+      > </a
+      ><a name="10787" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="10788"
+      > </a
+      ><a name="10789" href="bitcoinTreeModel.html#10789" class="Bound"
+      >pbk</a
+      ><a name="10792"
+      > </a
+      ><a name="10793" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="10794"
+      > </a
+      ><a name="10795" href="bitcoinTreeModel.html#10795" class="Bound"
+      >sign</a
+      ><a name="10799" class="Symbol"
+      >)</a
+      ><a name="10800"
+      > </a
+      ><a name="10801" class="Symbol"
+      >&#8594;</a
+      ><a name="10802"
+      >
+                </a
+      ><a name="10819" href="bitcoinTreeModel.html#1152" class="Postulate"
+      >publicKey2Address</a
+      ><a name="10836"
+      > </a
+      ><a name="10837" href="bitcoinTreeModel.html#10789" class="Bound"
+      >pbk</a
+      ><a name="10840"
+      > </a
+      ><a name="10841" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="10842"
+      > </a
+      ><a name="10843" href="bitcoinTreeModel.html#4843" class="Function"
+      >txOutput2Address</a
+      ><a name="10859"
+      > </a
+      ><a name="10860" href="bitcoinTreeModel.html#10782" class="Bound"
+      >outp</a
+      ><a name="10864"
+      > </a
+      ><a name="10865" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="10866"
+      >
+                </a
+      ><a name="10883" href="bitcoinTreeModel.html#1348" class="Postulate"
+      >Signed</a
+      ><a name="10889"
+      > </a
+      ><a name="10890" class="Symbol"
+      >(</a
+      ><a name="10891" href="bitcoinTreeModel.html#9558" class="Function"
+      >msgToBeSignedByInput</a
+      ><a name="10911"
+      > </a
+      ><a name="10912" href="bitcoinTreeModel.html#10782" class="Bound"
+      >outp</a
+      ><a name="10916"
+      > </a
+      ><a name="10917" href="bitcoinTreeModel.html#10424" class="Bound"
+      >outputs</a
+      ><a name="10924" class="Symbol"
+      >)</a
+      ><a name="10925"
+      > </a
+      ><a name="10926" href="bitcoinTreeModel.html#10789" class="Bound"
+      >pbk</a
+      ><a name="10929"
+      > </a
+      ><a name="10930" href="bitcoinTreeModel.html#10795" class="Bound"
+      >sign</a
+      ><a name="10934"
+      >  </a
+      ><a name="10936" class="Symbol"
+      >}))</a
+      ><a name="10939"
+      >
+
+</a
+      ><a name="10941" href="bitcoinTreeModel.html#10350" class="Function"
+      >CorrectTX</a
+      ><a name="10950"
+      > </a
+      ><a name="10951" href="bitcoinTreeModel.html#10951" class="Bound"
+      >tr</a
+      ><a name="10953"
+      > </a
+      ><a name="10954" class="Symbol"
+      >(</a
+      ><a name="10955" href="bitcoinTreeModel.html#2581" class="InductiveConstructor"
+      >coinbase</a
+      ><a name="10963"
+      > </a
+      ><a name="10964" href="bitcoinTreeModel.html#10964" class="Bound"
+      >time</a
+      ><a name="10968"
+      > </a
+      ><a name="10969" href="bitcoinTreeModel.html#10969" class="Bound"
+      >outputs</a
+      ><a name="10976" class="Symbol"
+      >)</a
+      ><a name="10977"
+      > </a
+      ><a name="10978" class="Symbol"
+      >=</a
+      ><a name="10979"
+      >
+         </a
+      ><a name="10989" href="libraries.listLib.html#7748" class="Function"
+      >NonNil</a
+      ><a name="10995"
+      > </a
+      ><a name="10996" href="bitcoinTreeModel.html#10969" class="Bound"
+      >outputs</a
+      ><a name="11003"
+      > </a
+      ><a name="11004" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="11005"
+      >
+         </a
+      ><a name="11015" href="bitcoinTreeModel.html#4230" class="Function"
+      >outputs2SumAmount</a
+      ><a name="11032"
+      > </a
+      ><a name="11033" href="bitcoinTreeModel.html#10969" class="Bound"
+      >outputs</a
+      ><a name="11040"
+      > </a
+      ><a name="11041" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="11042"
+      > </a
+      ><a name="11043" href="bitcoinTreeModel.html#6040" class="Function"
+      >txTree2RecentTXFees</a
+      ><a name="11062"
+      > </a
+      ><a name="11063" href="bitcoinTreeModel.html#10951" class="Bound"
+      >tr</a
+      ><a name="11065"
+      > </a
+      ><a name="11066" href="Agda.Builtin.Nat.html#230" class="Primitive Operator"
+      >+</a
+      ><a name="11067"
+      > </a
+      ><a name="11068" href="bitcoinTreeModel.html#1540" class="Postulate"
+      >minerReward</a
+      ><a name="11079"
+      > </a
+      ><a name="11080" href="bitcoinTreeModel.html#10964" class="Bound"
+      >time</a
+      ><a name="11084"
+      > </a
+      ><a name="11085" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="11086"
+      >
+         </a
+      ><a name="11096" href="bitcoinTreeModel.html#10964" class="Bound"
+      >time</a
+      ><a name="11100"
+      > </a
+      ><a name="11101" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="11102"
+      > </a
+      ><a name="11103" href="bitcoinTreeModel.html#5473" class="Function"
+      >txTree2TimeNextTobeMinedBlock</a
+      ><a name="11132"
+      > </a
+      ><a name="11133" href="bitcoinTreeModel.html#10951" class="Bound"
+      >tr</a
+      ><a name="11135"
+      >
+</a
+      ><a name="11136" class="Comment"
+      >--         (&#8704;inList (inputs2PrevOutputs tr inputs)</a
+      ><a name="11186"
+      >
+</a
+      ><a name="11187" class="Comment"
+      >--                  (&#955; o &#8594; output2MaturationTime o &#8804; txTree2TimeNextTobeMinedBlock tr)) &#215;</a
+      ><a name="11276"
+      >
+         </a
+      ><a name="11286" class="Comment"
+      >-- expresses that inputs are spendable after maturation time</a
+      ><a name="11346"
+      >
+
+</a
+      ><a name="11348" class="Comment"
+      >--         (&#8704;inList (inputs2PrevOutputsSigPbk tr inputs)</a
+      ><a name="11404"
+      >
+</a
+      ><a name="11405" class="Comment"
+      >--            (&#955; {(outp , pbk , sign) &#8594;</a
+      ><a name="11444"
+      >
+</a
+      ><a name="11445" class="Comment"
+      >--                publicKey2Address pbk &#8801; txOutput2Address outp &#215;</a
+      ><a name="11510"
+      >
+</a
+      ><a name="11511" class="Comment"
+      >--                Signed (msgToBeSignedByInput outp</a
+      ><a name="11562"
+      >
+</a
+      ><a name="11563" class="Comment"
+      >--                                             outputs) pbk sign  }))</a
+      ><a name="11632"
+      >
+
+         </a
+      ><a name="11643" class="Comment"
+      >-- expresses that public keys in the input have address of the input</a
+      ><a name="11711"
+      >
+         </a
+      ><a name="11721" class="Comment"
+      >--   and the input msg is signed by the private key of this public key</a
+      ><a name="11791"
+      >
+
+
+
+
+
+</a
+      ><a name="11797" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="11815"
+      >
+</a
+      ><a name="11816" href="bitcoinTreeModel.html#11816" class="Function"
+      >CorrectTxTree</a
+      ><a name="11829"
+      > </a
+      ><a name="11830" class="Symbol"
+      >:</a
+      ><a name="11831"
+      > </a
+      ><a name="11832" class="Symbol"
+      >(</a
+      ><a name="11833" href="bitcoinTreeModel.html#11833" class="Bound"
+      >tr</a
+      ><a name="11835"
+      > </a
+      ><a name="11836" class="Symbol"
+      >:</a
+      ><a name="11837"
+      > </a
+      ><a name="11838" href="bitcoinTreeModel.html#2326" class="Datatype"
+      >TXTree</a
+      ><a name="11844" class="Symbol"
+      >)</a
+      ><a name="11845"
+      > </a
+      ><a name="11846" class="Symbol"
+      >&#8594;</a
+      ><a name="11847"
+      > </a
+      ><a name="11848" class="PrimitiveType"
+      >Set</a
+      ><a name="11851"
+      >
+</a
+      ><a name="11852" href="bitcoinTreeModel.html#11816" class="Function"
+      >CorrectTxTree</a
+      ><a name="11865"
+      > </a
+      ><a name="11866" href="bitcoinTreeModel.html#2350" class="InductiveConstructor"
+      >genesisTree</a
+      ><a name="11877"
+      > </a
+      ><a name="11878" class="Symbol"
+      >=</a
+      ><a name="11879"
+      > </a
+      ><a name="11880" href="Agda.Builtin.Unit.html#69" class="Record"
+      >&#8868;</a
+      ><a name="11881"
+      >
+</a
+      ><a name="11882" href="bitcoinTreeModel.html#11816" class="Function"
+      >CorrectTxTree</a
+      ><a name="11895"
+      > </a
+      ><a name="11896" class="Symbol"
+      >(</a
+      ><a name="11897" href="bitcoinTreeModel.html#2377" class="InductiveConstructor"
+      >txtree</a
+      ><a name="11903"
+      > </a
+      ><a name="11904" href="bitcoinTreeModel.html#11904" class="Bound"
+      >tr</a
+      ><a name="11906"
+      > </a
+      ><a name="11907" href="bitcoinTreeModel.html#11907" class="Bound"
+      >tx</a
+      ><a name="11909" class="Symbol"
+      >)</a
+      ><a name="11910"
+      > </a
+      ><a name="11911" class="Symbol"
+      >=</a
+      ><a name="11912"
+      > </a
+      ><a name="11913" href="bitcoinTreeModel.html#11816" class="Function"
+      >CorrectTxTree</a
+      ><a name="11926"
+      > </a
+      ><a name="11927" href="bitcoinTreeModel.html#11904" class="Bound"
+      >tr</a
+      ><a name="11929"
+      > </a
+      ><a name="11930" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="11931"
+      > </a
+      ><a name="11932" href="bitcoinTreeModel.html#10350" class="Function"
+      >CorrectTX</a
+      ><a name="11941"
+      > </a
+      ><a name="11942" href="bitcoinTreeModel.html#11904" class="Bound"
+      >tr</a
+      ><a name="11944"
+      > </a
+      ><a name="11945" href="bitcoinTreeModel.html#11907" class="Bound"
+      >tx</a
+      ><a name="11947"
+      >
+
+</a
+      ><a name="11949" class="Keyword"
+      >record</a
+      ><a name="11955"
+      > </a
+      ><a name="11956" href="bitcoinTreeModel.html#11956" class="Record"
+      >TXTreeCorrect</a
+      ><a name="11969"
+      > </a
+      ><a name="11970" class="Symbol"
+      >:</a
+      ><a name="11971"
+      > </a
+      ><a name="11972" class="PrimitiveType"
+      >Set</a
+      ><a name="11975"
+      > </a
+      ><a name="11976" class="Keyword"
+      >where</a
+      ><a name="11981"
+      >
+  </a
+      ><a name="11984" class="Keyword"
+      >constructor</a
+      ><a name="11995"
+      > </a
+      ><a name="11996" href="bitcoinTreeModel.html#11996" class="InductiveConstructor"
+      >txTreeCorrect</a
+      ><a name="12009"
+      >
+  </a
+      ><a name="12012" class="Keyword"
+      >field</a
+      ><a name="12017"
+      >  </a
+      ><a name="12019" href="bitcoinTreeModel.html#12019" class="Field"
+      >txtr</a
+      ><a name="12023"
+      >     </a
+      ><a name="12028" class="Symbol"
+      >:</a
+      ><a name="12029"
+      >  </a
+      ><a name="12031" href="bitcoinTreeModel.html#2326" class="Datatype"
+      >TXTree</a
+      ><a name="12037"
+      >
+         </a
+      ><a name="12047" href="bitcoinTreeModel.html#12047" class="Field"
+      >corTxtr</a
+      ><a name="12054"
+      >  </a
+      ><a name="12056" class="Symbol"
+      >:</a
+      ><a name="12057"
+      >  </a
+      ><a name="12059" href="bitcoinTreeModel.html#11816" class="Function"
+      >CorrectTxTree</a
+      ><a name="12072"
+      > </a
+      ><a name="12073" href="bitcoinTreeModel.html#12019" class="Field"
+      >txtr</a
+      ><a name="12077"
+      >
+
+
+</a
+      ><a name="12080" class="Keyword"
+      >open</a
+      ><a name="12084"
+      > </a
+      ><a name="12085" href="bitcoinTreeModel.html#11956" class="Module"
+      >TXTreeCorrect</a
+      ><a name="12098"
+      > </a
+      ><a name="12099" class="Keyword"
+      >public</a
+      ><a name="12105"
+      >
+
+</a
+      ><a name="12107" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="12125"
+      >
+</a
+      ><a name="12126" class="Keyword"
+      >record</a
+      ><a name="12132"
+      > </a
+      ><a name="12133" href="bitcoinTreeModel.html#12133" class="Record"
+      >TXcorrect</a
+      ><a name="12142"
+      > </a
+      ><a name="12143" class="Symbol"
+      >(</a
+      ><a name="12144" href="bitcoinTreeModel.html#12144" class="Bound"
+      >tr</a
+      ><a name="12146"
+      > </a
+      ><a name="12147" class="Symbol"
+      >:</a
+      ><a name="12148"
+      > </a
+      ><a name="12149" href="bitcoinTreeModel.html#11956" class="Record"
+      >TXTreeCorrect</a
+      ><a name="12162" class="Symbol"
+      >)</a
+      ><a name="12163"
+      > </a
+      ><a name="12164" class="Symbol"
+      >:</a
+      ><a name="12165"
+      > </a
+      ><a name="12166" class="PrimitiveType"
+      >Set</a
+      ><a name="12169"
+      > </a
+      ><a name="12170" class="Keyword"
+      >where</a
+      ><a name="12175"
+      >
+  </a
+      ><a name="12178" class="Keyword"
+      >field</a
+      ><a name="12183"
+      >   </a
+      ><a name="12186" href="bitcoinTreeModel.html#12186" class="Field"
+      >theTx</a
+      ><a name="12191"
+      >  </a
+      ><a name="12193" class="Symbol"
+      >:</a
+      ><a name="12194"
+      >  </a
+      ><a name="12196" href="bitcoinTreeModel.html#2459" class="Datatype"
+      >TX</a
+      ><a name="12198"
+      > </a
+      ><a name="12199" class="Symbol"
+      >(</a
+      ><a name="12200" href="bitcoinTreeModel.html#12144" class="Bound"
+      >tr</a
+      ><a name="12202"
+      > </a
+      ><a name="12203" class="Symbol"
+      >.</a
+      ><a name="12204" href="bitcoinTreeModel.html#12019" class="Field"
+      >txtr</a
+      ><a name="12208" class="Symbol"
+      >)</a
+      ><a name="12209"
+      >
+          </a
+      ><a name="12220" href="bitcoinTreeModel.html#12220" class="Field"
+      >corTx</a
+      ><a name="12225"
+      >  </a
+      ><a name="12227" class="Symbol"
+      >:</a
+      ><a name="12228"
+      >  </a
+      ><a name="12230" href="bitcoinTreeModel.html#10350" class="Function"
+      >CorrectTX</a
+      ><a name="12239"
+      > </a
+      ><a name="12240" class="Symbol"
+      >(</a
+      ><a name="12241" href="bitcoinTreeModel.html#12144" class="Bound"
+      >tr</a
+      ><a name="12243"
+      > </a
+      ><a name="12244" class="Symbol"
+      >.</a
+      ><a name="12245" href="bitcoinTreeModel.html#12019" class="Field"
+      >txtr</a
+      ><a name="12249" class="Symbol"
+      >)</a
+      ><a name="12250"
+      > </a
+      ><a name="12251" href="bitcoinTreeModel.html#12186" class="Field"
+      >theTx</a
+      ><a name="12256"
+      >
+
+</a
+      ><a name="12258" class="Keyword"
+      >open</a
+      ><a name="12262"
+      > </a
+      ><a name="12263" href="bitcoinTreeModel.html#12133" class="Module"
+      >TXcorrect</a
+      ><a name="12272"
+      > </a
+      ><a name="12273" class="Keyword"
+      >public</a
+      ><a name="12279"
+      >
+
+</a
+      ><a name="12281" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="12299"
+      >
+</a
+      ><a name="12300" href="bitcoinTreeModel.html#12300" class="Function"
+      >initialTxTreeCorrect</a
+      ><a name="12320"
+      > </a
+      ><a name="12321" class="Symbol"
+      >:</a
+      ><a name="12322"
+      > </a
+      ><a name="12323" href="bitcoinTreeModel.html#11956" class="Record"
+      >TXTreeCorrect</a
+      ><a name="12336"
+      >
+</a
+      ><a name="12337" href="bitcoinTreeModel.html#12300" class="Function"
+      >initialTxTreeCorrect</a
+      ><a name="12357"
+      > </a
+      ><a name="12358" class="Symbol"
+      >=</a
+      ><a name="12359"
+      > </a
+      ><a name="12360" href="bitcoinTreeModel.html#11996" class="InductiveConstructor"
+      >txTreeCorrect</a
+      ><a name="12373"
+      > </a
+      ><a name="12374" href="bitcoinTreeModel.html#2350" class="InductiveConstructor"
+      >genesisTree</a
+      ><a name="12385"
+      > </a
+      ><a name="12386" href="Agda.Builtin.Unit.html#106" class="InductiveConstructor"
+      >tt</a
+      ><a name="12388"
+      >
+
+</a
+      ><a name="12390" href="bitcoinTreeModel.html#12390" class="Function"
+      >addTxtreeCorrect</a
+      ><a name="12406"
+      > </a
+      ><a name="12407" class="Symbol"
+      >:</a
+      ><a name="12408"
+      > </a
+      ><a name="12409" class="Symbol"
+      >(</a
+      ><a name="12410" href="bitcoinTreeModel.html#12410" class="Bound"
+      >tr</a
+      ><a name="12412"
+      > </a
+      ><a name="12413" class="Symbol"
+      >:</a
+      ><a name="12414"
+      > </a
+      ><a name="12415" href="bitcoinTreeModel.html#11956" class="Record"
+      >TXTreeCorrect</a
+      ><a name="12428" class="Symbol"
+      >)(</a
+      ><a name="12430" href="bitcoinTreeModel.html#12430" class="Bound"
+      >tx</a
+      ><a name="12432"
+      > </a
+      ><a name="12433" class="Symbol"
+      >:</a
+      ><a name="12434"
+      > </a
+      ><a name="12435" href="bitcoinTreeModel.html#12133" class="Record"
+      >TXcorrect</a
+      ><a name="12444"
+      > </a
+      ><a name="12445" href="bitcoinTreeModel.html#12410" class="Bound"
+      >tr</a
+      ><a name="12447" class="Symbol"
+      >)</a
+      ><a name="12448"
+      > </a
+      ><a name="12449" class="Symbol"
+      >&#8594;</a
+      ><a name="12450"
+      > </a
+      ><a name="12451" href="bitcoinTreeModel.html#11956" class="Record"
+      >TXTreeCorrect</a
+      ><a name="12464"
+      >
+</a
+      ><a name="12465" href="bitcoinTreeModel.html#12390" class="Function"
+      >addTxtreeCorrect</a
+      ><a name="12481"
+      > </a
+      ><a name="12482" href="bitcoinTreeModel.html#12482" class="Bound"
+      >tr</a
+      ><a name="12484"
+      > </a
+      ><a name="12485" href="bitcoinTreeModel.html#12485" class="Bound"
+      >tx</a
+      ><a name="12487"
+      > </a
+      ><a name="12488" class="Symbol"
+      >=</a
+      ><a name="12489"
+      >
+    </a
+      ><a name="12494" href="bitcoinTreeModel.html#11996" class="InductiveConstructor"
+      >txTreeCorrect</a
+      ><a name="12507"
+      > </a
+      ><a name="12508" class="Symbol"
+      >(</a
+      ><a name="12509" href="bitcoinTreeModel.html#2377" class="InductiveConstructor"
+      >txtree</a
+      ><a name="12515"
+      > </a
+      ><a name="12516" class="Symbol"
+      >(</a
+      ><a name="12517" href="bitcoinTreeModel.html#12482" class="Bound"
+      >tr</a
+      ><a name="12519"
+      > </a
+      ><a name="12520" class="Symbol"
+      >.</a
+      ><a name="12521" href="bitcoinTreeModel.html#12019" class="Field"
+      >txtr</a
+      ><a name="12525" class="Symbol"
+      >)</a
+      ><a name="12526"
+      > </a
+      ><a name="12527" class="Symbol"
+      >(</a
+      ><a name="12528" href="bitcoinTreeModel.html#12485" class="Bound"
+      >tx</a
+      ><a name="12530"
+      > </a
+      ><a name="12531" class="Symbol"
+      >.</a
+      ><a name="12532" href="bitcoinTreeModel.html#12186" class="Field"
+      >theTx</a
+      ><a name="12537" class="Symbol"
+      >))</a
+      ><a name="12539"
+      > </a
+      ><a name="12540" class="Symbol"
+      >(</a
+      ><a name="12541" href="bitcoinTreeModel.html#12482" class="Bound"
+      >tr</a
+      ><a name="12543"
+      > </a
+      ><a name="12544" class="Symbol"
+      >.</a
+      ><a name="12545" href="bitcoinTreeModel.html#12047" class="Field"
+      >corTxtr</a
+      ><a name="12552"
+      > </a
+      ><a name="12553" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="12554"
+      > </a
+      ><a name="12555" href="bitcoinTreeModel.html#12485" class="Bound"
+      >tx</a
+      ><a name="12557"
+      > </a
+      ><a name="12558" class="Symbol"
+      >.</a
+      ><a name="12559" href="bitcoinTreeModel.html#12220" class="Field"
+      >corTx</a
+      ><a name="12564" class="Symbol"
+      >)</a
+      ><a name="12565"
+      >
+
+</a
+      ><a name="12567" class="Comment"
+      >-- ##############################################################</a
+      ><a name="12632"
+      >
+</a
+      ><a name="12633" class="Comment"
+      >-- #  Merkle Trees                                              #</a
+      ><a name="12698"
+      >
+</a
+      ><a name="12699" class="Comment"
+      >-- ##############################################################</a
+      ><a name="12764"
+      >
+
+
+</a
+      ><a name="12767" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="12785"
+      >
+</a
+      ><a name="12786" class="Keyword"
+      >record</a
+      ><a name="12792"
+      > </a
+      ><a name="12793" href="bitcoinTreeModel.html#12793" class="Record"
+      >MerkleInputField</a
+      ><a name="12809"
+      > </a
+      ><a name="12810" class="Symbol"
+      >:</a
+      ><a name="12811"
+      > </a
+      ><a name="12812" class="PrimitiveType"
+      >Set</a
+      ><a name="12815"
+      > </a
+      ><a name="12816" class="Keyword"
+      >where</a
+      ><a name="12821"
+      >
+  </a
+      ><a name="12824" class="Keyword"
+      >constructor</a
+      ><a name="12835"
+      > </a
+      ><a name="12836" href="bitcoinTreeModel.html#12836" class="InductiveConstructor"
+      >inputField</a
+      ><a name="12846"
+      >
+  </a
+      ><a name="12849" class="Keyword"
+      >field</a
+      ><a name="12854"
+      >  </a
+      ><a name="12856" href="bitcoinTreeModel.html#12856" class="Field"
+      >txid</a
+      ><a name="12860"
+      >          </a
+      ><a name="12870" class="Symbol"
+      >:</a
+      ><a name="12871"
+      > </a
+      ><a name="12872" href="bitcoinTreeModel.html#676" class="Function"
+      >TXID</a
+      ><a name="12876"
+      >
+         </a
+      ><a name="12886" href="bitcoinTreeModel.html#12886" class="Field"
+      >outputNr</a
+      ><a name="12894"
+      >      </a
+      ><a name="12900" class="Symbol"
+      >:</a
+      ><a name="12901"
+      > </a
+      ><a name="12902" href="Agda.Builtin.Nat.html#97" class="Datatype"
+      >&#8469;</a
+      ><a name="12903"
+      >
+         </a
+      ><a name="12913" href="bitcoinTreeModel.html#12913" class="Field"
+      >publicKey</a
+      ><a name="12922"
+      >     </a
+      ><a name="12927" class="Symbol"
+      >:</a
+      ><a name="12928"
+      > </a
+      ><a name="12929" href="bitcoinTreeModel.html#730" class="Function"
+      >PublicKey</a
+      ><a name="12938"
+      >
+         </a
+      ><a name="12948" href="bitcoinTreeModel.html#12948" class="Field"
+      >signature</a
+      ><a name="12957"
+      >     </a
+      ><a name="12962" class="Symbol"
+      >:</a
+      ><a name="12963"
+      > </a
+      ><a name="12964" href="bitcoinTreeModel.html#697" class="Function"
+      >Signature</a
+      ><a name="12973"
+      >
+
+</a
+      ><a name="12975" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="12993"
+      >
+</a
+      ><a name="12994" class="Keyword"
+      >record</a
+      ><a name="13000"
+      > </a
+      ><a name="13001" href="bitcoinTreeModel.html#13001" class="Record"
+      >MerkleTXcoinbase</a
+      ><a name="13017"
+      > </a
+      ><a name="13018" class="Symbol"
+      >:</a
+      ><a name="13019"
+      > </a
+      ><a name="13020" class="PrimitiveType"
+      >Set</a
+      ><a name="13023"
+      > </a
+      ><a name="13024" class="Keyword"
+      >where</a
+      ><a name="13029"
+      >
+  </a
+      ><a name="13032" class="Keyword"
+      >constructor</a
+      ><a name="13043"
+      > </a
+      ><a name="13044" href="bitcoinTreeModel.html#13044" class="InductiveConstructor"
+      >merkleCoinbase</a
+      ><a name="13058"
+      >
+  </a
+      ><a name="13061" class="Keyword"
+      >field</a
+      ><a name="13066"
+      >  </a
+      ><a name="13068" href="bitcoinTreeModel.html#13068" class="Field"
+      >time</a
+      ><a name="13072"
+      >     </a
+      ><a name="13077" class="Symbol"
+      >:</a
+      ><a name="13078"
+      >  </a
+      ><a name="13080" href="bitcoinTreeModel.html#603" class="Function"
+      >Time</a
+      ><a name="13084"
+      >
+         </a
+      ><a name="13094" href="bitcoinTreeModel.html#13094" class="Field"
+      >outputs</a
+      ><a name="13101"
+      >  </a
+      ><a name="13103" class="Symbol"
+      >:</a
+      ><a name="13104"
+      >  </a
+      ><a name="13106" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="13110"
+      > </a
+      ><a name="13111" href="bitcoinTreeModel.html#2159" class="Record"
+      >TXOutputfield</a
+      ><a name="13124"
+      >
+
+</a
+      ><a name="13126" class="Keyword"
+      >record</a
+      ><a name="13132"
+      > </a
+      ><a name="13133" href="bitcoinTreeModel.html#13133" class="Record"
+      >MerkleTXstandard</a
+      ><a name="13149"
+      > </a
+      ><a name="13150" class="Symbol"
+      >:</a
+      ><a name="13151"
+      > </a
+      ><a name="13152" class="PrimitiveType"
+      >Set</a
+      ><a name="13155"
+      > </a
+      ><a name="13156" class="Keyword"
+      >where</a
+      ><a name="13161"
+      >
+  </a
+      ><a name="13164" class="Keyword"
+      >constructor</a
+      ><a name="13175"
+      > </a
+      ><a name="13176" href="bitcoinTreeModel.html#13176" class="InductiveConstructor"
+      >merkleTXstd</a
+      ><a name="13187"
+      >
+  </a
+      ><a name="13190" class="Keyword"
+      >field</a
+      ><a name="13195"
+      >  </a
+      ><a name="13197" href="bitcoinTreeModel.html#13197" class="Field"
+      >inputs</a
+      ><a name="13203"
+      >   </a
+      ><a name="13206" class="Symbol"
+      >:</a
+      ><a name="13207"
+      >  </a
+      ><a name="13209" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="13213"
+      > </a
+      ><a name="13214" href="bitcoinTreeModel.html#12793" class="Record"
+      >MerkleInputField</a
+      ><a name="13230"
+      >
+         </a
+      ><a name="13240" href="bitcoinTreeModel.html#13240" class="Field"
+      >outputs</a
+      ><a name="13247"
+      >  </a
+      ><a name="13249" class="Symbol"
+      >:</a
+      ><a name="13250"
+      >  </a
+      ><a name="13252" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="13256"
+      > </a
+      ><a name="13257" href="bitcoinTreeModel.html#2159" class="Record"
+      >TXOutputfield</a
+      ><a name="13270"
+      >
+
+</a
+      ><a name="13272" class="Keyword"
+      >data</a
+      ><a name="13276"
+      > </a
+      ><a name="13277" href="bitcoinTreeModel.html#13277" class="Datatype"
+      >MerkleTX</a
+      ><a name="13285"
+      > </a
+      ><a name="13286" class="Symbol"
+      >:</a
+      ><a name="13287"
+      > </a
+      ><a name="13288" class="PrimitiveType"
+      >Set</a
+      ><a name="13291"
+      > </a
+      ><a name="13292" class="Keyword"
+      >where</a
+      ><a name="13297"
+      >
+  </a
+      ><a name="13300" href="bitcoinTreeModel.html#13300" class="InductiveConstructor"
+      >txcoinbase</a
+      ><a name="13310"
+      >  </a
+      ><a name="13312" class="Symbol"
+      >:</a
+      ><a name="13313"
+      >  </a
+      ><a name="13315" href="bitcoinTreeModel.html#13001" class="Record"
+      >MerkleTXcoinbase</a
+      ><a name="13331"
+      >  </a
+      ><a name="13333" class="Symbol"
+      >&#8594;</a
+      ><a name="13334"
+      >  </a
+      ><a name="13336" href="bitcoinTreeModel.html#13277" class="Datatype"
+      >MerkleTX</a
+      ><a name="13344"
+      >
+  </a
+      ><a name="13347" href="bitcoinTreeModel.html#13347" class="InductiveConstructor"
+      >txstd</a
+      ><a name="13352"
+      >       </a
+      ><a name="13359" class="Symbol"
+      >:</a
+      ><a name="13360"
+      >  </a
+      ><a name="13362" href="bitcoinTreeModel.html#13133" class="Record"
+      >MerkleTXstandard</a
+      ><a name="13378"
+      >  </a
+      ><a name="13380" class="Symbol"
+      >&#8594;</a
+      ><a name="13381"
+      >  </a
+      ><a name="13383" href="bitcoinTreeModel.html#13277" class="Datatype"
+      >MerkleTX</a
+      ><a name="13391"
+      >
+
+
+
+
+
+</a
+      ><a name="13397" class="Keyword"
+      >open</a
+      ><a name="13401"
+      > </a
+      ><a name="13402" href="bitcoinTreeModel.html#12793" class="Module"
+      >MerkleInputField</a
+      ><a name="13418"
+      > </a
+      ><a name="13419" class="Keyword"
+      >public</a
+      ><a name="13425"
+      >
+</a
+      ><a name="13426" class="Keyword"
+      >open</a
+      ><a name="13430"
+      > </a
+      ><a name="13431" href="bitcoinTreeModel.html#13133" class="Module"
+      >MerkleTXstandard</a
+      ><a name="13447"
+      > </a
+      ><a name="13448" class="Keyword"
+      >public</a
+      ><a name="13454"
+      >
+</a
+      ><a name="13455" class="Keyword"
+      >open</a
+      ><a name="13459"
+      > </a
+      ><a name="13460" href="bitcoinTreeModel.html#13001" class="Module"
+      >MerkleTXcoinbase</a
+      ><a name="13476"
+      > </a
+      ><a name="13477" class="Keyword"
+      >public</a
+      ><a name="13483"
+      >
+
+</a
+      ><a name="13485" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="13503"
+      >
+</a
+      ><a name="13504" href="bitcoinTreeModel.html#13504" class="Function"
+      >txOutpSign2MerkleInput</a
+      ><a name="13526"
+      > </a
+      ><a name="13527" class="Symbol"
+      >:</a
+      ><a name="13528"
+      > </a
+      ><a name="13529" href="bitcoinTreeModel.html#2692" class="Record"
+      >TXOutput</a
+      ><a name="13537"
+      > </a
+      ><a name="13538" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="13539"
+      > </a
+      ><a name="13540" href="bitcoinTreeModel.html#730" class="Function"
+      >PublicKey</a
+      ><a name="13549"
+      > </a
+      ><a name="13550" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="13551"
+      > </a
+      ><a name="13552" href="bitcoinTreeModel.html#697" class="Function"
+      >Signature</a
+      ><a name="13561"
+      > </a
+      ><a name="13562" class="Symbol"
+      >&#8594;</a
+      ><a name="13563"
+      > </a
+      ><a name="13564" href="bitcoinTreeModel.html#12793" class="Record"
+      >MerkleInputField</a
+      ><a name="13580"
+      >
+</a
+      ><a name="13581" href="bitcoinTreeModel.html#13504" class="Function"
+      >txOutpSign2MerkleInput</a
+      ><a name="13603"
+      > </a
+      ><a name="13604" class="Symbol"
+      >(</a
+      ><a name="13605" href="bitcoinTreeModel.html#2743" class="InductiveConstructor"
+      >txOutput</a
+      ><a name="13613"
+      > </a
+      ><a name="13614" href="bitcoinTreeModel.html#13614" class="Bound"
+      >tr</a
+      ><a name="13616"
+      > </a
+      ><a name="13617" href="bitcoinTreeModel.html#13617" class="Bound"
+      >tx&#8321;</a
+      ><a name="13620"
+      > </a
+      ><a name="13621" href="bitcoinTreeModel.html#13621" class="Bound"
+      >i</a
+      ><a name="13622"
+      > </a
+      ><a name="13623" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="13624"
+      > </a
+      ><a name="13625" href="bitcoinTreeModel.html#13625" class="Bound"
+      >pbk</a
+      ><a name="13628"
+      > </a
+      ><a name="13629" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="13630"
+      > </a
+      ><a name="13631" href="bitcoinTreeModel.html#13631" class="Bound"
+      >sign</a
+      ><a name="13635" class="Symbol"
+      >)</a
+      ><a name="13636"
+      > </a
+      ><a name="13637" class="Symbol"
+      >=</a
+      ><a name="13638"
+      > </a
+      ><a name="13639" href="bitcoinTreeModel.html#12836" class="InductiveConstructor"
+      >inputField</a
+      ><a name="13649"
+      > </a
+      ><a name="13650" class="Symbol"
+      >(</a
+      ><a name="13651" href="bitcoinTreeModel.html#7672" class="Function"
+      >tx2id</a
+      ><a name="13656"
+      > </a
+      ><a name="13657" href="bitcoinTreeModel.html#13614" class="Bound"
+      >tr</a
+      ><a name="13659"
+      > </a
+      ><a name="13660" href="bitcoinTreeModel.html#13617" class="Bound"
+      >tx&#8321;</a
+      ><a name="13663" class="Symbol"
+      >)</a
+      ><a name="13664"
+      > </a
+      ><a name="13665" class="Symbol"
+      >(</a
+      ><a name="13666" href="Data.Fin.html#1049" class="Function"
+      >to&#8469;</a
+      ><a name="13669"
+      > </a
+      ><a name="13670" href="bitcoinTreeModel.html#13621" class="Bound"
+      >i</a
+      ><a name="13671" class="Symbol"
+      >)</a
+      ><a name="13672"
+      > </a
+      ><a name="13673" href="bitcoinTreeModel.html#13625" class="Bound"
+      >pbk</a
+      ><a name="13676"
+      > </a
+      ><a name="13677" href="bitcoinTreeModel.html#13631" class="Bound"
+      >sign</a
+      ><a name="13681"
+      >
+
+</a
+      ><a name="13683" href="bitcoinTreeModel.html#13683" class="Function"
+      >txInputs2MerkleInputs</a
+      ><a name="13704"
+      > </a
+      ><a name="13705" class="Symbol"
+      >:</a
+      ><a name="13706"
+      > </a
+      ><a name="13707" class="Symbol"
+      >(</a
+      ><a name="13708" href="bitcoinTreeModel.html#13708" class="Bound"
+      >tr</a
+      ><a name="13710"
+      > </a
+      ><a name="13711" class="Symbol"
+      >:</a
+      ><a name="13712"
+      > </a
+      ><a name="13713" href="bitcoinTreeModel.html#2326" class="Datatype"
+      >TXTree</a
+      ><a name="13719" class="Symbol"
+      >)(</a
+      ><a name="13721" href="bitcoinTreeModel.html#13721" class="Bound"
+      >txInputs</a
+      ><a name="13729"
+      > </a
+      ><a name="13730" class="Symbol"
+      >:</a
+      ><a name="13731"
+      > </a
+      ><a name="13732" href="bitcoinTreeModel.html#3009" class="Function"
+      >TxInputs</a
+      ><a name="13740"
+      > </a
+      ><a name="13741" href="bitcoinTreeModel.html#13708" class="Bound"
+      >tr</a
+      ><a name="13743" class="Symbol"
+      >)</a
+      ><a name="13744"
+      > </a
+      ><a name="13745" class="Symbol"
+      >&#8594;</a
+      ><a name="13746"
+      > </a
+      ><a name="13747" href="Agda.Builtin.List.html#80" class="Datatype"
+      >List</a
+      ><a name="13751"
+      > </a
+      ><a name="13752" href="bitcoinTreeModel.html#12793" class="Record"
+      >MerkleInputField</a
+      ><a name="13768"
+      >
+</a
+      ><a name="13769" href="bitcoinTreeModel.html#13683" class="Function"
+      >txInputs2MerkleInputs</a
+      ><a name="13790"
+      > </a
+      ><a name="13791" href="bitcoinTreeModel.html#13791" class="Bound"
+      >tr</a
+      ><a name="13793"
+      > </a
+      ><a name="13794" href="bitcoinTreeModel.html#13794" class="Bound"
+      >txin</a
+      ><a name="13798"
+      > </a
+      ><a name="13799" class="Symbol"
+      >=</a
+      ><a name="13800"
+      >  </a
+      ><a name="13802" href="libraries.listLib.html#257" class="Function"
+      >mapL</a
+      ><a name="13806"
+      > </a
+      ><a name="13807" href="bitcoinTreeModel.html#13504" class="Function"
+      >txOutpSign2MerkleInput</a
+      ><a name="13829"
+      > </a
+      ><a name="13830" class="Symbol"
+      >(</a
+      ><a name="13831" href="bitcoinTreeModel.html#4966" class="Function"
+      >inputs2PrevOutputsSigPbk</a
+      ><a name="13855"
+      > </a
+      ><a name="13856" href="bitcoinTreeModel.html#13791" class="Bound"
+      >tr</a
+      ><a name="13858"
+      > </a
+      ><a name="13859" href="bitcoinTreeModel.html#13794" class="Bound"
+      >txin</a
+      ><a name="13863" class="Symbol"
+      >)</a
+      ><a name="13864"
+      >
+
+</a
+      ><a name="13866" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="13884"
+      >
+</a
+      ><a name="13885" href="bitcoinTreeModel.html#13885" class="Function"
+      >MerkleTXCorresponds2TX</a
+      ><a name="13907"
+      > </a
+      ><a name="13908" class="Symbol"
+      >:</a
+      ><a name="13909"
+      > </a
+      ><a name="13910" class="Symbol"
+      >(</a
+      ><a name="13911" href="bitcoinTreeModel.html#13911" class="Bound"
+      >tx</a
+      ><a name="13913"
+      > </a
+      ><a name="13914" class="Symbol"
+      >:</a
+      ><a name="13915"
+      > </a
+      ><a name="13916" href="bitcoinTreeModel.html#13277" class="Datatype"
+      >MerkleTX</a
+      ><a name="13924" class="Symbol"
+      >)(</a
+      ><a name="13926" href="bitcoinTreeModel.html#13926" class="Bound"
+      >tr</a
+      ><a name="13928"
+      > </a
+      ><a name="13929" class="Symbol"
+      >:</a
+      ><a name="13930"
+      > </a
+      ><a name="13931" href="bitcoinTreeModel.html#2326" class="Datatype"
+      >TXTree</a
+      ><a name="13937" class="Symbol"
+      >)(</a
+      ><a name="13939" href="bitcoinTreeModel.html#13939" class="Bound"
+      >tx</a
+      ><a name="13941"
+      > </a
+      ><a name="13942" class="Symbol"
+      >:</a
+      ><a name="13943"
+      > </a
+      ><a name="13944" href="bitcoinTreeModel.html#2459" class="Datatype"
+      >TX</a
+      ><a name="13946"
+      > </a
+      ><a name="13947" href="bitcoinTreeModel.html#13926" class="Bound"
+      >tr</a
+      ><a name="13949" class="Symbol"
+      >)</a
+      ><a name="13950"
+      > </a
+      ><a name="13951" class="Symbol"
+      >&#8594;</a
+      ><a name="13952"
+      > </a
+      ><a name="13953" class="PrimitiveType"
+      >Set</a
+      ><a name="13956"
+      >
+</a
+      ><a name="13957" href="bitcoinTreeModel.html#13885" class="Function"
+      >MerkleTXCorresponds2TX</a
+      ><a name="13979"
+      > </a
+      ><a name="13980" class="Symbol"
+      >(</a
+      ><a name="13981" href="bitcoinTreeModel.html#13300" class="InductiveConstructor"
+      >txcoinbase</a
+      ><a name="13991"
+      > </a
+      ><a name="13992" class="Symbol"
+      >(</a
+      ><a name="13993" href="bitcoinTreeModel.html#13044" class="InductiveConstructor"
+      >merkleCoinbase</a
+      ><a name="14007"
+      > </a
+      ><a name="14008" href="bitcoinTreeModel.html#14008" class="Bound"
+      >time&#8321;</a
+      ><a name="14013"
+      > </a
+      ><a name="14014" href="bitcoinTreeModel.html#14014" class="Bound"
+      >outputs&#8321;</a
+      ><a name="14022" class="Symbol"
+      >))</a
+      ><a name="14024"
+      > </a
+      ><a name="14025" href="bitcoinTreeModel.html#14025" class="Bound"
+      >tr</a
+      ><a name="14027"
+      > </a
+      ><a name="14028" class="Symbol"
+      >(</a
+      ><a name="14029" href="bitcoinTreeModel.html#2581" class="InductiveConstructor"
+      >coinbase</a
+      ><a name="14037"
+      > </a
+      ><a name="14038" href="bitcoinTreeModel.html#14038" class="Bound"
+      >time&#8322;</a
+      ><a name="14043"
+      > </a
+      ><a name="14044" href="bitcoinTreeModel.html#14044" class="Bound"
+      >outputs&#8322;</a
+      ><a name="14052" class="Symbol"
+      >)</a
+      ><a name="14053"
+      >
+       </a
+      ><a name="14061" class="Symbol"
+      >=</a
+      ><a name="14062"
+      > </a
+      ><a name="14063" href="bitcoinTreeModel.html#14008" class="Bound"
+      >time&#8321;</a
+      ><a name="14068"
+      > </a
+      ><a name="14069" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="14070"
+      > </a
+      ><a name="14071" href="bitcoinTreeModel.html#14038" class="Bound"
+      >time&#8322;</a
+      ><a name="14076"
+      > </a
+      ><a name="14077" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="14078"
+      > </a
+      ><a name="14079" href="bitcoinTreeModel.html#14014" class="Bound"
+      >outputs&#8321;</a
+      ><a name="14087"
+      > </a
+      ><a name="14088" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="14089"
+      > </a
+      ><a name="14090" href="bitcoinTreeModel.html#14044" class="Bound"
+      >outputs&#8322;</a
+      ><a name="14098"
+      >
+</a
+      ><a name="14099" href="bitcoinTreeModel.html#13885" class="Function"
+      >MerkleTXCorresponds2TX</a
+      ><a name="14121"
+      > </a
+      ><a name="14122" class="Symbol"
+      >(</a
+      ><a name="14123" href="bitcoinTreeModel.html#13347" class="InductiveConstructor"
+      >txstd</a
+      ><a name="14128"
+      > </a
+      ><a name="14129" class="Symbol"
+      >(</a
+      ><a name="14130" href="bitcoinTreeModel.html#13176" class="InductiveConstructor"
+      >merkleTXstd</a
+      ><a name="14141"
+      > </a
+      ><a name="14142" href="bitcoinTreeModel.html#14142" class="Bound"
+      >inputs&#8321;</a
+      ><a name="14149"
+      > </a
+      ><a name="14150" href="bitcoinTreeModel.html#14150" class="Bound"
+      >outputs&#8321;</a
+      ><a name="14158" class="Symbol"
+      >))</a
+      ><a name="14160"
+      > </a
+      ><a name="14161" href="bitcoinTreeModel.html#14161" class="Bound"
+      >tr</a
+      ><a name="14163"
+      > </a
+      ><a name="14164" class="Symbol"
+      >(</a
+      ><a name="14165" href="bitcoinTreeModel.html#2494" class="InductiveConstructor"
+      >normalTX</a
+      ><a name="14173"
+      > </a
+      ><a name="14174" href="bitcoinTreeModel.html#14174" class="Bound"
+      >inputs&#8322;</a
+      ><a name="14181"
+      > </a
+      ><a name="14182" href="bitcoinTreeModel.html#14182" class="Bound"
+      >outputs&#8322;</a
+      ><a name="14190" class="Symbol"
+      >)</a
+      ><a name="14191"
+      >
+       </a
+      ><a name="14199" class="Symbol"
+      >=</a
+      ><a name="14200"
+      > </a
+      ><a name="14201" href="bitcoinTreeModel.html#14142" class="Bound"
+      >inputs&#8321;</a
+      ><a name="14208"
+      > </a
+      ><a name="14209" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="14210"
+      > </a
+      ><a name="14211" href="bitcoinTreeModel.html#13683" class="Function"
+      >txInputs2MerkleInputs</a
+      ><a name="14232"
+      > </a
+      ><a name="14233" href="bitcoinTreeModel.html#14161" class="Bound"
+      >tr</a
+      ><a name="14235"
+      > </a
+      ><a name="14236" href="bitcoinTreeModel.html#14174" class="Bound"
+      >inputs&#8322;</a
+      ><a name="14243"
+      > </a
+      ><a name="14244" href="Data.Product.html#1295" class="Function Operator"
+      >&#215;</a
+      ><a name="14245"
+      > </a
+      ><a name="14246" href="bitcoinTreeModel.html#14150" class="Bound"
+      >outputs&#8321;</a
+      ><a name="14254"
+      > </a
+      ><a name="14255" href="Agda.Builtin.Equality.html#83" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="14256"
+      > </a
+      ><a name="14257" href="bitcoinTreeModel.html#14182" class="Bound"
+      >outputs&#8322;</a
+      ><a name="14265"
+      >
+</a
+      ><a name="14266" href="bitcoinTreeModel.html#13885" class="Function"
+      >MerkleTXCorresponds2TX</a
+      ><a name="14288"
+      > </a
+      ><a name="14289" class="Symbol"
+      >(</a
+      ><a name="14290" href="bitcoinTreeModel.html#13300" class="InductiveConstructor"
+      >txcoinbase</a
+      ><a name="14300"
+      > </a
+      ><a name="14301" href="bitcoinTreeModel.html#14301" class="Bound"
+      >x</a
+      ><a name="14302" class="Symbol"
+      >)</a
+      ><a name="14303"
+      > </a
+      ><a name="14304" href="bitcoinTreeModel.html#14304" class="Bound"
+      >tr</a
+      ><a name="14306"
+      > </a
+      ><a name="14307" class="Symbol"
+      >(</a
+      ><a name="14308" href="bitcoinTreeModel.html#2494" class="InductiveConstructor"
+      >normalTX</a
+      ><a name="14316"
+      > </a
+      ><a name="14317" href="bitcoinTreeModel.html#14317" class="Bound"
+      >inputs&#8321;</a
+      ><a name="14324"
+      > </a
+      ><a name="14325" href="bitcoinTreeModel.html#14325" class="Bound"
+      >outputs&#8321;</a
+      ><a name="14333" class="Symbol"
+      >)</a
+      ><a name="14334"
+      >  </a
+      ><a name="14336" class="Symbol"
+      >=</a
+      ><a name="14337"
+      >  </a
+      ><a name="14339" href="Data.Empty.html#243" class="Datatype"
+      >&#8869;</a
+      ><a name="14340"
+      >
+</a
+      ><a name="14341" href="bitcoinTreeModel.html#13885" class="Function"
+      >MerkleTXCorresponds2TX</a
+      ><a name="14363"
+      > </a
+      ><a name="14364" class="Symbol"
+      >(</a
+      ><a name="14365" href="bitcoinTreeModel.html#13347" class="InductiveConstructor"
+      >txstd</a
+      ><a name="14370"
+      > </a
+      ><a name="14371" href="bitcoinTreeModel.html#14371" class="Bound"
+      >x</a
+      ><a name="14372" class="Symbol"
+      >)</a
+      ><a name="14373"
+      > </a
+      ><a name="14374" href="bitcoinTreeModel.html#14374" class="Bound"
+      >tr</a
+      ><a name="14376"
+      > </a
+      ><a name="14377" class="Symbol"
+      >(</a
+      ><a name="14378" href="bitcoinTreeModel.html#2581" class="InductiveConstructor"
+      >coinbase</a
+      ><a name="14386"
+      > </a
+      ><a name="14387" href="bitcoinTreeModel.html#14387" class="Bound"
+      >time&#8321;</a
+      ><a name="14392"
+      > </a
+      ><a name="14393" href="bitcoinTreeModel.html#14393" class="Bound"
+      >outputs&#8321;</a
+      ><a name="14401" class="Symbol"
+      >)</a
+      ><a name="14402"
+      >         </a
+      ><a name="14411" class="Symbol"
+      >=</a
+      ><a name="14412"
+      >  </a
+      ><a name="14414" href="Data.Empty.html#243" class="Datatype"
+      >&#8869;</a
+      ><a name="14415"
+      >
+
+</a
+      ><a name="14417" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="14435"
+      >
+</a
+      ><a name="14436" class="Keyword"
+      >record</a
+      ><a name="14442"
+      > </a
+      ><a name="14443" href="bitcoinTreeModel.html#14443" class="Record"
+      >MerkleTXCor</a
+      ><a name="14454"
+      > </a
+      ><a name="14455" class="Symbol"
+      >(</a
+      ><a name="14456" href="bitcoinTreeModel.html#14456" class="Bound"
+      >tr</a
+      ><a name="14458"
+      > </a
+      ><a name="14459" class="Symbol"
+      >:</a
+      ><a name="14460"
+      > </a
+      ><a name="14461" href="bitcoinTreeModel.html#11956" class="Record"
+      >TXTreeCorrect</a
+      ><a name="14474" class="Symbol"
+      >)</a
+      ><a name="14475"
+      > </a
+      ><a name="14476" class="Symbol"
+      >:</a
+      ><a name="14477"
+      > </a
+      ><a name="14478" class="PrimitiveType"
+      >Set</a
+      ><a name="14481"
+      > </a
+      ><a name="14482" class="Keyword"
+      >where</a
+      ><a name="14487"
+      >
+  </a
+      ><a name="14490" class="Keyword"
+      >field</a
+      ><a name="14495"
+      >  </a
+      ><a name="14497" href="bitcoinTreeModel.html#14497" class="Field"
+      >mk</a
+      ><a name="14499"
+      >   </a
+      ><a name="14502" class="Symbol"
+      >:</a
+      ><a name="14503"
+      > </a
+      ><a name="14504" href="bitcoinTreeModel.html#13277" class="Datatype"
+      >MerkleTX</a
+      ><a name="14512"
+      >
+         </a
+      ><a name="14522" href="bitcoinTreeModel.html#14522" class="Field"
+      >mtx</a
+      ><a name="14525"
+      >  </a
+      ><a name="14527" class="Symbol"
+      >:</a
+      ><a name="14528"
+      > </a
+      ><a name="14529" href="bitcoinTreeModel.html#12133" class="Record"
+      >TXcorrect</a
+      ><a name="14538"
+      > </a
+      ><a name="14539" href="bitcoinTreeModel.html#14456" class="Bound"
+      >tr</a
+      ><a name="14541"
+      >
+         </a
+      ><a name="14551" href="bitcoinTreeModel.html#14551" class="Field"
+      >cor</a
+      ><a name="14554"
+      >  </a
+      ><a name="14556" class="Symbol"
+      >:</a
+      ><a name="14557"
+      > </a
+      ><a name="14558" href="bitcoinTreeModel.html#13885" class="Function"
+      >MerkleTXCorresponds2TX</a
+      ><a name="14580"
+      > </a
+      ><a name="14581" href="bitcoinTreeModel.html#14497" class="Field"
+      >mk</a
+      ><a name="14583"
+      > </a
+      ><a name="14584" class="Symbol"
+      >(</a
+      ><a name="14585" href="bitcoinTreeModel.html#14456" class="Bound"
+      >tr</a
+      ><a name="14587"
+      > </a
+      ><a name="14588" class="Symbol"
+      >.</a
+      ><a name="14589" href="bitcoinTreeModel.html#12019" class="Field"
+      >txtr</a
+      ><a name="14593" class="Symbol"
+      >)</a
+      ><a name="14594"
+      > </a
+      ><a name="14595" class="Symbol"
+      >(</a
+      ><a name="14596" href="bitcoinTreeModel.html#14522" class="Field"
+      >mtx</a
+      ><a name="14599"
+      > </a
+      ><a name="14600" class="Symbol"
+      >.</a
+      ><a name="14601" href="bitcoinTreeModel.html#12186" class="Field"
+      >theTx</a
+      ><a name="14606" class="Symbol"
+      >)</a
+      ><a name="14607"
+      >
+
+</a
+      ><a name="14609" class="Keyword"
+      >open</a
+      ><a name="14613"
+      > </a
+      ><a name="14614" href="bitcoinTreeModel.html#14443" class="Module"
+      >MerkleTXCor</a
+      ><a name="14625"
+      > </a
+      ><a name="14626" class="Keyword"
+      >public</a
+      ><a name="14632"
+      >
+
+</a
+      ><a name="14634" class="Comment"
+      >-- \bitcoinVersSix</a
+      ><a name="14652"
+      >
+</a
+      ><a name="14653" href="bitcoinTreeModel.html#14653" class="Function"
+      >updateTXTree</a
+      ><a name="14665"
+      > </a
+      ><a name="14666" class="Symbol"
+      >:</a
+      ><a name="14667"
+      > </a
+      ><a name="14668" class="Symbol"
+      >(</a
+      ><a name="14669" href="bitcoinTreeModel.html#14669" class="Bound"
+      >tr</a
+      ><a name="14671"
+      > </a
+      ><a name="14672" class="Symbol"
+      >:</a
+      ><a name="14673"
+      > </a
+      ><a name="14674" href="bitcoinTreeModel.html#11956" class="Record"
+      >TXTreeCorrect</a
+      ><a name="14687" class="Symbol"
+      >)(</a
+      ><a name="14689" href="bitcoinTreeModel.html#14689" class="Bound"
+      >m</a
+      ><a name="14690"
+      > </a
+      ><a name="14691" class="Symbol"
+      >:</a
+      ><a name="14692"
+      > </a
+      ><a name="14693" href="bitcoinTreeModel.html#14443" class="Record"
+      >MerkleTXCor</a
+      ><a name="14704"
+      > </a
+      ><a name="14705" href="bitcoinTreeModel.html#14669" class="Bound"
+      >tr</a
+      ><a name="14707" class="Symbol"
+      >)</a
+      ><a name="14708"
+      > </a
+      ><a name="14709" class="Symbol"
+      >&#8594;</a
+      ><a name="14710"
+      > </a
+      ><a name="14711" href="bitcoinTreeModel.html#11956" class="Record"
+      >TXTreeCorrect</a
+      ><a name="14724"
+      >
+</a
+      ><a name="14725" href="bitcoinTreeModel.html#14653" class="Function"
+      >updateTXTree</a
+      ><a name="14737"
+      > </a
+      ><a name="14738" href="bitcoinTreeModel.html#14738" class="Bound"
+      >tr</a
+      ><a name="14740"
+      > </a
+      ><a name="14741" href="bitcoinTreeModel.html#14741" class="Bound"
+      >m</a
+      ><a name="14742"
+      > </a
+      ><a name="14743" class="Symbol"
+      >=</a
+      ><a name="14744"
+      > </a
+      ><a name="14745" href="bitcoinTreeModel.html#12390" class="Function"
+      >addTxtreeCorrect</a
+      ><a name="14761"
+      > </a
+      ><a name="14762" href="bitcoinTreeModel.html#14738" class="Bound"
+      >tr</a
+      ><a name="14764"
+      > </a
+      ><a name="14765" class="Symbol"
+      >(</a
+      ><a name="14766" href="bitcoinTreeModel.html#14741" class="Bound"
+      >m</a
+      ><a name="14767"
+      > </a
+      ><a name="14768" class="Symbol"
+      >.</a
+      ><a name="14769" href="bitcoinTreeModel.html#14522" class="Field"
+      >mtx</a
+      ><a name="14772" class="Symbol"
+      >)</a
+      ><a name="14773"
+      >
+</a
+      ></pre
+    ></body
+  ></html
+>
