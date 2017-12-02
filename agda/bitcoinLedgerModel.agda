@@ -23,8 +23,8 @@ PublicKey : Set
 
 -- \bitcoinVersFive
 Time       =  ℕ
-Amount     =  ℕ
 
+Amount     =  ℕ
 Address    =  ℕ
 TXID       =  ℕ
 Signature  =  ℕ
@@ -104,8 +104,8 @@ txInput2Msg inp outp = txField2Msg inp +msg txFieldList2Msg outp
 
 -- \bitcoinVersFive
 tx2Signaux : (inp : List TXField) (outp : List TXField)  → Set
-tx2Signaux [] outp = ⊤
-tx2Signaux (inp ∷ restinp) outp =
+tx2Signaux []               outp  = ⊤
+tx2Signaux (inp ∷ restinp)  outp  =
     SignedWithSigPbk (txInput2Msg inp outp) (address inp) ×  tx2Signaux restinp outp
 
 tx2Sign : TXUnsigned → Set
@@ -121,55 +121,55 @@ record TX : Set where
 
 open TX public
 
-LedgerR : Set
+Ledger : Set
 
 -- \bitcoinVersFive
-LedgerR = (addr : Address) → Amount
+Ledger = (addr : Address) → Amount
 
-initialLedger : LedgerR
+initialLedger : Ledger
 initialLedger addr = 0
 
 -- \bitcoinVersFive
-addTXFieldToLedgerR :  (tr : TXField)(oldLedgerR : LedgerR) → LedgerR
-addTXFieldToLedgerR  tr oldLedgerR pubk =
-         if   pubk ≡ℕb address tr then oldLedgerR pubk +  amount tr else oldLedgerR pubk
+addTXFieldToLedger :  (tr : TXField)(oldLedger : Ledger) → Ledger
+addTXFieldToLedger  tr oldLedger pubk =
+         if   pubk ≡ℕb address tr then oldLedger pubk +  amount tr else oldLedger pubk
 
-addTXFieldListToLedgerR  :  (tr : List TXField)(oldLedgerR : LedgerR) → LedgerR
-addTXFieldListToLedgerR []        oldLedgerR  =  oldLedgerR
-addTXFieldListToLedgerR (x ∷ tr)  oldLedgerR  =
-      addTXFieldListToLedgerR tr (addTXFieldToLedgerR x oldLedgerR)
+addTXFieldListToLedger  :  (tr : List TXField)(oldLedger : Ledger) → Ledger
+addTXFieldListToLedger []        oldLedger  =  oldLedger
+addTXFieldListToLedger (x ∷ tr)  oldLedger  =
+      addTXFieldListToLedger tr (addTXFieldToLedger x oldLedger)
 
 
 -- \bitcoinVersFive
-subtrTXFieldFromLedgerR      :  (tr : TXField) (oldLedgerR : LedgerR) → LedgerR
-subtrTXFieldListFromLedgerR  :  (tr : List TXField)(oldLedgerR : LedgerR)→ LedgerR
-subtrTXFieldFromLedgerR  tr oldLedgerR pubk =
+subtrTXFieldFromLedger      :  (tr : TXField)       (oldLedger : Ledger)  →  Ledger
+subtrTXFieldListFromLedger  :  (tr : List TXField)  (oldLedger : Ledger)  →  Ledger
+subtrTXFieldFromLedger  tr oldLedger pubk =
          if   pubk ≡ℕb address tr
-         then oldLedgerR pubk ∸  amount tr
-         else oldLedgerR pubk
+         then oldLedger pubk ∸  amount tr
+         else oldLedger pubk
 
-subtrTXFieldListFromLedgerR [] oldLedgerR = oldLedgerR
-subtrTXFieldListFromLedgerR (x ∷ tr) oldLedgerR =
-           subtrTXFieldListFromLedgerR tr (subtrTXFieldFromLedgerR x oldLedgerR)
-
--- \bitcoinVersFive
-updateLedgerRByTX :  (tr : TX)(oldLedgerR : LedgerR) → LedgerR
-updateLedgerRByTX tr oldLedgerR =  addTXFieldListToLedgerR (outputs (tx tr))
-                                   (subtrTXFieldListFromLedgerR (inputs (tx tr)) oldLedgerR )
-
+subtrTXFieldListFromLedger [] oldLedger = oldLedger
+subtrTXFieldListFromLedger (x ∷ tr) oldLedger =
+           subtrTXFieldListFromLedger tr (subtrTXFieldFromLedger x oldLedger)
 
 -- \bitcoinVersFive
-correctInput : (tr : TXField) (ledgerR : LedgerR) → Set
-correctInput tr ledgerR = ledgerR (address tr) ≥ amount tr
+updateLedgerByTX :  (tr : TX)(oldLedger : Ledger) → Ledger
+updateLedgerByTX tr oldLedger =  addTXFieldListToLedger (outputs (tx tr))
+                                   (subtrTXFieldListFromLedger (inputs (tx tr)) oldLedger )
+
 
 -- \bitcoinVersFive
-correctInputs : (tr : List TXField) (ledgerR : LedgerR) → Set
-correctInputs [] ledgerR = ⊤
-correctInputs (x ∷ tr) ledgerR = correctInput x ledgerR
-                                × correctInputs tr (subtrTXFieldFromLedgerR x ledgerR)
+correctInput : (tr : TXField) (ledger : Ledger) → Set
+correctInput tr ledger = ledger (address tr) ≥ amount tr
 
-correctTX : (tr : TX) (ledgerR : LedgerR) → Set
-correctTX tr ledgerR = correctInputs (outputs (tx tr)) ledgerR
+-- \bitcoinVersFive
+correctInputs : (tr : List TXField) (ledger : Ledger) → Set
+correctInputs []        ledger  = ⊤
+correctInputs (x ∷ tr)  ledger  = correctInput x ledger ×
+                                  correctInputs tr (subtrTXFieldFromLedger x ledger)
+
+correctTX : (tr : TX) (ledger : Ledger) → Set
+correctTX tr ledger = correctInputs (outputs (tx tr)) ledger
 
 
 
@@ -190,15 +190,15 @@ unMinedBlock2TXFee bl = sumListViaf tx2TXFee  bl
 
 
 -- \bitcoinVersFive
-correctUnminedBlock : (block : UnMinedBlock)(oldLedgerR : LedgerR)→ Set
-correctUnminedBlock [] oldLedgerR = ⊤
-correctUnminedBlock (tr ∷ block) oldLedgerR =
-    correctTX tr oldLedgerR ×  correctUnminedBlock  block (updateLedgerRByTX tr oldLedgerR)
+correctUnminedBlock : (block : UnMinedBlock)(oldLedger : Ledger)→ Set
+correctUnminedBlock  []            oldLedger  = ⊤
+correctUnminedBlock  (tr ∷ block)  oldLedger  =
+    correctTX tr oldLedger ×  correctUnminedBlock  block (updateLedgerByTX tr oldLedger)
 
-updateLedgerRUnminedBlock : (block : UnMinedBlock)(oldLedgerR : LedgerR) → LedgerR
-updateLedgerRUnminedBlock [] oldLedgerR            = oldLedgerR
-updateLedgerRUnminedBlock (tr ∷ block) oldLedgerR  =
-        updateLedgerRUnminedBlock block (updateLedgerRByTX tr oldLedgerR)
+updateLedgerUnminedBlock : (block : UnMinedBlock)(oldLedger : Ledger) → Ledger
+updateLedgerUnminedBlock []            oldLedger  = oldLedger
+updateLedgerUnminedBlock (tr ∷ block)  oldLedger  =
+    updateLedgerUnminedBlock block (updateLedgerByTX tr oldLedger)
 
 BlockUnchecked : Set
 
@@ -209,26 +209,26 @@ block2TXFee : BlockUnchecked → Amount
 block2TXFee (outputMiner , block) = unMinedBlock2TXFee block
 
 {-
-upDateLedgerRMining : (minerOutput  : List TXField)
-                     (oldLedgerR : LedgerR)
-                     → LedgerR
-upDateLedgerRMining minerOutput oldLedgerR =
-           addTXFieldListToLedgerR minerOutput oldLedgerR
+upDateLedgerMining : (minerOutput  : List TXField)
+                     (oldLedger : Ledger)
+                     → Ledger
+upDateLedgerMining minerOutput oldLedger =
+           addTXFieldListToLedger minerOutput oldLedger
 --              (txField reward miner)
 -}
 
 -- \bitcoinVersFive
-correctMinedBlock : (reward : Amount)(block : BlockUnchecked)(oldLedgerR : LedgerR)
-                    → Set
-correctMinedBlock reward (outputMiner , block) oldLedgerR =
-      correctUnminedBlock block oldLedgerR ×
+correctMinedBlock : (reward : Amount)(block : BlockUnchecked)(oldLedger : Ledger) → Set
+
+correctMinedBlock reward (outputMiner , block) oldLedger =
+      correctUnminedBlock block oldLedger ×
       txFieldList2TotalAmount outputMiner ≡ℕ (reward + unMinedBlock2TXFee block)
---          (upDateLedgerRMining reward miner )
+--          (upDateLedgerMining reward miner )
 
 -- \bitcoinVersFive
-updateLedgerRBlock : (block : BlockUnchecked)(oldLedgerR : LedgerR)→ LedgerR
-updateLedgerRBlock (outputMiner , block) oldLedgerR =
-   addTXFieldListToLedgerR  outputMiner (updateLedgerRUnminedBlock block oldLedgerR)
+updateLedgerBlock : (block : BlockUnchecked)(oldLedger : Ledger)→ Ledger
+updateLedgerBlock (outputMiner , block) oldLedger =
+   addTXFieldListToLedger  outputMiner (updateLedgerUnminedBlock block oldLedger)
 
 -- next blockchain
 -- reward can be a function f : Time → Amount
@@ -239,34 +239,34 @@ BlockChainUnchecked : Set
 BlockChainUnchecked = List BlockUnchecked
 
 -- \bitcoinVersFive
-CorrectBlockChain : (minerReward : Time → Amount)
+CorrectBlockChain : (blockReward : Time → Amount)
                     (startTime : Time)
-                    (sartLedgerR : LedgerR)
+                    (sartLedger : Ledger)
                     (bc  : BlockChainUnchecked)
                     → Set
-CorrectBlockChain rewardFun startTime startLedgerR [] = ⊤
-CorrectBlockChain rewardFun startTime startLedgerR (block ∷ restbc)
-   = correctMinedBlock (rewardFun startTime) block startLedgerR
-     ×  CorrectBlockChain rewardFun (suc startTime)
-        (updateLedgerRBlock block startLedgerR)  restbc
+CorrectBlockChain blockReward startTime startLedger [] = ⊤
+CorrectBlockChain blockReward startTime startLedger (block ∷ restbc)
+   = correctMinedBlock (blockReward startTime) block startLedger
+     ×  CorrectBlockChain blockReward (suc startTime)
+        (updateLedgerBlock block startLedger)  restbc
 
 -- \bitcoinVersFive
-FinalLedgerR :  (txFeePrevious : Amount)     (minerReward : Time → Amount)
-                (startTime : Time)           (startLedgerR : LedgerR)
-                (bc  : BlockChainUnchecked)  → LedgerR
-FinalLedgerR trfee rewardFun startTime startLedgerR [] = startLedgerR
-FinalLedgerR trfee rewardFun startTime startLedgerR (block ∷ restbc)  =
-  FinalLedgerR (block2TXFee block) rewardFun (suc startTime)
-     (updateLedgerRBlock block startLedgerR) restbc
+FinalLedger :  (txFeePrevious : Amount)     (blockReward : Time → Amount)
+                (startTime : Time)           (startLedger : Ledger)
+                (bc  : BlockChainUnchecked)  → Ledger
+FinalLedger trfee blockReward startTime startLedger [] = startLedger
+FinalLedger trfee blockReward startTime startLedger (block ∷ restbc)  =
+  FinalLedger (block2TXFee block) blockReward (suc startTime)
+     (updateLedgerBlock block startLedger) restbc
 
 -- \bitcoinVersFive
-record BlockChain (minerReward : Time → Amount) : Set where
+record BlockChain (blockReward : Time → Amount) : Set where
   field  blockchain  : BlockChainUnchecked
-         correct     : CorrectBlockChain minerReward 0 initialLedger blockchain
+         correct     : CorrectBlockChain blockReward 0 initialLedger blockchain
 
 open BlockChain public
 
-blockChain2FinalLedgerR :  (minerReward : Time → Amount)(bc : BlockChain minerReward)
-                           → LedgerR
-blockChain2FinalLedgerR minerReward bc =
-   FinalLedgerR 0 minerReward 0 initialLedger (blockchain bc)
+blockChain2FinalLedger :  (blockReward : Time → Amount)(bc : BlockChain blockReward)
+                           → Ledger
+blockChain2FinalLedger blockReward bc =
+   FinalLedger 0 blockReward 0 initialLedger (blockchain bc)

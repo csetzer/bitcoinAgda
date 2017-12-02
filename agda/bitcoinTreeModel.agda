@@ -69,7 +69,7 @@ postulate Signed : (msg : Msg)(publicKey : PublicKey)(s : Signature) → Set
 --                    → ℕ
 
 -- \bitcoinVersSix
-postulate minerReward : (t : Time) → Amount
+postulate blockReward : (t : Time) → Amount
 postulate blockMaturationTime : Time
 -- reward for miner at time t
 -- how long the miner needs to wait before his reward can be spent
@@ -156,20 +156,20 @@ outputs2SumAmount : List TXOutputfield → Amount
 outputs2SumAmount l = sumListViaf amount l
 
 tx2SumOutputs : {tr : TXTree}(tx : TX tr) → Amount
-tx2SumOutputs (normalTX inputs outputs) = outputs2SumAmount outputs
-tx2SumOutputs (coinbase time outputs) =  outputs2SumAmount outputs
+tx2SumOutputs (normalTX inputs outputs)  =  outputs2SumAmount outputs
+tx2SumOutputs (coinbase time outputs)    =  outputs2SumAmount outputs
 
 
 -- \bitcoinVersSix
 txOutput2Outputfield : TXOutput → TXOutputfield
-txOutput2Outputfield (txOutput trTree (normalTX inputs outputs) i) = nth outputs i
-txOutput2Outputfield (txOutput trTree (coinbase time outputs) i)   = nth outputs i
+txOutput2Outputfield (txOutput trTree (normalTX inputs outputs) i)  = nth outputs i
+txOutput2Outputfield (txOutput trTree (coinbase time outputs) i)    = nth outputs i
 
 txOutput2Amount : TXOutput → Amount
-txOutput2Amount output = amount (txOutput2Outputfield output)
+txOutput2Amount output = txOutput2Outputfield output .amount
 
 txOutput2Address : TXOutput → Address
-txOutput2Address output = address (txOutput2Outputfield output)
+txOutput2Address output = txOutput2Outputfield output .address
 
 
 -- \bitcoinVersSix
@@ -185,23 +185,23 @@ inputs2Sum  tr inputs = sumListViaf txOutput2Amount (inputs2PrevOutputs tr input
 
 -- \bitcoinVersSix
 txTree2TimeNextTobeMinedBlock : (tr : TXTree) → Time
-txTree2TimeNextTobeMinedBlock genesisTree = 0
-txTree2TimeNextTobeMinedBlock (txtree tree (normalTX inputs outputs)) =
+txTree2TimeNextTobeMinedBlock genesisTree                              =  0
+txTree2TimeNextTobeMinedBlock (txtree tree (normalTX inputs outputs))  =
             txTree2TimeNextTobeMinedBlock tree
-txTree2TimeNextTobeMinedBlock (txtree tree (coinbase time outputs)) = suc time
+txTree2TimeNextTobeMinedBlock (txtree tree (coinbase time outputs))    =  suc time
 
 -- \bitcoinVersSix
 mutual
   tx2SumInputs : (tr : TXTree)(tx : TX tr) → Amount
-  tx2SumInputs tr (normalTX inputs outputs) = inputs2Sum tr inputs
-  tx2SumInputs tr (coinbase time outputs) =
-     txTree2RecentTXFees tr + minerReward (txTree2TimeNextTobeMinedBlock tr)
+  tx2SumInputs tr (normalTX inputs outputs)  = inputs2Sum tr inputs
+  tx2SumInputs tr (coinbase time outputs)    =
+     txTree2RecentTXFees tr + blockReward (txTree2TimeNextTobeMinedBlock tr)
 
   txTree2RecentTXFees : (tr : TXTree) → Amount
-  txTree2RecentTXFees genesisTree = 0
-  txTree2RecentTXFees (txtree tr (normalTX inputs outputs)) =
+  txTree2RecentTXFees genesisTree                            = 0
+  txTree2RecentTXFees (txtree tr (normalTX inputs outputs))  =
      txTree2RecentTXFees tr + (inputs2Sum tr inputs ∸ outputs2SumAmount outputs)
-  txTree2RecentTXFees (txtree tr (coinbase time outputs)) = 0
+  txTree2RecentTXFees (txtree tr (coinbase time outputs))    = 0
 
 -- \bitcoinVersSix
 output2MaturationTime : TXOutput → Time
@@ -243,9 +243,10 @@ mutual
   -- in \cite{github:bip-0034.mediawiki}
 
 -- \bitcoinVersSix
-  utxoMinusNewInputs2Msg : (tr : TXTree)(tx : TX tr)(i : Fin (length (utxoMinusNewInputs tr tx)))
-                   → Msg
-  utxoMinusNewInputs2Msg tr (normalTX inputs outputs) i = utxo2Msg tr (listMinusSubList+Index2OrgIndex (utxo tr) inputs i)
+  utxoMinusNewInputs2Msg :  (tr : TXTree)(tx : TX tr)(i : Fin (length (utxoMinusNewInputs tr tx)))
+                            → Msg
+  utxoMinusNewInputs2Msg tr (normalTX inputs outputs) i =
+          utxo2Msg tr (listMinusSubList+Index2OrgIndex (utxo tr) inputs i)
   utxoMinusNewInputs2Msg tr (coinbase time outputs) i = utxo2Msg tr i
 
     -- listMinusSubList+Index2OrgIndex
@@ -322,7 +323,7 @@ CorrectTX tr (normalTX inputs outputs) =
 
 CorrectTX tr (coinbase time outputs) =
          NonNil outputs ×
-         outputs2SumAmount outputs ≡ txTree2RecentTXFees tr + minerReward time ×
+         outputs2SumAmount outputs ≡ txTree2RecentTXFees tr + blockReward time ×
          time ≡ txTree2TimeNextTobeMinedBlock tr
 --         (∀inList (inputs2PrevOutputs tr inputs)
 --                  (λ o → output2MaturationTime o ≤ txTree2TimeNextTobeMinedBlock tr)) ×

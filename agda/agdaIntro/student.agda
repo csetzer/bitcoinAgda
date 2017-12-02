@@ -14,6 +14,9 @@ exampleStudent : Student
 --\student
 exampleStudent = student "John" 123456
 
+f : Student → String
+f = name
+
 john : String
 --\student
 john = exampleStudent .name
