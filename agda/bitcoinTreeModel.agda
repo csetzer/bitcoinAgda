@@ -7,10 +7,10 @@ open import libraries.natLib
 open import libraries.finLib
 open import Data.Nat
 open import Data.Empty
-open import Data.Fin hiding (_+_ ; _≤_ )
+open import Data.Fin hiding (_+_ ; _≤_  ; _≥_ )
 open import Data.List
 open import Data.Unit hiding (_≤_ )
-open import Data.Bool
+open import Data.Bool hiding (_≤_ )
 open import Data.Product
 open import Data.Nat.Base
 open import Data.Maybe
