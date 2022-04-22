@@ -183,8 +183,8 @@ sumListViaf f (x ∷ l) = f x + sumListViaf f l
 
 --\listLib
 nonNil : {X : Set}(l : List X) → Bool
-nonNil [] = true
-nonNil (_ ∷ _) = false
+nonNil [] = false
+nonNil (_ ∷ _) = true
 
 NonNil : {X : Set}(l : List X) → Set
 NonNil l = T (nonNil l)

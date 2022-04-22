@@ -5,14 +5,14 @@ module bitcoinTreeModel where
 open import libraries.listLib
 open import libraries.natLib
 open import libraries.finLib
-open import Data.Nat
+open import Data.Nat hiding (_≥_)
 open import Data.Empty
 open import Data.Fin hiding (_+_ ; _≤_  ; _≥_ )
 open import Data.List
 open import Data.Unit hiding (_≤_ )
 open import Data.Bool hiding (_≤_ )
 open import Data.Product
-open import Data.Nat.Base
+open import Data.Nat.Base hiding (_≥_)
 open import Data.Maybe
 open import Relation.Binary.PropositionalEquality
 open import Relation.Nullary

@@ -1,78 +1,46 @@
+open import basicFunctions
 
+module bitcoinLedgerModel (basicFunctions : BasicFunctions) where
 
-module bitcoinLedgerModel where
-
--- open import bool
 open import libraries.listLib
 open import libraries.natLib
-open import Data.Nat
+open import Data.Nat hiding (_≥_)
 open import Data.List
 open import Data.Unit
+open import Data.Empty
 open import Data.Bool
 open import Data.Product
-open import Data.Nat.Base
-
-infixr 3 _+msg_
-
-Time : Set
-Amount : Set
-Address : Set
-TXID : Set
-Signature : Set
-PublicKey : Set
-
--- \bitcoinVersFive
-Time       =  ℕ
-
-Amount     =  ℕ
-Address    =  ℕ
-TXID       =  ℕ
-Signature  =  ℕ
-PublicKey  =  ℕ
+open import Data.Nat.Base hiding (_≥_)
 
 
--- \bitcoinVersFive
-data Msg : Set where
-   nat     :  (n : ℕ)         → Msg
-   _+msg_  :  (m m' : Msg)     → Msg
-   list    :  (l  : List Msg)  → Msg
+hashMsg : Msg → ℕ
+hashMsg = basicFunctions  .BasicFunctions.hashMsg
 
-postulate hashMsg : Msg → ℕ
+publicKey2Address : (pubk : PublicKey) → Address
+publicKey2Address = basicFunctions .BasicFunctions.publicKey2Address
 
 
+Signed : (msg : Msg)(publicKey : PublicKey)(s : Signature) → Set
+Signed = basicFunctions .BasicFunctions.Signed
 
--- \bitcoinVersFive
-postulate publicKey2Address : (pubk : PublicKey) → Address
+blockReward : Time → Amount
+blockReward  = basicFunctions .BasicFunctions.blockReward
 
--- Signed means that Msg msg has been signed
--- by private key corresponding to pubk
-
--- \bitcoinVersFive
-postulate Signed : (msg : Msg)(publicKey : PublicKey)(s : Signature) → Set
 
 record SignedWithSigPbk (msg : Msg)(address : Address) : Set where
+  constructor signedWithSigPbk
   field  publicKey  :  PublicKey
          pbkCorrect :  publicKey2Address publicKey ≡ℕ  address
          signature  :  Signature
          signed     :  Signed msg publicKey signature
+open SignedWithSigPbk public
 
-{-
-_≡PbkBool_ : (pubk pubk' : PublicKey) → Bool
-pubk ≡PbkBool pubk' = publicKey2Address pubk  ≡ℕb publicKey2Address pubk'
--}
-
-{- -- Unused but correct code
-
-_≡Pbk_ : PublicKey → PublicKey → Set
-key1 ≡Pbk key2 = T (key1 ≡PbkBool key2)
--}
 
 -- \bitcoinVersFive
 record TXField : Set where
   constructor txField
   field  amount     :  Amount
          address    :  Address
-
 open TXField public
 
 --\bitcoinVersFive
@@ -89,9 +57,9 @@ txFieldList2TotalAmount inp = sumListViaf amount inp
 
 -- \bitcoinVersFive
 record TXUnsigned : Set where
+  constructor txUnsigned
   field  inputs   : List TXField
          outputs  : List TXField
-
 open TXUnsigned public
 
 -- \bitcoinVersFive
@@ -114,6 +82,7 @@ tx2Sign tr = tx2Signaux (inputs tr) (outputs tr)
 
 -- \bitcoinVersFive
 record TX : Set where
+  constructor txc
   field  tx       :  TXUnsigned
          cor      : txFieldList2TotalAmount (inputs tx) ≥ txFieldList2TotalAmount (outputs tx)
          nonEmpt  : NonNil (inputs tx) × NonNil (outputs tx)
@@ -169,7 +138,7 @@ correctInputs (x ∷ tr)  ledger  = correctInput x ledger ×
                                   correctInputs tr (subtrTXFieldFromLedger x ledger)
 
 correctTX : (tr : TX) (ledger : Ledger) → Set
-correctTX tr ledger = correctInputs (outputs (tx tr)) ledger
+correctTX tr ledger = correctInputs (inputs (tx tr)) ledger
 
 
 
@@ -239,34 +208,33 @@ BlockChainUnchecked : Set
 BlockChainUnchecked = List BlockUnchecked
 
 -- \bitcoinVersFive
-CorrectBlockChain : (blockReward : Time → Amount)
-                    (startTime : Time)
+CorrectBlockChain : (startTime : Time)
                     (sartLedger : Ledger)
                     (bc  : BlockChainUnchecked)
                     → Set
-CorrectBlockChain blockReward startTime startLedger [] = ⊤
-CorrectBlockChain blockReward startTime startLedger (block ∷ restbc)
+CorrectBlockChain startTime startLedger [] = ⊤
+CorrectBlockChain startTime startLedger (block ∷ restbc)
    = correctMinedBlock (blockReward startTime) block startLedger
-     ×  CorrectBlockChain blockReward (suc startTime)
+     ×  CorrectBlockChain (suc startTime)
         (updateLedgerBlock block startLedger)  restbc
 
 -- \bitcoinVersFive
-FinalLedger :  (txFeePrevious : Amount)     (blockReward : Time → Amount)
+FinalLedger :  (txFeePrevious : Amount)
                 (startTime : Time)           (startLedger : Ledger)
                 (bc  : BlockChainUnchecked)  → Ledger
-FinalLedger trfee blockReward startTime startLedger [] = startLedger
-FinalLedger trfee blockReward startTime startLedger (block ∷ restbc)  =
-  FinalLedger (block2TXFee block) blockReward (suc startTime)
+FinalLedger trfee startTime startLedger [] = startLedger
+FinalLedger trfee startTime startLedger (block ∷ restbc)  =
+  FinalLedger (block2TXFee block) (suc startTime)
      (updateLedgerBlock block startLedger) restbc
 
 -- \bitcoinVersFive
-record BlockChain (blockReward : Time → Amount) : Set where
+record BlockChain : Set where
+  constructor blockchainc
   field  blockchain  : BlockChainUnchecked
-         correct     : CorrectBlockChain blockReward 0 initialLedger blockchain
+         correct     : CorrectBlockChain 0 initialLedger blockchain
 
 open BlockChain public
 
-blockChain2FinalLedger :  (blockReward : Time → Amount)(bc : BlockChain blockReward)
-                           → Ledger
-blockChain2FinalLedger blockReward bc =
-   FinalLedger 0 blockReward 0 initialLedger (blockchain bc)
+blockChain2FinalLedger :  (bc : BlockChain) → Ledger
+blockChain2FinalLedger bc =
+   FinalLedger 0 0 initialLedger (blockchain bc)
